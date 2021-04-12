@@ -22,9 +22,9 @@ const SearchProduct = () => {
             <Box className="header">
                 Header
             </Box>
-            <Box height="100%" display="flex">
+            <Box height="100%" width="100%" display="flex" id='body'>
                 <LeftMenu/>
-                    <Box bgcolor="#A5A5A5" display="flex" flexDirection="column" height="100%">
+                    <Box bgcolor="#A5A5A5" height="100%" width="100%" p={2}>
                         <Box display="flex" justifyContent="center" p={2}>
                                 <form>
                                     <div>
