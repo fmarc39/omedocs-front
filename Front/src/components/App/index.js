@@ -1,14 +1,14 @@
 // == Import npm
 import React from 'react';
+import SearchProduct from '../SearchProduct/SearchProduct'
 
 // == Import
 
-import './styles.scss';
 
 // == Composant
 const App = () => (
   <div className="app">
-    <h1>APP</h1>
+    <SearchProduct/>
   </div>
 );
 
