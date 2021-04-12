@@ -10,11 +10,12 @@ import Select from '@material-ui/core/Select';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
-import Table from './Table'
+import Table from './Table';
+import FormControl from '@material-ui/core/FormControl';
 
 const SearchProduct = () => {
     const age = 10;
-    const handleChange = () => {
+    const handleChangeType = () => {
         console.log("ok")
     }
     return (
@@ -24,8 +25,15 @@ const SearchProduct = () => {
             </Box>
             <Box height="100%" width="100%" display="flex" id='body'>
                 <LeftMenu/>
-                    <Box bgcolor="#A5A5A5" height="100%" width="100%" p={2}>
-                        <Box display="flex" justifyContent="center" p={2}>
+                    <Box bgcolor="#C6C6C6"
+                    height="100%"
+                    width="100%"
+                    p={4}
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                >
+                        <Box display="flex" justifyContent="center" p={2} mb={8} bgcolor="white" width="400px" borderRadius='10px' boxShadow={3}>
                                 <form>
                                     <div>
                                         <InputLabel htmlFor="input-with-icon-adornment">Votre recherche ici</InputLabel>
@@ -38,16 +46,19 @@ const SearchProduct = () => {
                                         }
                                         />
                                     </div>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={age}
-                                        onChange={handleChange}
-                                    >
-                                        <MenuItem value='name'>Nom</MenuItem>
-                                        <MenuItem value='cis'>CIS</MenuItem>
-                                        <MenuItem value='pathology'>Pathologie</MenuItem>
-                                    </Select>
+                                    <FormControl>
+                                        <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                                            <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={age}
+                                            onChange={handleChangeType}
+                                            >
+                                            <MenuItem value={10}>Nom</MenuItem>
+                                            <MenuItem value={20}>CIS</MenuItem>
+                                            <MenuItem value={30}>Pathologie</MenuItem>
+                                            </Select>
+                                    </FormControl>
                                     <Button
                                         variant="contained"
                                         color="primary"
