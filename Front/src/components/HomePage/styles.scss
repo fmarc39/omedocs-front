@@ -1,0 +1,197 @@
+.homepage {
+  width: 100%;
+  background: rgb(137, 203, 219);
+  background: linear-gradient(
+    280deg,
+    rgba(137, 203, 219, 1) 35%,
+    rgba(50, 142, 183, 1) 100%
+  );
+
+  /*----------------------------------------------------------------
+                  STYLE COMMUN
+-----------------------------------------------------------------*/
+  .chip {
+    width: 40px;
+  }
+
+  /*----------------------------------------------------------------
+                 HEADER
+-----------------------------------------------------------------*/
+
+  .header {
+    width: 100%;
+    min-height: 80vh;
+    padding: 10px;
+    background: url('src/assets/img/hero-banner.png') center center no-repeat;
+    background-size: cover;
+    &__navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .logo {
+        display: flex;
+        align-items: center;
+        &__img {
+          width: 50px;
+        }
+        &__name {
+          font-size: 1.8rem;
+          font-weight: bold;
+          margin-left: 20px;
+        }
+      }
+
+      .navbar {
+        &__link {
+          color: #fff;
+          margin: 0 20px 0 20px;
+          font-size: 1.2rem;
+          position: relative;
+        }
+
+        &__link::before {
+          position: absolute;
+          top: 25px;
+          left: 50%;
+          border-radius: 5px;
+          content: '';
+          width: 0;
+          height: 5px;
+          background-color: #fff;
+          transition: all 0.3s;
+        }
+
+        &__link:hover::before {
+          display: inline-block;
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+    &__title {
+      text-align: center;
+      width: 500px;
+      color: #fff;
+      text-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.3);
+      font-size: 4rem;
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 400px;
+    }
+  }
+
+  /*----------------------------------------------------------------
+                 SECTION GOAL
+-----------------------------------------------------------------*/
+
+  .goal {
+    width: 100%;
+    min-height: 80vh;
+    padding: 10px;
+    &__header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+      &--chip {
+      }
+      // style répétitif
+      &--title {
+        color: #fff;
+        text-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.3);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-left: 20px;
+      }
+    }
+
+    &__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 200px;
+      &--text {
+        color: #fff;
+        font-size: 2rem;
+        text-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.3);
+        font-weight: 700;
+        line-height: 1.2;
+        width: 400px;
+        text-align: center;
+        flex: none;
+      }
+
+      &--img {
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+        margin-left: 30px;
+        max-width: 650px;
+        min-width: 400px;
+      }
+    }
+  }
+
+  /*----------------------------------------------------------------
+                 SECTION WHY
+-----------------------------------------------------------------*/
+
+  .why {
+    width: 100%;
+    min-height: 80vh;
+    padding: 20px;
+
+    &__header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+      &--chip {
+      }
+      &--title {
+        color: #fff;
+        text-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.3);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-left: 20px;
+      }
+    }
+
+    &__content {
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      &--card {
+        text-align: center;
+        padding: 20px;
+        width: 250px;
+        box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+        border-radius: 20px;
+        margin: 15px;
+
+        &-img {
+          width: 100px;
+        }
+        &-text {
+          margin-top: 30px;
+          font-size: 1.3rem;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  /*----------------------------------------------------------------
+                  MEDIA QUERRIES
+-----------------------------------------------------------------*/
+
+  @media screen and (max-width: 1000px) {
+    .goal__content {
+      margin-top: 0;
+    }
+    .goal__content--text {
+      margin: 100px;
+    }
+  }
+}
