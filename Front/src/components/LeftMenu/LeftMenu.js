@@ -33,38 +33,40 @@ const LeftMenu = () => {
                 H.P O’clock
             </Typography>
 
-            <Button
-            variant="contained"
-            color="primary"
-            endIcon={<AccountCircleIcon/>}
-            size="large"
-            >
-                Profil
-            </Button>
-            <Button
-            variant="contained"
-            color="primary"
-            endIcon={<SearchIcon/>}
-            size="large"
-            >
-                Rechercher un produit
-            </Button>
-            <Button
-            variant="contained"
-            color="primary"
-            endIcon={<LocalPharmacyIcon/>}
-            size="large"
-            >
-                Voire les pharmacies
-            </Button>
-            <Button
-            variant="contained"
-            color="primary"
-            endIcon={<ShoppingCartIcon/>}
-            size="large"
-            >
-                Acceder au panier
-            </Button>
+            <Box display="flex" flexDirection="column" height="75%" justifyContent="space-evenly">
+                <Button
+                variant="contained"
+                color="primary"
+                endIcon={<AccountCircleIcon/>}
+                size="large"
+                >
+                    Profil
+                </Button>
+                <Button
+                variant="contained"
+                color="primary"
+                endIcon={<SearchIcon/>}
+                size="large"
+                >
+                    Rechercher un produit
+                </Button>
+                <Button
+                variant="contained"
+                color="primary"
+                endIcon={<LocalPharmacyIcon/>}
+                size="large"
+                >
+                    Voire les pharmacies
+                </Button>
+                <Button
+                variant="contained"
+                color="primary"
+                endIcon={<ShoppingCartIcon/>}
+                size="large"
+                >
+                    Acceder au panier
+                </Button>
+            </Box>
         </Box>
     )
 }
