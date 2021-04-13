@@ -1,19 +1,20 @@
 import React from 'react';
 import './styles.scss';
+import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
+
+// image
 import logo from 'src/assets/img/logo.svg';
 import chip from 'src/assets/img/pill.svg';
 import pharmacy from 'src/assets/img/pharmacie.svg';
 import hopital from 'src/assets/img/hopital.svg';
 import money from 'src/assets/img/bank.svg';
 import idea from 'src/assets/img/puzzle.svg';
-import pills from 'src/assets/img/pills.webp';
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   button: {
-    //backgroundColor: '#2b88b4',
+    backgroundColor: '#2b88b4',
     width: '150px',
     borderRadius: '20px',
   },
@@ -62,7 +63,7 @@ const HomePage = () => {
             Mettre en relation les professionnels de la santé pour luttre contre le gaspillage des
             médicaments
           </p>
-          <img className="goal__content--img" src={pills} alt="" />
+          <div className="goal__content--img" />
         </div>
       </div>
       <div className="why">
@@ -102,8 +103,28 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="service"></div>
-      <div className="footer">footer</div>
+      <div className="services">
+        <div className="services__header">
+          <img className="servces__header--chip chip" src={chip} alt="pill" />
+          <h2 className="services__header--title"> Nos services</h2>
+        </div>
+        <div className="services__content">
+          <div className="content-top">
+            <p className="content-top__text">
+              Gérer votre stock de médicament invendable et mettez le à disposition sur notre
+              plateforme
+            </p>
+            <div className="content-top__img" />
+          </div>
+          <div className="content-bottom">
+            <div className="content-bottom__img" />
+            <p className="content-bottom__text">
+              Consulter la liste de médicaments disponible sur la plateforme, rechercher une
+              pharmacie et consulter son stock
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
