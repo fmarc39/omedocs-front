@@ -4,6 +4,7 @@ import HomePage from 'src/components/HomePage';
 import Footer from 'src/components/Footer';
 import SearchProduct from 'src/containers/SearchProduct';
 import SearchPharmachy from 'src/containers/SearchPharmacy';
+import ModalAddProduct from 'src/containers/ModalAddProduct';
 
 // == Import
 
@@ -14,6 +15,7 @@ const App = () => (
     <Footer />
     <SearchProduct />
     <SearchPharmachy />
+    <ModalAddProduct />
   </div>
 );
 
