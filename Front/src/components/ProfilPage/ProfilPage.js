@@ -1,12 +1,21 @@
 import React from 'react'
 import LeftMenu from '../LeftMenu/LeftMenu';
+import PropTypes from 'prop-types';
 import './styles.scss';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 
-const ProfilPage = () => {
+const ProfilPage = ({
+    phoneNumer,
+    establishment,
+    email,
+    rpss,
+    city,
+    adress,
+    zipCode
+}) => {
 
     return (
         <Box
@@ -46,7 +55,7 @@ const ProfilPage = () => {
                             <div className="profil-box__content">
                                 <div className="profil-box__content-elt">
                                     <p className="profil-box__content-elt__infos">Nom de l'organisme:</p>
-                                    <p>Hôpital Paris Saint-Joseph</p>
+                                    <p>{establishment}</p>
                                 </div>
                                 <Divider/>
                                 <div className="profil-box__content-elt">
@@ -54,7 +63,7 @@ const ProfilPage = () => {
                                     <IconButton aria-label="delete">
                                         <EditIcon />
                                     </IconButton>
-                                    <p>hopitalsj@sante-paris.fr</p>
+                                    <p>{email}</p>
                                 </div>
                                 <Divider/>
                                 <div className="profil-box__content-elt">
@@ -62,27 +71,27 @@ const ProfilPage = () => {
                                     <IconButton aria-label="delete">
                                         <EditIcon />
                                     </IconButton>
-                                    <p>01.44.12.33.33</p>
+                                    <p>{phoneNumer}</p>
                                 </div>
                                 <Divider/>
                                 <div className="profil-box__content-elt">
                                     <p className="profil-box__content-elt__infos">RPSS:</p>
-                                    <p>680004546</p>
+                                    <p>{rpss}</p>
                                 </div>
                                 <Divider/>
                                 <div className="profil-box__content-elt">
                                     <p className="profil-box__content-elt__infos">Ville:</p>
-                                    <p>Paris</p>
+                                    <p>{city}</p>
                                 </div>
                                 <Divider/>
                                 <div className="profil-box__content-elt">
                                     <p className="profil-box__content-elt__infos">Adresse:</p>
-                                    <p>185 Rue Raymond Losserand</p>
+                                    <p>{adress}</p>
                                 </div>
                                 <Divider/>
                                 <div className="profil-box__content-elt">
                                     <p className="profil-box__content-elt__infos">Code postal:</p>
-                                    <p>75 014</p>
+                                    <p>{zipCode}</p>
                                 </div>
                             </div>
                         </Box>
@@ -96,7 +105,13 @@ const ProfilPage = () => {
 };
 
 ProfilPage.propTypes = {
- 
+    phoneNumer: PropTypes.string.isRequired,
+    establishment: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    rpss: PropTypes.number.isRequired,
+    city: PropTypes.string.isRequired,
+    adress: PropTypes.string.isRequired,
+    zipCode: PropTypes.number.isRequired,
 };
 
 export default ProfilPage

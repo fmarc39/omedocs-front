@@ -1,6 +1,6 @@
 // == Import npm
 import React from 'react';
-import ProfilPage from '../ProfilPage/ProfilPage'
+import ProfilPage from '../../containers/ProfilPage'
 import SearchProduct from '../../containers/SearchProduct';
 
 // == Import
