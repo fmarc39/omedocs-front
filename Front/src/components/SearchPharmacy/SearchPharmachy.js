@@ -1,5 +1,6 @@
 import React from 'react'
 import LeftMenu from '../LeftMenu/LeftMenu';
+import './styles.scss'
 import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,19 +14,12 @@ import Table from './Table';
 import FormControl from '@material-ui/core/FormControl';
 import PropTypes from 'prop-types';
 
-const SearchProduct = ({
+const SearchPharmacy = ({
     handleChange,
-    handleChangeType,
     searchInputValue,
     searchSelectValue,
     }) => {
-    const age = 10;
-    
-    const handleChangeTypeInput = (event) => {
-        handleChangeType(event.target.value)
-    }
-
-    const handleChangeSearchInput = (event) => {
+    const handleChangeInput = (event) => {
         handleChange(event.target.value, event.target.name);
     }
 
@@ -60,16 +54,15 @@ const SearchProduct = ({
                             p={2}
                             mb={8}
                             bgcolor="white"
-                            width="400px"
                             borderRadius='10px'
                             boxShadow={3}>
                                 <form>
                                     <div>
-                                        <InputLabel htmlFor="input-with-icon-adornment">Votre recherche ici</InputLabel>
+                                        <InputLabel htmlFor="input-with-icon-adornment" focused={true} >Votre recherche ici</InputLabel>
                                         <Input
                                         id="input-with-icon-adornment"
                                         name='searchPharmacyInputValue'
-                                        onChange={handleChangeSearchInput}
+                                        onChange={handleChangeInput}
                                         value={searchInputValue}
                                         startAdornment={
                                             <InputAdornment position="start">
@@ -78,13 +71,14 @@ const SearchProduct = ({
                                         }
                                         />
                                     </div>
-                                    <FormControl size='medium' style={{width: "100px"}} >
+                                    <FormControl size='medium' style={{width: "300px"}} >
                                         <InputLabel id="typeSelect">Region</InputLabel>
                                             <Select
                                             labelId="typeSelect"
                                             id="typeSelectBtn"
+                                            name="searchPharmacySelectValue"
                                             value={searchSelectValue}
-                                            onChange={handleChangeTypeInput}
+                                            onChange={handleChangeInput}
                                             >
                                             <MenuItem value='auvergne rhone alpes'>Auvergne-Rhône-Alpes</MenuItem>
                                             <MenuItem value='bourgogne franche comte'>Bourgogne-Franche-Comté</MenuItem>
@@ -120,11 +114,10 @@ const SearchProduct = ({
     )
 }
 
-SearchProduct.propTypes = {
+SearchPharmacy.propTypes = {
     handleChange: PropTypes.func.isRequired,
-    handleChangeType: PropTypes.func.isRequired,
     searchInputValue: PropTypes.string.isRequired,
     searchSelectValue: PropTypes.string.isRequired,
 }
 
-export default SearchProduct
+export default SearchPharmacy

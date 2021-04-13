@@ -16,15 +16,10 @@ import PropTypes from 'prop-types';
 
 const SearchProduct = ({
     handleChange,
-    handleChangeType,
     searchInputValue,
     searchSelectValue,
     }) => {
     const age = 10;
-
-    const handleChangeTypeInput = (event) => {
-        handleChangeType(event.target.value, event.target.name)
-    };
 
     const handleChangeSearchInput = (event) => {
         handleChange(event.target.value, event.target.name);
@@ -58,35 +53,38 @@ const SearchProduct = ({
                         <Box
                             display="flex"
                             justifyContent="center"
-                            p={2}
-                            mb={8}
+                            p={3}
+                            mb={4}
                             bgcolor="white"
                             width="400px"
                             borderRadius='10px'
                             boxShadow={3}>
                                 <form>
                                     <div>
-                                        <InputLabel htmlFor="input-with-icon-adornment">Votre recherche ici</InputLabel>
-                                        <Input
-                                        id="input-with-icon-adornment"
-                                        onChange={handleChangeSearchInput}
-                                        value={searchInputValue}
-                                        name='searchProductInputValue'
-                                        startAdornment={
-                                            <InputAdornment position="start">
-                                            <SearchIcon />
-                                            </InputAdornment>
-                                        }
-                                        />
+                                        <InputLabel
+                                            htmlFor="search-product-input"
+                                            focused={true}>Votre recherche ici
+                                        </InputLabel>
+                                            <Input
+                                            id="search-product-input"
+                                            onChange={handleChangeSearchInput}
+                                            value={searchInputValue}
+                                            name='searchProductInputValue'
+                                            startAdornment={
+                                                <InputAdornment position="start">
+                                                <SearchIcon />
+                                                </InputAdornment>
+                                            }
+                                            />
                                     </div>
-                                    <FormControl size='medium' style={{width: "100px"}} >
+                                    <FormControl size='medium' style={{width: "200px"}} >
                                         <InputLabel id="typeSelect">Type</InputLabel>
                                             <Select
                                             labelId="typeSelect"
                                             id="typeSelectBtn"
                                             value={searchSelectValue}
                                             name="searchProductSelectValue"
-                                            onChange={handleChangeTypeInput}
+                                            onChange={handleChangeSearchInput}
                                             >
                                             <MenuItem value='name'>Nom</MenuItem>
                                             <MenuItem value='cis'>CIS</MenuItem>
@@ -114,7 +112,6 @@ const SearchProduct = ({
 
 SearchProduct.propTypes = {
     handleChange: PropTypes.func.isRequired,
-    handleChangeType: PropTypes.func.isRequired,
     searchInputValue: PropTypes.string.isRequired,
     searchSelectValue: PropTypes.string.isRequired,
 };
