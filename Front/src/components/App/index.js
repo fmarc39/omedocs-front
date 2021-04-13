@@ -1,6 +1,6 @@
 // == Import npm
 import React from 'react';
-import SearchPharmachy from '../../containers/SearchPharmacy';
+import ProfilPage from '../ProfilPage/ProfilPage'
 import SearchProduct from '../../containers/SearchProduct';
 
 // == Import
@@ -9,7 +9,7 @@ import SearchProduct from '../../containers/SearchProduct';
 // == Composant
 const App = () => (
   <div className="app">
-    <SearchProduct />
+    <ProfilPage />
   </div>
 );
 
