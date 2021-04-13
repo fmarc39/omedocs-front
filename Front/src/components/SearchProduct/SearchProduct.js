@@ -15,15 +15,26 @@ import FormControl from '@material-ui/core/FormControl';
 
 const SearchProduct = () => {
     const age = 10;
+    
     const handleChangeType = () => {
         console.log("ok")
     }
     return (
-        <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+        <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+            height="100vh"
+        >
             <Box className="header">
                 Header
             </Box>
-            <Box height="100%" width="100%" display="flex" id='body'>
+            <Box
+                height="100%"
+                width="100%"
+                display="flex"
+                id='body'
+            >
                 <LeftMenu/>
                     <Box bgcolor="#C6C6C6"
                     height="100%"
@@ -33,7 +44,15 @@ const SearchProduct = () => {
                     flexDirection="column"
                     alignItems="center"
                 >
-                        <Box display="flex" justifyContent="center" p={2} mb={8} bgcolor="white" width="400px" borderRadius='10px' boxShadow={3}>
+                        <Box
+                            display="flex"
+                            justifyContent="center"
+                            p={2}
+                            mb={8}
+                            bgcolor="white"
+                            width="400px"
+                            borderRadius='10px'
+                            boxShadow={3}>
                                 <form>
                                     <div>
                                         <InputLabel htmlFor="input-with-icon-adornment">Votre recherche ici</InputLabel>
@@ -46,11 +65,11 @@ const SearchProduct = () => {
                                         }
                                         />
                                     </div>
-                                    <FormControl>
-                                        <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                                    <FormControl size='medium' style={{width: "100px"}} >
+                                        <InputLabel id="typeSelect">Type</InputLabel>
                                             <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
+                                            labelId="typeSelect"
+                                            id="typeSelectBtn"
                                             value={age}
                                             onChange={handleChangeType}
                                             >

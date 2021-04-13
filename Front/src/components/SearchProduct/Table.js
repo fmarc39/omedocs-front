@@ -11,23 +11,21 @@ import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
     { id: 'title', label: 'Nom', minWidth: 180 },
-    { id: 'code', label: 'code CIS', minWidth: 50 },
-    { id: 'components', label: 'Composant', minWidth: 100 },
-    { id: 'type', label: 'Type', minWidth: 80 },
+    { id: 'code', label: 'Code CIS', minWidth: 30 },
+    { id: 'quantity', label: 'Quantity', minWidth: 100 },
     { id:  'link', label: 'Liens'}
     ];
 
-    function createData(title, code, components, type, link = 'Liens vers la Pharmacie') {
-    return { title, code, components, type, link };
+    function createData(title, code, quantity, link = 'Liens vers la Pharmacie') {
+    return { title, code, quantity, link };
     }
 
-    
     const rows = [
-    createData('ANASTROZOLE ACCORD 1 mg, comprimé pelliculé', '6 000 228 3', 1324171354, 3287263),
-    createData('RANITIDINE BIOGARAN 150 mg, comprimé effervescent', '6 000 228 3', 1403500365, 9596961),
-    createData('BECLOSPIN 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur en récipient unidose', '6 000 228 3', 60483973, 301340),
-    createData('FENOFIBRATE TEVA 100 mg, gélule', '6 000 228 3', 327167434, 9833520),
-    createData('FAMOTIDINE EG 20 mg, comprimé pelliculé', '6 000 228 3', 37602103, 9984670),
+    createData('ANASTROZOLE ACCORD 1 mg, comprimé pelliculé', '6 000 228 3', 100),
+    createData('RANITIDINE BIOGARAN 150 mg, comprimé effervescent', '6 000 228 3', 23),
+    createData('BECLOSPIN 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur en récipient unidose', '6 000 228 3', 34),
+    createData('FENOFIBRATE TEVA 100 mg, gélule', '6 000 228 3', 28),
+    createData('FAMOTIDINE EG 20 mg, comprimé pelliculé', '6 000 228 3', 43),
     ];
 
     const useStyles = makeStyles({
@@ -89,7 +87,8 @@ const columns = [
             </Table>
         </TableContainer>
         <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={[10, 25 , 50, { value: -1, label: 'Tous' }]}
+            labelRowsPerPage='Résultats par page'
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}

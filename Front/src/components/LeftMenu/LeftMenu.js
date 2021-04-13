@@ -23,7 +23,7 @@ const LeftMenu = () => {
             bgcolor="#AAAAAA"
             className="left-menu"
         >
-            <Avatar alt="Remy Sharp"  src={avatarImg}/>
+            <Avatar alt="Remy Sharp" src={avatarImg} style={{margin :'1rem'}}/>
 
             <Typography
             variant="h6"
