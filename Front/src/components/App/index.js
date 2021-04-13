@@ -11,7 +11,6 @@ import './styles.scss';
 // == Composant
 const App = () => (
   <div className="app">
-    <Header />
     <HomePage />
     <Footer />
   </div>

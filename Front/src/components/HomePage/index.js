@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.scss';
+import { HiMenu } from 'react-icons/hi';
+import { GrClose } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import classNames from 'classnames';
 
 // image
 import logo from 'src/assets/img/logo.svg';
@@ -22,38 +25,48 @@ const useStyles = makeStyles(() => ({
 
 const HomePage = () => {
   const classes = useStyles();
+  const [active, setActive] = useState(false);
+  const activeMenu = () => {
+    setActive(!active);
+  };
   return (
-    <div className="homepage">
+    <div className={classNames('homepage', { 'homepage--fixed': active })}>
       <header className="header">
+        <div className="logo">
+          <img className="logo__img" src={logo} alt="logo" />
+          <div className="logo__name">O'Médocs</div>
+        </div>
         <div className="header__navigation">
-          <div className="logo">
-            <img className="logo__img" src={logo} alt="logo" />
-            <div className="logo__name">O'Médocs</div>
-          </div>
-          <nav className="navbar">
-            <a className="navbar__link" href="#">
+          <nav className={classNames('navbar', { active: active })}>
+            <a className="navbar__link" href="#goal" onClick={activeMenu}>
               Notre but
             </a>
-            <a className="navbar__link" href="#">
+            <a className="navbar__link" href="#why" onClick={activeMenu}>
               Pourquoi
             </a>
-            <a className="navbar__link" href="#">
+            <a className="navbar__link" href="#services" onClick={activeMenu}>
               Nos services
             </a>
-            <a className="navbar__link" href="#">
+            <a className="navbar__link" href="#" onClick={activeMenu}>
               Nous contacter
             </a>
-          </nav>
-          <Link className="login" to="/login">
-            <Button className={classes.button} variant="contained" color="primary">
+            <a className="navbar__link navbar__link--connexion" href="#" onClick={activeMenu}>
               Connexion
-            </Button>
-          </Link>
+            </a>
+          </nav>
+          <button className="header__hamburger" type="button" onClick={activeMenu}>
+            {active ? <GrClose size="2rem" /> : <HiMenu size="2.5rem" />}
+          </button>
         </div>
         <h1 className="header__title">Lutter ensemble contre le gaspillage de médicaments</h1>
+        <Link className="login" to="/login">
+          <Button className={classes.button} variant="contained" color="primary">
+            Connexion
+          </Button>
+        </Link>
       </header>
 
-      <div className="goal">
+      <div className="goal" id="goal">
         <div className="goal__header">
           <img className="goal__header--chip chip" src={chip} alt="pill" />
           <h2 className="goal__header--title"> Notre But</h2>
@@ -66,7 +79,7 @@ const HomePage = () => {
           <div className="goal__content--img" />
         </div>
       </div>
-      <div className="why">
+      <div className="why" id="why">
         <div className="why__header">
           <img className="why__header--chip chip" src={chip} alt="pill" />
           <h2 className="why__header--title">Pourquoi?</h2>
@@ -103,7 +116,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="services">
+      <div className="services" id="services">
         <div className="services__header">
           <img className="servces__header--chip chip" src={chip} alt="pill" />
           <h2 className="services__header--title"> Nos services</h2>
