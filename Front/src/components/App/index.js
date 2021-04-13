@@ -1,7 +1,7 @@
 // == Import npm
 import React from 'react';
 import SearchProduct from '../../containers/SearchProduct'
-import SearchPharmachy from '../SearchPharmacy/SearchPharmachy'
+import SearchPharmachy from '../../containers/SearchPharmacy'
 
 // == Import
 
@@ -9,8 +9,8 @@ import SearchPharmachy from '../SearchPharmacy/SearchPharmachy'
 // == Composant
 const App = () => (
   <div className="app">
-    {/* <SearchProduct /> */}
-    <SearchPharmachy />
+    <SearchProduct />
+    {/* <SearchPharmachy /> */}
   </div>
 );
 

@@ -21,14 +21,14 @@ const SearchProduct = ({
     searchSelectValue,
     }) => {
     const age = 10;
-    
+
     const handleChangeTypeInput = (event) => {
-        handleChangeType(event.target.value)
-    }
+        handleChangeType(event.target.value, event.target.name)
+    };
 
     const handleChangeSearchInput = (event) => {
-        handleChange(event.target.value);
-    }
+        handleChange(event.target.value, event.target.name);
+    };
 
     return (
         <Box
@@ -71,6 +71,7 @@ const SearchProduct = ({
                                         id="input-with-icon-adornment"
                                         onChange={handleChangeSearchInput}
                                         value={searchInputValue}
+                                        name='searchProductInputValue'
                                         startAdornment={
                                             <InputAdornment position="start">
                                             <SearchIcon />
@@ -84,6 +85,7 @@ const SearchProduct = ({
                                             labelId="typeSelect"
                                             id="typeSelectBtn"
                                             value={searchSelectValue}
+                                            name="searchProductSelectValue"
                                             onChange={handleChangeTypeInput}
                                             >
                                             <MenuItem value='name'>Nom</MenuItem>
@@ -108,13 +110,13 @@ const SearchProduct = ({
             </Box>
         </Box>
     )
-}
+};
 
 SearchProduct.propTypes = {
     handleChange: PropTypes.func.isRequired,
     handleChangeType: PropTypes.func.isRequired,
     searchInputValue: PropTypes.string.isRequired,
     searchSelectValue: PropTypes.string.isRequired,
-}
+};
 
 export default SearchProduct

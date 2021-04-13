@@ -3,17 +3,18 @@ import SearchProduct from '../components/SearchProduct/SearchProduct';
 import { changeInputValue, changeSelectInputValue } from '../actions/search'
 
 const mapStateToProps = (state) => ({
-    searchInputValue: state.search.searchProductInputValue,
-    searchSelectValue: state.search.searchProductSelectValue,
+    searchInputValue: state.search.searchInputValue,
+    searchSelectValue: state.search.searchSelectValue,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     handleChange: (fieldValue, fieldName) => {
-        dispatch(changeInputValue(fieldValue, fieldName))
+        dispatch(changeInputValue(fieldValue, fieldName));
     },
-    handleChangeType: (fieldValue, fieldName) => {
-        dispatch(changeSelectInputValue(fieldValue, fieldName))
+    handleChangeType: (fieldValue) => {
+        dispatch(changeSelectInputValue(fieldValue))
     }
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProduct);

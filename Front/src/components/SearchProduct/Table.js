@@ -21,11 +21,11 @@ const columns = [
     }
 
     const rows = [
-    createData('ANASTROZOLE ACCORD 1 mg, comprimé pelliculé', '6 000 228 3', 100),
-    createData('RANITIDINE BIOGARAN 150 mg, comprimé effervescent', '6 000 228 3', 23),
-    createData('BECLOSPIN 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur en récipient unidose', '6 000 228 3', 34),
-    createData('FENOFIBRATE TEVA 100 mg, gélule', '6 000 228 3', 28),
-    createData('FAMOTIDINE EG 20 mg, comprimé pelliculé', '6 000 228 3', 43),
+    createData('ANASTROZOLE ACCORD 1 mg, comprimé pelliculé', '6 000 228 1', 100),
+    createData('RANITIDINE BIOGARAN 150 mg, comprimé effervescent', '6 000 228 2', 23),
+    createData('BECLOSPIN 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur en récipient unidose', '6 000 228 4', 34),
+    createData('FENOFIBRATE TEVA 100 mg, gélule', '6 000 228 5', 28),
+    createData('FAMOTIDINE EG 20 mg, comprimé pelliculé', '6 000 228 6', 43),
     ];
 
     const useStyles = makeStyles({

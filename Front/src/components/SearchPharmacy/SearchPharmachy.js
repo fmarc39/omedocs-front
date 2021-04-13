@@ -26,7 +26,7 @@ const SearchProduct = ({
     }
 
     const handleChangeSearchInput = (event) => {
-        handleChange(event.target.value);
+        handleChange(event.target.value, event.target.name);
     }
 
     return (
@@ -68,6 +68,7 @@ const SearchProduct = ({
                                         <InputLabel htmlFor="input-with-icon-adornment">Votre recherche ici</InputLabel>
                                         <Input
                                         id="input-with-icon-adornment"
+                                        name='searchPharmacyInputValue'
                                         onChange={handleChangeSearchInput}
                                         value={searchInputValue}
                                         startAdornment={
