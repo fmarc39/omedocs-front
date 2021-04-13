@@ -12,13 +12,24 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Table from './Table';
 import FormControl from '@material-ui/core/FormControl';
+import PropTypes from 'prop-types';
 
-const SearchProduct = () => {
+const SearchProduct = ({
+    handleChange,
+    handleChangeType,
+    searchInputValue,
+    searchSelectValue,
+    }) => {
     const age = 10;
     
-    const handleChangeType = () => {
-        console.log("ok")
+    const handleChangeTypeInput = (event) => {
+        handleChangeType(event.target.value)
     }
+
+    const handleChangeSearchInput = (event) => {
+        handleChange(event.target.value);
+    }
+
     return (
         <Box
             display="flex"
@@ -58,6 +69,8 @@ const SearchProduct = () => {
                                         <InputLabel htmlFor="input-with-icon-adornment">Votre recherche ici</InputLabel>
                                         <Input
                                         id="input-with-icon-adornment"
+                                        onChange={handleChangeSearchInput}
+                                        value={searchInputValue}
                                         startAdornment={
                                             <InputAdornment position="start">
                                             <SearchIcon />
@@ -70,12 +83,12 @@ const SearchProduct = () => {
                                             <Select
                                             labelId="typeSelect"
                                             id="typeSelectBtn"
-                                            value={age}
-                                            onChange={handleChangeType}
+                                            value={searchSelectValue}
+                                            onChange={handleChangeTypeInput}
                                             >
-                                            <MenuItem value={10}>Nom</MenuItem>
-                                            <MenuItem value={20}>CIS</MenuItem>
-                                            <MenuItem value={30}>Pathologie</MenuItem>
+                                            <MenuItem value='name'>Nom</MenuItem>
+                                            <MenuItem value='cis'>CIS</MenuItem>
+                                            <MenuItem value='pathology'>Pathologie</MenuItem>
                                             </Select>
                                     </FormControl>
                                     <Button
@@ -95,6 +108,13 @@ const SearchProduct = () => {
             </Box>
         </Box>
     )
+}
+
+SearchProduct.propTypes = {
+    handleChange: PropTypes.func.isRequired,
+    handleChangeType: PropTypes.func.isRequired,
+    searchInputValue: PropTypes.string.isRequired,
+    searchSelectValue: PropTypes.string.isRequired,
 }
 
 export default SearchProduct

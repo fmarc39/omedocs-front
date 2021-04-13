@@ -1,6 +1,6 @@
 // == Import npm
 import React from 'react';
-import SearchProduct from '../SearchProduct/SearchProduct'
+import SearchProduct from '../../containers/SearchProduct'
 
 // == Import
 
