@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ProfilPage from 'src/components/ProfilPage';
-import {} from '../actions/search';
+import { changeInputValue } from 'src/actions/search';
 
 const mapStateToProps = (state) => ({
   phoneNumer: state.user.user.phoneNumer,
@@ -12,6 +12,10 @@ const mapStateToProps = (state) => ({
   zipCode: state.user.user.zipCode,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  handleChange: (fieldValue, fieldName) => {
+    dispatch(changeInputValue(fieldName, fieldValue));
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilPage);
