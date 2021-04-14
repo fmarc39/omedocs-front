@@ -17,8 +17,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Table from './Table';
 
 const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) => {
-  const age = 10;
-
   const handleChangeSearchInput = (event) => {
     handleChange(event.target.value, event.target.name);
   };
@@ -26,7 +24,7 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
   return (
     <>
       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-      <Header />
+        <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
@@ -41,16 +39,15 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
             <Box
               display="flex"
               justifyContent="center"
-              p={3}
+              p={4}
               mb={4}
               bgcolor="white"
-              width="400px"
               borderRadius="10px"
               boxShadow={3}
             >
               <form>
                 <div>
-                  <InputLabel htmlFor="search-product-input" focused={true}>
+                  <InputLabel htmlFor="search-product-input">
                     Votre recherche ici
                   </InputLabel>
                   <Input
@@ -58,11 +55,11 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
                     onChange={handleChangeSearchInput}
                     value={searchInputValue}
                     name="searchProductInputValue"
-                    startAdornment={
+                    startAdornment={(
                       <InputAdornment position="start">
                         <SearchIcon />
                       </InputAdornment>
-                    }
+                    )}
                   />
                 </div>
                 <FormControl size="medium" style={{ width: '200px' }}>
@@ -87,7 +84,7 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
             <Table />
           </Box>
         </Box>
-      <Footer />
+        <Footer />
       </Box>
     </>
   );

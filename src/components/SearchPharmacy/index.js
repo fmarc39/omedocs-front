@@ -23,9 +23,19 @@ const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue }) =
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
-        <Box height="100%" width="100%" display="flex" id="body">
+        <Box
+          height="100%"
+          width="100%"
+          display="flex"
+          id="body"
+        >
           <LeftMenu />
           <Box
             bgcolor="#C6C6C6"
@@ -39,7 +49,7 @@ const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue }) =
             <Box
               display="flex"
               justifyContent="center"
-              p={2}
+              p={4}
               mb={8}
               bgcolor="white"
               borderRadius="10px"
@@ -47,7 +57,7 @@ const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue }) =
             >
               <form>
                 <div>
-                  <InputLabel htmlFor="input-with-icon-adornment" focused={true}>
+                  <InputLabel htmlFor="input-with-icon-adornment">
                     Votre recherche ici
                   </InputLabel>
                   <Input
@@ -55,11 +65,11 @@ const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue }) =
                     name="searchPharmacyInputValue"
                     onChange={handleChangeInput}
                     value={searchInputValue}
-                    startAdornment={
+                    startAdornment={(
                       <InputAdornment position="start">
                         <SearchIcon />
                       </InputAdornment>
-                    }
+                    )}
                   />
                 </div>
                 <FormControl size="medium" style={{ width: '300px' }}>
