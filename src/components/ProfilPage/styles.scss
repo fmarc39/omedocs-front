@@ -45,4 +45,20 @@ form {
         text-transform: uppercase;
         margin-right: 2rem;
     }
+
+    &__content-elt__content {
+        text-align: right;
+    }
+
+    &__content-elt__change-phone-number {
+        width: 200px;
+    }
+
+    &__content-elt__change-email {
+        width: 250px;
+    }
+}
+
+.hidden {
+    display: none;
 }

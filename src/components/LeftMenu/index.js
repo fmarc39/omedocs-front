@@ -28,7 +28,12 @@ const LeftMenu = () => (
     bgcolor="#AAAAAA"
     className="left-menu"
   >
-    <Avatar alt="Remy Sharp" src={avatarImg} className="left-menu__avatar" />
+    <Avatar
+      alt="Remy Sharp"
+      src={avatarImg}
+      className="left-menu__avatar"
+      width="150px"
+    />
 
     <Typography
       variant="h6"

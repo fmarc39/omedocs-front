@@ -2,10 +2,11 @@
 
     &__avatar {
         margin: 1.5rem 0 2.5rem 0;
+        box-shadow: 2px 2px 4px rgb(126, 126, 126);
     }
 
     &__welcome-message {
-        text-shadow: 1px 1px 1px black;
+        text-shadow: 1px 1px 1px rgb(126, 126, 126);
     }
 }
 
