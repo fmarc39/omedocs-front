@@ -30,6 +30,8 @@ const ProfilPage = ({
   adress,
   zipCode,
   handleChange,
+  newEmail,
+  newPhoneNumber,
 }) => {
   const classes = useStyles();
   const [editMailInputIsOpen, setEditMailInputIsOpen] = useState(false);
@@ -85,8 +87,9 @@ const ProfilPage = ({
                   <TextField
                     id="outlined-basic"
                     label="E-mail"
+                    name="newEmail"
                     variant="outlined"
-                    value={email}
+                    value={newEmail}
                     onChange={handleChangeInput}
                     className={editMailInputIsOpen ? 'profil-box__content-elt__change-email' : classes.field}
                   />
@@ -108,7 +111,8 @@ const ProfilPage = ({
                     id="outlined-basic"
                     label="N° de téléphonne"
                     variant="outlined"
-                    value={phoneNumer}
+                    name="NewPhoneNumer"
+                    value={newPhoneNumber}
                     onChange={handleChangeInput}
                     className={editPhoneInputIsOpen ? 'profil-box__content-elt__change-phone-number' : classes.field}
                   />
@@ -158,6 +162,8 @@ ProfilPage.propTypes = {
   adress: PropTypes.string.isRequired,
   zipCode: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
+  newEmail: PropTypes.string.isRequired,
+  newPhoneNumber: PropTypes.string.isRequired,
 };
 
 export default ProfilPage;

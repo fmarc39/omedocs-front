@@ -10,7 +10,6 @@ export const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case CHANGE_INPUT_VALUE:
-      console.log(action.fieldValue, action.fieldName);
       return {
         ...state,
         [action.fieldName]: action.fieldValue,
