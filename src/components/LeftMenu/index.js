@@ -1,4 +1,6 @@
 import React from 'react';
+// Import MATERIAL UI
+
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +10,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import LocalPharmacyIcon from '@material-ui/icons/LocalPharmacy';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import avatarImg from '../../assets/img_avatar.png';
+
+// Import CSS
 import './styles.scss';
 
 const LeftMenu = () => (
@@ -26,7 +30,12 @@ const LeftMenu = () => (
   >
     <Avatar alt="Remy Sharp" src={avatarImg} className="left-menu__avatar" />
 
-    <Typography variant="h6" component="h6" className="left-menu__welcome-message">
+    <Typography
+      variant="h6"
+      component="h6"
+      className="left-menu__welcome-message"
+      align="center"
+    >
       Bienvenue <br />
       H.P O’clock
     </Typography>

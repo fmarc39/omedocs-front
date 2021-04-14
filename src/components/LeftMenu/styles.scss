@@ -1,18 +1,18 @@
 .left-menu {
 
-    
     &__avatar {
         margin: 1.5rem 0 2.5rem 0;
     }
 
+    &__welcome-message {
+        text-shadow: 1px 1px 1px black;
+    }
 }
-
 
 .btn-box {
     
     &__btn:not(:last-child) {
         margin-bottom: 2.5rem;
-
     }
 
     &__btn:first-child {
