@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handlerCloseModal: () => {
+  closeModal: () => {
     dispatch(closeModalProduct());
   },
 });

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SearchProduct from '../components/SearchProduct';
-import { changeInputValue, changeSelectInputValue } from '../actions/search';
+import SearchProduct from 'src/components/SearchProduct';
+import { changeInputValue } from 'src/actions/search';
 
 const mapStateToProps = (state) => ({
   searchInputValue: state.search.searchProductInputValue,
@@ -10,9 +10,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (fieldValue, fieldName) => {
     dispatch(changeInputValue(fieldValue, fieldName));
-  },
-  handleChangeType: (fieldValue, fieldName) => {
-    dispatch(changeSelectInputValue(fieldValue, fieldName));
   },
 });
 

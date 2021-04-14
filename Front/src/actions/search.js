@@ -6,9 +6,3 @@ export const changeInputValue = (fieldValue, fieldName) => ({
   fieldValue,
   fieldName,
 });
-
-export const changeSelectInputValue = (fieldValue, fieldName) => ({
-  type: CHANGE_SELECT_INPUT_VALUE,
-  fieldValue,
-  fieldName,
-});
