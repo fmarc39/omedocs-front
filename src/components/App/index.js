@@ -6,6 +6,7 @@ import SearchPharmachy from 'src/containers/SearchPharmacy';
 import ModalAddProduct from 'src/containers/ModalAddProduct';
 import ProfilPage from 'src/containers/ProfilPage';
 import LoginForm from 'src/components/LoginForm';
+import Page404 from 'src/components/404';
 
 import './styles.scss';
 
@@ -17,6 +18,7 @@ const App = () => (
     <SearchPharmachy />
     <ModalAddProduct />
     <ProfilPage />
+    <Page404 />
     <Footer />
     <LoginForm />
   </div>
