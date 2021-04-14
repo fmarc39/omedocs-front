@@ -6,9 +6,16 @@ import Footer from 'src/components/Footer';
 import './styles.scss';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
+import { makeStyles } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles(() => ({
+  field: {
+    display: 'none',
+  },
+}));
 
 const ProfilPage = ({
   phoneNumer,
@@ -19,16 +26,16 @@ const ProfilPage = ({
   adress,
   zipCode,
 }) => {
-
-  const [display, setDisplay] = useState(false)
-
-  const handleEditMailBtn = () => {
-    display ? setDiplay(false): setDisplay(true);
-    console.log(display)
-  };
+  const classes = useStyles();
+  const [editMailInputIsOpen, setEditMailInputIsOpen] = useState(false);
+  const [editPhoneInputIsOpen, setEditPhoneInputIsOpen] = useState(false);
 
   const handleEditPhoneNumberBtn = () => {
-    console.log('ko');
+    setEditPhoneInputIsOpen(!editPhoneInputIsOpen);
+  };
+
+  const handleEditMailBtn = () => {
+    setEditMailInputIsOpen(!editMailInputIsOpen);
   };
 
   return (
@@ -65,13 +72,13 @@ const ProfilPage = ({
                   <IconButton aria-label="delete" onClick={handleEditMailBtn}>
                     <EditIcon color="primary" />
                   </IconButton>
-                  <p className="profil-box__content-elt__content">{email}</p>
+                  <p className={editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'}>{email}</p>
                   <TextField
                     id="outlined-basic"
                     label="E-mail"
                     variant="outlined"
                     value={email}
-                    className="profil-box__content-elt__change-email"
+                    className={editMailInputIsOpen ? 'profil-box__content-elt__change-email' : classes.field}
                   />
                 </div>
                 <Divider />
@@ -80,13 +87,13 @@ const ProfilPage = ({
                   <IconButton aria-label="delete" onClick={handleEditPhoneNumberBtn}>
                     <EditIcon color="primary" />
                   </IconButton>
-                  <p className="profil-box__content-elt__content">{phoneNumer}</p>
+                  <p className={editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'}>{phoneNumer}</p>
                   <TextField
                     id="outlined-basic"
                     label="N° de téléphonne"
                     variant="outlined"
                     value={phoneNumer}
-                    className="profil-box__content-elt__change-phone-number"
+                    className={editPhoneInputIsOpen ? 'profil-box__content-elt__change-phone-number' : classes.field}
                   />
                 </div>
                 <Divider />
