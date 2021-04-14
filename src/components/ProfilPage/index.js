@@ -9,9 +9,22 @@ import Divider from '@material-ui/core/Divider';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 
-const ProfilPage = ({ phoneNumer, establishment, email, rpss, city, adress, zipCode }) => (
+const ProfilPage = ({
+  phoneNumer,
+  establishment,
+  email,
+  rpss,
+  city,
+  adress,
+  zipCode,
+}) => (
   <>
-    <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
+      height="100vh"
+    >
       <Header />
       <Box height="100%" width="100%" display="flex" id="body">
         <LeftMenu />

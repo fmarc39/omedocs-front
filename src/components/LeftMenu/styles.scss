@@ -1,0 +1,21 @@
+.left-menu {
+
+    
+    &__avatar {
+        margin: 1.5rem 0 2.5rem 0;
+    }
+
+}
+
+
+.btn-box {
+    
+    &__btn:not(:last-child) {
+        margin-bottom: 2.5rem;
+
+    }
+
+    &__btn:first-child {
+        margin-top: 2.5rem;
+    }
+}
