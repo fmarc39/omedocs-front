@@ -15,12 +15,12 @@ import './styles.scss';
 const App = () => (
   <div className="app">
     {/* <HomePage /> */}
-    <SearchProduct />
-    {/* <SearchPharmachy />
-    <ModalAddProduct />
-    <ProfilPage />
-    <Footer />
-    <LoginForm /> */}
+    {/* <SearchProduct /> */}
+    <SearchPharmachy />
+    {/* <ModalAddProduct />
+      <ProfilPage />
+      <Footer />
+      <LoginForm /> */}
     {/* <InventoryPage /> */}
   </div>
 );

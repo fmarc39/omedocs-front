@@ -16,14 +16,23 @@ import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
 import Table from './Table';
 
-const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) => {
+const SearchProduct = ({
+  handleChange,
+  searchInputValue,
+  searchSelectValue,
+}) => {
   const handleChangeSearchInput = (event) => {
     handleChange(event.target.value, event.target.name);
   };
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -39,7 +48,7 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
             <Box
               display="flex"
               justifyContent="center"
-              p={4}
+              p={3}
               mb={4}
               bgcolor="white"
               borderRadius="10px"
@@ -55,11 +64,11 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
                     onChange={handleChangeSearchInput}
                     value={searchInputValue}
                     name="searchProductInputValue"
-                    startAdornment={(
+                    startAdornment={
                       <InputAdornment position="start">
                         <SearchIcon />
                       </InputAdornment>
-                    )}
+                    }
                   />
                 </div>
                 <FormControl size="medium" style={{ width: '200px' }}>
@@ -76,7 +85,11 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
                     <MenuItem value="pathology">Pathologie</MenuItem>
                   </Select>
                 </FormControl>
-                <Button variant="contained" color="primary" endIcon={<CheckIcon />}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  endIcon={<CheckIcon />}
+                >
                   Valider
                 </Button>
               </form>

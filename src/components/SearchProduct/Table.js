@@ -22,11 +22,15 @@ function createData(title, code, quantity, link = 'Liens vers la Pharmacie') {
 
 const rows = [
   createData('ANASTROZOLE ACCORD 1 mg, comprimé pelliculé', '6 000 228 1', 100),
-  createData('RANITIDINE BIOGARAN 150 mg, comprimé effervescent', '6 000 228 2', 23),
+  createData(
+    'RANITIDINE BIOGARAN 150 mg, comprimé effervescent',
+    '6 000 228 2',
+    23
+  ),
   createData(
     'BECLOSPIN 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur en récipient unidose',
     '6 000 228 4',
-    34,
+    34
   ),
   createData('FENOFIBRATE TEVA 100 mg, gélule', '6 000 228 5', 28),
   createData('FAMOTIDINE EG 20 mg, comprimé pelliculé', '6 000 228 6', 43),
@@ -37,7 +41,8 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    maxHeight: 600,
+    minHeight: 350,
+    minWidth: 700,
   },
 });
 
@@ -73,20 +78,24 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-              return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
           </TableBody>
         </Table>
       </TableContainer>
