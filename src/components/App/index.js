@@ -16,8 +16,17 @@ import './styles.scss';
 // == Composant
 const App = () => (
   <div className="app">
+    <HomePage />
+    <ModalAddProduct />
+    <SearchProduct />
+    <SearchPharmachy />
+    <ProfilPage />
     <ProductPage />
     <PharmacyPage />
+    <LoginForm />
+    <Page404 />
+    <InventoryPage />
+    <Footer />
   </div>
 );
 

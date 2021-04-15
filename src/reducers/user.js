@@ -1,4 +1,4 @@
-import { CHANGE_USER_INFORMATIONS } from 'src/actions/user';
+import { CHANGE_USER_INFORMATIONS, LOGIN, LOGOUT } from 'src/actions/user';
 
 export const initialState = {
   establishment: 'Hôpital Paris Saint-Joseph',
@@ -21,6 +21,18 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.fieldName]: action.fieldValue,
+      };
+    case LOGIN:
+      return {
+        ...state,
+        // finir de coder après le midlware auth quand on sera connecter au back
+        logged: true,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        token: null,
+        logged: null,
       };
     default:
       return state;
