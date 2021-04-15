@@ -24,7 +24,7 @@ const PharmacyPage = () => {
               bgcolor="#C6C6C6"
               height="100%"
               width="100%"
-              p={4}
+              p={2}
               display="flex"
               flexDirection="column"
               alignItems="center"
