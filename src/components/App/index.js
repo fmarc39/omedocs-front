@@ -7,6 +7,7 @@ import ModalAddProduct from 'src/containers/ModalAddProduct';
 import ProfilPage from 'src/containers/ProfilPage';
 import LoginForm from 'src/components/LoginForm';
 import Page404 from 'src/components/404';
+import InventoryPage from 'src/components/InventoryPage';
 
 import './styles.scss';
 
@@ -20,7 +21,7 @@ const App = () => (
     <ProfilPage />
     <Footer />
     <LoginForm /> */}
-    <Page404 />
+    <InventoryPage />
   </div>
 );
 
