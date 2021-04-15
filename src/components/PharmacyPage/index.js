@@ -3,6 +3,8 @@ import LeftMenu from 'src/components/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
+import Accordion from './accordion';
+import Table from './Table';
 
 const PharmacyPage = () => {
   const manger = 'cest super cool';
@@ -27,7 +29,8 @@ const PharmacyPage = () => {
               flexDirection="column"
               alignItems="center"
             >
-              {/* content hear */}
+              <Accordion />
+              <Table />
             </Box>
           </Box>
           <Footer />
