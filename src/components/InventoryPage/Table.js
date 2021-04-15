@@ -9,31 +9,100 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
+// Import CSS styles
+
+import './styles.scss';
+
 const columns = [
-  { id: 'title', label: 'Nom', minWidth: 180 },
-  { id: 'code', label: 'Code CIS', minWidth: 30 },
-  { id: 'quantity', label: 'Quantity', minWidth: 100 },
-  { id: 'link', label: 'Liens' },
+  { id: 'name', label: 'Nom', minWidth: 300, type: 'string' },
+  { id: 'cis', label: 'CIS', minWidth: 100, type: 'number' },
+  {
+    id: 'expirationDate',
+    label: 'Date limite de consommation',
+    minWidth: 200,
+    type: 'date',
+  },
+  { id: 'pathology', label: 'Pathologie', minWidth: 200 },
+  { id: 'quantity', label: 'Quantité', minWidth: 200 },
+  { id: 'price', label: 'Prix H.T', minWidth: 200, type: 'number' },
 ];
 
-function createData(title, code, quantity, link = 'Liens vers la Pharmacie') {
-  return { title, code, quantity, link };
+function createData(name, cis, expirationDate, pathology, quantity, price) {
+  return {
+    name,
+    cis,
+    expirationDate,
+    pathology,
+    quantity,
+    price,
+  };
 }
 
 const rows = [
-  createData('ANASTROZOLE ACCORD 1 mg, comprimé pelliculé', '6 000 228 1', 100),
   createData(
-    'RANITIDINE BIOGARAN 150 mg, comprimé effervescent',
-    '6 000 228 2',
-    23
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
   ),
   createData(
-    'BECLOSPIN 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur en récipient unidose',
-    '6 000 228 4',
-    34
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
   ),
-  createData('FENOFIBRATE TEVA 100 mg, gélule', '6 000 228 5', 28),
-  createData('FAMOTIDINE EG 20 mg, comprimé pelliculé', '6 000 228 6', 43),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31082020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
 ];
 
 const useStyles = makeStyles({

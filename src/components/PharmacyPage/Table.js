@@ -8,37 +8,121 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 const columns = [
-  { id: 'title', label: 'Nom', minWidth: 180 },
-  { id: 'code', label: 'Code CIS', minWidth: 30 },
-  { id: 'quantity', label: 'Quantity', minWidth: 100 },
-  { id: 'link', label: 'Liens' },
+  { id: 'name', label: 'Nom', minWidth: 300 },
+  { id: 'cis', label: 'CIS', minWidth: 100 },
+  { id: 'quantity', label: 'Quantité disponible', minWidth: 100 },
+  { id: 'price', label: 'Prix unitaire H.T', minWidth: 100 },
+  { id: 'quantityToBuy', label: 'Quantité', minWidth: 100 },
+  { id: 'addToCart', minWidth: 200 },
 ];
 
-function createData(title, code, quantity, link = 'Liens vers la Pharmacie') {
-  return { title, code, quantity, link };
+function createData(name, cis, quantity, price, quantityToBuy, addToCart) {
+  return {
+    name,
+    cis,
+    quantity,
+    price,
+    quantityToBuy,
+    addToCart,
+  };
 }
 
 const rows = [
-  createData('ANASTROZOLE ACCORD 1 mg, comprimé pelliculé', '6 000 228 1', 100),
   createData(
-    'RANITIDINE BIOGARAN 150 mg, comprimé effervescent',
-    '6 000 228 2',
-    23
+    'FENOFIBRATE TEVA 100 mg',
+    '6 000 228 5',
+    18,
+    '3€',
+    <TextField id="standard-basic" label="quantité" type="number" />,
+    <Button
+      variant="contained"
+      color="primary"
+      endIcon={<AddShoppingCartIcon />}
+    >
+      Ajouter au panier
+    </Button>
   ),
   createData(
-    'BECLOSPIN 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur en récipient unidose',
-    '6 000 228 4',
-    34
+    'FENOFIBRATE TEVA 100 mg',
+    '6 000 228 5',
+    18,
+    '3€',
+    <TextField id="standard-basic" label="quantité" type="number" />,
+    <Button
+      variant="contained"
+      color="primary"
+      endIcon={<AddShoppingCartIcon />}
+    >
+      Ajouter au panier
+    </Button>
   ),
-  createData('FENOFIBRATE TEVA 100 mg, gélule', '6 000 228 5', 28),
-  createData('FAMOTIDINE EG 20 mg, comprimé pelliculé', '6 000 228 6', 43),
+  createData(
+    'FENOFIBRATE TEVA 100 mg',
+    '6 000 228 5',
+    18,
+    '3€',
+    <TextField id="standard-basic" label="quantité" type="number" />,
+    <Button
+      variant="contained"
+      color="primary"
+      endIcon={<AddShoppingCartIcon />}
+    >
+      Ajouter au panier
+    </Button>
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg',
+    '6 000 228 5',
+    18,
+    '3€',
+    <TextField id="standard-basic" label="quantité" type="number" />,
+    <Button
+      variant="contained"
+      color="primary"
+      endIcon={<AddShoppingCartIcon />}
+    >
+      Ajouter au panier
+    </Button>
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg',
+    '6 000 228 5',
+    18,
+    '3€',
+    <TextField id="standard-basic" label="quantité" type="number" />,
+    <Button
+      variant="contained"
+      color="primary"
+      endIcon={<AddShoppingCartIcon />}
+    >
+      Ajouter au panier
+    </Button>
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg',
+    '6 000 228 5',
+    18,
+    '3€',
+    <TextField id="standard-basic" label="quantité" type="number" />,
+    <Button
+      variant="contained"
+      color="primary"
+      endIcon={<AddShoppingCartIcon />}
+    >
+      Ajouter au panier
+    </Button>
+  ),
 ];
 
 const useStyles = makeStyles({
   root: {
     width: '100%',
+    overflow: 'hidden',
   },
   container: {
     minHeight: 350,

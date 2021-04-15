@@ -1,0 +1,49 @@
+
+body {
+    background-color: #95c2de;
+    }
+
+    .mainBox {
+        display: flex;
+    }
+    
+
+    .err {
+    color: #ffffff;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11rem;
+    }
+    
+    .far {
+        font-size:11rem;
+        color: #ffffff;
+    }
+
+    .fa-annim {
+        height: 11rem;
+        width: 11rem;
+        margin: 0 2rem;
+    }
+    
+    .err2 {
+        color: #ffffff;
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 11rem;
+        }
+    
+    .msg {
+        text-align: center;
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 1.6rem;
+        line-height: 2rem;
+        width: 75%;
+        }
+    
+    a {
+        text-decoration: none;
+        color: white;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }

@@ -16,17 +16,24 @@ import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
 import Table from './Table';
 
-const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) => {
-  const age = 10;
-
+const SearchProduct = ({
+  handleChange,
+  searchInputValue,
+  searchSelectValue,
+}) => {
   const handleChangeSearchInput = (event) => {
     handleChange(event.target.value, event.target.name);
   };
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-      <Header />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
+        <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
@@ -44,13 +51,12 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
               p={3}
               mb={4}
               bgcolor="white"
-              width="400px"
               borderRadius="10px"
               boxShadow={3}
             >
               <form>
                 <div>
-                  <InputLabel htmlFor="search-product-input" focused={true}>
+                  <InputLabel htmlFor="search-product-input">
                     Votre recherche ici
                   </InputLabel>
                   <Input
@@ -79,7 +85,11 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
                     <MenuItem value="pathology">Pathologie</MenuItem>
                   </Select>
                 </FormControl>
-                <Button variant="contained" color="primary" endIcon={<CheckIcon />}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  endIcon={<CheckIcon />}
+                >
                   Valider
                 </Button>
               </form>
@@ -87,7 +97,7 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
             <Table />
           </Box>
         </Box>
-      <Footer />
+        <Footer />
       </Box>
     </>
   );
