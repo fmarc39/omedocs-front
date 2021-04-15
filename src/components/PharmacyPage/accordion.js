@@ -10,7 +10,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
 import EmailIcon from '@material-ui/icons/Email';
 import Divider from '@material-ui/core/Divider';
-import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
 
 // Import CSS
 import './styles.scss';

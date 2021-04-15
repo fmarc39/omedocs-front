@@ -16,9 +16,7 @@ const useStyles = makeStyles(() => ({
   field: {
     display: 'none',
   },
-  button: {
-
-  },
+  button: {},
 }));
 
 const ProfilPage = ({
@@ -64,26 +62,52 @@ const ProfilPage = ({
             bgcolor="#C6C6C6"
             height="100%"
             width="100%"
-            p={4}
+            p={2}
             display="flex"
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
           >
-            <Box p={8} bgcolor="white" boxShadow={3} borderRadius="10px" className="profil-box">
+            <Box
+              p={4}
+              bgcolor="white"
+              boxShadow={3}
+              borderRadius="10px"
+              className="profil-box"
+            >
               <h1 className="profil-box__main-title">Vos informations</h1>
               <div className="profil-box__content">
                 <div className="profil-box__content-elt">
-                  <p className="profil-box__content-elt__infos">Nom de l'organisme:</p>
-                  <p className="profil-box__content-elt__content">{establishment}</p>
+                  <p className="profil-box__content-elt__infos">
+                    Nom de l'organisme:
+                  </p>
+                  <p className="profil-box__content-elt__content">
+                    {establishment}
+                  </p>
                 </div>
                 <Divider color="primary" />
                 <div className="profil-box__content-elt">
-                  <p className={editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__infos'}>e-mail:</p>
+                  <p
+                    className={
+                      editMailInputIsOpen
+                        ? 'hidden'
+                        : 'profil-box__content-elt__infos'
+                    }
+                  >
+                    e-mail:
+                  </p>
                   <IconButton aria-label="delete" onClick={handleEditMailBtn}>
                     <EditIcon color="primary" />
                   </IconButton>
-                  <p className={editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'}>{email}</p>
+                  <p
+                    className={
+                      editMailInputIsOpen
+                        ? 'hidden'
+                        : 'profil-box__content-elt__content'
+                    }
+                  >
+                    {email}
+                  </p>
                   <TextField
                     id="outlined-basic"
                     label="E-mail"
@@ -92,7 +116,11 @@ const ProfilPage = ({
                     type="email"
                     value={newEmail}
                     onChange={handleChangeInput}
-                    className={editMailInputIsOpen ? 'profil-box__content-elt__change-email' : classes.field}
+                    className={
+                      editMailInputIsOpen
+                        ? 'profil-box__content-elt__change-email'
+                        : classes.field
+                    }
                   />
                   <IconButton
                     color="primary"
@@ -103,11 +131,30 @@ const ProfilPage = ({
                 </div>
                 <Divider />
                 <div className="profil-box__content-elt">
-                  <p className={editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__infos'}>N° de téléphonne:</p>
-                  <IconButton aria-label="delete" onClick={handleEditPhoneNumberBtn}>
+                  <p
+                    className={
+                      editPhoneInputIsOpen
+                        ? 'hidden'
+                        : 'profil-box__content-elt__infos'
+                    }
+                  >
+                    N° de téléphonne:
+                  </p>
+                  <IconButton
+                    aria-label="delete"
+                    onClick={handleEditPhoneNumberBtn}
+                  >
                     <EditIcon color="primary" />
                   </IconButton>
-                  <p className={editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'}>{phoneNumer}</p>
+                  <p
+                    className={
+                      editPhoneInputIsOpen
+                        ? 'hidden'
+                        : 'profil-box__content-elt__content'
+                    }
+                  >
+                    {phoneNumer}
+                  </p>
                   <TextField
                     id="outlined-basic"
                     label="N° de téléphonne"
@@ -116,7 +163,11 @@ const ProfilPage = ({
                     type="number"
                     value={newPhoneNumber}
                     onChange={handleChangeInput}
-                    className={editPhoneInputIsOpen ? 'profil-box__content-elt__change-phone-number' : classes.field}
+                    className={
+                      editPhoneInputIsOpen
+                        ? 'profil-box__content-elt__change-phone-number'
+                        : classes.field
+                    }
                   />
                   <IconButton
                     color="primary"
