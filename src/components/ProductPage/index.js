@@ -4,6 +4,7 @@ import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Table from './Table';
 
 const ProductPage = () => {
   const leCode = 'cest super cool';
@@ -27,11 +28,18 @@ const ProductPage = () => {
             flexDirection="column"
             alignItems="center"
           >
-            <Box>
-              <Typography>FENOFIBRATE TEVA 100 mg</Typography>
-              <Typography>6 000 228 5</Typography>
+            <Box
+              bgcolor="#FFF"
+              p={2}
+              mb={2}
+              borderRadius="10px"
+              align="center"
+              boxShadow={4}
+            >
+              <Typography variant="h5">FENOFIBRATE TEVA 100 mg</Typography>
+              <Typography variant="subtitle1">6 000 228 5</Typography>
             </Box>
-            {/* content hear */}
+            <Table />
           </Box>
         </Box>
         <Footer />

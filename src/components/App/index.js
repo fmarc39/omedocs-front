@@ -16,7 +16,8 @@ import './styles.scss';
 // == Composant
 const App = () => (
   <div className="app">
-    <ProfilPage />
+    <ProductPage />
+    <PharmacyPage />
   </div>
 );
 

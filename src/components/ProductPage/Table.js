@@ -14,17 +14,15 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300 },
-  { id: 'cis', label: 'CIS', minWidth: 100 },
   { id: 'quantity', label: 'Quantité disponible', minWidth: 100 },
   { id: 'price', label: 'Prix unitaire H.T', minWidth: 100 },
   { id: 'quantityToBuy', label: 'Quantité', minWidth: 100 },
   { id: 'addToCart', minWidth: 200 },
 ];
 
-function createData(name, cis, quantity, price, quantityToBuy, addToCart) {
+function createData(name, quantity, price, quantityToBuy, addToCart) {
   return {
     name,
-    cis,
     quantity,
     price,
     quantityToBuy,
@@ -35,7 +33,6 @@ function createData(name, cis, quantity, price, quantityToBuy, addToCart) {
 const rows = [
   createData(
     'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
@@ -49,7 +46,6 @@ const rows = [
   ),
   createData(
     'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
@@ -63,7 +59,6 @@ const rows = [
   ),
   createData(
     'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
@@ -77,7 +72,6 @@ const rows = [
   ),
   createData(
     'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
@@ -91,21 +85,6 @@ const rows = [
   ),
   createData(
     'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
