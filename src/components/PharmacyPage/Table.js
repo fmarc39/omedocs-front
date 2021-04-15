@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
 
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300 },
@@ -37,7 +38,7 @@ const rows = [
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
-    'ajouter au panier'
+    <Link href="#">Ajouter au panier</Link>
   ),
   createData(
     'FENOFIBRATE TEVA 100 mg',
@@ -45,7 +46,7 @@ const rows = [
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
-    'ajouter au panier'
+    <Link href="#">Ajouter au panier</Link>
   ),
   createData(
     'FENOFIBRATE TEVA 100 mg',
@@ -53,7 +54,7 @@ const rows = [
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
-    'ajouter au panier'
+    <Link href="#">Ajouter au panier</Link>
   ),
   createData(
     'FENOFIBRATE TEVA 100 mg',
@@ -61,7 +62,7 @@ const rows = [
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
-    'ajouter au panier'
+    <Link href="#">Ajouter au panier</Link>
   ),
   createData(
     'FENOFIBRATE TEVA 100 mg',
@@ -69,7 +70,15 @@ const rows = [
     18,
     '3€',
     <TextField id="standard-basic" label="quantité" type="number" />,
-    'ajouter au panier'
+    <Link href="#">Ajouter au panier</Link>
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg',
+    '6 000 228 5',
+    18,
+    '3€',
+    <TextField id="standard-basic" label="quantité" type="number" />,
+    <Link href="#">Ajouter au panier</Link>
   ),
 ];
 
