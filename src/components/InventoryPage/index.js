@@ -30,8 +30,17 @@ const InventoryPage = () => {
             flexDirection="column"
             alignItems="center"
           >
-            <Box display="flex" width="80%" mb={4} justifyContent="center">
-              <Typography variant="h4">Votre inventaire</Typography>
+            <Box
+              display="flex"
+              width="80%"
+              mb={4}
+              justifyContent="center"
+              alignItems="center"
+              flexDirection="column"
+            >
+              <Typography variant="h4" gutterBottom>
+                Votre inventaire
+              </Typography>
               <Button
                 variant="contained"
                 color="primary"

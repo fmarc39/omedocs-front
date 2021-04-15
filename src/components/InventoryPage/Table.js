@@ -9,17 +9,22 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
+// Import CSS styles
+
+import './styles.scss';
+
 const columns = [
-  { id: 'name', label: 'Nom', minWidth: 300 },
-  { id: 'cis', label: 'CIS', minWidth: 100 },
+  { id: 'name', label: 'Nom', minWidth: 300, type: 'string' },
+  { id: 'cis', label: 'CIS', minWidth: 100, type: 'number' },
   {
     id: 'expirationDate',
     label: 'Date limite de consommation',
     minWidth: 200,
+    type: 'date',
   },
   { id: 'pathology', label: 'Pathologie', minWidth: 200 },
   { id: 'quantity', label: 'Quantité', minWidth: 200 },
-  { id: 'price', label: 'Prix H.T', minWidth: 200 },
+  { id: 'price', label: 'Prix H.T', minWidth: 200, type: 'number' },
 ];
 
 function createData(name, cis, expirationDate, pathology, quantity, price) {
@@ -34,21 +39,70 @@ function createData(name, cis, expirationDate, pathology, quantity, price) {
 }
 
 const rows = [
-  createData('Pharmacie centrale', 'Bourgogne Franche-Comté'),
-  createData('Pharmacie de la gare', 'Île-de-France'),
-  createData('Pharmacie Lyon Saxe ', 'Bretagne'),
-  createData('Pharmacie centrale', 'Bourgogne Franche-Comté'),
-  createData('Pharmacie de la gare', 'Île-de-France'),
-  createData('Pharmacie Lyon Saxe ', 'Bretagne'),
-  createData('Pharmacie centrale', 'Bourgogne Franche-Comté'),
-  createData('Pharmacie de la gare', 'Île-de-France'),
-  createData('Pharmacie Lyon Saxe ', 'Bretagne'),
-  createData('Pharmacie centrale', 'Bourgogne Franche-Comté'),
-  createData('Pharmacie de la gare', 'Île-de-France'),
-  createData('Pharmacie Lyon Saxe ', 'Bretagne'),
-  createData('Pharmacie centrale', 'Bourgogne Franche-Comté'),
-  createData('Pharmacie de la gare', 'Île-de-France'),
-  createData('Pharmacie Lyon Saxe ', 'Bretagne'),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31082020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
+  createData(
+    'FENOFIBRATE TEVA 100 mg, gélule',
+    '6 000 427 7',
+    '31/08/2020',
+    'Glycosurie rénale',
+    234,
+    1.85
+  ),
 ];
 
 const useStyles = makeStyles({

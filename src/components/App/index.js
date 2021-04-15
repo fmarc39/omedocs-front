@@ -14,14 +14,14 @@ import './styles.scss';
 // == Composant
 const App = () => (
   <div className="app">
-    {/* <HomePage />
+    {/* <HomePage /> */}
     <SearchProduct />
-    <SearchPharmachy />
+    {/* <SearchPharmachy />
     <ModalAddProduct />
     <ProfilPage />
     <Footer />
     <LoginForm /> */}
-    <InventoryPage />
+    {/* <InventoryPage /> */}
   </div>
 );
 
