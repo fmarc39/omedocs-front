@@ -1,5 +1,6 @@
 import { CLOSE_MODAL_PRODUCT, OPEN_MODAL_PRODUCT, ADD_PRODUCT } from 'src/actions/utils';
-import parseInputNumber from 'src/utils';
+import { APPLY_INFO_DRUGS_API } from 'src/actions/drugsApi';
+import parseInputNumber from 'src/hooks';
 
 const initialState = {
   openModalProduct: true,
@@ -32,6 +33,16 @@ export default (state = initialState, action = {}) => {
           ...state.product,
           // parsing input to number
           [action.field]: parseInputNumber(action.field, action.value),
+        },
+      };
+    case APPLY_INFO_DRUGS_API:
+      return {
+        ...state,
+        product: {
+          ...state.product,
+          name: action.name,
+          cis: action.cis,
+          pathology: action.pathology,
         },
       };
     default:

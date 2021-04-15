@@ -2,14 +2,16 @@ import { combineReducers } from 'redux';
 
 import dataApiReducer from './dataApi';
 import userReducer from './user';
-import search from './search';
-import utils from './utils';
+import searchReducer from './search';
+import utilsReducer from './utils';
+import drugsApiReducer from './drugsApi';
 
 const rootReducer = combineReducers({
   dataApi: dataApiReducer,
   user: userReducer,
-  search: search,
-  utils: utils,
+  search: searchReducer,
+  utils: utilsReducer,
+  drugsApi: drugsApiReducer,
 });
 
 export default rootReducer;

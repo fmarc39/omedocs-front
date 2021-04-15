@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ModalAddProduct from 'src/components/ModalAddProduct';
 import { closeModalProduct, addProduct } from 'src/actions/utils';
+import { openPopListApi } from 'src/actions/drugsApi';
 
 const mapStateToProps = (state) => ({
   open: state.utils.openModalProduct,
@@ -10,6 +11,7 @@ const mapStateToProps = (state) => ({
   quantityValue: state.utils.product.quantity,
   priceValue: state.utils.product.price,
   expirationValue: state.utils.product.expiration,
+  activePopList: state.drugsApi.activePopList,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,6 +21,8 @@ const mapDispatchToProps = (dispatch) => ({
   onChange: (value, field) => {
     dispatch(addProduct(value, field));
   },
+  openPopList: () => dispatch(openPopListApi()),
+ 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalAddProduct);

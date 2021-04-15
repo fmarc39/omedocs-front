@@ -5,9 +5,10 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Modal from '@material-ui/core/Modal';
+import PopListApi from 'src/containers/PopListApi';
 
 import './styles.scss';
-import Modal from '@material-ui/core/Modal';
 
 const useStyles = makeStyles(() => ({
   modal: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
   },
   form: {
-    padding: '32px',
+    padding: '20px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -31,15 +32,17 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ModalAddProduct = ({
-  open,
-  closeModal,
-  nameValue,
-  cisValue,
-  pathologyValue,
-  quantityValue,
-  priceValue,
-  expirationValue,
-  onChange,
+  open, // open modal
+  closeModal, // dispatch fonction to close modal
+  nameValue, // fieldValue
+  cisValue, // fieldValue
+  pathologyValue, // fieldValue
+  quantityValue, // fieldValue
+  priceValue, // fieldValue
+  expirationValue, // fieldValue
+  onChange, // function to control field
+  activePopList, // PopList opening boolean
+  openPopList, // popList opening function
 }) => {
   const classes = useStyles();
 
@@ -48,28 +51,31 @@ const ModalAddProduct = ({
   };
 
   const handlerOnChange = (evt) => {
+    if (evt.target.name === 'name') openPopList();
     onChange(evt.target.value, evt.target.name);
   };
-
-  console.log(nameValue, cisValue, pathologyValue, quantityValue, priceValue, expirationValue);
 
   return (
     <Modal
       open={open}
       onClose={handlerCloseModal}
       className={classes.modal}
-      disableAutoFocus
       disablePortal
+      disableEnforceFocus
     >
       <Box
         bgcolor="#fff"
-        p={4}
+        p={2}
         display="flex"
         flexDirection="column"
         alignItems="center"
-        width="400px"
+        width="100%"
+        maxWidth="400px"
         borderRadius="20px"
+        position="relative"
       >
+        {activePopList && <PopListApi />}
+
         <Typography variant="h5" component="h5">
           Rajouter un produit
         </Typography>
@@ -81,7 +87,9 @@ const ModalAddProduct = ({
             name="name"
             value={nameValue}
             onChange={handlerOnChange}
+            required
             autoFocus
+            autoComplete={false}
           />
           <TextField
             className={classes.textField}
@@ -91,6 +99,7 @@ const ModalAddProduct = ({
             name="cis"
             value={cisValue}
             onChange={handlerOnChange}
+            required
           />
           <TextField
             className={classes.textField}
@@ -99,6 +108,7 @@ const ModalAddProduct = ({
             name="pathology"
             value={pathologyValue}
             onChange={handlerOnChange}
+            required
           />
           <TextField
             className={classes.textField}
@@ -108,6 +118,7 @@ const ModalAddProduct = ({
             name="quantity"
             value={quantityValue}
             onChange={handlerOnChange}
+            required
           />
           <TextField
             className={classes.textField}
@@ -117,6 +128,7 @@ const ModalAddProduct = ({
             name="price"
             value={priceValue}
             onChange={handlerOnChange}
+            required
           />
           <TextField
             className={classes.textField}
@@ -125,6 +137,7 @@ const ModalAddProduct = ({
             name="expiration"
             value={expirationValue}
             onChange={handlerOnChange}
+            required
             label="Date d'expiration"
             InputLabelProps={{
               shrink: true,
@@ -149,6 +162,8 @@ ModalAddProduct.propTypes = {
   quantityValue: PropTypes.number,
   priceValue: PropTypes.number,
   expirationValue: PropTypes.string,
+  activePopList: PropTypes.bool,
+  openPopList: PropTypes.func,
 };
 
 ModalAddProduct.defaultProps = {
@@ -161,6 +176,8 @@ ModalAddProduct.defaultProps = {
   quantityValue: null,
   priceValue: null,
   expirationValue: '',
+  activePopList: false,
+  openPopList: () => {},
 };
 
 export default ModalAddProduct;
