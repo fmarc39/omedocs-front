@@ -5,19 +5,25 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Box from '@material-ui/core/Box';
+
+// Import CSS
+import './styles.scss';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '50%',
+    minWidth: '300px',
     marginBottom: '2rem',
   },
   heading: {
     fontSize: '1.5rem',
-    flexBasis: '66.66%',
+    flexBasis: '80%',
     flexShrink: 0,
   },
   secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: '1rem',
+    textAlign: 'right',
     color: theme.palette.text.secondary,
   },
 }));
@@ -44,15 +50,24 @@ export default function ControlledAccordions() {
           <Typography className={classes.heading}>
             Pharmacie de la gare
           </Typography>
-          <Typography className={classes.secondaryHeading}>
-            voir les infos de contacts
-          </Typography>
+          <Typography className={classes.secondaryHeading}>Contacts</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-            Aliquam eget maximus est, id dignissim quam.
-          </Typography>
+        <AccordionDetails className={classes.body}>
+          <Box
+            className="contact"
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+            alignItems="center"
+            width="100%"
+          >
+            <a href="mailto: abc@example.com" className="contact__email">
+              abc@example.com
+            </a>
+            <a href="tel:5551234567" className="contact__phone">
+              06.35.11.60.59
+            </a>
+          </Box>
         </AccordionDetails>
       </Accordion>
     </div>
