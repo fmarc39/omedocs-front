@@ -51,6 +51,8 @@ const ModalAddProduct = ({
     onChange(evt.target.value, evt.target.name);
   };
 
+  console.log(nameValue, cisValue, pathologyValue, quantityValue, priceValue, expirationValue);
+
   return (
     <Modal
       open={open}
@@ -80,7 +82,6 @@ const ModalAddProduct = ({
             value={nameValue}
             onChange={handlerOnChange}
             autoFocus
-            fullWidth
           />
           <TextField
             className={classes.textField}
@@ -124,6 +125,10 @@ const ModalAddProduct = ({
             name="expiration"
             value={expirationValue}
             onChange={handlerOnChange}
+            label="Date d'expiration"
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
           <Button color="primary" variant="contained">
             Ajouter
@@ -143,7 +148,7 @@ ModalAddProduct.propTypes = {
   pathologyValue: PropTypes.string,
   quantityValue: PropTypes.number,
   priceValue: PropTypes.number,
-  expirationValue: PropTypes.instanceOf(Date),
+  expirationValue: PropTypes.string,
 };
 
 ModalAddProduct.defaultProps = {
@@ -155,7 +160,7 @@ ModalAddProduct.defaultProps = {
   pathologyValue: '',
   quantityValue: null,
   priceValue: null,
-  expirationValue: null,
+  expirationValue: '',
 };
 
 export default ModalAddProduct;
