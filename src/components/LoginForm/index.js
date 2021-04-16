@@ -12,7 +12,6 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import LeftMenu from 'src/components/LeftMenu';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
@@ -43,8 +42,7 @@ const LoginForm = ({
     <>
       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
-        <Box height="100%" width="100%" display="flex" id="body">
-          <LeftMenu />
+        <Box width="100%" display="flex" id="body">
           <Box
             bgcolor="#C6C6C6"
             height="100%"
@@ -54,35 +52,34 @@ const LoginForm = ({
             flexDirection="column"
             alignItems="center"
           >
-            <Box display="flex">
-              <div className="err" />
-              <div><i className="far fa-question-circle fa-spin" /></div>
-              <div className="err2" />
-            </Box>
+            <h3>Connexion</h3>
+            <div className="login">
+              <form>
+                <TextField
+                  className="login__email"
+                  required
+                  id="filled-required"
+                  label="Email"
+                  variant="filled"
+                  onChange={handleChangeInput}
+                  value={emailValue}
+                />
+                <TextField
+                  className="login__password"
+                  required
+                  id="filled-password-input"
+                  label="Mot de Passe"
+                  type="password"
+                  autoComplete="current-password"
+                  variant="filled"
+                  onChange={handleChangeInput}
+                  value={passwordValue}
+                />
+              </form>
+            </div>
+            <Button className="myButton" type="submit" variant="contained">Valider</Button>
+            <h2>Mot de passe oublié ?</h2>
             <form>
-              <h1>Connexion</h1>
-              <TextField
-                className="login__email"
-                required
-                id="filled-required"
-                label="Email"
-                variant="filled"
-                onChange={handleChangeInput}
-                value={emailValue}
-              />
-              <TextField
-                className="login__password"
-                required
-                id="filled-password-input"
-                label="Mot de Passe"
-                type="password"
-                autoComplete="current-password"
-                variant="filled"
-                onChange={handleChangeInput}
-                value={passwordValue}
-              />
-              <Button className="firstbutton" type="submit" variant="contained">Valider</Button>
-              <h2>Mot de passe oublié ?</h2>
               <div className="subscribe" />
               <Accordion>
                 <AccordionSummary
@@ -99,6 +96,8 @@ const LoginForm = ({
                     id="outlined-mail-required"
                     label="Email"
                     variant="outlined"
+                    width="50%"
+                    columns-count="4"
                     onChange={handleChangeInput}
                     value={emailSubscribeValue}
                   />

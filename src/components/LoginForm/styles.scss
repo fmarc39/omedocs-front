@@ -1,86 +1,20 @@
 .login {
-  &__email {
+    margin-top: 15px;
+    margin-bottom: 15px;
     height: 3em;
-    width: 51%;
     font-size: 1.5em;
-    
-  }
-  &__password {
-    height: 3em;
-    width: 51%;
-    font-size: 1.5em;
-        
-  }
-}
-
-.firstbutton {
-display: block;
+    display: inline;
 }
 
 .subscribe {
-  &__email {
-    height: 3em;
-    width: 45%;
     padding: 1em;
-    font-size: 1.5em;
+    font-size: 10px;
+  background-color: transparent;
  }
-  &__checkemail {
-      height: 3em;
-      width: 45%;
-      padding: 1em;
-      font-size: 1.5em;
- }
-  &__password {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-&__checkpassword {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-  &__orga {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-  &__city {
-      height: 3em;
-      width: 45%;
-      padding: 1em;
-      font-size: 1.5em;
- }
-  &__adress {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-&__rpps {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-  &__postal {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-&__tel {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-}
+  
 
 .myButton {
+  margin-top: 30px;
 	box-shadow: 3px 4px 0px 0px #899599;
 	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
 	background-color:#ededed;
@@ -104,7 +38,7 @@ display: block;
 	top:1px;
 }
 
-h1 {
+h3 {
 border-radius: 10px;
 border-color: grey;
 background-color: #303F9F;
@@ -114,4 +48,37 @@ width: 35%;
 text-align: center;
 margin-left: auto;
 margin-right: auto;
+display: block;
+}
+
+
+.MuiFormControl-root {
+  border: 0;
+  display: inline-flex;
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  flex-direction: column;
+  vertical-align: top;
+}
+
+.MuiFormControl-marginNormal {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.MuiFormControl-marginDense {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+.MuiFormControl-fullWidth {
+  width: 100%;
+}
+
+h2 {
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.MuiAccordion-rounded {
+background-color: #C6C6C6;
 }
