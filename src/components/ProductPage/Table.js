@@ -1,4 +1,7 @@
+// Import REACT
 import React from 'react';
+
+// Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -12,6 +15,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
+// Configuration des colones avec le nom, le label, la largeur
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300 },
   { id: 'quantity', label: 'Quantité disponible', minWidth: 100 },
@@ -20,6 +24,7 @@ const columns = [
   { id: 'addToCart', minWidth: 200 },
 ];
 
+// Fonction qui va insérer les données dans le tableau
 function createData(name, quantity, price, quantityToBuy, addToCart) {
   return {
     name,
@@ -109,7 +114,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StickyHeadTable() {
+const ProductTable = () => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -174,4 +179,6 @@ export default function StickyHeadTable() {
       />
     </Paper>
   );
-}
+};
+
+export default ProductTable;

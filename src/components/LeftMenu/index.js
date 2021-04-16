@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import LocalPharmacyIcon from '@material-ui/icons/LocalPharmacy';
+import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import avatarImg from '../../assets/img_avatar.png';
@@ -20,7 +21,7 @@ import avatarImg from '../../assets/img_avatar.png';
 // Import CSS
 import './styles.scss';
 
-const LeftMenu = ({ userType }) => (
+const LeftMenu = ({ userType, nbOfArticles }) => (
   <Box
     boxShadow={1}
     p={2}
@@ -99,7 +100,11 @@ const LeftMenu = ({ userType }) => (
           <Button
             variant="contained"
             color="primary"
-            endIcon={<ShoppingCartIcon />}
+            endIcon={
+              <Badge badgeContent={nbOfArticles} color="secondary">
+                <ShoppingCartIcon />
+              </Badge>
+            }
             size="large"
             className="btn-box__btn"
           >
@@ -126,6 +131,7 @@ const LeftMenu = ({ userType }) => (
 
 LeftMenu.propTypes = {
   userType: PropTypes.string.isRequired,
+  nbOfArticles: PropTypes.string.isRequired,
 };
 
 export default LeftMenu;

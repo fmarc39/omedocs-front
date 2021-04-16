@@ -4,7 +4,7 @@ import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Table from './Table';
+import ProductTable from './Table';
 
 const ProductPage = () => {
   const leCode = 'cest super cool';
@@ -39,7 +39,7 @@ const ProductPage = () => {
               <Typography variant="h5">FENOFIBRATE TEVA 100 mg</Typography>
               <Typography variant="subtitle1">6 000 228 5</Typography>
             </Box>
-            <Table />
+            <ProductTable />
           </Box>
         </Box>
         <Footer />

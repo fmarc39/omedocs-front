@@ -4,6 +4,7 @@ import {} from 'src/actions/drugsApi';
 
 const mapStateToProps = (state) => ({
   userType: state.user.type,
+  nbOfArticles: state.cart.nbOfArticles,
 });
 
 const mapDispatchToProps = (dispatch) => ({});

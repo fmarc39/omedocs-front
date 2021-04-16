@@ -5,7 +5,8 @@ import userReducer from './user';
 import searchReducer from './search';
 import utilsReducer from './utils';
 import drugsApiReducer from './drugsApi';
-import inventory from './inventory';
+import inventoryReducer from './inventory';
+import cartReducer from './cart';
 
 const rootReducer = combineReducers({
   dataApi: dataApiReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   search: searchReducer,
   utils: utilsReducer,
   drugsApi: drugsApiReducer,
-  inventory: inventory,
+  inventory: inventoryReducer,
+  cart: cartReducer,
 });
 
 export default rootReducer;
