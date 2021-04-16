@@ -1,8 +1,13 @@
+// Import REACT
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Import COMPONENTS
 import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
+
+// Import from MATERIAL-UI
 import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,7 +18,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
-import Table from './Table';
+import ProductTable from './Table';
 
 // Import CSS
 import './styles.scss';
@@ -23,7 +28,9 @@ const SearchProduct = ({
   searchInputValue,
   searchSelectValue,
 }) => {
+  // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeSearchInput = (event) => {
+    // Au 'onChange' on récupère la valeur de l'input et son nom
     handleChange(event.target.value, event.target.name);
   };
 
@@ -96,7 +103,7 @@ const SearchProduct = ({
                 </Button>
               </form>
             </Box>
-            <Table />
+            <ProductTable />
           </Box>
         </Box>
         <Footer />

@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import LeftMenu from 'src/components/LeftMenu';
+import LeftMenu from 'src/containers/LeftMenu';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Typography from '@material-ui/core/Typography';

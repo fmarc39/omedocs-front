@@ -46,7 +46,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StickyHeadTable() {
+const ProductTable = () => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -111,4 +111,6 @@ export default function StickyHeadTable() {
       />
     </Paper>
   );
-}
+};
+
+export default ProductTable;

@@ -18,7 +18,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
-import Table from './Table';
+import PharmacyTable from './Table';
 
 // Import CSS
 import './styles.scss';
@@ -28,6 +28,7 @@ const SearchPharmacy = ({
   searchInputValue,
   searchSelectValue,
 }) => {
+  // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
   };
@@ -123,7 +124,7 @@ const SearchPharmacy = ({
                 </Button>
               </form>
             </Box>
-            <Table />
+            <PharmacyTable />
           </Box>
         </Box>
         <Footer />

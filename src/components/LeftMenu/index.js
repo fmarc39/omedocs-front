@@ -14,6 +14,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import LocalPharmacyIcon from '@material-ui/icons/LocalPharmacy';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import TableChartIcon from '@material-ui/icons/TableChart';
 import avatarImg from '../../assets/img_avatar.png';
 
 // Import CSS
@@ -103,6 +104,19 @@ const LeftMenu = ({ userType }) => (
             className="btn-box__btn"
           >
             Acceder au panier
+          </Button>
+        )}
+      </NavLink>
+      <NavLink to="/cart" style={{ textDecoration: 'none' }}>
+        {userType === 'pharmacy' && (
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<TableChartIcon />}
+            size="large"
+            className="btn-box__btn"
+          >
+            Acceder a l'inventaire
           </Button>
         )}
       </NavLink>
