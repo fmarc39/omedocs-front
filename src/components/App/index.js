@@ -17,20 +17,24 @@ import './styles.scss';
 // == Composant
 const App = () => (
   <div className="app">
-    <HomePage />
-    <ModalAddProduct />
     <TeamPage />
-    <SearchProduct />
-    <SearchPharmachy />
-    <InventoryPage />
-    <ProductPage />
-    <PharmacyPage />
-    <ProfilPage />
-    <LoginForm />
-    <Page404 />
-    <Footer />
   </div>
 );
 
 // == Export
 export default App;
+
+// <div className="app">
+//     <HomePage />
+//     <ModalAddProduct />
+//     <TeamPage />
+//     <SearchProduct />
+//     <SearchPharmachy />
+//     <InventoryPage />
+//     <ProductPage />
+//     <PharmacyPage />
+//     <ProfilPage />
+//     <LoginForm />
+//     <Page404 />
+//     <Footer />
+//   </div>
