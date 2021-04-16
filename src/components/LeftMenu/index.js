@@ -74,24 +74,28 @@ const LeftMenu = () => (
           Rechercher un produit
         </Button>
       </NavLink>
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<LocalPharmacyIcon />}
-        size="large"
-        className="btn-box__btn"
-      >
-        Voire les pharmacies
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<ShoppingCartIcon />}
-        size="large"
-        className="btn-box__btn"
-      >
-        Acceder au panier
-      </Button>
+      <NavLink to="searchpharmacy">
+        <Button
+          variant="contained"
+          color="primary"
+          endIcon={<LocalPharmacyIcon />}
+          size="large"
+          className="btn-box__btn"
+        >
+          Voire les pharmacies
+        </Button>
+      </NavLink>
+      <NavLink to="/cart">
+        <Button
+          variant="contained"
+          color="primary"
+          endIcon={<ShoppingCartIcon />}
+          size="large"
+          className="btn-box__btn"
+        >
+          Acceder au panier
+        </Button>
+      </NavLink>
     </Box>
   </Box>
 );
