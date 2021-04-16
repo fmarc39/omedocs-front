@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LeftMenu from 'src/components/LeftMenu';
+import LeftMenu from 'src/containers/LeftMenu';
 import PropTypes from 'prop-types';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';

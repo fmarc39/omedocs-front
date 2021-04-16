@@ -1,10 +1,14 @@
+// Import REACT
 import React from 'react';
 import PropTypes from 'prop-types';
-import LeftMenu from 'src/components/LeftMenu';
+
+// Import COMPONENTS
+import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import './styles.scss';
 import Box from '@material-ui/core/Box';
+
+// Import MATERIAL UI
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -15,6 +19,9 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
 import Table from './Table';
+
+// Import CSS
+import './styles.scss';
 
 const SearchPharmacy = ({
   handleChange,

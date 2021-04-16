@@ -1,5 +1,5 @@
 import React from 'react';
-import LeftMenu from 'src/components/LeftMenu';
+import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';

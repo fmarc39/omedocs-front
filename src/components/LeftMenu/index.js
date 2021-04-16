@@ -1,7 +1,11 @@
+// Import React
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-// Import MATERIAL UI
+import PropTypes from 'prop-types';
 
+// Import react-router-dom pour ajouter des links aux boutons
+import { NavLink } from 'react-router-dom';
+
+// Import des composants depuis MATERIAL UI
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -15,7 +19,7 @@ import avatarImg from '../../assets/img_avatar.png';
 // Import CSS
 import './styles.scss';
 
-const LeftMenu = () => (
+const LeftMenu = ({ userType }) => (
   <Box
     boxShadow={1}
     p={2}
@@ -49,10 +53,10 @@ const LeftMenu = () => (
     <Box
       display="flex"
       flexDirection="column"
-      justifyContent="space-evenly"
+      textAlign="center"
       className="let-menu__btn-box"
     >
-      <NavLink to="/profil">
+      <NavLink to="/profil" style={{ textDecoration: 'none' }}>
         <Button
           variant="contained"
           color="primary"
@@ -63,41 +67,51 @@ const LeftMenu = () => (
           Profil
         </Button>
       </NavLink>
-      <NavLink to="/searchproduct">
-        <Button
-          variant="contained"
-          color="primary"
-          endIcon={<SearchIcon />}
-          size="large"
-          className="btn-box__btn"
-        >
-          Rechercher un produit
-        </Button>
+      <NavLink to="/searchproduct" style={{ textDecoration: 'none' }}>
+        {userType === 'hospital' && (
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<SearchIcon />}
+            size="large"
+            className="btn-box__btn"
+          >
+            Rechercher un produit
+          </Button>
+        )}
       </NavLink>
-      <NavLink to="searchpharmacy">
-        <Button
-          variant="contained"
-          color="primary"
-          endIcon={<LocalPharmacyIcon />}
-          size="large"
-          className="btn-box__btn"
-        >
-          Voire les pharmacies
-        </Button>
+      <NavLink to="searchpharmacy" style={{ textDecoration: 'none' }}>
+        {userType === 'hospital' && (
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<LocalPharmacyIcon />}
+            size="large"
+            className="btn-box__btn"
+          >
+            Voire les pharmacies
+          </Button>
+        )}
       </NavLink>
-      <NavLink to="/cart">
-        <Button
-          variant="contained"
-          color="primary"
-          endIcon={<ShoppingCartIcon />}
-          size="large"
-          className="btn-box__btn"
-        >
-          Acceder au panier
-        </Button>
+      <NavLink to="/cart" style={{ textDecoration: 'none' }}>
+        {userType === 'hospital' && (
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<ShoppingCartIcon />}
+            size="large"
+            className="btn-box__btn"
+          >
+            Acceder au panier
+          </Button>
+        )}
       </NavLink>
     </Box>
   </Box>
 );
+
+LeftMenu.propTypes = {
+  userType: PropTypes.string.isRequired,
+};
 
 export default LeftMenu;

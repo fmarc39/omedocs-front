@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LeftMenu from 'src/components/LeftMenu';
+import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import './styles.scss';
 import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -15,6 +14,9 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
 import Table from './Table';
+
+// Import CSS
+import './styles.scss';
 
 const SearchProduct = ({
   handleChange,

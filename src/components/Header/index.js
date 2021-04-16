@@ -6,7 +6,7 @@ import logo from 'src/assets/img/logo.svg';
 
 const Header = () => (
   <header className="header">
-    <Link to="/">
+    <Link to="/" style={{ textDecoration: 'none' }}>
       <div className="logo">
         <img className="logo__img" src={logo} alt="logo" />
         <div className="logo__name">O'Médocs</div>
