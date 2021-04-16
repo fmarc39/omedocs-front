@@ -33,93 +33,6 @@ function createData(name, cis, quantity, price, quantityToBuy, addToCart) {
   };
 }
 
-const rows = [
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    '6 000 228 5',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-];
-
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -144,6 +57,23 @@ const InventoryTable = ({ inventoryData }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const rows = inventoryData.map((row) => {
+    return createData(
+      row.drugName,
+      row.cis,
+      row.quantity,
+      row.price,
+      <TextField id="standard-basic" label="quantité" type="number" />,
+      <Button
+        variant="contained"
+        color="primary"
+        endIcon={<AddShoppingCartIcon />}
+      >
+        Ajouter au panier
+      </Button>
+    );
+  });
 
   return (
     <Paper className={classes.root}>

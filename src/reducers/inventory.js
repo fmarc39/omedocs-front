@@ -4,7 +4,7 @@ export const initialState = {
   drugs: [
     {
       drugName: 'doliprane',
-      cis: 36,
+      cis: 17,
       quantity: 36,
       price: 10,
     },
