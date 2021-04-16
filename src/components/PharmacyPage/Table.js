@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTyes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -130,7 +131,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StickyHeadTable() {
+const InventoryTable = ({ inventoryData }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -195,4 +196,10 @@ export default function StickyHeadTable() {
       />
     </Paper>
   );
-}
+};
+
+InventoryTable.propTypes = {
+  inventoryData: PropTyes.array.isRequired,
+};
+
+export default InventoryTable;
