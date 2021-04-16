@@ -15,16 +15,24 @@ export const changeUserInformations = (fieldValue, fieldName) => ({
 export const rehydrate = () => ({
   type: REHYDRATE,
 });
+export const SET_USER_FIELD_VALUE = 'SET_USER_FIELD_VALUE';
+
+export const setUserFieldValue = (name, value) => ({
+  type: SET_USER_FIELD_VALUE,
+  name,
+  value,
+});
 
 export const submitLogin = () => ({
   type: SUBMIT_LOGIN,
 });
 
+
 export const logout = () => ({
   type: LOGOUT,
 });
 
-export const login = (token) => ({
+export const login = () => ({
   type: LOGIN,
-  token,
 });
+
