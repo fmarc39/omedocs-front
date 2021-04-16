@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 // Import MATERIAL UI
 
 import Box from '@material-ui/core/Box';
@@ -51,24 +52,28 @@ const LeftMenu = () => (
       justifyContent="space-evenly"
       className="let-menu__btn-box"
     >
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<AccountCircleIcon />}
-        size="large"
-        className="btn-box__btn"
-      >
-        Profil
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<SearchIcon />}
-        size="large"
-        className="btn-box__btn"
-      >
-        Rechercher un produit
-      </Button>
+      <NavLink to="/profil">
+        <Button
+          variant="contained"
+          color="primary"
+          endIcon={<AccountCircleIcon />}
+          size="large"
+          className="btn-box__btn"
+        >
+          Profil
+        </Button>
+      </NavLink>
+      <NavLink to="/searchproduct">
+        <Button
+          variant="contained"
+          color="primary"
+          endIcon={<SearchIcon />}
+          size="large"
+          className="btn-box__btn"
+        >
+          Rechercher un produit
+        </Button>
+      </NavLink>
       <Button
         variant="contained"
         color="primary"
