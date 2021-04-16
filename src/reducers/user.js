@@ -12,7 +12,7 @@ export const initialState = {
   zipCode: '75014',
   password: '',
   logged: false,
-  token: null,
+  accessToken: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -25,8 +25,8 @@ const reducer = (state = initialState, action = {}) => {
     case LOGIN:
       return {
         ...state,
-        // finir de coder après le midlware auth quand on sera connecter au back
         logged: true,
+        accessToken: action.accessToken,
       };
     case LOGOUT:
       return {

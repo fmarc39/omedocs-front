@@ -27,9 +27,9 @@ export default (store) => (next) => (action) => {
         .then((result) => result.data)
         // Voir ce que retourne l'api pour completer
         // ( penser à modif le reducer et l'action login en fonction)
-        .then((/* le user ici avec le token */) => {
-          localStorage.setItem('jwtoken', token);
-          store.dispatch(login(/* user + token */));
+        .then(({ accesToken }) => {
+          localStorage.setItem('jwtoken', accesToken);
+          store.dispatch(login(accesToken));
         });
       return next(action);
     }
