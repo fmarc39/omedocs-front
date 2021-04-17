@@ -1,10 +1,7 @@
 import { connect } from 'react-redux';
 import LoginForm from 'src/components/LoginForm';
-import {
-  setUserFieldValue,
-  submitLogin,
-  logout,
-} from 'src/actions/user';
+import { withRouter } from 'react-router-dom';
+import { setUserFieldValue, submitLogin, logout } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   emailValue: state.user.emailValue,
@@ -27,4 +24,6 @@ const mapDispatchToProps = (dispatch) => ({
   handleLogout: () => dispatch(logout()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+const container = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+const containerWithRouter = withRouter(container);
+export default containerWithRouter;

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ProfilPage from 'src/components/ProfilPage';
 import { changeUserInformations } from 'src/actions/user';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => ({
   phoneNumer: state.user.phoneNumer,
@@ -20,4 +21,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilPage);
+const container = connect(mapStateToProps, mapDispatchToProps)(ProfilPage);
+const containerWithRouter = withRouter(container);
+export default containerWithRouter;

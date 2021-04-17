@@ -82,18 +82,16 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
           </Button>
         )}
       </NavLink>
-      <NavLink to="searchpharmacy" style={{ textDecoration: 'none' }}>
-        {userType === 'hospital' && (
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={<LocalPharmacyIcon />}
-            size="large"
-            className="btn-box__btn"
-          >
-            Voire les pharmacies
-          </Button>
-        )}
+      <NavLink to="searchestablishement" style={{ textDecoration: 'none' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          endIcon={<LocalPharmacyIcon />}
+          size="large"
+          className="btn-box__btn"
+        >
+          Chercher un établissement
+        </Button>
       </NavLink>
       <NavLink to="/cart" style={{ textDecoration: 'none' }}>
         {userType === 'hospital' && (
