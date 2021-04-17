@@ -11,6 +11,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleClose: () => {
     dispatch(closeValidationChangeModal());
   },
+  handleSubmit: () => {},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogModal);

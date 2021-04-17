@@ -16,10 +16,12 @@ import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import DialogModal from 'src/containers/ModalChangeInformations';
+import Grow from '@material-ui/core/Grow';
 
 // Import CSS
 import './styles.scss';
 
+// Modifications des stymes MATERIAL_UI
 const useStyles = makeStyles(() => ({
   field: {
     display: 'none',
@@ -41,6 +43,8 @@ const ProfilPage = ({
   handleSave,
 }) => {
   const classes = useStyles();
+
+  // Gestion de l'ouverture et de la fermeture des forms de modification de mail et du phoneNumber
   const [editMailInputIsOpen, setEditMailInputIsOpen] = useState(false);
   const [editPhoneInputIsOpen, setEditPhoneInputIsOpen] = useState(false);
 
@@ -121,20 +125,26 @@ const ProfilPage = ({
                   >
                     {email}
                   </p>
-                  <TextField
-                    id="outlined-basic"
-                    label="E-mail"
-                    name="newEmail"
-                    variant="outlined"
-                    type="email"
-                    value={newEmail}
-                    onChange={handleChangeInput}
-                    className={
-                      editMailInputIsOpen
-                        ? 'profil-box__content-elt__change-email'
-                        : classes.field
-                    }
-                  />
+                  <Grow
+                    in={editMailInputIsOpen}
+                    style={{ transformOrigin: '0 200 0' }}
+                    {...(editMailInputIsOpen ? { timeout: 1000 } : {})}
+                  >
+                    <TextField
+                      id="outlined-basic"
+                      label="E-mail"
+                      name="newEmail"
+                      variant="outlined"
+                      type="email"
+                      value={newEmail}
+                      onChange={handleChangeInput}
+                      className={
+                        editMailInputIsOpen
+                          ? 'profil-box__content-elt__change-email'
+                          : classes.field
+                      }
+                    />
+                  </Grow>
                   <IconButton
                     color="primary"
                     onClick={handleSaveBtn}
@@ -169,20 +179,26 @@ const ProfilPage = ({
                   >
                     {phoneNumer}
                   </p>
-                  <TextField
-                    id="outlined-basic"
-                    label="N° de téléphonne"
-                    variant="outlined"
-                    name="newPhoneNumber"
-                    type="number"
-                    value={newPhoneNumber}
-                    onChange={handleChangeInput}
-                    className={
-                      editPhoneInputIsOpen
-                        ? 'profil-box__content-elt__change-phone-number'
-                        : classes.field
-                    }
-                  />
+                  <Grow
+                    in={editPhoneInputIsOpen}
+                    style={{ transformOrigin: '0 200 0' }}
+                    {...(editPhoneInputIsOpen ? { timeout: 1000 } : {})}
+                  >
+                    <TextField
+                      id="outlined-basic"
+                      label="N° de téléphonne"
+                      variant="outlined"
+                      name="newPhoneNumber"
+                      type="number"
+                      value={newPhoneNumber}
+                      onChange={handleChangeInput}
+                      className={
+                        editPhoneInputIsOpen
+                          ? 'profil-box__content-elt__change-phone-number'
+                          : classes.field
+                      }
+                    />
+                  </Grow>
                   <IconButton
                     color="primary"
                     onClick={handleSaveBtn}
