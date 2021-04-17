@@ -27,7 +27,6 @@ export const submitLogin = () => ({
   type: SUBMIT_LOGIN,
 });
 
-
 export const logout = () => ({
   type: LOGOUT,
 });
@@ -35,4 +34,3 @@ export const logout = () => ({
 export const login = () => ({
   type: LOGIN,
 });
-

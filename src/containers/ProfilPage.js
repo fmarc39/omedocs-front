@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ProfilPage from 'src/components/ProfilPage';
 import { changeUserInformations } from 'src/actions/user';
+import { openValidationChangeModal } from 'src/actions/utils';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => ({
@@ -13,11 +14,16 @@ const mapStateToProps = (state) => ({
   zipCode: state.user.zipCode,
   newEmail: state.user.newEmail,
   newPhoneNumber: state.user.newPhoneNumber,
+  isOpen: state.user.changeInformationsModal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (fieldValue, fieldName) => {
     dispatch(changeUserInformations(fieldValue, fieldName));
+  },
+
+  handleSave: () => {
+    dispatch(openValidationChangeModal());
   },
 });
 

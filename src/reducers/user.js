@@ -1,4 +1,5 @@
 import { CHANGE_USER_INFORMATIONS, LOGIN, LOGOUT } from 'src/actions/user';
+import { OPEN_VALIDATION_CHANGE_MODAL } from 'src/actions/utils';
 
 export const initialState = {
   establishment: 'Hôpital Paris Saint-Joseph',
@@ -15,6 +16,7 @@ export const initialState = {
   logged: false,
   token: null,
   isLoading: false,
+  changeInformationsModal: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -35,6 +37,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         token: null,
         logged: null,
+      };
+    case OPEN_VALIDATION_CHANGE_MODAL:
+      return {
+        ...state,
+        changeInformationsModal: true,
       };
     default:
       return state;

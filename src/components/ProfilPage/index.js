@@ -11,6 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
+import DialogModal from './DialogModal';
 
 const useStyles = makeStyles(() => ({
   field: {
@@ -30,6 +31,8 @@ const ProfilPage = ({
   handleChange,
   newEmail,
   newPhoneNumber,
+  isOpen,
+  handleSave,
 }) => {
   const classes = useStyles();
   const [editMailInputIsOpen, setEditMailInputIsOpen] = useState(false);
@@ -45,6 +48,10 @@ const ProfilPage = ({
 
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
+  };
+
+  const handleSaveBtn = () => {
+    handleSave();
   };
 
   return (
@@ -171,6 +178,7 @@ const ProfilPage = ({
                   />
                   <IconButton
                     color="primary"
+                    onClick={handleSaveBtn}
                     className={editPhoneInputIsOpen ? '' : classes.field}
                   >
                     <SaveIcon />
@@ -197,6 +205,7 @@ const ProfilPage = ({
                   <p className="profil-box__content-elt__content">{zipCode}</p>
                 </div>
               </div>
+              <DialogModal isOpen={isOpen} />
             </Box>
           </Box>
         </Box>
@@ -217,6 +226,8 @@ ProfilPage.propTypes = {
   handleChange: PropTypes.func.isRequired,
   newEmail: PropTypes.string.isRequired,
   newPhoneNumber: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  handleSave: PropTypes.func.isRequired,
 };
 
 export default ProfilPage;
