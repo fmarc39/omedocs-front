@@ -1,15 +1,13 @@
-
 body {
-    background-color: #95c2de;
+    background-color: white;
     }
 
     .mainBox {
         display: flex;
     }
     
-
     .err {
-    color: #ffffff;
+    color: #004FB1;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 11rem;
     }
@@ -26,7 +24,7 @@ body {
     }
     
     .err2 {
-        color: #ffffff;
+        color: #004FB1;
         font-family: 'Nunito Sans', sans-serif;
         font-size: 11rem;
         }
@@ -39,9 +37,9 @@ body {
         width: 75%;
         }
     
-    a {
+    .home-link {
+        color: #004FB1;
         text-decoration: none;
-        color: white;
     }
     
     a:hover {

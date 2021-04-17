@@ -1,4 +1,7 @@
+// Import React
 import React from 'react';
+
+// Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -13,6 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import './styles.scss';
 
+// Configuration des colones avec le nom, le label, la largeur
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300, type: 'string' },
   { id: 'cis', label: 'CIS', minWidth: 100, type: 'number' },
@@ -27,6 +31,7 @@ const columns = [
   { id: 'price', label: 'Prix H.T', minWidth: 200, type: 'number' },
 ];
 
+// Fonction qui va insérer les données dans le tableau
 function createData(name, cis, expirationDate, pathology, quantity, price) {
   return {
     name,

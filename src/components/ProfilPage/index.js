@@ -92,7 +92,7 @@ const ProfilPage = ({
               borderRadius="10px"
               className="profil-box"
             >
-              <h1 className="profil-box__main-title">Vos informations</h1>
+              <h2 className="profil-box__main-title">Vos informations</h2>
               <div className="profil-box__content">
                 <div className="profil-box__content-elt">
                   <p className="profil-box__content-elt__infos">
