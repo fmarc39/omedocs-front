@@ -18,7 +18,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
-import ProductTable from './Table';
+import ProductTable from 'src/components/Tables';
 
 // Import CSS
 import './styles.scss';
