@@ -14,7 +14,6 @@ const mapStateToProps = (state) => ({
   zipCode: state.user.zipCode,
   newEmail: state.user.newEmail,
   newPhoneNumber: state.user.newPhoneNumber,
-  isOpen: state.user.changeInformationsModal,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,9 +1,13 @@
+// Import React
 import React, { useState } from 'react';
-import LeftMenu from 'src/containers/LeftMenu';
 import PropTypes from 'prop-types';
+
+// Import COMPONENTS
+import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import './styles.scss';
+
+// Import from MATERIAL-UI
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,7 +15,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
-import DialogModal from './DialogModal';
+import DialogModal from 'src/containers/ModalChangeInformations';
+
+// Import CSS
+import './styles.scss';
 
 const useStyles = makeStyles(() => ({
   field: {
@@ -31,7 +38,6 @@ const ProfilPage = ({
   handleChange,
   newEmail,
   newPhoneNumber,
-  isOpen,
   handleSave,
 }) => {
   const classes = useStyles();
@@ -131,6 +137,7 @@ const ProfilPage = ({
                   />
                   <IconButton
                     color="primary"
+                    onClick={handleSaveBtn}
                     className={editMailInputIsOpen ? '' : classes.field}
                   >
                     <SaveIcon />
@@ -205,7 +212,7 @@ const ProfilPage = ({
                   <p className="profil-box__content-elt__content">{zipCode}</p>
                 </div>
               </div>
-              <DialogModal isOpen={isOpen} />
+              <DialogModal />
             </Box>
           </Box>
         </Box>
@@ -226,7 +233,6 @@ ProfilPage.propTypes = {
   handleChange: PropTypes.func.isRequired,
   newEmail: PropTypes.string.isRequired,
   newPhoneNumber: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool.isRequired,
   handleSave: PropTypes.func.isRequired,
 };
 
