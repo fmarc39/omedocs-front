@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
+import Accordion from './SignUp';
 
 // == Import
 import './styles.scss';
@@ -60,6 +61,7 @@ const LoginForm = ({
             <h2>Mot de passe oublié ?</h2>
           </Box>
         </Box>
+        <Accordion />
         <Footer />
       </Box>
     </>
