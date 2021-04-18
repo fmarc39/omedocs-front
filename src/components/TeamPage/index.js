@@ -30,7 +30,9 @@ const TeamPage = () => (
         >
           <Box display="flex">
             <div className="err" />
-            <div><i className="far fa-question-circle fa-spin" /></div>
+            <div>
+              <i className="far fa-question-circle fa-spin" />
+            </div>
             <div className="err2" />
           </Box>
           <h1>Nous contacter</h1>

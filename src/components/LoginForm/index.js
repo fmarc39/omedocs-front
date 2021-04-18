@@ -12,16 +12,19 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import LeftMenu from 'src/components/LeftMenu';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
+import SnackBar from 'src/containers/SnackBar';
+
+import { Link } from 'react-router-dom';
 
 // == Import
 import './styles.scss';
 
 // == Composant
 const LoginForm = ({
+  submitForm,
   handleChange,
   emailValue,
   passwordValue,
@@ -39,12 +42,16 @@ const LoginForm = ({
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
   };
+  const handlerOnSubmit = (event) => {
+    event.preventDefault();
+    submitForm();
+  };
   return (
     <>
       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
+        <SnackBar />
         <Box height="100%" width="100%" display="flex" id="body">
-          <LeftMenu />
           <Box
             bgcolor="#C6C6C6"
             height="100%"
@@ -54,12 +61,7 @@ const LoginForm = ({
             flexDirection="column"
             alignItems="center"
           >
-            <Box display="flex">
-              <div className="err" />
-              <div><i className="far fa-question-circle fa-spin" /></div>
-              <div className="err2" />
-            </Box>
-            <form>
+            <form onSubmit={handlerOnSubmit}>
               <h1>Connexion</h1>
               <TextField
                 className="login__email"
@@ -81,7 +83,10 @@ const LoginForm = ({
                 onChange={handleChangeInput}
                 value={passwordValue}
               />
-              <Button className="firstbutton" type="submit" variant="contained">Valider</Button>
+
+              <Button className="firstbutton" type="submit" variant="contained">
+                <Link to="/profil"> Valider </Link>
+              </Button>
               <h2>Mot de passe oublié ?</h2>
               <div className="subscribe" />
               <Accordion>
@@ -188,13 +193,20 @@ const LoginForm = ({
                     value={phoneValue}
                   />
                   <FormControl className="radio" component="fieldset">
-                    <FormLabel component="legend">Vous souhaitez vous inscrire en tant que :</FormLabel>
+                    <FormLabel component="legend">
+                      Vous souhaitez vous inscrire en tant que :
+                    </FormLabel>
                     <RadioGroup>
                       <FormControlLabel value="buyer" control={<Radio />} label="Acheteur" />
                       <FormControlLabel value="seller" control={<Radio />} label="Vendeur" />
                     </RadioGroup>
                   </FormControl>
-                  <Button type="submit" className="myButton" variant="contained">
+                  <Button
+                    type="submit"
+                    className="myButton"
+                    variant="contained"
+                    onSubmit={handlerOnSubmit}
+                  >
                     Valider
                   </Button>
                 </AccordionDetails>
@@ -205,24 +217,39 @@ const LoginForm = ({
         <Footer />
       </Box>
     </>
-
   );
 };
 
 LoginForm.propTypes = {
+  submitForm: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  emailValue: PropTypes.string.isRequired,
-  passwordValue: PropTypes.string.isRequired,
-  emailSubscribeValue: PropTypes.string.isRequired,
-  emailcheckSubscribeValue: PropTypes.string.isRequired,
-  passwordSubscribeValue: PropTypes.string.isRequired,
-  passwordcheckSubscribeValue: PropTypes.string.isRequired,
-  orgaValue: PropTypes.string.isRequired,
-  cityValue: PropTypes.string.isRequired,
-  adressValue: PropTypes.string.isRequired,
-  rppsValue: PropTypes.string.isRequired,
-  zipValue: PropTypes.string.isRequired,
-  phoneValue: PropTypes.string.isRequired,
+  emailValue: PropTypes.string,
+  passwordValue: PropTypes.string,
+  emailSubscribeValue: PropTypes.string,
+  emailcheckSubscribeValue: PropTypes.string,
+  passwordSubscribeValue: PropTypes.string,
+  passwordcheckSubscribeValue: PropTypes.string,
+  orgaValue: PropTypes.string,
+  cityValue: PropTypes.string,
+  adressValue: PropTypes.string,
+  rppsValue: PropTypes.string,
+  zipValue: PropTypes.string,
+  phoneValue: PropTypes.string,
+};
+
+LoginForm.defaultProps = {
+  emailValue: '',
+  passwordValue: '',
+  emailSubscribeValue: '',
+  emailcheckSubscribeValue: '',
+  passwordSubscribeValue: '',
+  passwordcheckSubscribeValue: '',
+  orgaValue: '',
+  cityValue: '',
+  adressValue: '',
+  rppsValue: '',
+  zipValue: '',
+  phoneValue: '',
 };
 
 // == Export

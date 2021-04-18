@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import './styles.scss';
+import classNames from 'classnames';
+import Footer from 'src/components/Footer';
 import { HiMenu } from 'react-icons/hi';
 import { GrClose } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import classNames from 'classnames';
+
+import './styles.scss';
 
 // image
 import logo from 'src/assets/img/logo.svg';
@@ -138,6 +140,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

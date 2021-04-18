@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -26,7 +27,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ControlledAccordions() {
+const AccordionsPharmacyDetails = ({
+  establishment,
+  adress,
+  city,
+  zipCode,
+  email,
+  phoneNumer,
+}) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -45,9 +53,7 @@ export default function ControlledAccordions() {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography className={classes.heading}>
-            Pharmacie de la gare
-          </Typography>
+          <Typography className={classes.heading}>{establishment}</Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.body}>
           <Box
@@ -61,19 +67,19 @@ export default function ControlledAccordions() {
             p={2}
             bgcolor="rgb(155, 230, 247, 0.2)"
           >
-            <p>12 rue de la Poste</p>
-            <p>Paris</p>
-            <p>75002</p>
+            <p>{adress}</p>
+            <p>{city}</p>
+            <p>{zipCode}</p>
             <Button
               variant="contained"
               color="primary"
               size="small"
               id="phoneBtn"
               className={classes.button}
-              href="tel: abc@example.com"
+              href={`tel: ${phoneNumer}`}
               startIcon={<PhoneForwardedIcon />}
             >
-              06.35.11.60.59
+              {phoneNumer}
             </Button>
             <Divider />
             <Button
@@ -82,13 +88,24 @@ export default function ControlledAccordions() {
               size="small"
               className={classes.button}
               startIcon={<EmailIcon />}
-              href="mailto: abc@example.com"
+              href={`mailto: ${email}`}
             >
-              abc@example.com
+              {email}
             </Button>
           </Box>
         </AccordionDetails>
       </Accordion>
     </div>
   );
-}
+};
+
+AccordionsPharmacyDetails.propTypes = {
+  establishment: PropTypes.string.isRequired,
+  adress: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  zipCode: PropTypes.number.isRequired,
+  email: PropTypes.string.isRequired,
+  phoneNumer: PropTypes.number.isRequired,
+};
+
+export default AccordionsPharmacyDetails;

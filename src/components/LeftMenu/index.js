@@ -1,6 +1,11 @@
+// Import React
 import React from 'react';
-// Import MATERIAL UI
+import PropTypes from 'prop-types';
 
+// Import react-router-dom pour ajouter des links aux boutons
+import { NavLink } from 'react-router-dom';
+
+// Import des composants depuis MATERIAL UI
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -8,13 +13,15 @@ import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import LocalPharmacyIcon from '@material-ui/icons/LocalPharmacy';
+import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import TableChartIcon from '@material-ui/icons/TableChart';
 import avatarImg from '../../assets/img_avatar.png';
 
 // Import CSS
 import './styles.scss';
 
-const LeftMenu = () => (
+const LeftMenu = ({ userType, nbOfArticles }) => (
   <Box
     boxShadow={1}
     p={2}
@@ -48,47 +55,83 @@ const LeftMenu = () => (
     <Box
       display="flex"
       flexDirection="column"
-      justifyContent="space-evenly"
+      textAlign="center"
       className="let-menu__btn-box"
     >
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<AccountCircleIcon />}
-        size="large"
-        className="btn-box__btn"
-      >
-        Profil
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<SearchIcon />}
-        size="large"
-        className="btn-box__btn"
-      >
-        Rechercher un produit
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<LocalPharmacyIcon />}
-        size="large"
-        className="btn-box__btn"
-      >
-        Voire les pharmacies
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<ShoppingCartIcon />}
-        size="large"
-        className="btn-box__btn"
-      >
-        Acceder au panier
-      </Button>
+      <NavLink to="/profil" style={{ textDecoration: 'none' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          endIcon={<AccountCircleIcon />}
+          size="large"
+          className="btn-box__btn"
+        >
+          Profil
+        </Button>
+      </NavLink>
+      <NavLink to="/searchproduct" style={{ textDecoration: 'none' }}>
+        {userType === 'hospital' && (
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<SearchIcon />}
+            size="large"
+            className="btn-box__btn"
+          >
+            Rechercher un produit
+          </Button>
+        )}
+      </NavLink>
+      <NavLink to="searchpharmacy" style={{ textDecoration: 'none' }}>
+        {userType === 'hospital' && (
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<LocalPharmacyIcon />}
+            size="large"
+            className="btn-box__btn"
+          >
+            Voire les pharmacies
+          </Button>
+        )}
+      </NavLink>
+      <NavLink to="/cart" style={{ textDecoration: 'none' }}>
+        {userType === 'hospital' && (
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={
+              <Badge badgeContent={nbOfArticles} color="secondary">
+                <ShoppingCartIcon />
+              </Badge>
+            }
+            size="large"
+            className="btn-box__btn"
+          >
+            Acceder au panier
+          </Button>
+        )}
+      </NavLink>
+      <NavLink to="/cart" style={{ textDecoration: 'none' }}>
+        {userType === 'pharmacy' && (
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<TableChartIcon />}
+            size="large"
+            className="btn-box__btn"
+          >
+            Acceder a l'inventaire
+          </Button>
+        )}
+      </NavLink>
     </Box>
   </Box>
 );
+
+LeftMenu.propTypes = {
+  userType: PropTypes.string.isRequired,
+  nbOfArticles: PropTypes.string.isRequired,
+};
 
 export default LeftMenu;

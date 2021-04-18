@@ -1,9 +1,20 @@
-import { CLOSE_MODAL_PRODUCT, OPEN_MODAL_PRODUCT, ADD_PRODUCT } from 'src/actions/utils';
+import {
+  CLOSE_MODAL_PRODUCT,
+  OPEN_MODAL_PRODUCT,
+  ADD_PRODUCT,
+  CLOSE_SNACKBAR,
+  OPEN_SNACKBAR,
+} from 'src/actions/utils';
 import { APPLY_INFO_DRUGS_API } from 'src/actions/drugsApi';
 import parseInputNumber from 'src/hooks';
 
 const initialState = {
   openModalProduct: true,
+  snackBar: {
+    open: false,
+    message: '',
+    typeColor: '', // success | info | warning | error
+  },
   product: {
     name: '',
     cis: '',
@@ -45,6 +56,27 @@ export default (state = initialState, action = {}) => {
           pathology: action.pathology,
         },
       };
+    case CLOSE_SNACKBAR:
+      return {
+        ...state,
+        snackBar: {
+          ...state.snakeBar,
+          open: false,
+          message: '',
+        },
+      };
+
+    case OPEN_SNACKBAR:
+      return {
+        ...state,
+        snackBar: {
+          ...state.snakeBar,
+          open: true,
+          message: action.message,
+          typeColor: action.type,
+        },
+      };
+
     default:
       return state;
   }

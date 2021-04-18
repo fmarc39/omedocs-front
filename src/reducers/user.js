@@ -3,10 +3,11 @@ import { CHANGE_USER_INFORMATIONS, LOGIN, LOGOUT } from 'src/actions/user';
 export const initialState = {
   establishment: 'Hôpital Paris Saint-Joseph',
   email: 'hopitalsj@sante-paris.fr',
-  phoneNumer: '01.44.12.33.33',
+  phoneNumer: '0144123333',
   newEmail: '',
   newPhoneNumber: '',
   rpss: '680004546',
+  type: 'hospital',
   city: 'Paris',
   adress: '185 Rue Raymond Losserand',
   zipCode: '75014',

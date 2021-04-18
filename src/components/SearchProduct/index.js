@@ -1,9 +1,13 @@
+// Import REACT
 import React from 'react';
 import PropTypes from 'prop-types';
-import LeftMenu from 'src/components/LeftMenu';
+
+// Import COMPONENTS
+import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import './styles.scss';
+
+// Import from MATERIAL-UI
 import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -14,25 +18,21 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
-import Table from './Table';
+import ProductTable from './Table';
 
-const SearchProduct = ({
-  handleChange,
-  searchInputValue,
-  searchSelectValue,
-}) => {
+// Import CSS
+import './styles.scss';
+
+const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) => {
+  // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeSearchInput = (event) => {
+    // Au 'onChange' on récupère la valeur de l'input et son nom
     handleChange(event.target.value, event.target.name);
   };
 
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -56,9 +56,7 @@ const SearchProduct = ({
             >
               <form>
                 <div>
-                  <InputLabel htmlFor="search-product-input">
-                    Votre recherche ici
-                  </InputLabel>
+                  <InputLabel htmlFor="search-product-input">Votre recherche ici</InputLabel>
                   <Input
                     id="search-product-input"
                     onChange={handleChangeSearchInput}
@@ -85,16 +83,12 @@ const SearchProduct = ({
                     <MenuItem value="pathology">Pathologie</MenuItem>
                   </Select>
                 </FormControl>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  endIcon={<CheckIcon />}
-                >
+                <Button variant="contained" color="primary" endIcon={<CheckIcon />}>
                   Valider
                 </Button>
               </form>
             </Box>
-            <Table />
+            <ProductTable />
           </Box>
         </Box>
         <Footer />
