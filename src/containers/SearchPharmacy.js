@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = (state) => ({
   searchInputValue: state.search.searchPharmacyInputValue,
   searchSelectValue: state.search.searchPharmacySelectValue,
+  pharmacyResultsData: state.search.searchPharmacyResult,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -27,6 +27,7 @@ const SearchProduct = ({
   handleChange,
   searchInputValue,
   searchSelectValue,
+  productResultsData,
 }) => {
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeSearchInput = (event) => {
@@ -103,7 +104,7 @@ const SearchProduct = ({
                 </Button>
               </form>
             </Box>
-            <ProductTable />
+            {productResultsData.length !== 0 && <ProductTable />}
           </Box>
         </Box>
         <Footer />
@@ -116,6 +117,7 @@ SearchProduct.propTypes = {
   handleChange: PropTypes.func.isRequired,
   searchInputValue: PropTypes.string.isRequired,
   searchSelectValue: PropTypes.string.isRequired,
+  productResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SearchProduct;

@@ -5,12 +5,7 @@ export const initialState = {
   searchProductSelectValue: 'name',
   searchPharmacyInputValue: '',
   searchPharmacySelectValue: 'auvergne rhone alpes',
-  searchPharmacyResult: [
-    {
-      name: 'pharmacie de la Gare',
-      region: 'ile-de-France',
-    },
-  ],
+  searchPharmacyResult: [],
   searchProductResult: [],
 };
 

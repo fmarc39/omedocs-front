@@ -27,6 +27,7 @@ const SearchPharmacy = ({
   handleChange,
   searchInputValue,
   searchSelectValue,
+  pharmacyResultsData,
 }) => {
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeInput = (event) => {
@@ -124,7 +125,7 @@ const SearchPharmacy = ({
                 </Button>
               </form>
             </Box>
-            <PharmacyTable />
+            {pharmacyResultsData.length !== 0 && <PharmacyTable />}
           </Box>
         </Box>
         <Footer />
@@ -137,6 +138,7 @@ SearchPharmacy.propTypes = {
   handleChange: PropTypes.func.isRequired,
   searchInputValue: PropTypes.string.isRequired,
   searchSelectValue: PropTypes.string.isRequired,
+  pharmacyResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SearchPharmacy;

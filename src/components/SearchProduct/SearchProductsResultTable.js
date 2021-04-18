@@ -1,4 +1,8 @@
+// Import React
 import React from 'react';
+import PropTypes from 'prop-types';
+
+// Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -46,7 +50,7 @@ const ProductTable = ({ productResultsData }) => {
   };
 
   const rows = productResultsData.map((product) =>
-    creatData(product.title, product.code, product.quantity)
+    createData(product.title, product.code, product.quantity)
   );
 
   return (
@@ -99,5 +103,7 @@ const ProductTable = ({ productResultsData }) => {
     </Paper>
   );
 };
+
+ProductTable.propTypes = {};
 
 export default ProductTable;
