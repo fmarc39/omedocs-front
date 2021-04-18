@@ -60,7 +60,7 @@ const SearchPharmacy = ({
               p={3}
               mb={4}
               bgcolor="white"
-              borderRadius="10px"
+              borderRadius="40px"
               boxShadow={3}
             >
               <form>
@@ -125,6 +125,8 @@ const SearchPharmacy = ({
                 </Button>
               </form>
             </Box>
+            {/* Affichage conditionnel du tableau de résultat si
+            la longueur du tableau est différente de 0  */}
             {pharmacyResultsData.length !== 0 && <PharmacyTable />}
           </Box>
         </Box>

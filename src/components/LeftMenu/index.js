@@ -43,8 +43,8 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
     />
 
     <Typography
-      variant="h6"
-      component="h6"
+      variant="h5"
+      component="h5"
       className="left-menu__welcome-message"
       align="center"
     >

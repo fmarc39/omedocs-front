@@ -61,7 +61,7 @@ const SearchProduct = ({
               p={3}
               mb={4}
               bgcolor="white"
-              borderRadius="10px"
+              borderRadius="40px"
               boxShadow={3}
             >
               <form>
@@ -104,6 +104,8 @@ const SearchProduct = ({
                 </Button>
               </form>
             </Box>
+            {/* Affichage conditionnel du tableau de résultat si
+            la longueur du tableau est différente de 0  */}
             {productResultsData.length !== 0 && <ProductTable />}
           </Box>
         </Box>
