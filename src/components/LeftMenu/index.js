@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 // Import des composants depuis MATERIAL UI
+
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -35,12 +36,7 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
     bgcolor="#AAAAAA"
     className="left-menu"
   >
-    <Avatar
-      alt="Remy Sharp"
-      src={avatarImg}
-      className="left-menu__avatar"
-      width="150px"
-    />
+    <Avatar alt="avatarLogo" src={avatarImg} className="left-menu__avatar" />
 
     <Typography
       variant="h5"
@@ -65,6 +61,7 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
           endIcon={<AccountCircleIcon />}
           size="large"
           className="btn-box__btn"
+          fullWidth="true"
         >
           Profil
         </Button>
