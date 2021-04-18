@@ -2,23 +2,7 @@ import { CLOSE_POP_LIST_API, OPEN_POP_LIST_API } from 'src/actions/drugsApi';
 
 const initialState = {
   activePopList: false,
-  result: [
-    {
-      name: 'Doliprane 1000mg',
-      cis: 5154851,
-      pathology: 'Bobo à la Têtête',
-    },
-    {
-      name: 'Doliprane 500mg',
-      cis: 5154856,
-      pathology: 'Bobo à la Têtête',
-    },
-    {
-      name: 'Dolirhume',
-      cis: 5154887,
-      pathology: 'Bobo au neznez',
-    },
-  ],
+  result: [],
 };
 
 export default (state = initialState, action = {}) => {

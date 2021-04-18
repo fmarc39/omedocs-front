@@ -1,5 +1,6 @@
 // Import REACT
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -114,7 +115,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ProductTable = () => {
+const ProductTable = ({ productResultsData }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -128,6 +129,10 @@ const ProductTable = () => {
     setPage(0);
   };
 
+  // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
+  const rows = productResultsData.map((pharmacy) =>
+    createData(pharmacy.name, pharmacy.region)
+  );
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -179,6 +184,10 @@ const ProductTable = () => {
       />
     </Paper>
   );
+};
+
+ProductTable.propTypes = {
+  productResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductTable;
