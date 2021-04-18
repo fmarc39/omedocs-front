@@ -1,4 +1,8 @@
+// Import REACT
 import React from 'react';
+import PropTypes from 'prop-types';
+
+// Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -9,33 +13,18 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
+// Configuration des colones avec le nom, le label, la largeur
 const columns = [
-  { id: 'title', label: 'Nom', minWidth: 180 },
-  { id: 'code', label: 'Code CIS', minWidth: 30 },
-  { id: 'quantity', label: 'Quantity', minWidth: 100 },
-  { id: 'link', label: 'Liens' },
+  { id: 'name', label: 'Nom de la Pharmacie', minWidth: 300 },
+  { id: 'region', label: 'Région', minWidth: 200 },
 ];
 
-function createData(title, code, quantity, link = 'Liens vers la Pharmacie') {
-  return { title, code, quantity, link };
+// Fonction qui va insérer les données dans le tableau
+function createData(name, region) {
+  return { name, region };
 }
 
-const rows = [
-  createData('ANASTROZOLE ACCORD 1 mg, comprimé pelliculé', '6 000 228 1', 100),
-  createData(
-    'RANITIDINE BIOGARAN 150 mg, comprimé effervescent',
-    '6 000 228 2',
-    23
-  ),
-  createData(
-    'BECLOSPIN 800 microgrammes/2 ml, suspension pour inhalation par nébuliseur en récipient unidose',
-    '6 000 228 4',
-    34
-  ),
-  createData('FENOFIBRATE TEVA 100 mg, gélule', '6 000 228 5', 28),
-  createData('FAMOTIDINE EG 20 mg, comprimé pelliculé', '6 000 228 6', 43),
-];
-
+// Configuration des styles du tableau avec MATERIAL-UI
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -44,28 +33,34 @@ const useStyles = makeStyles({
     minHeight: 350,
     minWidth: 700,
   },
-  head: { backgroundColor: '#FFF' },
 });
 
-const ProductTable = () => {
+const PharmacyTable = ({ pharmacyResultsData }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  // Gestion du nombre de pages dans le tableau
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
+  // Gestion du nombre de pages
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
+  // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
+  const rows = pharmacyResultsData.map((pharmacy) =>
+    createData(pharmacy.name, pharmacy.region)
+  );
+
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
-          <TableHead className={classes.head}>
+          <TableHead>
             <TableRow>
               {columns.map((column) => (
                 <TableCell
@@ -112,4 +107,8 @@ const ProductTable = () => {
   );
 };
 
-export default ProductTable;
+PharmacyTable.propTypes = {
+  pharmacyResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default PharmacyTable;

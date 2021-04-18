@@ -18,7 +18,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
-import PharmacyTable from './Table';
+import PharmacyTable from 'src/containers/Tables/SearchPharmacyResultTable';
 
 // Import CSS
 import './styles.scss';

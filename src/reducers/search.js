@@ -5,6 +5,13 @@ export const initialState = {
   searchProductSelectValue: 'name',
   searchPharmacyInputValue: '',
   searchPharmacySelectValue: 'auvergne rhone alpes',
+  searchPharmacyResult: [
+    {
+      name: 'pharmacie de la Gare',
+      region: 'ile-de-France',
+    },
+  ],
+  searchProductResult: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
