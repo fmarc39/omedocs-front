@@ -11,7 +11,7 @@ export const initialState = {
   newEmail: '',
   newPhoneNumber: '',
   rpss: '680004546',
-  type: 'hospital',
+  type: 'pharmacy',
   city: 'Paris',
   adress: '185 Rue Raymond Losserand',
   zipCode: '75014',

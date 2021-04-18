@@ -107,7 +107,7 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
           </Button>
         )}
       </NavLink>
-      <NavLink to="/cart" style={{ textDecoration: 'none' }}>
+      <NavLink to="/inventory" style={{ textDecoration: 'none' }}>
         {userType === 'pharmacy' && (
           <Button
             variant="contained"
