@@ -37,22 +37,12 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
   >
     <Avatar alt="avatarLogo" src={avatarImg} className="left-menu__avatar" />
 
-    <Typography
-      variant="h5"
-      component="h5"
-      className="left-menu__welcome-message"
-      align="center"
-    >
+    <Typography variant="h5" component="h5" className="left-menu__welcome-message" align="center">
       Bienvenue <br />
       H.P O’clock
     </Typography>
 
-    <Box
-      display="flex"
-      flexDirection="column"
-      textAlign="center"
-      className="let-menu__btn-box"
-    >
+    <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
       <NavLink to="/profil" style={{ textDecoration: 'none' }}>
         <Button
           variant="contained"
@@ -95,6 +85,7 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
             variant="contained"
             color="primary"
             endIcon={
+              // eslint-disable-next-line react/jsx-wrap-multilines
               <Badge badgeContent={nbOfArticles} color="secondary">
                 <ShoppingCartIcon />
               </Badge>

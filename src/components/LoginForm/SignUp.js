@@ -2,6 +2,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -15,16 +16,18 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '90%',
-    margin: 'auto',
-    borderRadius: '10px',
+    minHeight: '100%',
+    maxWidth: '700px',
+    borderRadius: '20px',
+  },
+  accordion: {
+    border: 'none',
+    boxShadow: 'none',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
     borderRadius: '10px',
-    borderColor: 'grey',
-    backgroundColor: '#303F9F',
+    backgroundColor: '#2b88b4',
     margin: '1em',
     padding: '10px',
     width: '35%',
@@ -33,11 +36,19 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 'auto',
     display: 'block',
   },
-  body: {
-    margin: '2em',
-    verticalAlign: 'baseline',
-    columns: '3',
-    textAlign: 'center',
+  textField: {
+    width: '300px',
+    margin: '16px',
+  },
+  button: {
+    alignSelf: 'center',
+  },
+  form: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
   },
 }));
 
@@ -67,16 +78,18 @@ export default function SimpleAccordion(
   };
   return (
     <div className={classes.root}>
-      <Accordion>
+      <Accordion className={classes.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Inscription</Typography>
+          <Typography className={classes.heading} variant="h6">
+            Inscription
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <form className={classes.body} onSubmit={handlerOnSubmit}>
+          <form className={classes.form} onSubmit={handlerOnSubmit}>
             <TextField
               className={classes.textField}
               variant="outlined"
@@ -84,6 +97,7 @@ export default function SimpleAccordion(
               name="email"
               value={email}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -93,6 +107,7 @@ export default function SimpleAccordion(
               name="confirmEmail"
               value={confirmEmail}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -102,6 +117,7 @@ export default function SimpleAccordion(
               name="password"
               value={password}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -111,6 +127,7 @@ export default function SimpleAccordion(
               name="confirmPassword"
               value={confirmPassword}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -120,6 +137,7 @@ export default function SimpleAccordion(
               name="establishment"
               value={establishment}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -129,6 +147,7 @@ export default function SimpleAccordion(
               name="adress"
               value={adress}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -138,6 +157,7 @@ export default function SimpleAccordion(
               name="zipCode"
               value={zipCode}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -147,6 +167,7 @@ export default function SimpleAccordion(
               name="city"
               value={city}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -156,6 +177,7 @@ export default function SimpleAccordion(
               name="region"
               value={region}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -165,6 +187,7 @@ export default function SimpleAccordion(
               name="phoneNumber"
               value={phoneNumber}
               onChange={handlerOnChange}
+              variant="filled"
               required
             />
             <TextField
@@ -174,17 +197,30 @@ export default function SimpleAccordion(
               name="rpss"
               value={rpss}
               onChange={handlerOnChange}
+              variant="outlined"
               required
             />
 
-            <FormControl className="radio" component="fieldset">
+            <FormControl component="fieldset">
               <FormLabel component="legend">Vous souhaitez vous inscrire en tant que :</FormLabel>
-              <RadioGroup>
-                <FormControlLabel value="buyer" control={<Radio />} label="Acheteur" name="type" />
-                <FormControlLabel value="seller" control={<Radio />} label="Vendeur" name="type" />
+              <RadioGroup row name="type">
+                <FormControlLabel
+                  value="acheteur"
+                  control={<Radio />}
+                  label="Acheteur"
+                  labelPlacement="left"
+                />
+                <FormControlLabel
+                  value="vendeur"
+                  control={<Radio />}
+                  label="Vendeur"
+                  labelPlacement="left"
+                />
               </RadioGroup>
             </FormControl>
-            <input type="submit" value="Envoyer" />
+            <Button variant="contained" type="submit" className={classes.button}>
+              Connexion
+            </Button>
           </form>
         </AccordionDetails>
       </Accordion>

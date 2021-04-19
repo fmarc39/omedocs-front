@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import classNames from 'classnames';
-import Footer from 'src/components/Footer';
+import './styles.scss';
 import { HiMenu } from 'react-icons/hi';
 import { GrClose } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-
-import './styles.scss';
+import classNames from 'classnames';
 
 // image
 import logo from 'src/assets/img/logo.svg';
@@ -39,7 +37,7 @@ const HomePage = () => {
           <div className="logo__name">O'Médocs</div>
         </div>
         <div className="header__navigation">
-          <nav className={classNames('navbar', { active: active })}>
+          <nav className={classNames('navbar', { isActive: active })}>
             <a className="navbar__link" href="#goal">
               Notre but
             </a>
@@ -140,7 +138,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
