@@ -26,9 +26,8 @@ export const closeSnackbar = () => ({
   type: CLOSE_SNACKBAR,
 });
 
-export const openSnackBar = (open, message, typeColor) => ({
+export const openSnackBar = (message, typeColor) => ({
   type: OPEN_SNACKBAR,
-  open,
   message,
   typeColor,
 });

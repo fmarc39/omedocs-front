@@ -73,7 +73,7 @@ export default (state = initialState, action = {}) => {
           ...state.snakeBar,
           open: true,
           message: action.message,
-          typeColor: action.type,
+          typeColor: action.typeColor,
         },
       };
 
