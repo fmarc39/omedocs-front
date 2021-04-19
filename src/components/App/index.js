@@ -10,7 +10,7 @@ import HomePage from 'src/components/HomePage';
 import SearchProduct from 'src/containers/SearchProduct';
 import SearchPharmachy from 'src/containers/SearchPharmacy';
 import ProfilPage from 'src/containers/ProfilPage';
-import InventoryPage from 'src/components/InventoryPage';
+import InventoryPage from 'src/containers/InventoryPage';
 import PharmacyPage from 'src/components/PharmacyPage';
 import ProductPage from 'src/components/ProductPage';
 import LoginForm from 'src/containers/LoginForm';
