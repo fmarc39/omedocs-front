@@ -1,4 +1,7 @@
+// Import React
 import React from 'react';
+
+// Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -13,6 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import './styles.scss';
 
+// Configuration des colones avec le nom, le label, la largeur
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300, type: 'string' },
   { id: 'cis', label: 'CIS', minWidth: 100, type: 'number' },
@@ -27,6 +31,7 @@ const columns = [
   { id: 'price', label: 'Prix H.T', minWidth: 200, type: 'number' },
 ];
 
+// Fonction qui va insérer les données dans le tableau
 function createData(name, cis, expirationDate, pathology, quantity, price) {
   return {
     name,
@@ -149,22 +154,20 @@ export default function StickyHeadTable() {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+              .map((row) => (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

@@ -18,12 +18,17 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
-import ProductTable from './Table';
+import ProductTable from 'src/containers/Tables/SearchProductsResultTable';
 
 // Import CSS
 import './styles.scss';
 
-const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) => {
+const SearchProduct = ({
+  handleChange,
+  searchInputValue,
+  searchSelectValue,
+  productResultsData,
+}) => {
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeSearchInput = (event) => {
     // Au 'onChange' on récupère la valeur de l'input et son nom
@@ -51,7 +56,7 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
               p={3}
               mb={4}
               bgcolor="white"
-              borderRadius="10px"
+              borderRadius="40px"
               boxShadow={3}
             >
               <form>
@@ -63,6 +68,7 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
                     value={searchInputValue}
                     name="searchProductInputValue"
                     startAdornment={
+                      // eslint-disable-next-line react/jsx-wrap-multilines
                       <InputAdornment position="start">
                         <SearchIcon />
                       </InputAdornment>
@@ -88,7 +94,9 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue }) =>
                 </Button>
               </form>
             </Box>
-            <ProductTable />
+            {/* Affichage conditionnel du tableau de résultat si
+            la longueur du tableau est différente de 0  */}
+            {productResultsData.length !== 0 && <ProductTable />}
           </Box>
         </Box>
         <Footer />
@@ -101,6 +109,7 @@ SearchProduct.propTypes = {
   handleChange: PropTypes.func.isRequired,
   searchInputValue: PropTypes.string.isRequired,
   searchSelectValue: PropTypes.string.isRequired,
+  productResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SearchProduct;

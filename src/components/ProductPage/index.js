@@ -4,7 +4,7 @@ import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import ProductTable from './Table';
+import ProductTable from 'src/containers/Tables/ProductPageTable';
 
 const ProductPage = () => {
   const leCode = 'cest super cool';

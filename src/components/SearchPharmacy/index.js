@@ -18,12 +18,17 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
-import PharmacyTable from './Table';
+import PharmacyTable from 'src/containers/Tables/SearchPharmacyResultTable';
 
 // Import CSS
 import './styles.scss';
 
-const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue }) => {
+const SearchPharmacy = ({
+  handleChange,
+  searchInputValue,
+  searchSelectValue,
+  pharmacyResultsData,
+}) => {
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
@@ -50,7 +55,7 @@ const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue }) =
               p={3}
               mb={4}
               bgcolor="white"
-              borderRadius="10px"
+              borderRadius="40px"
               boxShadow={3}
             >
               <form>
@@ -62,6 +67,7 @@ const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue }) =
                     onChange={handleChangeInput}
                     value={searchInputValue}
                     startAdornment={
+                      // eslint-disable-next-line react/jsx-wrap-multilines
                       <InputAdornment position="start">
                         <SearchIcon />
                       </InputAdornment>
@@ -99,7 +105,9 @@ const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue }) =
                 </Button>
               </form>
             </Box>
-            <PharmacyTable />
+            {/* Affichage conditionnel du tableau de résultat si
+            la longueur du tableau est différente de 0  */}
+            {pharmacyResultsData.length !== 0 && <PharmacyTable />}
           </Box>
         </Box>
         <Footer />
@@ -112,6 +120,7 @@ SearchPharmacy.propTypes = {
   handleChange: PropTypes.func.isRequired,
   searchInputValue: PropTypes.string.isRequired,
   searchSelectValue: PropTypes.string.isRequired,
+  pharmacyResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SearchPharmacy;

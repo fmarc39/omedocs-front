@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 // Import des composants depuis MATERIAL UI
+
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -35,16 +36,11 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
     bgcolor="#AAAAAA"
     className="left-menu"
   >
-    <Avatar
-      alt="Remy Sharp"
-      src={avatarImg}
-      className="left-menu__avatar"
-      width="150px"
-    />
+    <Avatar alt="avatarLogo" src={avatarImg} className="left-menu__avatar" />
 
     <Typography
-      variant="h6"
-      component="h6"
+      variant="h5"
+      component="h5"
       className="left-menu__welcome-message"
       align="center"
     >
@@ -65,6 +61,7 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
           endIcon={<AccountCircleIcon />}
           size="large"
           className="btn-box__btn"
+          fullWidth="true"
         >
           Profil
         </Button>
@@ -82,18 +79,16 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
           </Button>
         )}
       </NavLink>
-      <NavLink to="searchpharmacy" style={{ textDecoration: 'none' }}>
-        {userType === 'hospital' && (
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={<LocalPharmacyIcon />}
-            size="large"
-            className="btn-box__btn"
-          >
-            Voire les pharmacies
-          </Button>
-        )}
+      <NavLink to="searchestablishement" style={{ textDecoration: 'none' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          endIcon={<LocalPharmacyIcon />}
+          size="large"
+          className="btn-box__btn"
+        >
+          Chercher un établissement
+        </Button>
       </NavLink>
       <NavLink to="/cart" style={{ textDecoration: 'none' }}>
         {userType === 'hospital' && (
@@ -112,7 +107,7 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
           </Button>
         )}
       </NavLink>
-      <NavLink to="/cart" style={{ textDecoration: 'none' }}>
+      <NavLink to="/inventory" style={{ textDecoration: 'none' }}>
         {userType === 'pharmacy' && (
           <Button
             variant="contained"

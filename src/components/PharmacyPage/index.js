@@ -4,7 +4,7 @@ import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import Accordion from 'src/containers/AccordionsPharmacyDetails';
-import InventoryTable from 'src/containers/PharmacyPageTable';
+import InventoryTable from 'src/containers/Tables/PharmacyPageTable';
 
 const PharmacyPage = () => {
   const manger = 'cest super cool';

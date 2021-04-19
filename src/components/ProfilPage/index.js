@@ -1,9 +1,13 @@
+// Import React
 import React, { useState } from 'react';
-import LeftMenu from 'src/containers/LeftMenu';
 import PropTypes from 'prop-types';
+
+// Import COMPONENTS
+import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import './styles.scss';
+
+// Import from MATERIAL-UI
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,7 +15,13 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
+import DialogModal from 'src/containers/ModalChangeInformations';
+import Grow from '@material-ui/core/Grow';
 
+// Import CSS
+import './styles.scss';
+
+// Modifications des stymes MATERIAL_UI
 const useStyles = makeStyles(() => ({
   field: {
     display: 'none',
@@ -30,8 +40,11 @@ const ProfilPage = ({
   handleChange,
   newEmail,
   newPhoneNumber,
+  handleSave,
 }) => {
   const classes = useStyles();
+
+  // Gestion de l'ouverture et de la fermeture des forms de modification de mail et du phoneNumber
   const [editMailInputIsOpen, setEditMailInputIsOpen] = useState(false);
   const [editPhoneInputIsOpen, setEditPhoneInputIsOpen] = useState(false);
 
@@ -45,6 +58,10 @@ const ProfilPage = ({
 
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
+  };
+
+  const handleSaveBtn = () => {
+    handleSave();
   };
 
   return (
@@ -64,7 +81,7 @@ const ProfilPage = ({
             justifyContent="center"
           >
             <Box p={4} bgcolor="white" boxShadow={3} borderRadius="10px" className="profil-box">
-              <h1 className="profil-box__main-title">Vos informations</h1>
+              <h2 className="profil-box__main-title">Vos informations</h2>
               <div className="profil-box__content">
                 <div className="profil-box__content-elt">
                   <p className="profil-box__content-elt__infos">Nom de l'organisme:</p>
@@ -83,19 +100,31 @@ const ProfilPage = ({
                   >
                     {email}
                   </p>
-                  <TextField
-                    id="outlined-basic"
-                    label="E-mail"
-                    name="newEmail"
-                    variant="outlined"
-                    type="email"
-                    value={newEmail}
-                    onChange={handleChangeInput}
-                    className={
-                      editMailInputIsOpen ? 'profil-box__content-elt__change-email' : classes.field
-                    }
-                  />
-                  <IconButton color="primary" className={editMailInputIsOpen ? '' : classes.field}>
+                  <Grow
+                    in={editMailInputIsOpen}
+                    style={{ transformOrigin: '0 200 0' }}
+                    {...(editMailInputIsOpen ? { timeout: 1000 } : {})}
+                  >
+                    <TextField
+                      id="outlined-basic"
+                      label="E-mail"
+                      name="newEmail"
+                      variant="outlined"
+                      type="email"
+                      value={newEmail}
+                      onChange={handleChangeInput}
+                      className={
+                        editMailInputIsOpen
+                          ? 'profil-box__content-elt__change-email'
+                          : classes.field
+                      }
+                    />
+                  </Grow>
+                  <IconButton
+                    color="primary"
+                    onClick={handleSaveBtn}
+                    className={editMailInputIsOpen ? '' : classes.field}
+                  >
                     <SaveIcon />
                   </IconButton>
                 </div>
@@ -112,21 +141,31 @@ const ProfilPage = ({
                   >
                     {phoneNumer}
                   </p>
-                  <TextField
-                    id="outlined-basic"
-                    label="N° de téléphonne"
-                    variant="outlined"
-                    name="newPhoneNumber"
-                    type="number"
-                    value={newPhoneNumber}
-                    onChange={handleChangeInput}
-                    className={
-                      editPhoneInputIsOpen
-                        ? 'profil-box__content-elt__change-phone-number'
-                        : classes.field
-                    }
-                  />
-                  <IconButton color="primary" className={editPhoneInputIsOpen ? '' : classes.field}>
+                  <Grow
+                    in={editPhoneInputIsOpen}
+                    style={{ transformOrigin: '0 200 0' }}
+                    {...(editPhoneInputIsOpen ? { timeout: 1000 } : {})}
+                  >
+                    <TextField
+                      id="outlined-basic"
+                      label="N° de téléphonne"
+                      variant="outlined"
+                      name="newPhoneNumber"
+                      type="number"
+                      value={newPhoneNumber}
+                      onChange={handleChangeInput}
+                      className={
+                        editPhoneInputIsOpen
+                          ? 'profil-box__content-elt__change-phone-number'
+                          : classes.field
+                      }
+                    />
+                  </Grow>
+                  <IconButton
+                    color="primary"
+                    onClick={handleSaveBtn}
+                    className={editPhoneInputIsOpen ? '' : classes.field}
+                  >
                     <SaveIcon />
                   </IconButton>
                 </div>
@@ -151,6 +190,7 @@ const ProfilPage = ({
                   <p className="profil-box__content-elt__content">{zipCode}</p>
                 </div>
               </div>
+              <DialogModal />
             </Box>
           </Box>
         </Box>
@@ -171,6 +211,7 @@ ProfilPage.propTypes = {
   handleChange: PropTypes.func.isRequired,
   newEmail: PropTypes.string.isRequired,
   newPhoneNumber: PropTypes.string.isRequired,
+  handleSave: PropTypes.func.isRequired,
 };
 
 export default ProfilPage;
