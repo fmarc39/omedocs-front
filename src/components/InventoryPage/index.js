@@ -17,8 +17,10 @@ import InventoryTable from 'src/containers/Tables/PharmacyPageTable';
 // Import CSS
 import './styles.scss';
 
-const InventoryPage = ({ inventoryData }) => {
-  const bonjour = 'salut';
+const InventoryPage = ({ inventoryData, handleAddArticle }) => {
+  const handleAddArticleBtn = () => {
+    handleAddArticle();
+  };
   return (
     <>
       <Box
@@ -52,6 +54,7 @@ const InventoryPage = ({ inventoryData }) => {
               </Typography>
               <Button
                 variant="contained"
+                onClick={handleAddArticleBtn}
                 color="primary"
                 size="large"
                 startIcon={<AddCircleOutlineIcon />}
@@ -77,6 +80,7 @@ const InventoryPage = ({ inventoryData }) => {
 
 InventoryPage.propTypes = {
   inventoryData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleAddArticle: PropTypes.func.isRequired,
 };
 
 export default InventoryPage;

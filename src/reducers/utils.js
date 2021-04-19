@@ -9,7 +9,7 @@ import { APPLY_INFO_DRUGS_API } from 'src/actions/drugsApi';
 import parseInputNumber from 'src/hooks';
 
 const initialState = {
-  openModalProduct: true,
+  openModalProduct: false,
   snackBar: {
     open: false,
     message: '',

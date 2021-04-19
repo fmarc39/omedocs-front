@@ -1,13 +1,17 @@
 import { connect } from 'react-redux';
 import InventoryPage from 'src/components/InventoryPage';
 import { withRouter } from 'react-router-dom';
-import {} from 'src/actions/user';
+import { openModalProduct } from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
   inventoryData: state.inventory.drugs,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  handleAddArticle: () => {
+    dispatch(openModalProduct());
+  },
+});
 
 const container = connect(mapStateToProps, mapDispatchToProps)(InventoryPage);
 
