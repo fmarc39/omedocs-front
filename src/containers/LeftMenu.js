@@ -1,12 +1,16 @@
 import { connect } from 'react-redux';
 import LeftMenu from 'src/components/LeftMenu/';
-import {} from 'src/actions/drugsApi';
+import { logout } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   userType: state.user.type,
   nbOfArticles: state.cart.nbOfArticles,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  handleLogout: () => {
+    dispatch(logout());
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeftMenu);

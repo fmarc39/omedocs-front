@@ -38,7 +38,7 @@ const App = ({ isLoading, logged }) => (
       <Route path="/products">
         <PharmacyPage />
       </Route>
-      <Route path="/products/id">
+      <Route path="/product/id">
         <ProductPage />
       </Route>
       <Route path="/searchproduct">

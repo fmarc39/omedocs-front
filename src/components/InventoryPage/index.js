@@ -10,7 +10,6 @@ import LeftMenu from 'src/containers/LeftMenu';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Typography from '@material-ui/core/Typography';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 // Import COMPONENTS
 import InventoryTable from 'src/containers/Tables/PharmacyPageTable';
