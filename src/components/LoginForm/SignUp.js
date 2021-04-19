@@ -13,6 +13,9 @@ import Radio from '@material-ui/core/Radio';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,8 +66,8 @@ export default function SimpleAccordion(
   city,
   region,
   phoneNumber,
-  rpss,
-  type,
+  rpps,
+  radio,
   handlerChange,
   submitSubscribe,
 ) {
@@ -97,7 +100,6 @@ export default function SimpleAccordion(
               name="email"
               value={email}
               onChange={handlerOnChange}
-              variant="filled"
               required
             />
             <TextField
@@ -107,7 +109,6 @@ export default function SimpleAccordion(
               name="confirmEmail"
               value={confirmEmail}
               onChange={handlerOnChange}
-              variant="filled"
               required
             />
             <TextField
@@ -117,7 +118,6 @@ export default function SimpleAccordion(
               name="password"
               value={password}
               onChange={handlerOnChange}
-              variant="filled"
               required
             />
             <TextField
@@ -127,7 +127,6 @@ export default function SimpleAccordion(
               name="confirmPassword"
               value={confirmPassword}
               onChange={handlerOnChange}
-              variant="filled"
               required
             />
             <TextField
@@ -137,7 +136,6 @@ export default function SimpleAccordion(
               name="establishment"
               value={establishment}
               onChange={handlerOnChange}
-              variant="filled"
               required
             />
             <TextField
@@ -147,7 +145,6 @@ export default function SimpleAccordion(
               name="adress"
               value={adress}
               onChange={handlerOnChange}
-              variant="filled"
               required
             />
             <TextField
@@ -157,7 +154,6 @@ export default function SimpleAccordion(
               name="zipCode"
               value={zipCode}
               onChange={handlerOnChange}
-              variant="filled"
               required
             />
             <TextField
@@ -167,19 +163,36 @@ export default function SimpleAccordion(
               name="city"
               value={city}
               onChange={handlerOnChange}
-              variant="filled"
               required
             />
-            <TextField
-              className={classes.textField}
-              variant="outlined"
-              label="Région"
-              name="region"
-              value={region}
-              onChange={handlerOnChange}
-              variant="filled"
-              required
-            />
+            <FormControl size="medium" style={{ width: '300px', margin: '15px' }}>
+              <InputLabel id="typeSelect" style={{ paddingLeft: '10px' }}>
+                Region
+              </InputLabel>
+              <Select
+                // className={classes.textField}
+                variant="outlined"
+                name="region"
+                value={region}
+                onChange={handlerOnChange}
+                required
+              >
+                <MenuItem value="auvergne rhone alpes">Auvergne-Rhône-Alpes</MenuItem>
+                <MenuItem value="bourgogne franche comte">Bourgogne-Franche-Comté</MenuItem>
+                <MenuItem value="bretagne">Bretagne</MenuItem>
+                <MenuItem value="centre val de loire">Centre-Val de Loire</MenuItem>
+                <MenuItem value="corse">Corse</MenuItem>
+                <MenuItem value="grand est">Grand Est</MenuItem>
+                <MenuItem value="hauts de france">Hauts-de-France</MenuItem>
+                <MenuItem value="ile de France">Ile-de-France</MenuItem>
+                <MenuItem value="normandie">Normandie</MenuItem>
+                <MenuItem value="nouvelle aquitaine">Nouvelle-Aquitaine</MenuItem>
+                <MenuItem value="occitanie">Occitanie</MenuItem>
+                <MenuItem value="pays de la loire">Pays de la Loire</MenuItem>
+                <MenuItem value="provence alpes cote d azur">Provence-Alpes-Côte d’Azur</MenuItem>
+              </Select>
+            </FormControl>
+
             <TextField
               className={classes.textField}
               variant="outlined"
@@ -187,33 +200,33 @@ export default function SimpleAccordion(
               name="phoneNumber"
               value={phoneNumber}
               onChange={handlerOnChange}
-              variant="filled"
               required
             />
             <TextField
               className={classes.textField}
               variant="outlined"
-              label="Rpss"
-              name="rpss"
-              value={rpss}
+              label="RPPS"
+              name="rpps"
+              value={rpps}
               onChange={handlerOnChange}
-              variant="outlined"
               required
             />
 
             <FormControl component="fieldset">
               <FormLabel component="legend">Vous souhaitez vous inscrire en tant que :</FormLabel>
-              <RadioGroup row name="type">
+              <RadioGroup value={radio} onChange={handlerOnChange} required>
                 <FormControlLabel
-                  value="acheteur"
+                  value="buyer"
                   control={<Radio />}
                   label="Acheteur"
+                  name="type"
                   labelPlacement="left"
                 />
                 <FormControlLabel
-                  value="vendeur"
+                  value="seller"
                   control={<Radio />}
                   label="Vendeur"
+                  name="type"
                   labelPlacement="left"
                 />
               </RadioGroup>
