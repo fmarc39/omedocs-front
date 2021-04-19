@@ -8,6 +8,20 @@ const mapStateToProps = (state) => ({
   password: state.user.password,
   confirmEmail: state.user.confirmEmail,
   emailConnexion: state.user.emailConnexion,
+  passwordConnexion: state.user.passwordConnexion,
+  submitLogin: state.user.submitLogin,
+  handleChange: state.user.handleChange,
+  submitSubscribe: state.user.submitSubscribe,
+  confirmPassword: state.user.confirmPassword,
+  establishment: state.user.establishment,
+  adress: state.user.adress,
+  zipCode: state.user.zipCode,
+  city: state.user.city,
+  region: state.user.region,
+  phoneNumber: state.user.phoneNumber,
+  rpps: state.user.rpps,
+  radio: state.user.radio,
+  handlerChange: state.user.handlerChange,
 });
 
 const mapDispatchToProps = (dispatch) => ({

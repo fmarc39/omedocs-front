@@ -12,6 +12,9 @@ import Radio from '@material-ui/core/Radio';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,8 +55,8 @@ export default function SimpleAccordion(
   city,
   region,
   phoneNumber,
-  rpss,
-  type,
+  rpps,
+  radio,
   handlerChange,
   submitSubscribe,
 ) {
@@ -149,15 +152,38 @@ export default function SimpleAccordion(
               onChange={handlerOnChange}
               required
             />
-            <TextField
-              className={classes.textField}
-              variant="outlined"
-              label="Région"
-              name="region"
-              value={region}
-              onChange={handlerOnChange}
-              required
-            />
+            <FormControl
+              size="medium"
+              style={{ width: '300px' }}
+            >
+              <InputLabel id="typeSelect">Region</InputLabel>
+              <Select
+                className={classes.textField}
+                variant="outlined"
+                label="Région"
+                name="region"
+                value={region}
+                onChange={handlerOnChange}
+                required
+              >
+                <MenuItem value="auvergne rhone alpes">Auvergne-Rhône-Alpes</MenuItem>
+                <MenuItem value="bourgogne franche comte">Bourgogne-Franche-Comté</MenuItem>
+                <MenuItem value="bretagne">Bretagne</MenuItem>
+                <MenuItem value="centre val de loire">Centre-Val de Loire</MenuItem>
+                <MenuItem value="corse">Corse</MenuItem>
+                <MenuItem value="grand est">Grand Est</MenuItem>
+                <MenuItem value="hauts de france">Hauts-de-France</MenuItem>
+                <MenuItem value="ile de France">Ile-de-France</MenuItem>
+                <MenuItem value="normandie">Normandie</MenuItem>
+                <MenuItem value="nouvelle aquitaine">Nouvelle-Aquitaine</MenuItem>
+                <MenuItem value="occitanie">Occitanie</MenuItem>
+                <MenuItem value="pays de la loire">Pays de la Loire</MenuItem>
+                <MenuItem value="provence alpes cote d azur">
+                  Provence-Alpes-Côte d’Azur
+                </MenuItem>
+              </Select>
+            </FormControl>
+
             <TextField
               className={classes.textField}
               variant="outlined"
@@ -170,21 +196,25 @@ export default function SimpleAccordion(
             <TextField
               className={classes.textField}
               variant="outlined"
-              label="Rpss"
-              name="rpss"
-              value={rpss}
+              label="RPPS"
+              name="rpps"
+              value={rpps}
               onChange={handlerOnChange}
               required
             />
 
             <FormControl className="radio" component="fieldset">
               <FormLabel component="legend">Vous souhaitez vous inscrire en tant que :</FormLabel>
-              <RadioGroup>
+              <RadioGroup
+                value={radio}
+                onChange={handlerOnChange}
+                required
+              >
                 <FormControlLabel value="buyer" control={<Radio />} label="Acheteur" name="type" />
                 <FormControlLabel value="seller" control={<Radio />} label="Vendeur" name="type" />
               </RadioGroup>
             </FormControl>
-            <input type="submit" value="Envoyer" />
+            <input value={submitSubscribe} type="submit" label="Envoyer" />
           </form>
         </AccordionDetails>
       </Accordion>

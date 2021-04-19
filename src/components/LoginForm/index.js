@@ -16,10 +16,19 @@ const LoginForm = ({
   passwordConnexion,
   submitLogin,
   handleChange,
-  submitSubscribe,
   email,
-  confimEmail,
+  confirmEmail,
   password,
+  confirmPassword,
+  establishment,
+  adress,
+  zipCode,
+  region,
+  phoneNumber,
+  rpps,
+  radio,
+  handlerChange,
+  submitSubscribe,
 }) => {
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
@@ -72,7 +81,21 @@ const LoginForm = ({
             <h2>Mot de passe oublié ?</h2>
           </Box>
         </Box>
-        <Accordion email={email} password={password} />
+        <Accordion
+          email={email}
+          confirmEmail={confirmEmail}
+          password={password}
+          confirmPassword={confirmPassword}
+          establishment={establishment}
+          adress={adress}
+          zipCode={zipCode}
+          region={region}
+          phoneNumber={phoneNumber}
+          rpps={rpps}
+          radio={radio}
+          handlerChange={handlerChange}
+          submitSubscribe={submitSubscribe}
+        />
         <Footer />
       </Box>
     </>
@@ -80,20 +103,23 @@ const LoginForm = ({
 };
 
 LoginForm.propTypes = {
-  submitForm: PropTypes.func.isRequired,
+  submitLogin: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  emailValue: PropTypes.string.isRequired,
-  passwordValue: PropTypes.string.isRequired,
-  // emailSubscribeValue: PropTypes.string.isRequired,
-  // emailcheckSubscribeValue: PropTypes.string.isRequired,
-  // passwordSubscribeValue: PropTypes.string.isRequired,
-  // passwordcheckSubscribeValue: PropTypes.string.isRequired,
-  // establishementValue: PropTypes.string.isRequired,
-  // cityValue: PropTypes.string.isRequired,
-  // adressValue: PropTypes.string.isRequired,
-  // rppsValue: PropTypes.string.isRequired,
-  // zipValue: PropTypes.string.isRequired,
-  // phoneValue: PropTypes.string.isRequired,
+  emailConnexion: PropTypes.string.isRequired,
+  passwordConnexion: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  confirmEmail: PropTypes.string.isRequired,
+  confirmPassword: PropTypes.string.isRequired,
+  establishment: PropTypes.string.isRequired,
+  adress: PropTypes.string.isRequired,
+  zipCode: PropTypes.string.isRequired,
+  region: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string.isRequired,
+  rpps: PropTypes.string.isRequired,
+  radio: PropTypes.string.isRequired,
+  handlerChange: PropTypes.func.isRequired,
+  submitSubscribe: PropTypes.func.isRequired,
 };
 
 // == Export
