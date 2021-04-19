@@ -15,6 +15,17 @@ const LoginForm = ({
   handleChange,
   emailValue,
   passwordValue,
+  // emailSubscribeValue,
+  // emailcheckSubscribeValue,
+  // passwordSubscribeValue,
+  // passwordcheckSubscribeValue,
+  // establishementValue,
+  // cityValue,
+  // adressValue,
+  // zipValue,
+  // rppsValue,
+  // phoneValue,
+
 }) => {
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
@@ -25,7 +36,7 @@ const LoginForm = ({
         <Header />
         <Box width="100%" display="flex" id="body">
           <Box
-            bgcolor="#C6C6C6"
+            bgcolor="#95C2DE"
             height="100%"
             width="100%"
             p={4}
@@ -73,6 +84,16 @@ LoginForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
   emailValue: PropTypes.string.isRequired,
   passwordValue: PropTypes.string.isRequired,
+  // emailSubscribeValue: PropTypes.string.isRequired,
+  // emailcheckSubscribeValue: PropTypes.string.isRequired,
+  // passwordSubscribeValue: PropTypes.string.isRequired,
+  // passwordcheckSubscribeValue: PropTypes.string.isRequired,
+  // establishementValue: PropTypes.string.isRequired,
+  // cityValue: PropTypes.string.isRequired,
+  // adressValue: PropTypes.string.isRequired,
+  // rppsValue: PropTypes.string.isRequired,
+  // zipValue: PropTypes.string.isRequired,
+  // phoneValue: PropTypes.string.isRequired,
 };
 
 // == Export
