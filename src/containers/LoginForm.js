@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import LoginForm from 'src/components/LoginForm';
 import { withRouter } from 'react-router-dom';
-import { setUserFieldValue, submitLogin, lauchInscriptionForm } from 'src/actions/user';
+import { changeUserInformations, submitLogin, lauchInscriptionForm } from 'src/actions/user';
+import { closeErrorInputValidation } from '../actions/utils';
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
@@ -9,9 +10,6 @@ const mapStateToProps = (state) => ({
   confirmEmail: state.user.confirmEmail,
   emailConnexion: state.user.emailConnexion,
   passwordConnexion: state.user.passwordConnexion,
-  submitLogin: state.user.submitLogin,
-  handleChange: state.user.handleChange,
-  submitSubscribe: state.user.submitSubscribe,
   confirmPassword: state.user.confirmPassword,
   establishment: state.user.establishment,
   adress: state.user.adress,
@@ -20,14 +18,16 @@ const mapStateToProps = (state) => ({
   region: state.user.region,
   phoneNumber: state.user.phoneNumber,
   rpps: state.user.rpps,
-  radio: state.user.radio,
-  handlerChange: state.user.handlerChange,
+  type: state.user.type,
+  errorMessage: state.utils.errorInputValidation.message,
+  errorMessageIsOpen: state.utils.errorInputValidation.open,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleChange: (value, name) => dispatch(setUserFieldValue(name, value)),
+  handleChange: (value, name) => dispatch(changeUserInformations(value, name)),
   submitLogin: () => dispatch(submitLogin()),
   submitSubscribe: () => dispatch(lauchInscriptionForm()),
+  closeErrorMessage: () => dispatch(closeErrorInputValidation()),
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps)(LoginForm);

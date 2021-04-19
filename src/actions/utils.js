@@ -6,6 +6,8 @@ export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 export const OPEN_SNACKBAR = 'OPEN_SNACKBAR';
 export const OPEN_VALIDATION_CHANGE_MODAL = 'OPEN_VALIDATION_CHANGE_MODAL';
 export const CLOSE_VALIDATION_CHANGE_MODAL = 'CLOSE_VALIDATION_CHANGE_MODAL';
+export const OPEN_ERROR_INPUT_VALIDATION = 'OPEN_ERROR_INPUT_VALIDATION';
+export const CLOSE_ERROR_INPUT_VALIDATION = 'CLOSE_ERROR_INPUT_VALIDATION';
 
 // action creators
 export const closeModalProduct = () => ({
@@ -38,4 +40,13 @@ export const openValidationChangeModal = () => ({
 
 export const closeValidationChangeModal = () => ({
   type: CLOSE_VALIDATION_CHANGE_MODAL,
+});
+
+export const openErrorInputValidation = (message) => ({
+  type: OPEN_ERROR_INPUT_VALIDATION,
+  message,
+});
+
+export const closeErrorInputValidation = () => ({
+  type: CLOSE_ERROR_INPUT_VALIDATION,
 });

@@ -4,11 +4,17 @@ import {
   ADD_PRODUCT,
   CLOSE_SNACKBAR,
   OPEN_SNACKBAR,
+  OPEN_ERROR_INPUT_VALIDATION,
+  CLOSE_ERROR_INPUT_VALIDATION,
 } from 'src/actions/utils';
 import { APPLY_INFO_DRUGS_API } from 'src/actions/drugsApi';
 import parseInputNumber from 'src/hooks';
 
 const initialState = {
+  errorInputValidation: {
+    message: '',
+    open: true,
+  },
   openModalProduct: true,
   snackBar: {
     open: false,
@@ -27,6 +33,22 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLOSE_ERROR_INPUT_VALIDATION:
+      return {
+        ...state,
+        errorInputValidation: {
+          open: false,
+          message: '',
+        },
+      };
+    case OPEN_ERROR_INPUT_VALIDATION:
+      return {
+        ...state,
+        errorInputValidation: {
+          open: true,
+          message: action.message,
+        },
+      };
     case CLOSE_MODAL_PRODUCT:
       return {
         ...state,
@@ -63,6 +85,7 @@ export default (state = initialState, action = {}) => {
           ...state.snakeBar,
           open: false,
           message: '',
+          typeColor: '',
         },
       };
 

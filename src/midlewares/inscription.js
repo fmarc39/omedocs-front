@@ -1,7 +1,7 @@
 import api from 'src/api/api';
 
 import { LAUCH_INSCRIPTION_FORM } from 'src/actions/user';
-import { openSnackBar } from 'src/actions/utils';
+import { openSnackBar, openErrorInputValidation } from 'src/actions/utils';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -10,6 +10,7 @@ export default (store) => (next) => (action) => {
         const {
           establishment,
           email,
+          confirmEmail,
           phoneNumber,
           rpss,
           type,
@@ -17,25 +18,45 @@ export default (store) => (next) => (action) => {
           adress,
           zipCode,
           password,
+          confirmPassword,
         } = store.getState().user;
-        api.post('/signup', {
-          establishment,
-          email,
-          phoneNumber,
-          rpss,
-          type,
-          city,
-          adress,
-          zipCode,
-          password,
-        });
-        /* .then
-          // Gérer les succés de l'inscription ici ( bool open snackBar à true )
-          (); */
+
+        if (email !== confirmEmail) {
+          store.dispatch(openErrorInputValidation('Les emails doivent correspondres'));
+        } else if (password !== confirmPassword) {
+          store.dispatch(openErrorInputValidation('Les mots de passe doivent correspondres'));
+        } else {
+          api
+            .post('/signup', {
+              establishment,
+              email,
+              phoneNumber,
+              rpss,
+              type,
+              city,
+              adress,
+              zipCode,
+              password,
+            })
+            .then(() => {
+              console.log('Inscription ok');
+              store.dispatch(
+                openSnackBar('Merci de vous être inscrit. Vous pouvez vous connectez', 'success'),
+              );
+            })
+            .catch((error) => {
+              console.error(error);
+              store.dispatch(
+                openSnackBar(
+                  "Une erreur s'est produite lors de l'inscription, veuillez réessayer",
+                  'error',
+                ),
+              );
+            });
+        }
       }
-      console.log('passage dans le midleware login');
-      store.dispatch(openSnackBar(true, 'test message', 'success'));
       return next(action);
+
     default:
       return next(action);
   }

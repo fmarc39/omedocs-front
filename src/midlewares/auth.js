@@ -1,6 +1,7 @@
 import api from 'src/api/api';
 
 import { REHYDRATE, SUBMIT_LOGIN, LOGOUT, login } from 'src/actions/user';
+import { openSnackBar } from 'src/actions/utils';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -30,6 +31,15 @@ export default (store) => (next) => (action) => {
         .then(({ accesToken }) => {
           localStorage.setItem('jwtoken', accesToken);
           store.dispatch(login(accesToken));
+        })
+        .catch((error) => {
+          console.error(error);
+          store.dispatch(
+            openSnackBar(
+              "Une erreur s'est produite lors de la connexion, veuillez réessayer",
+              'error',
+            ),
+          );
         });
       return next(action);
     }

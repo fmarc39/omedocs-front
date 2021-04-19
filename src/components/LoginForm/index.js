@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
+import SnackBar from 'src/containers/SnackBar';
 import Accordion from './SignUp';
 
 // == Import
@@ -42,23 +43,31 @@ const LoginForm = ({
   region,
   phoneNumber,
   rpps,
-  radio,
-  handlerChange,
+  type,
   submitSubscribe,
+  errorMessage,
+  errorMessageIsOpen,
+  closeErrorMessage,
 }) => {
   const classes = useStyles();
 
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
   };
-  const handlerOnSubmit = (event) => {
+  const handleOnSubmitLogin = (event) => {
     event.preventDefault();
     submitLogin();
   };
+
   return (
     <>
       <Header />
-      <Box display="flex" flexDirection="column" justifyContent="center" minHeight="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        minHeight="calc(100vh - 165.46px)"
+      >
         <Box
           width="100%"
           display="flex"
@@ -81,9 +90,10 @@ const LoginForm = ({
             <Box textAlign="center">
               <img className="logo__img" src={logo} alt="logo" style={{ width: '50px' }} />
               <Typography variant="h5">Connectez vous</Typography>
+              <SnackBar />
             </Box>
 
-            <form className="form-login" onSubmit={handlerOnSubmit}>
+            <form className="form-login" onSubmit={handleOnSubmitLogin} method="post">
               <TextField
                 className={classes.input}
                 required
@@ -92,6 +102,8 @@ const LoginForm = ({
                 variant="filled"
                 onChange={handleChangeInput}
                 value={emailConnexion}
+                size="small"
+                name="emailConnexion"
               />
               <p />
               <TextField
@@ -104,6 +116,8 @@ const LoginForm = ({
                 variant="filled"
                 onChange={handleChangeInput}
                 value={passwordConnexion}
+                size="small"
+                name="passwordConnexion"
               />
               <Button variant="contained" type="submit" className={classes.button}>
                 Connexion
@@ -122,9 +136,12 @@ const LoginForm = ({
             region={region}
             phoneNumber={phoneNumber}
             rpps={rpps}
-            radio={radio}
-            handlerChange={handlerChange}
+            type={type}
+            handleChange={handleChange}
             submitSubscribe={submitSubscribe}
+            errorMessage={errorMessage}
+            errorMessageIsOpen={errorMessageIsOpen}
+            closeErrorMessage={closeErrorMessage}
           />
         </Box>
       </Box>
@@ -148,8 +165,7 @@ LoginForm.propTypes = {
   region: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string.isRequired,
   rpps: PropTypes.string.isRequired,
-  radio: PropTypes.string.isRequired,
-  handlerChange: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
   submitSubscribe: PropTypes.func.isRequired,
 };
 

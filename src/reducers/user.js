@@ -2,20 +2,19 @@ import { CHANGE_USER_INFORMATIONS, LOGIN, LOGOUT } from 'src/actions/user';
 import { OPEN_VALIDATION_CHANGE_MODAL, CLOSE_VALIDATION_CHANGE_MODAL } from 'src/actions/utils';
 
 export const initialState = {
-  establishment: 'Hôpital Paris Saint-Joseph',
+  establishment: '',
   emailConnexion: '',
-  email: 'hopitalsj@sante-paris.fr',
+  email: '',
   confirmEmail: '',
-  phoneNumber: '0144123333',
+  phoneNumber: '',
   newEmail: '',
   newPhoneNumber: '',
-  rpps: '680004546',
-  type: 'hospital',
-  city: 'Paris',
-  adress: '185 Rue Raymond Losserand',
-  zipCode: '75014',
+  rpps: '',
+  type: '',
+  city: '',
+  adress: '',
+  zipCode: '',
   region: '',
-  radio: '',
   passwordConnexion: '',
   password: '',
   confirmPassword: '',
@@ -30,7 +29,7 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_USER_INFORMATIONS:
       return {
         ...state,
-        [action.fieldName]: action.fieldValue,
+        [action.name]: action.value,
       };
     case LOGIN:
       return {
@@ -42,7 +41,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         token: null,
-        logged: null,
+        logged: false,
       };
     case OPEN_VALIDATION_CHANGE_MODAL:
       return {
