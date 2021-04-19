@@ -1,110 +1,19 @@
 .login {
-  &__email {
+    margin-top: 15px;
+    margin-bottom: 15px;
     height: 3em;
-    width: 51%;
     font-size: 1.5em;
-    
-  }
-  &__password {
-    height: 3em;
-    width: 51%;
-    font-size: 1.5em;
-        
-  }
+    display: inline;
 }
 
-.firstbutton {
-display: block;
-}
+button[type=submit], button[type=reset] {
+ width:100px;
+ margin-top:35px;
+ box-shadow:1px 1px 1px #303F9F;
+ cursor:pointer;
+ }
 
-.subscribe {
-  &__email {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-  &__checkemail {
-      height: 3em;
-      width: 45%;
-      padding: 1em;
-      font-size: 1.5em;
- }
-  &__password {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-&__checkpassword {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-  &__orga {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-  &__city {
-      height: 3em;
-      width: 45%;
-      padding: 1em;
-      font-size: 1.5em;
- }
-  &__adress {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-&__rpps {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-  &__postal {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-&__tel {
-    height: 3em;
-    width: 45%;
-    padding: 1em;
-    font-size: 1.5em;
- }
-}
-
-.myButton {
-	box-shadow: 3px 4px 0px 0px #899599;
-	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
-	background-color:#ededed;
-	border-radius:15px;
-	border:1px solid #d6bcd6;
-	display:inline-block;
-	cursor:pointer;
-	color:#3a8a9e;
-	font-family:Arial;
-	font-size:17px;
-	padding:7px 25px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #e1e2ed;
-}
-.myButton:hover {
-	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-	background-color:#bab1ba;
-}
-.myButton:active {
-	position:absolute;
-	top:1px;
-}
-
-h1 {
+h3 {
 border-radius: 10px;
 border-color: grey;
 background-color: #303F9F;
@@ -114,4 +23,13 @@ width: 35%;
 text-align: center;
 margin-left: auto;
 margin-right: auto;
+display: block;
+}
+
+h2 {
+padding: 20px;
+}
+
+.accordion {
+background-color: fuchsia;
 }

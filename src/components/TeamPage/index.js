@@ -1,7 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
-import Footer from 'src/components/Footer';
 import ContactPage from 'src/components/ContactPage';
 import LeftMenu from 'src/components/LeftMenu';
 import Card from '@material-ui/core/Card';
@@ -15,27 +14,20 @@ import './styles.scss';
 
 const TeamPage = () => (
   <>
-    <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+    <Box display="flex" flexDirection="column" justifyContent="space-between">
       <Header />
-      <Box height="100%" width="100%" display="flex" id="body">
-        <LeftMenu />
+      <Box width="100%" display="flex" id="body">
+        <LeftMenu height="fit-content" />
         <Box
           bgcolor="#C6C6C6"
-          height="100%"
+          height="fit-content"
           width="100%"
           p={4}
           display="flex"
           flexDirection="column"
           alignItems="center"
         >
-          <Box display="flex">
-            <div className="err" />
-            <div>
-              <i className="far fa-question-circle fa-spin" />
-            </div>
-            <div className="err2" />
-          </Box>
-          <h1>Nous contacter</h1>
+          <h1>Qui se cache derrière O'Medocs ?</h1>
           <div className="cardmedia">
             <div className="lambert">
               <Card>
@@ -145,10 +137,12 @@ const TeamPage = () => (
               </Card>
             </div>
           </div>
+          <div className="contact-us">Nous contacter</div>
+          <div className="sendmail">
+            <ContactPage />
+          </div>
         </Box>
       </Box>
-      <ContactPage />
-      <Footer />
     </Box>
   </>
 );

@@ -40,19 +40,19 @@ const HomePage = () => {
         </div>
         <div className="header__navigation">
           <nav className={classNames('navbar', { active: active })}>
-            <a className="navbar__link" href="#goal" onClick={activeMenu}>
+            <a className="navbar__link" href="#goal">
               Notre but
             </a>
-            <a className="navbar__link" href="#why" onClick={activeMenu}>
+            <a className="navbar__link" href="#why">
               Pourquoi
             </a>
-            <a className="navbar__link" href="#services" onClick={activeMenu}>
+            <a className="navbar__link" href="#services">
               Nos services
             </a>
-            <a className="navbar__link" href="#" onClick={activeMenu}>
+            <a className="navbar__link" href="#">
               Nous contacter
             </a>
-            <a className="navbar__link navbar__link--connexion" href="#" onClick={activeMenu}>
+            <a className="navbar__link navbar__link--connexion" href="#">
               Connexion
             </a>
           </nav>

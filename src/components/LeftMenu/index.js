@@ -31,7 +31,6 @@ const LeftMenu = ({ userType, nbOfArticles }) => (
     justifyContent="flex-start"
     alignItems="center"
     width="250px"
-    height="100%"
     color="primary.contrastText"
     bgcolor="#AAAAAA"
     className="left-menu"

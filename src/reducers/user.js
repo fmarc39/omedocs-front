@@ -3,7 +3,9 @@ import { OPEN_VALIDATION_CHANGE_MODAL, CLOSE_VALIDATION_CHANGE_MODAL } from 'src
 
 export const initialState = {
   establishment: 'Hôpital Paris Saint-Joseph',
+  emailConnexion: '',
   email: 'hopitalsj@sante-paris.fr',
+  confirmEmail: '',
   phoneNumer: '0144123333',
   newEmail: '',
   newPhoneNumber: '',
@@ -12,7 +14,9 @@ export const initialState = {
   city: 'Paris',
   adress: '185 Rue Raymond Losserand',
   zipCode: '75014',
+  passwordConnexion: '',
   password: '',
+  confirmPassword: '',
   logged: false,
   accessToken: null,
   isLoading: false,

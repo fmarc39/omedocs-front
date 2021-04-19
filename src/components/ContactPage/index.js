@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ContactPage = () => {
-  const [status, setStatus] = useState('Submit');
+  const [status, setStatus] = useState('Envoyer');
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('Sending...');
@@ -23,19 +23,24 @@ const ContactPage = () => {
     alert(result.status);
   };
   return (
-    <div className="contact">
+    <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" required />
+          <div className="nom-email">
+            <label htmlFor="name"> Nom:
+              <input type="text" id="name" required />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="email">Mail:
+              <input type="email" id="email" required />
+            </label>
+          </div>
         </div>
         <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" required />
-        </div>
-        <div>
-          <label htmlFor="message">Message:</label>
-          <textarea id="message" required />
+          <label htmlFor="message">Message:
+            <textarea id="message" required />
+          </label>
         </div>
         <button type="submit">{status}</button>
       </form>
