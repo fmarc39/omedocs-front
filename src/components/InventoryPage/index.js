@@ -12,12 +12,13 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ModalAddProduct from 'src/containers/ModalAddProduct';
 
 // Import COMPONENTS
-import InventoryTable from 'src/containers/Tables/PharmacyPageTable';
+import InventoryTable from 'src/containers/Tables/InventoryTable';
 
 // Import CSS
 import './styles.scss';
 
 const InventoryPage = ({ inventoryData, handleAddArticle }) => {
+  // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
   const handleAddArticleBtn = () => {
     handleAddArticle();
   };

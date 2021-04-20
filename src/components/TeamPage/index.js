@@ -31,7 +31,6 @@ const useStyles = makeStyles({
     maxWidth: 220,
     margin: '.4em',
   },
-  img: {},
 });
 
 const TeamPage = () => {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Table from 'src/components/PharmacyPage/PharmacyTable';
+import Table from 'src/components/InventoryPage/InventoryTable';
 import {} from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({

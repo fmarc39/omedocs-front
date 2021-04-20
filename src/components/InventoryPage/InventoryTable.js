@@ -1,5 +1,6 @@
 // Import React
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -43,73 +44,7 @@ function createData(name, cis, expirationDate, pathology, quantity, price) {
   };
 }
 
-const rows = [
-  createData(
-    'FENOFIBRATE TEVA 100 mg, gélule',
-    '6 000 427 7',
-    '31/08/2020',
-    'Glycosurie rénale',
-    234,
-    1.85
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg, gélule',
-    '6 000 427 7',
-    '31/08/2020',
-    'Glycosurie rénale',
-    234,
-    1.85
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg, gélule',
-    '6 000 427 7',
-    '31082020',
-    'Glycosurie rénale',
-    234,
-    1.85
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg, gélule',
-    '6 000 427 7',
-    '31/08/2020',
-    'Glycosurie rénale',
-    234,
-    1.85
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg, gélule',
-    '6 000 427 7',
-    '31/08/2020',
-    'Glycosurie rénale',
-    234,
-    1.85
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg, gélule',
-    '6 000 427 7',
-    '31/08/2020',
-    'Glycosurie rénale',
-    234,
-    1.85
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg, gélule',
-    '6 000 427 7',
-    '31/08/2020',
-    'Glycosurie rénale',
-    234,
-    1.85
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg, gélule',
-    '6 000 427 7',
-    '31/08/2020',
-    'Glycosurie rénale',
-    234,
-    1.85
-  ),
-];
-
+// Configuration des styles MATERIAL-UI
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -120,19 +55,33 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StickyHeadTable() {
+const InventoryTable = ({ inventoryData }) => {
   const classes = useStyles();
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  // Gestion du nombre de pages dans le tableau
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  // Gestion du nombre de pages
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
+  const rows = inventoryData.map((article) =>
+    createData(
+      article.name,
+      article.cis,
+      article.expirationDate,
+      article.pathology,
+      article.quantity,
+      article.price
+    )
+  );
 
   return (
     <Paper className={classes.root}>
@@ -183,4 +132,10 @@ export default function StickyHeadTable() {
       />
     </Paper>
   );
-}
+};
+
+InventoryTable.propTypes = {
+  inventoryData: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default InventoryTable;

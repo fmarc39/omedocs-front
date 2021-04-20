@@ -22,6 +22,8 @@ import './styles.scss';
 // == Composant
 const App = ({ isLoading, logged }) => (
   <div className="app">
+    {/* Mise en place du composant "Switch"
+     de react-router-dom pour la mise en place du routing des pages */}
     <Switch>
       <Route exact path="/">
         <HomePage />
