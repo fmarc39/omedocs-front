@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import ContactPage from 'src/components/ContactPage';
 import Lambert from 'src/assets/img/team-id/lambert.jpg';
-import Geoffrey from 'src/assets/img/team-id/geoffrey.png';
+import Geoffrey from 'src/assets/img/team-id/goeffrey.jpg';
 import Francois from 'src/assets/img/team-id/francois.jpg';
 import Zachary from 'src/assets/img/team-id/zachary.png';
 import Card from '@material-ui/core/Card';
@@ -23,7 +23,7 @@ import './styles.scss';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 290,
+    maxWidth: 220,
     margin: '.5rem',
   },
   img: {},
@@ -94,13 +94,6 @@ const TeamPage = () => {
                     <Button
                       size="small"
                       color="primary"
-                      startIcon={<ContactMailIcon />}
-                    >
-                      Contact
-                    </Button>
-                    <Button
-                      size="small"
-                      color="primary"
                       startIcon={<GitHubIcon />}
                     >
                       GitHub
@@ -150,13 +143,6 @@ const TeamPage = () => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<ContactMailIcon />}
-                    >
-                      Contact
-                    </Button>
                     <Button
                       size="small"
                       color="primary"
@@ -212,13 +198,6 @@ const TeamPage = () => {
                     <Button
                       size="small"
                       color="primary"
-                      startIcon={<ContactMailIcon />}
-                    >
-                      Contact
-                    </Button>
-                    <Button
-                      size="small"
-                      color="primary"
                       startIcon={<GitHubIcon />}
                     >
                       GitHub
@@ -271,13 +250,6 @@ const TeamPage = () => {
                     <Button
                       size="small"
                       color="primary"
-                      startIcon={<ContactMailIcon />}
-                    >
-                      Contact
-                    </Button>
-                    <Button
-                      size="small"
-                      color="primary"
                       startIcon={<GitHubIcon />}
                     >
                       GitHub
@@ -327,13 +299,6 @@ const TeamPage = () => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<ContactMailIcon />}
-                    >
-                      Contact
-                    </Button>
                     <Button
                       size="small"
                       color="primary"
