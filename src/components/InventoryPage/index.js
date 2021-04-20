@@ -9,16 +9,16 @@ import Footer from 'src/components/Footer';
 import LeftMenu from 'src/containers/LeftMenu';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import Typography from '@material-ui/core/Typography';
-import ModalAddProduct from 'src/components/ModalAddProduct';
+import ModalAddProduct from 'src/containers/ModalAddProduct';
 
 // Import COMPONENTS
-import InventoryTable from 'src/containers/Tables/PharmacyPageTable';
+import InventoryTable from 'src/containers/Tables/InventoryTable';
 
 // Import CSS
 import './styles.scss';
 
 const InventoryPage = ({ inventoryData, handleAddArticle }) => {
+  // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
   const handleAddArticleBtn = () => {
     handleAddArticle();
   };
@@ -50,9 +50,7 @@ const InventoryPage = ({ inventoryData, handleAddArticle }) => {
               alignItems="center"
               flexDirection="column"
             >
-              <Typography variant="h4" gutterBottom className="main-title">
-                Votre inventaire
-              </Typography>
+              <h2 className="page-title">Votre inventaire</h2>
               <Button
                 variant="contained"
                 onClick={handleAddArticleBtn}
@@ -72,8 +70,8 @@ const InventoryPage = ({ inventoryData, handleAddArticle }) => {
               </div>
             )}
           </Box>
+          <ModalAddProduct />
         </Box>
-        <ModalAddProduct />
         <Footer />
       </Box>
     </>

@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 
+import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
+import SendIcon from '@material-ui/icons/Send';
+import Button from '@material-ui/core/Button';
+
 const ContactPage = () => {
   const [status, setStatus] = useState('Envoyer');
   const handleSubmit = async (e) => {
@@ -23,28 +28,34 @@ const ContactPage = () => {
     alert(result.status);
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div className="nom-email">
-            <label htmlFor="name"> Nom:
-              <input type="text" id="name" required />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="email">Mail:
-              <input type="email" id="email" required />
-            </label>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="message">Message:
-            <textarea id="message" required />
-          </label>
-        </div>
-        <button type="submit">{status}</button>
+    <Box bgcolor="#FFF" p={4} borderRadius="10px" mt={4} boxShadow={4}>
+      <form onSubmit={handleSubmit} autoComplete="off">
+        <Box display="flex" flexDirection="column">
+          <Box mb={4} display="flex">
+            <Box mr={1}>
+              <TextField label="Nom" variant="outlined" />
+            </Box>
+            <Box>
+              <TextField label="Mail" variant="outlined" type="email" />
+            </Box>
+          </Box>
+
+          <Box mb={4}>
+            <TextField
+              id="outlined-multiline-static"
+              label="Votre message"
+              multiline
+              fullWidth="true"
+              rows={8}
+              variant="outlined"
+            />
+          </Box>
+          <Button variant="contained" color="primary" endIcon={<SendIcon />}>
+            {status}
+          </Button>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
 };
 

@@ -36,7 +36,12 @@ const SearchPharmacy = ({
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -58,9 +63,11 @@ const SearchPharmacy = ({
               borderRadius="40px"
               boxShadow={3}
             >
-              <form>
+              <form autoComplete="off">
                 <div>
-                  <InputLabel htmlFor="input-with-icon-adornment">Votre recherche ici</InputLabel>
+                  <InputLabel htmlFor="input-with-icon-adornment">
+                    Votre recherche ici
+                  </InputLabel>
                   <Input
                     id="input-with-icon-adornment"
                     name="searchPharmacyInputValue"
@@ -83,24 +90,38 @@ const SearchPharmacy = ({
                     value={searchSelectValue}
                     onChange={handleChangeInput}
                   >
-                    <MenuItem value="auvergne rhone alpes">Auvergne-Rhône-Alpes</MenuItem>
-                    <MenuItem value="bourgogne franche comte">Bourgogne-Franche-Comté</MenuItem>
+                    <MenuItem value="auvergne rhone alpes">
+                      Auvergne-Rhône-Alpes
+                    </MenuItem>
+                    <MenuItem value="bourgogne franche comte">
+                      Bourgogne-Franche-Comté
+                    </MenuItem>
                     <MenuItem value="bretagne">Bretagne</MenuItem>
-                    <MenuItem value="centre val de loire">Centre-Val de Loire</MenuItem>
+                    <MenuItem value="centre val de loire">
+                      Centre-Val de Loire
+                    </MenuItem>
                     <MenuItem value="corse">Corse</MenuItem>
                     <MenuItem value="grand est">Grand Est</MenuItem>
                     <MenuItem value="hauts de france">Hauts-de-France</MenuItem>
                     <MenuItem value="ile de France">Ile-de-France</MenuItem>
                     <MenuItem value="normandie">Normandie</MenuItem>
-                    <MenuItem value="nouvelle aquitaine">Nouvelle-Aquitaine</MenuItem>
+                    <MenuItem value="nouvelle aquitaine">
+                      Nouvelle-Aquitaine
+                    </MenuItem>
                     <MenuItem value="occitanie">Occitanie</MenuItem>
-                    <MenuItem value="pays de la loire">Pays de la Loire</MenuItem>
+                    <MenuItem value="pays de la loire">
+                      Pays de la Loire
+                    </MenuItem>
                     <MenuItem value="provence alpes cote d azur">
                       Provence-Alpes-Côte d’Azur
                     </MenuItem>
                   </Select>
                 </FormControl>
-                <Button variant="contained" color="primary" endIcon={<CheckIcon />}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  endIcon={<CheckIcon />}
+                >
                   Valider
                 </Button>
               </form>

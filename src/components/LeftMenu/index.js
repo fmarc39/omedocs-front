@@ -24,6 +24,8 @@ import avatarImg from '../../assets/img_avatar.png';
 import './styles.scss';
 
 const LeftMenu = ({ userType, nbOfArticles, handleLogout }) => {
+  console.log(userType);
+
   const handleLogoutBtn = () => {
     handleLogout();
   };

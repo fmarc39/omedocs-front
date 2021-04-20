@@ -26,7 +26,6 @@ const useStyles = makeStyles(() => ({
   field: {
     display: 'none',
   },
-  button: {},
 }));
 
 const ProfilPage = ({
@@ -92,7 +91,7 @@ const ProfilPage = ({
                   <p className={editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__infos'}>
                     e-mail:
                   </p>
-                  <IconButton aria-label="delete" onClick={handleEditMailBtn}>
+                  <IconButton onClick={handleEditMailBtn}>
                     <EditIcon color="primary" />
                   </IconButton>
                   <p
@@ -171,7 +170,7 @@ const ProfilPage = ({
                 </div>
                 <Divider />
                 <div className="profil-box__content-elt">
-                  <p className="profil-box__content-elt__infos">RPSS:</p>
+                  <p className="profil-box__content-elt__infos">RPPS:</p>
                   <p className="profil-box__content-elt__content">{rpps}</p>
                 </div>
                 <Divider />

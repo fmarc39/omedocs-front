@@ -3,7 +3,7 @@ import LeftMenu from 'src/components/LeftMenu/';
 import { logout } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
-  userType: state.user.type,
+  userType: state.user.userType,
   nbOfArticles: state.cart.nbOfArticles,
 });
 
