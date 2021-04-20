@@ -2,6 +2,7 @@ import api from 'src/api/api';
 
 import { LAUCH_INSCRIPTION_FORM } from 'src/actions/user';
 import { openSnackBar, openErrorInputValidation } from 'src/actions/utils';
+import { LocalPharmacyTwoTone } from '@material-ui/icons';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -19,7 +20,7 @@ export default (store) => (next) => (action) => {
           zipCode,
           password,
           confirmPassword,
-          region
+          region,
         } = store.getState().user;
 
         if (email !== confirmEmail) {
@@ -38,7 +39,7 @@ export default (store) => (next) => (action) => {
               address,
               zipCode,
               password,
-              region
+              region,
             })
             .then((data) => {
               console.log('Inscription ok', data.result);
@@ -63,3 +64,15 @@ export default (store) => (next) => (action) => {
       return next(action);
   }
 };
+
+const user = {
+  establishment: 'pharma',
+  email: 'pharmaducoin@gg',
+  zipcode: '11000'
+};
+
+
+
+
+
+

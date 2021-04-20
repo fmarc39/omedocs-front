@@ -18,7 +18,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     minHeight: '100%',
     maxWidth: '700px',
@@ -269,7 +269,7 @@ const SignUp = ({
                 <FormControlLabel
                   control={<Radio />}
                   label="Pharmacie"
-                  value="pharmacie"
+                  value="pharmacy"
                   labelPlacement="start"
                 />
               </RadioGroup>

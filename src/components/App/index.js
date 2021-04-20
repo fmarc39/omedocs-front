@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Import react-router-dom
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Import COMPONENTS
 import HomePage from 'src/components/HomePage';
@@ -27,11 +27,9 @@ const App = ({ isLoading, logged }) => (
         <HomePage />
       </Route>
       <Route exact path="/login">
-        <LoginForm />
+        {logged ? <Redirect to="/profil" /> : <LoginForm />}
       </Route>
-      <Route path="/profil">
-        <ProfilPage />
-      </Route>
+      <Route path="/profil">{!logged ? <Redirect to="/login" /> : <ProfilPage />}</Route>
       <Route path="/inventory">
         <InventoryPage />
       </Route>

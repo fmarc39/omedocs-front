@@ -6,14 +6,14 @@ export const initialState = {
   emailConnexion: '',
   email: '',
   confirmEmail: '',
-  phoneNumber: '',
+  phone_number: '',
   newEmail: '',
   newPhoneNumber: '',
   rpps: '',
-  userType: '',
+  user_type: '',
   city: '',
   address: '',
-  zipCode: '',
+  zip_code: '',
   region: '',
   passwordConnexion: '',
   password: '',
@@ -31,16 +31,34 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case LOGIN:{
-    console.log(action.user)
-    return {
+    case LOGIN: {
+      const {
+        email,
+        establishment,
+        rpps,
+        city,
+        region,
+        address,
+        zipcode: zipCode,
+        phonenumber: phoneNumber,
+        usertype: userType,
+      } = action.user;
+      return {
         ...state,
-        action.user,
+        email,
+        establishment,
+        rpps,
+        city,
+        region,
+        address,
+        zipCode,
+        phoneNumber,
+        userType,
         logged: true,
         accessToken: action.accessToken,
       };
-}
-  
+    }
+
     case LOGOUT:
       return {
         ...state,

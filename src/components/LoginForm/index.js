@@ -160,12 +160,12 @@ LoginForm.propTypes = {
   confirmEmail: PropTypes.string.isRequired,
   confirmPassword: PropTypes.string.isRequired,
   establishment: PropTypes.string.isRequired,
-  adress: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
   zipCode: PropTypes.string.isRequired,
   region: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string.isRequired,
   rpps: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  userType: PropTypes.string.isRequired,
   submitSubscribe: PropTypes.func.isRequired,
 };
 
