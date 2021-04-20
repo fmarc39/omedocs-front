@@ -10,9 +10,9 @@ export const initialState = {
   newEmail: '',
   newPhoneNumber: '',
   rpps: '',
-  type: '',
+  userType: '',
   city: '',
-  adress: '',
+  address: '',
   zipCode: '',
   region: '',
   passwordConnexion: '',
@@ -31,12 +31,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case LOGIN:
-      return {
+    case LOGIN:{
+    console.log(action.user)
+    return {
         ...state,
+        action.user,
         logged: true,
         accessToken: action.accessToken,
       };
+}
+  
     case LOGOUT:
       return {
         ...state,

@@ -71,13 +71,13 @@ const SignUp = ({
   password,
   confirmPassword,
   establishment,
-  adress,
+  address,
   zipCode,
   city,
   region,
   phoneNumber,
   rpps,
-  type,
+  userType,
   handleChange,
   submitSubscribe,
   errorMessage,
@@ -179,8 +179,8 @@ const SignUp = ({
               className={classes.textField}
               variant="outlined"
               label="Adresse"
-              name="adress"
-              value={adress}
+              name="address"
+              value={address}
               onChange={handleOnChange}
               required
               size="small"
@@ -259,7 +259,7 @@ const SignUp = ({
 
             <FormControl component="fieldset" className={classes.radio}>
               <FormLabel component="legend">Vous souhaitez vous inscrire en tant que :</FormLabel>
-              <RadioGroup name="type" value={type} onChange={handleOnChange} required row>
+              <RadioGroup name="userType" value={userType} onChange={handleOnChange} required row>
                 <FormControlLabel
                   control={<Radio />}
                   label="Hôpital"

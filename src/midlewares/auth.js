@@ -1,4 +1,6 @@
 import api from 'src/api/api';
+import React from 'react'
+import {Redirect} from 'react-router-dom';
 
 import { REHYDRATE, SUBMIT_LOGIN, LOGOUT, login } from 'src/actions/user';
 import { openSnackBar } from 'src/actions/utils';
@@ -19,18 +21,28 @@ export default (store) => (next) => (action) => {
       return next(action);
     }
     case SUBMIT_LOGIN: {
-      const { email, password } = store.getState().user;
+      const { emailConnexion, passwordConnexion } = store.getState().user;
       api
         .post('/login', {
-          email,
-          password,
+          emailConnexion,
+          passwordConnexion,
         })
         .then((result) => result.data)
-        // Voir ce que retourne l'api pour completer
-        // ( penser à modif le reducer et l'action login en fonction)
-        .then(({ accesToken }) => {
-          localStorage.setItem('jwtoken', accesToken);
-          store.dispatch(login(accesToken));
+        .then(({user, accessToken}) => {
+          console.log(user.user[0], accessToken)
+          //Je stock le token et le user dans le localStorage
+         localStorage.setItem('jwtoken', accessToken);
+         localStorage.setItem('user', user.user[0]);
+          // Je met le token dans les params de l'api
+        api.defaults.headers.common.Authorization = `Bearer ${action.token}`;
+         store.dispatch(login(user.user[0], accessToken));
+            store.dispatch(
+            openSnackBar(
+              "Connexion réussi",
+              'success',
+            ),
+          );
+          <Redirect to="/profil" />
         })
         .catch((error) => {
           console.error(error);

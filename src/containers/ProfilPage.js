@@ -5,12 +5,12 @@ import { changeUserInformations } from 'src/actions/user';
 import { openValidationChangeModal } from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
-  phoneNumer: state.user.phoneNumer,
+  phoneNumber: state.user.phoneNumber,
   establishment: state.user.establishment,
   email: state.user.email,
-  rpss: state.user.rpss,
+  rpss: state.user.rpps,
   city: state.user.city,
-  adress: state.user.adress,
+  address: state.user.address,
   zipCode: state.user.zipCode,
   newEmail: state.user.newEmail,
   newPhoneNumber: state.user.newPhoneNumber,

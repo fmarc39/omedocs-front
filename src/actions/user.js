@@ -21,9 +21,10 @@ export const submitLogin = () => ({
   type: SUBMIT_LOGIN,
 });
 
-export const login = (accesToken) => ({
+export const login = (user, accessToken) => ({
   type: LOGIN,
-  accesToken,
+  user,
+  accessToken,
 });
 
 export const logout = () => ({

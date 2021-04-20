@@ -38,12 +38,12 @@ const LoginForm = ({
   password,
   confirmPassword,
   establishment,
-  adress,
+  address,
   zipCode,
   region,
   phoneNumber,
   rpps,
-  type,
+  userType,
   submitSubscribe,
   errorMessage,
   errorMessageIsOpen,
@@ -131,12 +131,12 @@ const LoginForm = ({
             password={password}
             confirmPassword={confirmPassword}
             establishment={establishment}
-            adress={adress}
+            address={address}
             zipCode={zipCode}
             region={region}
             phoneNumber={phoneNumber}
             rpps={rpps}
-            type={type}
+            userType={userType}
             handleChange={handleChange}
             submitSubscribe={submitSubscribe}
             errorMessage={errorMessage}

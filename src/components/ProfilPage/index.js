@@ -30,12 +30,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ProfilPage = ({
-  phoneNumer,
+  phoneNumber,
   establishment,
   email,
-  rpss,
+  rpps,
   city,
-  adress,
+  address,
   zipCode,
   handleChange,
   newEmail,
@@ -139,7 +139,7 @@ const ProfilPage = ({
                   <p
                     className={editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'}
                   >
-                    {phoneNumer}
+                    {phoneNumber}
                   </p>
                   <Grow
                     in={editPhoneInputIsOpen}
@@ -172,7 +172,7 @@ const ProfilPage = ({
                 <Divider />
                 <div className="profil-box__content-elt">
                   <p className="profil-box__content-elt__infos">RPSS:</p>
-                  <p className="profil-box__content-elt__content">{rpss}</p>
+                  <p className="profil-box__content-elt__content">{rpps}</p>
                 </div>
                 <Divider />
                 <div className="profil-box__content-elt">
@@ -182,7 +182,7 @@ const ProfilPage = ({
                 <Divider />
                 <div className="profil-box__content-elt">
                   <p className="profil-box__content-elt__infos">Adresse:</p>
-                  <p className="profil-box__content-elt__content">{adress}</p>
+                  <p className="profil-box__content-elt__content">{address}</p>
                 </div>
                 <Divider />
                 <div className="profil-box__content-elt">
@@ -200,18 +200,18 @@ const ProfilPage = ({
   );
 };
 
-ProfilPage.propTypes = {
-  phoneNumer: PropTypes.string.isRequired,
+/*ProfilPage.propTypes = {
+  phoneNumber: PropTypes.string.isRequired,
   establishment: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  rpss: PropTypes.number.isRequired,
+  rpps: PropTypes.number.isRequired,
   city: PropTypes.string.isRequired,
-  adress: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
   zipCode: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
   newEmail: PropTypes.string.isRequired,
   newPhoneNumber: PropTypes.string.isRequired,
   handleSave: PropTypes.func.isRequired,
-};
+};*/
 
 export default ProfilPage;

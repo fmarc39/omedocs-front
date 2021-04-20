@@ -12,13 +12,14 @@ export default (store) => (next) => (action) => {
           email,
           confirmEmail,
           phoneNumber,
-          rpss,
-          type,
+          rpps,
+          userType,
           city,
-          adress,
+          address,
           zipCode,
           password,
           confirmPassword,
+          region
         } = store.getState().user;
 
         if (email !== confirmEmail) {
@@ -31,15 +32,16 @@ export default (store) => (next) => (action) => {
               establishment,
               email,
               phoneNumber,
-              rpss,
-              type,
+              rpps,
+              userType,
               city,
-              adress,
+              address,
               zipCode,
               password,
+              region
             })
-            .then(() => {
-              console.log('Inscription ok');
+            .then((data) => {
+              console.log('Inscription ok', data.result);
               store.dispatch(
                 openSnackBar('Merci de vous être inscrit. Vous pouvez vous connectez', 'success'),
               );
