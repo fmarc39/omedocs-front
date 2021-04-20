@@ -7,7 +7,7 @@ export const initialState = {
   searchPharmacySelectValue: 'auvergne rhone alpes',
   searchPharmacyResult: [],
   searchProductResult: [],
-  productResultsData: [],
+  productByPharmacyResults: [{ name: 'Doliprane', quantity: 1, price: 10 }],
 };
 
 const reducer = (state = initialState, action = {}) => {

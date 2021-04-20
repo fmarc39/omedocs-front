@@ -36,74 +36,6 @@ function createData(name, quantity, price, quantityToBuy, addToCart) {
   };
 }
 
-const rows = [
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-  createData(
-    'FENOFIBRATE TEVA 100 mg',
-    18,
-    '3€',
-    <TextField id="standard-basic" label="quantité" type="number" />,
-    <Button
-      variant="contained"
-      color="primary"
-      endIcon={<AddShoppingCartIcon />}
-    >
-      Ajouter au panier
-    </Button>
-  ),
-];
-
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -129,18 +61,36 @@ const ProductTable = ({ productResultsData }) => {
     setPage(0);
   };
 
+  const handleAddToCartBtn = (event) => {
+    event.preventDefault();
+  };
+
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
   const rows = productResultsData.map((pharmacy) =>
-    createData(pharmacy.name, pharmacy.region)
+    createData(
+      pharmacy.name,
+      pharmacy.quantity,
+      pharmacy.price + ' €',
+      <TextField id="quantity" label="quantité" type="number" />,
+      <Button
+        variant="contained"
+        type="submit"
+        color="primary"
+        endIcon={<AddShoppingCartIcon />}
+      >
+        Ajouter au panier
+      </Button>
+    )
   );
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
               {columns.map((column) => (
                 <TableCell
+                  className="tableCell"
                   key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
@@ -154,7 +104,13 @@ const ProductTable = ({ productResultsData }) => {
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow
+                  hover
+                  role="checkbox"
+                  onClick={handleAddToCartBtn}
+                  tabIndex={-1}
+                  key={row.code}
+                >
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (

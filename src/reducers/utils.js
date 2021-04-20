@@ -15,7 +15,7 @@ const initialState = {
     message: '',
     open: true,
   },
-  openModalProduct: true,
+  openModalProduct: false,
   snackBar: {
     open: false,
     message: '',

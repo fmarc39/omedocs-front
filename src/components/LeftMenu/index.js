@@ -16,107 +16,126 @@ import SearchIcon from '@material-ui/icons/Search';
 import LocalPharmacyIcon from '@material-ui/icons/LocalPharmacy';
 import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import avatarImg from '../../assets/img_avatar.png';
 
 // Import CSS
 import './styles.scss';
 
-const LeftMenu = ({ userType, nbOfArticles }) => (
-  <Box
-    boxShadow={1}
-    p={2}
-    display="flex"
-    flexDirection="column"
-    justifyContent="flex-start"
-    alignItems="center"
-    width="250px"
-    color="primary.contrastText"
-    bgcolor="#AAAAAA"
-    className="left-menu"
-  >
-    <Avatar alt="avatarLogo" src={avatarImg} className="left-menu__avatar" />
+const LeftMenu = ({ userType, nbOfArticles, handleLogout }) => {
+  const handleLogoutBtn = () => {
+    handleLogout();
+  };
+  return (
+    <Box
+      boxShadow={1}
+      p={2}
+      display="flex"
+      flexDirection="column"
+      justifyContent="flex-start"
+      alignItems="center"
+      width="250px"
+      height="100%"
+      color="primary.contrastText"
+      bgcolor="#AAAAAA"
+      className="left-menu"
+    >
+      <Avatar alt="avatarLogo" src={avatarImg} className="left-menu__avatar" />
 
-    <Typography variant="h5" component="h5" className="left-menu__welcome-message" align="center">
-      Bienvenue <br />
-      H.P O’clock
-    </Typography>
+      <Typography variant="h5" component="h5" className="left-menu__welcome-message" align="center">
+        Bienvenue <br />
+        H.P O’clock
+      </Typography>
 
-    <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
-      <NavLink to="/profil" style={{ textDecoration: 'none' }}>
+      <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
         <Button
-          variant="contained"
+          variant="outlined"
+          onClick={handleLogoutBtn}
           color="primary"
-          endIcon={<AccountCircleIcon />}
-          size="large"
+          endIcon={<ExitToAppIcon />}
+          size="small"
           className="btn-box__btn"
           fullWidth="true"
         >
-          Profil
+          Se déconnecter
         </Button>
-      </NavLink>
-      <NavLink to="/searchproduct" style={{ textDecoration: 'none' }}>
-        {userType === 'hospital' && (
+        <NavLink to="/profil" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
             color="primary"
-            endIcon={<SearchIcon />}
+            endIcon={<AccountCircleIcon />}
             size="large"
             className="btn-box__btn"
+            fullWidth="true"
           >
-            Rechercher un produit
+            Profil
           </Button>
-        )}
-      </NavLink>
-      <NavLink to="searchestablishement" style={{ textDecoration: 'none' }}>
-        <Button
-          variant="contained"
-          color="primary"
-          endIcon={<LocalPharmacyIcon />}
-          size="large"
-          className="btn-box__btn"
-        >
-          Chercher un établissement
-        </Button>
-      </NavLink>
-      <NavLink to="/cart" style={{ textDecoration: 'none' }}>
-        {userType === 'hospital' && (
+        </NavLink>
+        <NavLink to="/searchproduct" style={{ textDecoration: 'none' }}>
+          {userType === 'hospital' && (
+            <Button
+              variant="contained"
+              color="primary"
+              endIcon={<SearchIcon />}
+              size="large"
+              className="btn-box__btn"
+            >
+              Rechercher un produit
+            </Button>
+          )}
+        </NavLink>
+        <NavLink to="searchestablishement" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
             color="primary"
-            endIcon={
-              // eslint-disable-next-line react/jsx-wrap-multilines
-              <Badge badgeContent={nbOfArticles} color="secondary">
-                <ShoppingCartIcon />
-              </Badge>
-            }
+            endIcon={<LocalPharmacyIcon />}
             size="large"
             className="btn-box__btn"
           >
-            Acceder au panier
+            Chercher un établissement
           </Button>
-        )}
-      </NavLink>
-      <NavLink to="/inventory" style={{ textDecoration: 'none' }}>
-        {userType === 'pharmacy' && (
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={<TableChartIcon />}
-            size="large"
-            className="btn-box__btn"
-          >
-            Acceder a l'inventaire
-          </Button>
-        )}
-      </NavLink>
+        </NavLink>
+        <NavLink to="/cart" style={{ textDecoration: 'none' }}>
+          {userType === 'hospital' && (
+            <Button
+              variant="contained"
+              color="primary"
+              endIcon={
+                // eslint-disable-next-line react/jsx-wrap-multilines
+                <Badge badgeContent={nbOfArticles} color="secondary">
+                  <ShoppingCartIcon />
+                </Badge>
+              }
+              size="large"
+              className="btn-box__btn"
+            >
+              Acceder au panier
+            </Button>
+          )}
+        </NavLink>
+        <NavLink to="/inventory" style={{ textDecoration: 'none' }}>
+          {userType === 'pharmacy' && (
+            <Button
+              variant="contained"
+              color="primary"
+              endIcon={<TableChartIcon />}
+              size="large"
+              className="btn-box__btn"
+            >
+              Acceder a l'inventaire
+            </Button>
+          )}
+        </NavLink>
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};
 
 LeftMenu.propTypes = {
   userType: PropTypes.string.isRequired,
   nbOfArticles: PropTypes.string.isRequired,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 export default LeftMenu;

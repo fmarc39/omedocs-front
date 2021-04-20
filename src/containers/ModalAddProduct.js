@@ -22,7 +22,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(addProduct(value, field));
   },
   openPopList: () => dispatch(openPopListApi()),
- 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalAddProduct);
