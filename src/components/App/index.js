@@ -15,6 +15,7 @@ import PharmacyPage from 'src/components/PharmacyPage';
 import ProductPage from 'src/components/ProductPage';
 import LoginForm from 'src/containers/LoginForm';
 import TeamPage from 'src/components/TeamPage';
+import Cart from 'src/components/Cart';
 import Page404 from 'src/components/404';
 import './styles.scss';
 // == Composant
@@ -49,6 +50,9 @@ const App = ({ isLoading, logged }) => (
       </Route>
       <Route exact path="/teampage">
         <TeamPage />
+      </Route>
+      <Route exact path="/cart">
+        <Cart />
       </Route>
       <Route path="*">
         <Page404 />
