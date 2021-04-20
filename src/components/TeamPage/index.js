@@ -1,4 +1,9 @@
+// Import React
 import React from 'react';
+
+// Import from MATERIAL-UI
+
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import ContactPage from 'src/components/ContactPage';
@@ -12,15 +17,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import ContactMailIcon from '@material-ui/icons/ContactMail';
 import Grow from '@material-ui/core/Grow';
 
+// Import CSS
 import './styles.scss';
 
+// Mise en place des styles MATERIAL-UI
 const useStyles = makeStyles({
   root: {
     maxWidth: 220,

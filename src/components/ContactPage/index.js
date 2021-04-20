@@ -31,9 +31,13 @@ const ContactPage = () => {
     <Box bgcolor="#FFF" p={4} borderRadius="10px" mt={4} boxShadow={4}>
       <form onSubmit={handleSubmit} autoComplete="off">
         <Box display="flex" flexDirection="column">
-          <Box mb={4} display="flex" justifyContent="space-between">
-            <TextField label="Nom" variant="outlined" />
-            <TextField label="Mail" variant="outlined" type="email" />
+          <Box mb={4} display="flex">
+            <Box mr={1}>
+              <TextField label="Nom" variant="outlined" />
+            </Box>
+            <Box>
+              <TextField label="Mail" variant="outlined" type="email" />
+            </Box>
           </Box>
 
           <Box mb={4}>
