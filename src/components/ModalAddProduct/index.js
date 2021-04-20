@@ -75,6 +75,7 @@ const ModalAddProduct = ({
         position="relative"
       >
         {activePopList && <PopListApi />}
+        {console.log(open)}
 
         <Typography variant="h5" component="h5">
           Rajouter un produit

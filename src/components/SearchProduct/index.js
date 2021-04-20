@@ -37,7 +37,12 @@ const SearchProduct = ({
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -59,9 +64,11 @@ const SearchProduct = ({
               borderRadius="40px"
               boxShadow={3}
             >
-              <form>
+              <form autoComplete="off">
                 <div>
-                  <InputLabel htmlFor="search-product-input">Votre recherche ici</InputLabel>
+                  <InputLabel htmlFor="search-product-input">
+                    Nom du médicament
+                  </InputLabel>
                   <Input
                     id="search-product-input"
                     onChange={handleChangeSearchInput}
@@ -89,7 +96,11 @@ const SearchProduct = ({
                     <MenuItem value="pathology">Pathologie</MenuItem>
                   </Select>
                 </FormControl>
-                <Button variant="contained" color="primary" endIcon={<CheckIcon />}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  endIcon={<CheckIcon />}
+                >
                   Valider
                 </Button>
               </form>

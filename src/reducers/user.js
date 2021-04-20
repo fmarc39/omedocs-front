@@ -13,7 +13,7 @@ export const initialState = {
   newEmail: '',
   newPhoneNumber: '',
   rpps: '',
-  type: 'hospital',
+  type: 'pharmacy',
   city: '',
   adress: '',
   zipCode: '',

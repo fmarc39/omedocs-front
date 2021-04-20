@@ -32,8 +32,8 @@ const ContactPage = () => {
       <form onSubmit={handleSubmit} autoComplete="off">
         <Box display="flex" flexDirection="column">
           <Box mb={4} display="flex" justifyContent="space-between">
-            <TextField label="Prénom" variant="outlined" />
             <TextField label="Nom" variant="outlined" />
+            <TextField label="Mail" variant="outlined" type="email" />
           </Box>
 
           <Box mb={4}>
@@ -47,7 +47,7 @@ const ContactPage = () => {
             />
           </Box>
           <Button variant="contained" color="primary" endIcon={<SendIcon />}>
-            Envoyer
+            {status}
           </Button>
         </Box>
       </form>
