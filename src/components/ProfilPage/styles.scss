@@ -1,8 +1,4 @@
 
-form {
-    display: flex;
-}
-
 .profil-box {
     display: flex;
     justify-content: flex-start;
@@ -48,7 +44,7 @@ form {
     }
 
     &__content-elt__change-phone-number {
-        width: 150px;
+        width: 200px;
         background: #f3f3f3;;
     }
 
@@ -61,31 +57,3 @@ form {
 .hidden {
     display: none;
 }
-
-#drugLogo {
-    -webkit-animation: rotating 2s linear infinite;
-    -moz-animation: rotating 2s linear infinite;
-    -ms-animation: rotating 2s linear infinite;
-    -o-animation: rotating 2s linear infinite;
-    animation: rotating 2s linear infinite;
-}
-
-
-// Annimation du logo 
-
-@keyframes rotating {
-    from {
-      -ms-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -webkit-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg) ;
-    }
-    to {
-      -ms-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -webkit-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
