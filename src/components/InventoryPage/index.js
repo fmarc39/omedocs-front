@@ -10,6 +10,7 @@ import LeftMenu from 'src/containers/LeftMenu';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Typography from '@material-ui/core/Typography';
+import ModalAddProduct from 'src/components/ModalAddProduct';
 
 // Import COMPONENTS
 import InventoryTable from 'src/containers/Tables/PharmacyPageTable';
@@ -72,6 +73,7 @@ const InventoryPage = ({ inventoryData, handleAddArticle }) => {
             )}
           </Box>
         </Box>
+        <ModalAddProduct />
         <Footer />
       </Box>
     </>
