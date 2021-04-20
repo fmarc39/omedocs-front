@@ -2,16 +2,18 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import ContactPage from 'src/components/ContactPage';
+import Lambert from 'src/assets/img/team-id/lambert.jpg';
+import Geoffrey from 'src/assets/img/team-id/geoffrey.png';
+import Francois from 'src/assets/img/team-id/francois.jpg';
+import Zachary from 'src/assets/img/team-id/zachary.png';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Lambert from '../../assets/Lambert.jpg';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
-import Zoom from '@material-ui/core/Zoom';
 import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
@@ -122,10 +124,10 @@ const TeamPage = () => {
                   <CardActionArea>
                     <CardMedia
                       component="img"
-                      alt="img-product-owner"
+                      alt="img-lead-dev-front"
                       height="300"
-                      image={Lambert}
-                      title="lambert-img"
+                      image={Francois}
+                      title="francois-img"
                       classname={classes.img}
                     />
                     <CardContent>
@@ -135,7 +137,7 @@ const TeamPage = () => {
                         component="h5"
                         align="center"
                       >
-                        Lambert
+                        François
                       </Typography>
                       <Typography
                         variant="body2"
@@ -143,7 +145,7 @@ const TeamPage = () => {
                         component="p"
                         align="center"
                       >
-                        Product Owner
+                        Lead dev front
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -181,9 +183,9 @@ const TeamPage = () => {
                   <CardActionArea>
                     <CardMedia
                       component="img"
-                      alt="img-product-owner"
+                      alt="img-git-master"
                       height="300"
-                      image={Lambert}
+                      image={Geoffrey}
                       title="lambert-img"
                       classname={classes.img}
                     />
@@ -194,7 +196,7 @@ const TeamPage = () => {
                         component="h5"
                         align="center"
                       >
-                        Lambert
+                        Geoffrey
                       </Typography>
                       <Typography
                         variant="body2"
@@ -202,7 +204,7 @@ const TeamPage = () => {
                         component="p"
                         align="center"
                       >
-                        Product Owner
+                        Git Master
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -240,10 +242,10 @@ const TeamPage = () => {
                   <CardActionArea>
                     <CardMedia
                       component="img"
-                      alt="img-product-owner"
+                      alt="img-lead-dev-back"
                       height="300"
-                      image={Lambert}
-                      title="lambert-img"
+                      image={Zachary}
+                      title="zachary-img"
                       classname={classes.img}
                     />
                     <CardContent>
@@ -253,7 +255,7 @@ const TeamPage = () => {
                         component="h5"
                         align="center"
                       >
-                        Lambert
+                        Zachary
                       </Typography>
                       <Typography
                         variant="body2"
@@ -261,7 +263,7 @@ const TeamPage = () => {
                         component="p"
                         align="center"
                       >
-                        Product Owner
+                        Lead dev back
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -299,7 +301,7 @@ const TeamPage = () => {
                   <CardActionArea>
                     <CardMedia
                       component="img"
-                      alt="img-product-owner"
+                      alt="img-scrum-master"
                       height="300"
                       image={Lambert}
                       title="lambert-img"
@@ -312,7 +314,7 @@ const TeamPage = () => {
                         component="h5"
                         align="center"
                       >
-                        Lambert
+                        Bahri
                       </Typography>
                       <Typography
                         variant="body2"
@@ -320,7 +322,7 @@ const TeamPage = () => {
                         component="p"
                         align="center"
                       >
-                        Product Owner
+                        Scrum Master
                       </Typography>
                     </CardContent>
                   </CardActionArea>
