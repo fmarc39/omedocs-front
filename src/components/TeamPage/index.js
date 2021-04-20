@@ -2,16 +2,16 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import ContactPage from 'src/components/ContactPage';
-import LeftMenu from 'src/components/LeftMenu';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Lambert from '../../assets/Lambert.jpg';
-import Footer from 'src/components/Footer';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
+import Zoom from '@material-ui/core/Zoom';
 import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
@@ -21,8 +21,8 @@ import './styles.scss';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    margin: '1rem',
+    maxWidth: 290,
+    margin: '.5rem',
   },
   img: {},
 });
@@ -103,6 +103,13 @@ const TeamPage = () => {
                     >
                       GitHub
                     </Button>
+                    <Button
+                      size="small"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                    >
+                      LinkeDin
+                    </Button>
                   </CardActions>
                 </Card>
               </Grow>
@@ -154,6 +161,13 @@ const TeamPage = () => {
                       startIcon={<GitHubIcon />}
                     >
                       GitHub
+                    </Button>
+                    <Button
+                      size="small"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                    >
+                      LinkeDin
                     </Button>
                   </CardActions>
                 </Card>
@@ -207,6 +221,13 @@ const TeamPage = () => {
                     >
                       GitHub
                     </Button>
+                    <Button
+                      size="small"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                    >
+                      LinkeDin
+                    </Button>
                   </CardActions>
                 </Card>
               </Grow>
@@ -258,6 +279,13 @@ const TeamPage = () => {
                       startIcon={<GitHubIcon />}
                     >
                       GitHub
+                    </Button>
+                    <Button
+                      size="small"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                    >
+                      LinkeDin
                     </Button>
                   </CardActions>
                 </Card>
@@ -311,9 +339,20 @@ const TeamPage = () => {
                     >
                       GitHub
                     </Button>
+                    <Button
+                      size="small"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                    >
+                      LinkeDin
+                    </Button>
                   </CardActions>
                 </Card>
               </Grow>
+            </Box>
+            <h1 className="main-box__main-title">Nous Contacter</h1>
+            <Box display="flex" flexDirection="column">
+              <ContactPage />
             </Box>
           </Box>
         </Box>
