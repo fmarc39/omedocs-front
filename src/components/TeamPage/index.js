@@ -29,7 +29,7 @@ import './styles.scss';
 const useStyles = makeStyles({
   root: {
     maxWidth: 220,
-    margin: '.5rem',
+    margin: '.4em',
   },
   img: {},
 });
