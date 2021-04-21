@@ -41,6 +41,7 @@ const ModalAddProduct = ({
   priceValue, // fieldValue
   expirationValue, // fieldValue
   onChange, // function to control field
+  onSubmit, // function to handle form submit,
   activePopList, // PopList opening boolean
   openPopList, // popList opening function
 }) => {
@@ -53,6 +54,12 @@ const ModalAddProduct = ({
   const handlerOnChange = (evt) => {
     if (evt.target.name === 'name') openPopList();
     onChange(evt.target.value, evt.target.name);
+  };
+
+  const handleOnSubmit = (evt) => {
+    evt.preventDefault();
+    console.log('ok');
+    onSubmit();
   };
 
   return (
@@ -80,7 +87,7 @@ const ModalAddProduct = ({
         <Typography variant="h5" component="h5">
           Rajouter un produit
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleOnSubmit}>
           <TextField
             className={classes.textField}
             variant="outlined"
@@ -144,7 +151,7 @@ const ModalAddProduct = ({
               shrink: true,
             }}
           />
-          <Button color="primary" variant="contained">
+          <Button color="primary" variant="contained" type="submit">
             Ajouter
           </Button>
         </form>
@@ -165,6 +172,7 @@ ModalAddProduct.propTypes = {
   expirationValue: PropTypes.string,
   activePopList: PropTypes.bool,
   openPopList: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 ModalAddProduct.defaultProps = {
