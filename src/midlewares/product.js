@@ -1,7 +1,10 @@
 import api from 'src/api/api';
-
-import { SUBMIT_ADD_PRODUCT } from 'src/actions/utils';
-import { openSnackBar, openErrorInputValidation } from 'src/actions/utils';
+import {
+  openSnackBar,
+  openErrorInputValidation,
+  SUBMIT_ADD_PRODUCT,
+  saveNewProductInInventory,
+} from 'src/actions/utils';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -32,9 +35,11 @@ export default (store) => (next) => (action) => {
         })
         .then((product) => {
           console.log(product);
+          // On dispatch l'action qui va sauvegarder le nouveau produit dans la state
           store.dispatch(saveNewProductInInventory(product));
         })
         .catch((error) => console.log(error));
+      break;
     }
     default:
       return next(action);
