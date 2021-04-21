@@ -51,7 +51,7 @@ const App = ({ isLoading, logged }) => (
       <Route exact path="/teampage">
         <TeamPage />
       </Route>
-      <Route path="/cart">
+      <Route exact path="/cart">
         <Cart />
       </Route>
       <Route path="*">
