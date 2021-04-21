@@ -5,6 +5,7 @@ export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const LAUCH_INSCRIPTION_FORM = ' LAUCH_INSCRIPTION_FORM';
+export const LOGIN_FROM_REHYDRATE = 'LOGIN_FROM_REHYDRATE';
 
 // action creators
 export const changeUserInformations = (value, name) => ({
@@ -33,4 +34,27 @@ export const logout = () => ({
 
 export const lauchInscriptionForm = () => ({
   type: LAUCH_INSCRIPTION_FORM,
+});
+
+export const loginFromRehydrate = (
+  accessToken,
+  establishment,
+  email,
+  phoneNumber,
+  rpps,
+  city,
+  address,
+  zipCode,
+  userType,
+) => ({
+  type: LOGIN_FROM_REHYDRATE,
+  accessToken,
+  establishment,
+  email,
+  phoneNumber,
+  rpps,
+  address,
+  city,
+  zipCode,
+  userType,
 });

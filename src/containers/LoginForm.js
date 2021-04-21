@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
   region: state.user.region,
   phoneNumber: state.user.phoneNumber,
   rpps: state.user.rpps,
-  type: state.user.userType,
+  userType: state.user.userType,
   errorMessage: state.utils.errorInputValidation.message,
   errorMessageIsOpen: state.utils.errorInputValidation.open,
 });

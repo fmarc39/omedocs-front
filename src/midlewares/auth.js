@@ -1,16 +1,44 @@
 import api from 'src/api/api';
-import React from 'react';
-import { Redirect } from 'react-router-dom';
 
-import { REHYDRATE, SUBMIT_LOGIN, LOGOUT, login } from 'src/actions/user';
+import { REHYDRATE, SUBMIT_LOGIN, LOGOUT, login, loginFromRehydrate } from 'src/actions/user';
 import { openSnackBar } from 'src/actions/utils';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case REHYDRATE: {
-      const token = localStorage.getItem('jwtoken');
-      if (token) {
-        store.dispatch(login(token));
+      const accessToken = localStorage.getItem('accessToken');
+      const establishment = localStorage.getItem('establishment');
+      const email = localStorage.getItem('email');
+      const phoneNumber = localStorage.getItem('phoneNumber');
+      const rpps = localStorage.getItem('rpps');
+      const city = localStorage.getItem('city');
+      const address = localStorage.getItem('address');
+      const zipCode = localStorage.getItem('zipCode');
+      const userType = localStorage.getItem('userType');
+      if (
+        accessToken &&
+        establishment &&
+        email &&
+        phoneNumber &&
+        rpps &&
+        city &&
+        address &&
+        zipCode &&
+        userType
+      ) {
+        store.dispatch(
+          loginFromRehydrate(
+            accessToken,
+            establishment,
+            email,
+            phoneNumber,
+            rpps,
+            address,
+            city,
+            zipCode,
+            userType,
+          ),
+        );
       }
       return next(action);
     }
@@ -29,13 +57,19 @@ export default (store) => (next) => (action) => {
         })
         .then((result) => result.data)
         .then(({ user, accessToken }) => {
-          console.log(user.user[0], accessToken);
           // Je stock le token et le user dans le localStorage
-          localStorage.setItem('jwtoken', accessToken);
-          localStorage.setItem('user', user.user[0]);
-          // Je met le token dans les params de l'api
-          api.defaults.headers.common.Authorization = `Bearer ${action.token}`;
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('establishment', user.user[0].establishment);
+          localStorage.setItem('email', user.user[0].email);
+          localStorage.setItem('phoneNumber', user.user[0].phonenumber);
+          localStorage.setItem('rpps', user.user[0].rpps);
+          localStorage.setItem('city', user.user[0].city);
+          localStorage.setItem('address', user.user[0].address);
+          localStorage.setItem('zipCode', user.user[0].zipcode);
+          localStorage.setItem('userType', user.user[0].usertype);
+          // Dispatch LOGIN
           store.dispatch(login(user.user[0], accessToken));
+          // Success Message
           store.dispatch(openSnackBar('Connexion réussi', 'success'));
         })
         .catch((error) => {

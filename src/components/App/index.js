@@ -1,5 +1,5 @@
 // Import React
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Import react-router-dom
@@ -20,52 +20,57 @@ import Page404 from 'src/components/404';
 import SnackBar from 'src/containers/SnackBar';
 
 import './styles.scss';
-// == Composant
 
-// == Composant
-const App = ({ isLoading, logged }) => (
-  <div className="app">
-    <SnackBar />
-    {/* Mise en place du composant "Switch"
+const App = ({ isLoading, logged, rehydrate }) => {
+  useEffect(() => {
+    rehydrate();
+  }, []);
+  return (
+    <div className="app">
+      <SnackBar />
+      {/* Mise en place du composant "Switch"
      de react-router-dom pour la mise en place du routing des pages */}
-    <Switch>
-      <Route exact path="/">
-        <HomePage />
-      </Route>
-      <Route exact path="/login">
-        {logged ? <Redirect to="/profil" /> : <LoginForm />}
-      </Route>
-      <Route path="/profil">{!logged ? <Redirect to="/login" /> : <ProfilPage />}</Route>
-      <Route path="/inventory">
-        <InventoryPage />
-      </Route>
-      <Route path="/products">
-        <PharmacyPage />
-      </Route>
-      <Route path="/product/id">
-        <ProductPage />
-      </Route>
-      <Route path="/searchproduct">
-        <SearchProduct />
-      </Route>
-      <Route path="/searchestablishement">
-        <SearchPharmachy />
-      </Route>
-      <Route exact path="/teampage">
-        <TeamPage />
-      </Route>
-      <Route exact path="/cart">
-        <Cart />
-      </Route>
-      <Route path="*">
-        <Page404 />
-      </Route>
-    </Switch>
-  </div>
-);
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route exact path="/login">
+          {logged ? <Redirect to="/profil" /> : <LoginForm />}
+        </Route>
+        <Route path="/profil">{!logged ? <Redirect to="/login" /> : <ProfilPage />}</Route>
+        <Route path="/inventory">
+          <InventoryPage />
+        </Route>
+        <Route path="/products">
+          <PharmacyPage />
+        </Route>
+        <Route path="/product/id">
+          <ProductPage />
+        </Route>
+        <Route path="/searchproduct">
+          <SearchProduct />
+        </Route>
+        <Route path="/searchestablishement">
+          <SearchPharmachy />
+        </Route>
+        <Route exact path="/teampage">
+          <TeamPage />
+        </Route>
+        <Route exact path="/cart">
+          <Cart />
+        </Route>
+        <Route path="*">
+          <Page404 />
+        </Route>
+      </Switch>
+    </div>
+  );
+};
 
 App.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  logged: PropTypes.bool.isRequired,
+  rehydrate: PropTypes.func.isRequired,
 };
 
 // == Export
