@@ -5,9 +5,9 @@ export const initialState = {
     {
       name: 'doliprane',
       cis: '101010',
+      expirationDate: '10/09/2020',
       pathology: 'mal de tête',
       quantity: '19',
-      expiration: '10/09/2020',
       price: '10',
     },
   ],

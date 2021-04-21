@@ -24,14 +24,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 
 // Fonction qui va insérer les données dans le tableau
 function createData(name, cis, expirationDate, pathology, quantity, price) {
-  return {
-    name,
-    cis,
-    expirationDate,
-    pathology,
-    quantity,
-    price,
-  };
+  return { name, cis, expirationDate, pathology, quantity, price };
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -60,18 +53,29 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 // Configuration des colones avec le nom, le label, la largeur
+
 const headCells = [
-  { id: 'name', label: 'Nom', minWidth: 400, type: 'string' },
-  { id: 'cis', label: 'CIS', minWidth: 100, type: 'number' },
+  {
+    id: 'name',
+    numeric: false,
+    disablePadding: true,
+    label: 'Nom',
+  },
+  { id: 'cis', numeric: true, disablePadding: false, label: 'CIS' },
   {
     id: 'expirationDate',
+    numeric: false,
+    disablePadding: false,
     label: 'Date limite de consommation',
-    minWidth: 200,
-    type: 'date',
   },
-  { id: 'pathology', label: 'Pathologie', minWidth: 200 },
-  { id: 'quantity', label: 'Quantité', minWidth: 200 },
-  { id: 'price', label: 'Prix H.T', minWidth: 200, type: 'number' },
+  {
+    id: 'pathology',
+    numeric: false,
+    disablePadding: false,
+    label: 'Pathologie',
+  },
+  { id: 'quantity', numeric: true, disablePadding: false, label: 'Quantité' },
+  { id: 'price', numeric: true, disablePadding: false, label: 'Prix H.T' },
 ];
 
 function FilterTableHead(props) {
@@ -259,6 +263,8 @@ const InventoryTable = ({ inventoryData }) => {
     )
   );
 
+  console.log(rows);
+
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = rows.map((n) => n.name);
@@ -355,10 +361,11 @@ const InventoryTable = ({ inventoryData }) => {
                       >
                         {row.name}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.cis}</TableCell>
+                      <TableCell align="right">{row.expirationDate}</TableCell>
+                      <TableCell align="right">{row.pathology}</TableCell>
+                      <TableCell align="right">{row.quantity}</TableCell>
+                      <TableCell align="right">{row.price}</TableCell>
                     </TableRow>
                   );
                 })}
