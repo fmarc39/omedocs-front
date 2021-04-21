@@ -32,6 +32,7 @@ export default (store) => (next) => (action) => {
         })
         .then((product) => {
           console.log(product);
+          store.dispatch(saveNewProductInInventory(product));
         })
         .catch((error) => console.log(error));
     }

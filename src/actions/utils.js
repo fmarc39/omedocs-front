@@ -9,6 +9,7 @@ export const CLOSE_VALIDATION_CHANGE_MODAL = 'CLOSE_VALIDATION_CHANGE_MODAL';
 export const OPEN_ERROR_INPUT_VALIDATION = 'OPEN_ERROR_INPUT_VALIDATION';
 export const CLOSE_ERROR_INPUT_VALIDATION = 'CLOSE_ERROR_INPUT_VALIDATION';
 export const SUBMIT_ADD_PRODUCT = 'SUBMIT_ADD_PRODUCT';
+export const SAVE_NEW_PRODUCT_IN_INVENTORY = 'SAVE_NEW_PRODUCT_IN_INVENTORY';
 
 // action creators
 export const closeModalProduct = () => ({
@@ -22,6 +23,11 @@ export const openModalProduct = () => ({
 export const addProduct = (value, field) => ({
   type: ADD_PRODUCT,
   field,
+  value,
+});
+
+export const saveNewProductInInventory = (value) => ({
+  type: SAVE_NEW_PRODUCT_IN_INVENTORY,
   value,
 });
 
