@@ -17,12 +17,15 @@ import LoginForm from 'src/containers/LoginForm';
 import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/components/Cart';
 import Page404 from 'src/components/404';
+import SnackBar from 'src/containers/SnackBar';
+
 import './styles.scss';
 // == Composant
 
 // == Composant
 const App = ({ isLoading, logged }) => (
   <div className="app">
+    <SnackBar />
     {/* Mise en place du composant "Switch"
      de react-router-dom pour la mise en place du routing des pages */}
     <Switch>

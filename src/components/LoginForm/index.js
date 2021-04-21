@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import SnackBar from 'src/containers/SnackBar';
 import Accordion from './SignUp';
 
 // == Import
@@ -90,7 +89,6 @@ const LoginForm = ({
             <Box textAlign="center">
               <img className="logo__img" src={logo} alt="logo" style={{ width: '50px' }} />
               <Typography variant="h5">Connectez vous</Typography>
-              <SnackBar />
             </Box>
 
             <form className="form-login" onSubmit={handleOnSubmitLogin} method="post">
