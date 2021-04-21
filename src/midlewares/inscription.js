@@ -41,8 +41,7 @@ export default (store) => (next) => (action) => {
               password,
               region,
             })
-            .then((data) => {
-              console.log('Inscription ok', data.result);
+            .then(() => {
               store.dispatch(
                 openSnackBar('Merci de vous être inscrit. Vous pouvez vous connectez', 'success'),
               );
@@ -64,15 +63,3 @@ export default (store) => (next) => (action) => {
       return next(action);
   }
 };
-
-const user = {
-  establishment: 'pharma',
-  email: 'pharmaducoin@gg',
-  zipcode: '11000'
-};
-
-
-
-
-
-

@@ -8,7 +8,6 @@ import {
   CLOSE_ERROR_INPUT_VALIDATION,
 } from 'src/actions/utils';
 import { APPLY_INFO_DRUGS_API } from 'src/actions/drugsApi';
-import parseInputNumber from 'src/hooks';
 
 const initialState = {
   errorInputValidation: {
@@ -64,8 +63,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         product: {
           ...state.product,
-          // parsing input to number
-          [action.field]: parseInputNumber(action.field, action.value),
+          [action.field]: action.value,
         },
       };
     case APPLY_INFO_DRUGS_API:

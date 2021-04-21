@@ -38,6 +38,7 @@ const LoginForm = ({
   confirmPassword,
   establishment,
   address,
+  city,
   zipCode,
   region,
   phoneNumber,
@@ -131,6 +132,7 @@ const LoginForm = ({
             establishment={establishment}
             address={address}
             zipCode={zipCode}
+            city={city}
             region={region}
             phoneNumber={phoneNumber}
             rpps={rpps}
@@ -149,8 +151,8 @@ const LoginForm = ({
 };
 
 LoginForm.propTypes = {
-  submitLogin: PropTypes.func,
-  handleChange: PropTypes.func,
+  submitLogin: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   emailConnexion: PropTypes.string,
   passwordConnexion: PropTypes.string,
   email: PropTypes.string,
@@ -158,20 +160,19 @@ LoginForm.propTypes = {
   confirmEmail: PropTypes.string,
   confirmPassword: PropTypes.string,
   establishment: PropTypes.string,
+  city: PropTypes.string,
   address: PropTypes.string,
   zipCode: PropTypes.string,
   region: PropTypes.string,
   phoneNumber: PropTypes.string,
   rpps: PropTypes.string,
   userType: PropTypes.string,
-  submitSubscribe: PropTypes.func,
+  submitSubscribe: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
   errorMessageIsOpen: PropTypes.bool,
   closeErrorMessage: PropTypes.func,
 };
 LoginForm.defaultProps = {
-  submitLogin: () => {},
-  handleChange: () => {},
   emailConnexion: '',
   passwordConnexion: '',
   email: '',
@@ -179,13 +180,13 @@ LoginForm.defaultProps = {
   confirmEmail: '',
   confirmPassword: '',
   establishment: '',
+  city: '',
   address: '',
   zipCode: '',
   region: '',
   phoneNumber: '',
   rpps: '',
   userType: '',
-  submitSubscribe: () => {},
   errorMessage: PropTypes.string,
   errorMessageIsOpen: PropTypes.bool,
   closeErrorMessage: () => {},

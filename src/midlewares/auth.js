@@ -15,6 +15,7 @@ export default (store) => (next) => (action) => {
       const address = localStorage.getItem('address');
       const zipCode = localStorage.getItem('zipCode');
       const userType = localStorage.getItem('userType');
+      const id = localStorage.getItem('id');
       if (
         accessToken &&
         establishment &&
@@ -24,7 +25,8 @@ export default (store) => (next) => (action) => {
         city &&
         address &&
         zipCode &&
-        userType
+        userType &&
+        id
       ) {
         store.dispatch(
           loginFromRehydrate(
@@ -37,6 +39,7 @@ export default (store) => (next) => (action) => {
             city,
             zipCode,
             userType,
+            id,
           ),
         );
       }
@@ -59,6 +62,7 @@ export default (store) => (next) => (action) => {
         .then(({ user, accessToken }) => {
           // Je stock le token et le user dans le localStorage
           localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('id', user.user[0].id);
           localStorage.setItem('establishment', user.user[0].establishment);
           localStorage.setItem('email', user.user[0].email);
           localStorage.setItem('phoneNumber', user.user[0].phonenumber);

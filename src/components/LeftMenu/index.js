@@ -23,9 +23,7 @@ import avatarImg from '../../assets/img_avatar.png';
 // Import CSS
 import './styles.scss';
 
-const LeftMenu = ({ userType, nbOfArticles, handleLogout }) => {
-  console.log(userType);
-
+const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
   const handleLogoutBtn = () => {
     handleLogout();
   };
@@ -47,7 +45,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout }) => {
 
       <Typography variant="h5" component="h5" className="left-menu__welcome-message" align="center">
         Bienvenue <br />
-        H.P O’clock
+        {establishment}
       </Typography>
 
       <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
@@ -58,7 +56,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout }) => {
           endIcon={<ExitToAppIcon />}
           size="small"
           className="btn-box__btn"
-          fullWidth="true"
+          fullWidth={true}
         >
           Se déconnecter
         </Button>
@@ -69,7 +67,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout }) => {
             endIcon={<AccountCircleIcon />}
             size="large"
             className="btn-box__btn"
-            fullWidth="true"
+            fullWidth={true}
           >
             Profil
           </Button>
@@ -136,8 +134,13 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout }) => {
 
 LeftMenu.propTypes = {
   userType: PropTypes.string.isRequired,
-  nbOfArticles: PropTypes.string.isRequired,
+  nbOfArticles: PropTypes.number,
   handleLogout: PropTypes.func.isRequired,
+  establishment: PropTypes.string.isRequired,
+};
+
+LeftMenu.defaultProps = {
+  nbOfArticles: null,
 };
 
 export default LeftMenu;

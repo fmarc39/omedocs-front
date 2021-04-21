@@ -46,6 +46,7 @@ export const loginFromRehydrate = (
   address,
   zipCode,
   userType,
+  id,
 ) => ({
   type: LOGIN_FROM_REHYDRATE,
   accessToken,
@@ -57,4 +58,5 @@ export const loginFromRehydrate = (
   city,
   zipCode,
   userType,
+  id,
 });

@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -106,7 +108,7 @@ const SignUp = ({
           id="panel1a-header"
         >
           <Box>
-            <Typography className={classes.heading} variant="body">
+            <Typography className={classes.heading} variant="body1">
               Inscription
             </Typography>
           </Box>
@@ -115,7 +117,7 @@ const SignUp = ({
           <form className={classes.form} onSubmit={handleOnSubmitSubscribe}>
             {errorMessageIsOpen && (
               <Box className={classes.error}>
-                <Typography variant="body">{errorMessage}</Typography>
+                <Typography variant="body1">{errorMessage}</Typography>
               </Box>
             )}
             <TextField
@@ -282,6 +284,43 @@ const SignUp = ({
       </Accordion>
     </div>
   );
+};
+
+SignUp.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  confirmEmail: PropTypes.string,
+  confirmPassword: PropTypes.string,
+  establishment: PropTypes.string,
+  address: PropTypes.string,
+  zipCode: PropTypes.string,
+  region: PropTypes.string,
+  phoneNumber: PropTypes.string,
+  rpps: PropTypes.string,
+  userType: PropTypes.string,
+  submitSubscribe: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
+  errorMessageIsOpen: PropTypes.bool,
+  closeErrorMessage: PropTypes.func.isRequired,
+  city: PropTypes.string,
+};
+
+SignUp.defaultProps = {
+  email: '',
+  password: '',
+  confirmEmail: '',
+  confirmPassword: '',
+  establishment: '',
+  address: '',
+  city: '',
+  zipCode: '',
+  region: '',
+  phoneNumber: '',
+  rpps: '',
+  userType: '',
+  errorMessage: '',
+  errorMessageIsOpen: false,
 };
 
 export default SignUp;
