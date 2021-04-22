@@ -1,5 +1,5 @@
 // Import React
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Import from MATERIAL-UI
@@ -12,6 +12,13 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+import SaveIcon from '@material-ui/icons/Save';
+import Grow from '@material-ui/core/Grow';
 
 // Import CSS styles
 
@@ -27,20 +34,20 @@ const columns = [
     minWidth: 200,
     type: 'date',
   },
-  { id: 'pathology', label: 'Pathologie', minWidth: 200 },
-  { id: 'quantity', label: 'Quantité', minWidth: 200 },
-  { id: 'price', label: 'Prix H.T', minWidth: 200, type: 'number' },
+  { id: 'quantity', label: 'Quantité', minWidth: 50 },
+  { id: 'price', label: 'Prix H.T', minWidth: 50, type: 'number' },
+  { id: 'dellRow', minWidth: 50 },
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, cis, expirationDate, pathology, quantity, price) {
+function createData(name, cis, expirationDate, quantity, price, dellRow) {
   return {
     name,
     cis,
     expirationDate,
-    pathology,
     quantity,
     price,
+    dellRow,
   };
 }
 
@@ -49,20 +56,25 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
   },
-  body: {
-    color: 'red',
-  },
+
   container: {
     minHeight: 350,
     minWidth: 700,
   },
 });
 
-const InventoryTable = ({ inventoryData }) => {
+const InventoryTable = ({
+  inventoryData,
+  handleDeleteCLick,
+  handleSaveClick,
+}) => {
   const classes = useStyles();
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  // Gestion de l'ouverture et de la fermeture des forms de modification de mail et du phoneNumber
+  const [editQuantityInputIsOpen, setQuantityMailInputIsOpen] = useState(true);
 
   // Gestion du nombre de pages dans le tableau
   const handleChangePage = (event, newPage) => {
@@ -73,6 +85,21 @@ const InventoryTable = ({ inventoryData }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  // Gestion du click sur le btn delete
+  const handleDeleteCLickBtn = () => {
+    handleDeleteCLick();
+  };
+
+  // Gestion du click sur le btn edit
+  const handleEditClickBtn = () => {
+    setQuantityMailInputIsOpen(!editQuantityInputIsOpen);
+  };
+
+  // Gestion du click sur le btn de sauvegarde
+  const handleSaveClickBtn = (event) => {
+    console.log(event.target.closest('.save-btn').previousElementSibling);
+    handleSaveClick();
+  };
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
   const rows = inventoryData.map((article) =>
@@ -80,9 +107,40 @@ const InventoryTable = ({ inventoryData }) => {
       article.name,
       article.cis,
       article.expirationDate,
-      article.pathology,
-      article.quantity,
-      article.price
+      <Box>
+        {editQuantityInputIsOpen && article.quantity}
+        <IconButton aria-label="edit" onClick={handleEditClickBtn}>
+          <EditIcon />
+        </IconButton>
+        {!editQuantityInputIsOpen && (
+          <>
+            <Grow
+              in={!editQuantityInputIsOpen}
+              style={{ transformOrigin: '0 200 0' }}
+            >
+              <TextField
+                className="quantity-input"
+                label="quantité"
+                variant="outlined"
+                size="small"
+                type="number"
+                id={article.cis}
+              />
+            </Grow>
+            <IconButton
+              color="primary"
+              onClick={handleSaveClickBtn}
+              className="save-btn"
+            >
+              <SaveIcon />
+            </IconButton>
+          </>
+        )}
+      </Box>,
+      article.price,
+      <IconButton aria-label="delete" onClick={handleDeleteCLickBtn}>
+        <DeleteIcon />
+      </IconButton>
     )
   );
 
@@ -145,6 +203,8 @@ const InventoryTable = ({ inventoryData }) => {
 
 InventoryTable.propTypes = {
   inventoryData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleDeleteCLick: PropTypes.func.isRequired,
+  handleSaveClick: PropTypes.func.isRequired,
 };
 
 export default InventoryTable;
