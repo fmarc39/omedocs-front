@@ -3,7 +3,9 @@ import PopListApi from 'src/components/ModalAddProduct/PopListApi';
 import { closePopListApi, applyInfoDrugsApi } from 'src/actions/drugsApi';
 
 const mapStateToProps = (state) => ({
-  nameFormAddProduct: state.utils.product.name,
+  inputNameAddProduct: state.utils.product.name,
+  inputCisAddProduct: state.utils.product.cis,
+ 
 });
 
 const mapDispatchToProps = (dispatch) => ({

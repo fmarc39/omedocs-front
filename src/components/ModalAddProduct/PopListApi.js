@@ -7,17 +7,23 @@ import drugsData from 'src/data/drugs.json';
 const PopListApi = ({
   closePopList, // PopList closing function
   recoverInfoListItem, // ListItems data retrieval function
-  nameFormAddProduct, // input name from componant modalAddProduct
+  inputNameAddProduct, // input name from componant modalAddProduct
+  inputCisAddProduct, // input cis from componant modalAddProduct
 }) => {
   const [drugs, setDrugs] = useState([]);
 
-  // Commencer le filtre à partir de 4 caractères sinon le nombre de résultats est trop grand et l'application plante
-
+  // Filtre sur le fichier drugsData avec l'input name ou cis du formulaire AddProduct
+  // Je ne filtre que si la chaine contient au moins 4 caractère.
   useEffect(() => {
-    if (nameFormAddProduct.length >= 4) {
-      setDrugs(drugsData.filter((drug) => drug.title.toLowerCase().match(nameFormAddProduct)));
+    if (inputNameAddProduct.length >= 4) {
+      setDrugs(drugsData.filter((drug) => drug.title.toLowerCase().match(inputNameAddProduct)));
     }
-  }, [nameFormAddProduct]);
+    if (inputCisAddProduct.length >= 4) {
+      setDrugs(
+        drugsData.filter((drug) => drug.cis_code.replace(/ /g, '').match(inputCisAddProduct)),
+      );
+    }
+  }, [inputNameAddProduct, inputCisAddProduct]);
 
   return (
     <Box
@@ -53,14 +59,15 @@ const PopListApi = ({
 };
 
 PopListApi.propTypes = {
- 
   closePopList: PropTypes.func.isRequired,
   recoverInfoListItem: PropTypes.func.isRequired,
- nameFormAddProduct: PropTypes.string,
+  inputNameAddProduct: PropTypes.string,
+  inputCisAddProduct: PropTypes.string,
 };
 
 PopListApi.defaultProps = {
- nameFormAddProduct: '',
+  inputNameAddProduct: '',
+  inputCisAddProduct: '',
 };
 
 export default PopListApi;
