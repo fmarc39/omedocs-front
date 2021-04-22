@@ -67,14 +67,12 @@ const InventoryTable = ({
   inventoryData,
   handleDeleteCLick,
   handleSaveClick,
+  handleChangeQuantity,
 }) => {
   const classes = useStyles();
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  // Gestion de l'ouverture et de la fermeture des forms de modification de mail et du phoneNumber
-  const [editQuantityInputIsOpen, setQuantityMailInputIsOpen] = useState(true);
 
   // Gestion du nombre de pages dans le tableau
   const handleChangePage = (event, newPage) => {
@@ -86,18 +84,22 @@ const InventoryTable = ({
     setPage(0);
   };
   // Gestion du click sur le btn delete
-  const handleDeleteCLickBtn = () => {
-    handleDeleteCLick();
+  const handleDeleteCLickBtn = (event) => {
+    handleDeleteCLick(event.target.closest('.del-btn').name);
   };
 
   // Gestion du click sur le btn edit
-  const handleEditClickBtn = () => {
-    setQuantityMailInputIsOpen(!editQuantityInputIsOpen);
+  const handleEditClickBtn = (event) => {
+    event.target.closest('.edit-btn').nextSibling.classList.toggle('hidden');
+  };
+
+  // Gestion du changement d'état sur l'input quantité
+  const handleChangeQuantityInput = (event) => {
+    handleChangeQuantity(event.target.value, event.target.name);
   };
 
   // Gestion du click sur le btn de sauvegarde
   const handleSaveClickBtn = (event) => {
-    console.log(event.target.closest('.save-btn').previousElementSibling);
     handleSaveClick();
   };
 
@@ -108,37 +110,41 @@ const InventoryTable = ({
       article.cis,
       article.expirationDate,
       <Box>
-        {editQuantityInputIsOpen && article.quantity}
-        <IconButton aria-label="edit" onClick={handleEditClickBtn}>
+        {article.quantity}
+        <IconButton
+          aria-label="edit"
+          onClick={handleEditClickBtn}
+          className="edit-btn"
+        >
           <EditIcon />
         </IconButton>
-        {!editQuantityInputIsOpen && (
-          <>
-            <Grow
-              in={!editQuantityInputIsOpen}
-              style={{ transformOrigin: '0 200 0' }}
-            >
-              <TextField
-                className="quantity-input"
-                label="quantité"
-                variant="outlined"
-                size="small"
-                type="number"
-                id={article.cis}
-              />
-            </Grow>
-            <IconButton
-              color="primary"
-              onClick={handleSaveClickBtn}
-              className="save-btn"
-            >
-              <SaveIcon />
-            </IconButton>
-          </>
-        )}
+        <form className="edit-tools hidden">
+          <TextField
+            className="quantity-input"
+            onChange={handleChangeQuantityInput}
+            label="quantité"
+            variant="outlined"
+            size="small"
+            type="number"
+            name={article.cis}
+          />
+          <IconButton
+            color="primary"
+            onClick={handleSaveClickBtn}
+            className="save-btn"
+            name={article.cis}
+          >
+            <SaveIcon />
+          </IconButton>
+        </form>
       </Box>,
       article.price,
-      <IconButton aria-label="delete" onClick={handleDeleteCLickBtn}>
+      <IconButton
+        aria-label="delete"
+        onClick={handleDeleteCLickBtn}
+        name={article.cis}
+        className="del-btn"
+      >
         <DeleteIcon />
       </IconButton>
     )
@@ -205,6 +211,7 @@ InventoryTable.propTypes = {
   inventoryData: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleDeleteCLick: PropTypes.func.isRequired,
   handleSaveClick: PropTypes.func.isRequired,
+  handleChangeQuantity: PropTypes.func.isRequired,
 };
 
 export default InventoryTable;

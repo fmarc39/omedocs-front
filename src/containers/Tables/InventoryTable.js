@@ -3,6 +3,7 @@ import Table from 'src/components/InventoryPage/InventoryTableBeta';
 import {
   deleteRowFromInventory,
   saveNewQuantityFromInventory,
+  handleChangeQuantityValue,
 } from 'src/actions/inventory';
 
 const mapStateToProps = (state) => ({
@@ -10,11 +11,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleDeleteCLick: () => {
-    dispatch(deleteRowFromInventory());
+  handleDeleteCLick: (rowId) => {
+    dispatch(deleteRowFromInventory(rowId));
   },
   handleSaveClick: () => {
     dispatch(saveNewQuantityFromInventory());
+  },
+  handleChangeQuantity: (value, fieldName) => {
+    dispatch(handleChangeQuantityValue(value, fieldName));
   },
 });
 
