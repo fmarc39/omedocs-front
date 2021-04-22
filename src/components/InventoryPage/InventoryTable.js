@@ -29,7 +29,7 @@ const columns = [
   { id: 'name', label: 'Nom', minWidth: 300, type: 'string' },
   { id: 'cis', label: 'CIS', minWidth: 100, type: 'number' },
   {
-    id: 'expirationDate',
+    id: 'expiration',
     label: 'Date limite de consommation',
     minWidth: 200,
     type: 'date',
@@ -40,11 +40,11 @@ const columns = [
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, cis, expirationDate, quantity, price, dellRow) {
+function createData(name, cis, expiration, quantity, price, dellRow) {
   return {
     name,
     cis,
-    expirationDate,
+    expiration,
     quantity,
     price,
     dellRow,
@@ -114,14 +114,10 @@ const InventoryTable = ({
     createData(
       article.name,
       article.cis,
-      article.expirationDate,
+      article.expiration,
       <Box>
         {article.quantity}
-        <IconButton
-          aria-label="edit"
-          onClick={handleEditClickBtn}
-          className="edit-btn"
-        >
+        <IconButton aria-label="edit" onClick={handleEditClickBtn} className="edit-btn">
           <EditIcon />
         </IconButton>
         <form className="edit-tools hidden" onSubmit={handleSubmitForm}>
@@ -133,12 +129,7 @@ const InventoryTable = ({
             type="number"
             name={article.cis}
           />
-          <IconButton
-            color="primary"
-            className="save-btn"
-            name={article.cis}
-            type="submit"
-          >
+          <IconButton color="primary" className="save-btn" name={article.cis} type="submit">
             <SaveIcon />
           </IconButton>
         </form>
@@ -151,8 +142,8 @@ const InventoryTable = ({
         className="del-btn"
       >
         <DeleteIcon />
-      </IconButton>
-    )
+      </IconButton>,
+    ),
   );
 
   return (
@@ -173,28 +164,24 @@ const InventoryTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow
-                  hover
-                  role="checkbox"
-                  tabIndex={-1}
-                  key={row.code}
-                  className={classes.tableRow}
-                >
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <TableRow
+                hover
+                role="checkbox"
+                tabIndex={-1}
+                key={row.code}
+                className={classes.tableRow}
+              >
+                {columns.map((column) => {
+                  const value = row[column.id];
+                  return (
+                    <TableCell key={column.id} align={column.align}>
+                      {column.format && typeof value === 'number' ? column.format(value) : value}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

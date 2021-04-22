@@ -30,8 +30,6 @@ const App = ({ isLoading, logged, rehydrate }) => {
   return (
     <div className="app">
       <SnackBar />
-      {/* Mise en place du composant "Switch"
-     de react-router-dom pour la mise en place du routing des pages */}
       <Switch>
         <Route exact path="/">
           <HomePage />
@@ -39,27 +37,19 @@ const App = ({ isLoading, logged, rehydrate }) => {
         <Route exact path="/login">
           {logged ? <Redirect to="/profil" /> : <LoginForm />}
         </Route>
-        <Route path="/profil">{!logged ? <Redirect to="/login" /> : <ProfilPage />}</Route>
-        <Route path="/inventory">
-          <InventoryPage />
-        </Route>
-        <Route path="/products">
-          <PharmacyPage />
-        </Route>
-        <Route path="/product/id">
-          <ProductPage />
-        </Route>
-        <Route path="/searchproduct">
-          <SearchProduct />
-        </Route>
+        <Route path="/profil">{!logged ? <Redirect to="/" /> : <ProfilPage />}</Route>
+        <Route path="/inventory">{!logged ? <Redirect to="/" /> : <InventoryPage />}</Route>
+        <Route path="/products">{!logged ? <Redirect to="/" /> : <PharmacyPage />}</Route>
+        <Route path="/product/id">{!logged ? <Redirect to="/" /> : <ProductPage />}</Route>
+        <Route path="/searchproduct">{!logged ? <Redirect to="/" /> : <SearchProduct />}</Route>
         <Route path="/searchestablishement">
-          <SearchPharmachy />
+          {!logged ? <Redirect to="/" /> : <SearchPharmachy />}
+        </Route>
+        <Route exact path="/cart">
+          {!logged ? <Redirect to="/" /> : <Cart />}
         </Route>
         <Route exact path="/teampage">
           <TeamPage />
-        </Route>
-        <Route exact path="/cart">
-          <Cart />
         </Route>
         <Route path="*">
           <Page404 />

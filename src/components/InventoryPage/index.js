@@ -1,5 +1,5 @@
 // Import React
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Import from MATERIAL-UI
@@ -17,19 +17,21 @@ import InventoryTable from 'src/containers/Tables/InventoryTable';
 // Import CSS
 import './styles.scss';
 
-const InventoryPage = ({ inventoryData, handleAddArticle }) => {
+const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory }) => {
   // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
+
+  /* 
+A DECOMMENTER QUAND LE MIDDLEWARE INVENTORY SERA CONNECTER AU BACK
+  useEffect(()=>{
+    fetchInventory()
+}, [inventoryData])
+*/
   const handleAddArticleBtn = () => {
     handleAddArticle();
   };
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />

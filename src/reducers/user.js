@@ -52,16 +52,16 @@ const reducer = (state = initialState, action = {}) => {
       // Je met le token dans les params de l'api
       api.defaults.headers.common.Authorization = `Bearer ${action.accesToken}`;
       const {
-        user_id,
+        id: user_id,
         email,
         establishment,
         rpps,
         city,
         region,
         address,
-        zipcode: zipCode,
-        phonenumber: phoneNumber,
-        usertype: userType,
+        zip_code: zipCode,
+        phone_number: phoneNumber,
+        user_type: userType,
       } = action.user;
       return {
         ...state,

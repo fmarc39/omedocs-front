@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './styles.scss';
+import Footer from 'src/components/Footer';
+
 import { HiMenu } from 'react-icons/hi';
 import { GrClose } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
@@ -138,6 +140,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -62,15 +62,15 @@ export default (store) => (next) => (action) => {
         .then(({ user, accessToken }) => {
           // Je stock le token et le user dans le localStorage
           localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('user_id', user.user[0].user_id);
+          localStorage.setItem('user_id', user.user[0].id);
           localStorage.setItem('establishment', user.user[0].establishment);
           localStorage.setItem('email', user.user[0].email);
-          localStorage.setItem('phoneNumber', user.user[0].phonenumber);
+          localStorage.setItem('phoneNumber', user.user[0].phone_number);
           localStorage.setItem('rpps', user.user[0].rpps);
           localStorage.setItem('city', user.user[0].city);
           localStorage.setItem('address', user.user[0].address);
-          localStorage.setItem('zipCode', user.user[0].zipcode);
-          localStorage.setItem('userType', user.user[0].usertype);
+          localStorage.setItem('zipCode', user.user[0].zip_code);
+          localStorage.setItem('userType', user.user[0].user_type);
           // Dispatch LOGIN
           store.dispatch(login(user.user[0], accessToken));
           // Success Message
