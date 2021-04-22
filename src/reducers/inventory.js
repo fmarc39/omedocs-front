@@ -1,7 +1,6 @@
-import { SAVE_NEW_PRODUCT_IN_INVENTORY } from 'src/actions/utils';
 import {
-  HANDLE_CHANGE_QUANTITY_VALUE,
   DELETE_ROW_FROM_STATE,
+  SAVE_NEW_PRODUCT_IN_INVENTORY,
 } from 'src/actions/inventory';
 
 export const initialState = {
@@ -29,11 +28,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         drugs: [...state.drugs, action.value],
-      };
-    case HANDLE_CHANGE_QUANTITY_VALUE:
-      return {
-        ...state,
-        [action.fieldName]: action.value,
       };
     case DELETE_ROW_FROM_STATE:
       return {

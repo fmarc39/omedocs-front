@@ -58,7 +58,6 @@ const ModalAddProduct = ({
 
   const handleOnSubmit = (evt) => {
     evt.preventDefault();
-    console.log('ok');
     onSubmit();
   };
 

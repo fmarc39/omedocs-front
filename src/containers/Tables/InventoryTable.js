@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Table from 'src/components/InventoryPage/InventoryTableBeta';
+import Table from 'src/components/InventoryPage/InventoryTable';
 import {
   deleteRowFromInventory,
   saveNewQuantityFromInventory,
@@ -14,8 +14,8 @@ const mapDispatchToProps = (dispatch) => ({
   handleDeleteCLick: (rowId) => {
     dispatch(deleteRowFromInventory(rowId));
   },
-  handleSaveClick: () => {
-    dispatch(saveNewQuantityFromInventory());
+  handleSubmit: (fieldValue, fieldId) => {
+    dispatch(saveNewQuantityFromInventory(fieldValue, fieldId));
   },
   handleChangeQuantity: (value, fieldName) => {
     dispatch(handleChangeQuantityValue(value, fieldName));
