@@ -13,12 +13,11 @@ export default (store) => (next) => (action) => {
       // on fait une requête pour ajouter le produit en back
 
       // On récupère l'id de l'user pour l'envoyer au back
-      const { id } = store.getState.user;
+      const { user_id } = store.getState.user;
       // On récupère les champs du form dans le state pour les envoyers au back
       const {
         name,
         cis,
-        pathology,
         quantity,
         price,
         expiration,
@@ -27,11 +26,10 @@ export default (store) => (next) => (action) => {
         .post('/addproduct', {
           name,
           cis,
-          pathology,
           quantity,
           price,
           expiration,
-          id,
+          user_id,
         })
         .then((product) => {
           console.log(product);

@@ -1,5 +1,5 @@
 // Import React
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // Import from MATERIAL-UI
@@ -98,8 +98,14 @@ const InventoryTable = ({
     handleChangeQuantity(event.target.value, event.target.name);
   };
 
-  // Gestion du click sur le btn de sauvegarde
-  const handleSaveClickBtn = (event) => {
+  // Gestion de la soumission du formulaire quantity
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    const newFormObj = new FormData(event.target);
+    const data = Array.from(newFormObj.entries());
+    const fieldValue = data[0][1];
+    const fieldName = data[0][0];
+    console.log(fieldName, fieldValue);
     handleSaveClick();
   };
 
@@ -118,7 +124,7 @@ const InventoryTable = ({
         >
           <EditIcon />
         </IconButton>
-        <form className="edit-tools hidden">
+        <form className="edit-tools hidden" onSubmit={handleSubmitForm}>
           <TextField
             className="quantity-input"
             onChange={handleChangeQuantityInput}
@@ -130,9 +136,9 @@ const InventoryTable = ({
           />
           <IconButton
             color="primary"
-            onClick={handleSaveClickBtn}
             className="save-btn"
             name={article.cis}
+            type="submit"
           >
             <SaveIcon />
           </IconButton>
