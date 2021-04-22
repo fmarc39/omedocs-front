@@ -3,7 +3,7 @@ import { OPEN_VALIDATION_CHANGE_MODAL, CLOSE_VALIDATION_CHANGE_MODAL } from 'src
 import api from 'src/api/api';
 
 export const initialState = {
-  id: null,
+  user_id: null,
   establishment: '',
   emailConnexion: '',
   email: '',
@@ -45,14 +45,14 @@ const reducer = (state = initialState, action = {}) => {
         address: action.address,
         zipCode: action.zipCode,
         userType: action.userType,
-        id: action.id,
+        user_id: action.user_id,
         logged: true,
       };
     case LOGIN: {
       // Je met le token dans les params de l'api
       api.defaults.headers.common.Authorization = `Bearer ${action.accesToken}`;
       const {
-        id,
+        user_id,
         email,
         establishment,
         rpps,
@@ -65,7 +65,7 @@ const reducer = (state = initialState, action = {}) => {
       } = action.user;
       return {
         ...state,
-        id,
+        user_id,
         email,
         establishment,
         rpps,
@@ -100,6 +100,7 @@ const reducer = (state = initialState, action = {}) => {
         passwordConnexion: '',
         password: '',
         confirmPassword: '',
+        user_id: null,
         token: null,
         logged: false,
       };

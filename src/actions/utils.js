@@ -9,6 +9,10 @@ export const CLOSE_VALIDATION_CHANGE_MODAL = 'CLOSE_VALIDATION_CHANGE_MODAL';
 export const OPEN_ERROR_INPUT_VALIDATION = 'OPEN_ERROR_INPUT_VALIDATION';
 export const CLOSE_ERROR_INPUT_VALIDATION = 'CLOSE_ERROR_INPUT_VALIDATION';
 
+export const CLOSE_POP_LIST_API = 'CLOSE_POP_LIST_API';
+export const OPEN_POP_LIST_API = 'OPEN_POP_LIST_API';
+export const APPLY_INFO_DRUGS_API = 'APPLY_INFO_DRUGS_API';
+
 // action creators
 export const closeModalProduct = () => ({
   type: CLOSE_MODAL_PRODUCT,
@@ -49,4 +53,18 @@ export const openErrorInputValidation = (message) => ({
 
 export const closeErrorInputValidation = () => ({
   type: CLOSE_ERROR_INPUT_VALIDATION,
+});
+
+export const closePopListApi = () => ({
+  type: CLOSE_POP_LIST_API,
+});
+
+export const openPopListApi = () => ({
+  type: OPEN_POP_LIST_API,
+});
+
+export const applyInfoDrugsApi = (name, cis) => ({
+  type: APPLY_INFO_DRUGS_API,
+  name,
+  cis,
 });

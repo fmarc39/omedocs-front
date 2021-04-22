@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import AccordionsPharmacyDetails from 'src/components/PharmacyPage/accordion';
-import {} from 'src/actions/drugsApi';
 
 const mapStateToProps = (state) => ({
   establishment: state.user.establishment,

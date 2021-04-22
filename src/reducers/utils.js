@@ -6,10 +6,13 @@ import {
   OPEN_SNACKBAR,
   OPEN_ERROR_INPUT_VALIDATION,
   CLOSE_ERROR_INPUT_VALIDATION,
+  APPLY_INFO_DRUGS_API,
+  CLOSE_POP_LIST_API,
+  OPEN_POP_LIST_API,
 } from 'src/actions/utils';
-import { APPLY_INFO_DRUGS_API } from 'src/actions/drugsApi';
 
 const initialState = {
+  activePopList: false,
   errorInputValidation: {
     message: '',
     open: true,
@@ -21,6 +24,7 @@ const initialState = {
     typeColor: '', // success | info | warning | error
   },
   product: {
+    id: '',
     name: '',
     cis: '',
     quantity: '',
@@ -94,6 +98,16 @@ export default (state = initialState, action = {}) => {
           message: action.message,
           typeColor: action.typeColor,
         },
+      };
+    case CLOSE_POP_LIST_API:
+      return {
+        ...state,
+        activePopList: false,
+      };
+    case OPEN_POP_LIST_API:
+      return {
+        ...state,
+        activePopList: true,
       };
 
     default:

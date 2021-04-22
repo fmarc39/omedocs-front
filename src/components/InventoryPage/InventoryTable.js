@@ -27,18 +27,16 @@ const columns = [
     minWidth: 200,
     type: 'date',
   },
-  { id: 'pathology', label: 'Pathologie', minWidth: 200 },
   { id: 'quantity', label: 'Quantité', minWidth: 200 },
   { id: 'price', label: 'Prix H.T', minWidth: 200, type: 'number' },
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, cis, expirationDate, pathology, quantity, price) {
+function createData(name, cis, expirationDate, quantity, price) {
   return {
     name,
     cis,
     expirationDate,
-    pathology,
     quantity,
     price,
   };
@@ -73,14 +71,7 @@ const InventoryTable = ({ inventoryData }) => {
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
   const rows = inventoryData.map((article) =>
-    createData(
-      article.name,
-      article.cis,
-      article.expirationDate,
-      article.pathology,
-      article.quantity,
-      article.price
-    )
+    createData(article.name, article.cis, article.expirationDate, article.quantity, article.price),
   );
 
   return (
@@ -101,22 +92,18 @@ const InventoryTable = ({ inventoryData }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                {columns.map((column) => {
+                  const value = row[column.id];
+                  return (
+                    <TableCell key={column.id} align={column.align}>
+                      {column.format && typeof value === 'number' ? column.format(value) : value}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
