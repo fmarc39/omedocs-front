@@ -23,7 +23,6 @@ const initialState = {
   product: {
     name: '',
     cis: '',
-    pathology: '',
     quantity: '',
     price: '',
     expiration: '',
@@ -73,7 +72,6 @@ export default (state = initialState, action = {}) => {
           ...state.product,
           name: action.name,
           cis: action.cis,
-          pathology: action.pathology,
         },
       };
     case CLOSE_SNACKBAR:

@@ -36,7 +36,6 @@ const ModalAddProduct = ({
   closeModal, // dispatch fonction to close modal
   nameValue, // fieldValue
   cisValue, // fieldValue
-  pathologyValue, // fieldValue
   quantityValue, // fieldValue
   priceValue, // fieldValue
   expirationValue, // fieldValue
@@ -51,7 +50,7 @@ const ModalAddProduct = ({
   };
 
   const handlerOnChange = (evt) => {
-    if (evt.target.name === 'name') openPopList();
+    if (evt.target.name === 'name' && evt.target.value.length >= 4) openPopList();
     onChange(evt.target.value, evt.target.name);
   };
 
@@ -74,8 +73,7 @@ const ModalAddProduct = ({
         borderRadius="20px"
         position="relative"
       >
-        {activePopList && <PopListApi />}
-        {console.log(open)}
+        {activePopList && nameValue.length >= 4 && <PopListApi />}
 
         <Typography variant="h5" component="h5">
           Rajouter un produit
@@ -90,7 +88,7 @@ const ModalAddProduct = ({
             onChange={handlerOnChange}
             required
             autoFocus
-            autoComplete={false}
+            autoComplete="false"
           />
           <TextField
             className={classes.textField}
@@ -102,15 +100,7 @@ const ModalAddProduct = ({
             onChange={handlerOnChange}
             required
           />
-          <TextField
-            className={classes.textField}
-            variant="outlined"
-            label="Pathologie"
-            name="pathology"
-            value={pathologyValue}
-            onChange={handlerOnChange}
-            required
-          />
+        
           <TextField
             className={classes.textField}
             variant="outlined"
@@ -159,7 +149,6 @@ ModalAddProduct.propTypes = {
   onChange: PropTypes.func,
   nameValue: PropTypes.string,
   cisValue: PropTypes.string,
-  pathologyValue: PropTypes.string,
   quantityValue: PropTypes.string,
   priceValue: PropTypes.string,
   expirationValue: PropTypes.string,
@@ -173,7 +162,6 @@ ModalAddProduct.defaultProps = {
   onChange: () => {},
   nameValue: '',
   cisValue: null,
-  pathologyValue: '',
   quantityValue: null,
   priceValue: null,
   expirationValue: '',

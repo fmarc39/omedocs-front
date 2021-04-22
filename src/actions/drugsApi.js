@@ -14,9 +14,8 @@ export const openPopListApi = () => ({
   type: OPEN_POP_LIST_API,
 });
 
-export const applyInfoDrugsApi = (name, cis, pathology) => ({
+export const applyInfoDrugsApi = (name, cis) => ({
   type: APPLY_INFO_DRUGS_API,
   name,
   cis,
-  pathology,
 });

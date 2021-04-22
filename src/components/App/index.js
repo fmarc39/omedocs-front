@@ -20,11 +20,13 @@ import Page404 from 'src/components/404';
 import SnackBar from 'src/containers/SnackBar';
 
 import './styles.scss';
+import { DonutLargeSharp } from '@material-ui/icons';
 
 const App = ({ isLoading, logged, rehydrate }) => {
   useEffect(() => {
     rehydrate();
   }, []);
+
   return (
     <div className="app">
       <SnackBar />
