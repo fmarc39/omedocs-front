@@ -12,6 +12,13 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+import SaveIcon from '@material-ui/icons/Save';
+import Grow from '@material-ui/core/Grow';
 
 // Import CSS styles
 
@@ -27,18 +34,20 @@ const columns = [
     minWidth: 200,
     type: 'date',
   },
-  { id: 'quantity', label: 'Quantité', minWidth: 200 },
-  { id: 'price', label: 'Prix H.T', minWidth: 200, type: 'number' },
+  { id: 'quantity', label: 'Quantité', minWidth: 50 },
+  { id: 'price', label: 'Prix H.T', minWidth: 50, type: 'number' },
+  { id: 'dellRow', minWidth: 50 },
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, cis, expirationDate, quantity, price) {
+function createData(name, cis, expirationDate, quantity, price, dellRow) {
   return {
     name,
     cis,
     expirationDate,
     quantity,
     price,
+    dellRow,
   };
 }
 
@@ -47,13 +56,19 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
   },
+
   container: {
     minHeight: 350,
     minWidth: 700,
   },
 });
 
-const InventoryTable = ({ inventoryData }) => {
+const InventoryTable = ({
+  inventoryData,
+  handleDeleteCLick,
+  handleSubmit,
+  handleChangeQuantity,
+}) => {
   const classes = useStyles();
 
   const [page, setPage] = React.useState(0);
@@ -68,10 +83,76 @@ const InventoryTable = ({ inventoryData }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  // Gestion du click sur le btn delete
+  const handleDeleteCLickBtn = (event) => {
+    handleDeleteCLick(event.target.closest('.del-btn').name);
+  };
+
+  // Gestion du click sur le btn edit
+  const handleEditClickBtn = (event) => {
+    event.target.closest('.edit-btn').nextSibling.classList.toggle('hidden');
+  };
+
+  // Gestion de la soumission du formulaire quantity
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    // On cible tous les form de notre liste
+    const allForms = document.querySelectorAll('.edit-tools');
+    // A la soumission on boucle sur tous les elements
+    // de l'inventaire pour ajouter la classe 'hidden'
+    allForms.forEach((form) => form.classList.add('hidden'));
+    // Fonction qui va récuperer les données et l'ID du form 'edit-quantity'
+    const newFormObj = new FormData(event.target);
+    const data = Array.from(newFormObj.entries());
+    const fieldValue = data[0][1];
+    const fieldId = data[0][0];
+    handleSubmit(fieldValue, fieldId);
+  };
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
   const rows = inventoryData.map((article) =>
-    createData(article.name, article.cis, article.expirationDate, article.quantity, article.price),
+    createData(
+      article.name,
+      article.cis,
+      article.expirationDate,
+      <Box>
+        {article.quantity}
+        <IconButton
+          aria-label="edit"
+          onClick={handleEditClickBtn}
+          className="edit-btn"
+        >
+          <EditIcon />
+        </IconButton>
+        <form className="edit-tools hidden" onSubmit={handleSubmitForm}>
+          <TextField
+            className="quantity-input"
+            label="quantité"
+            variant="outlined"
+            size="small"
+            type="number"
+            name={article.cis}
+          />
+          <IconButton
+            color="primary"
+            className="save-btn"
+            name={article.cis}
+            type="submit"
+          >
+            <SaveIcon />
+          </IconButton>
+        </form>
+      </Box>,
+      article.price,
+      <IconButton
+        aria-label="delete"
+        onClick={handleDeleteCLickBtn}
+        name={article.cis}
+        className="del-btn"
+      >
+        <DeleteIcon />
+      </IconButton>
+    )
   );
 
   return (
@@ -92,18 +173,28 @@ const InventoryTable = ({ inventoryData }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof value === 'number' ? column.format(value) : value}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={row.code}
+                  className={classes.tableRow}
+                >
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
@@ -123,6 +214,9 @@ const InventoryTable = ({ inventoryData }) => {
 
 InventoryTable.propTypes = {
   inventoryData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleDeleteCLick: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleChangeQuantity: PropTypes.func.isRequired,
 };
 
 export default InventoryTable;

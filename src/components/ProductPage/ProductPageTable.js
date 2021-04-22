@@ -15,14 +15,13 @@ import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-
+import Box from '@material-ui/core/Box';
 // Configuration des colones avec le nom, le label, la largeur
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300 },
   { id: 'quantity', label: 'Quantité disponible', minWidth: 100 },
   { id: 'price', label: 'Prix unitaire H.T', minWidth: 100 },
-  { id: 'quantityToBuy', label: 'Quantité', minWidth: 100 },
-  { id: 'addToCart', minWidth: 200 },
+  { id: 'addToCart', minWidth: 100 },
 ];
 
 // Fonction qui va insérer les données dans le tableau
@@ -31,7 +30,6 @@ function createData(name, quantity, price, quantityToBuy, addToCart) {
     name,
     quantity,
     price,
-    quantityToBuy,
     addToCart,
   };
 }
@@ -72,14 +70,17 @@ const ProductTable = ({ productResultsData }) => {
       pharmacy.quantity,
       pharmacy.price + ' €',
       <TextField id="quantity" label="quantité" type="number" />,
-      <Button
-        variant="contained"
-        type="submit"
-        color="primary"
-        endIcon={<AddShoppingCartIcon />}
-      >
-        Ajouter au panier
-      </Button>
+      <Box display="flex" justifyContent="flex-end" alignItems="center">
+        <TextField id="quantity" label="quantité" type="number" />,
+        <Button
+          variant="contained"
+          type="submit"
+          color="primary"
+          endIcon={<AddShoppingCartIcon />}
+        >
+          Ajouter au panier
+        </Button>
+      </Box>
     )
   );
   return (

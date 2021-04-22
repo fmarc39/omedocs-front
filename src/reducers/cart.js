@@ -1,5 +1,3 @@
-import /* actions */ 'src/actions/dataApi';
-
 export const initialState = {
   nbOfArticles: 1,
 };

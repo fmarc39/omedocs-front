@@ -1,25 +1,25 @@
-import /* actions */ 'src/actions/dataApi';
+import { DELETE_ROW_FROM_STATE, SAVE_NEW_PRODUCT_IN_INVENTORY } from 'src/actions/inventory';
 
 export const initialState = {
   drugs: [
     {
       name: 'DOLIPRANE 500mg',
       cis: '515445',
-      expirationDate: '05/06/2021',
+      expiration: '05/06/2021',
       quantity: '12',
       price: '1',
     },
     {
       name: 'DOLIPRANE 500mg',
       cis: '515445',
-      expirationDate: '05/06/2021',
+      expiration: '05/06/2021',
       quantity: '12',
       price: '1',
     },
     {
       name: 'DOLIPRANE 500mg',
       cis: '515445',
-      expirationDate: '05/06/2021',
+      expiration: '05/06/2021',
       quantity: '12',
       price: '1',
     },
@@ -28,6 +28,15 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SAVE_NEW_PRODUCT_IN_INVENTORY:
+      return {
+        ...state,
+        drugs: [...state.drugs, action.value],
+      };
+    case DELETE_ROW_FROM_STATE:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
