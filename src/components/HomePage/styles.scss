@@ -133,6 +133,7 @@
     width: 100%;
     min-height: 100vh;
     padding: 10px;
+    color: black;
     &__header {
       display: flex;
       justify-content: center;
@@ -143,7 +144,7 @@
       // style répétitif
       &--title {
         color: black;
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 700;
         margin-left: 20px;
       }
@@ -156,8 +157,7 @@
 
       margin-top: 200px;
       &--text {
-        color: #fff;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 700;
         line-height: 1.2;
         max-width: 400px;
@@ -168,11 +168,10 @@
 
       &--img {
         border-radius: 20px;
-        box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
         margin-left: 30px;
         width: 600px;
         height: 400px;
-        background: url('src/assets/img/pills.webp') center center;
+        background: url('src/assets/img/pharmacy-back.jpg') center center;
         background-size: cover;
       }
     }
@@ -184,20 +183,19 @@
 
   .why {
     width: 100%;
-    min-height: 80vh;
+    min-height: 100vh;
     padding: 20px;
 
     &__header {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 100px;
+      margin-top: 2.5rem
       &--chip {
       }
       &--title {
-        color: #fff;
-        text-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.3);
-        font-size: 2.5rem;
+        color: black;
+        font-size: 2rem;
         font-weight: 700;
         margin-left: 20px;
       }
@@ -212,10 +210,11 @@
         text-align: center;
         padding: 20px;
         width: 250px;
-        box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
         border-radius: 20px;
         margin: 24px;
-        transition: all 0.3s;
+        background-color: white;
+        transition: transform ease-in-out 0.2s;
 
         &-img {
           width: 100px;
@@ -227,7 +226,7 @@
         }
       }
       &--card:hover {
-        transform: scale(1.2);
+        transform: scale(1.05);
       }
     }
   }
@@ -242,9 +241,8 @@
       align-items: center;
       margin-top: 100px;
       &--title {
-        color: #fff;
-        text-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.3);
-        font-size: 2.5rem;
+        color: black;
+        font-size: 2rem;
         font-weight: 700;
         margin-left: 20px;
       }
@@ -258,16 +256,16 @@
         flex-wrap: wrap;
         &__text {
           width: 200px;
-          color: #fff;
+          color: black;
           font-size: 1.3rem;
           margin: 30px 100px;
         }
 
         &__img {
-          box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
           width: 300px;
           height: 200px;
-          background-color: blanchedalmond;
+          background-color: white;
           text-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.3);
           border-radius: 10px;
           margin: 30px 100px;
@@ -280,16 +278,16 @@
         justify-content: center;
         flex-wrap: wrap;
         &__img {
-          box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
           width: 300px;
           height: 200px;
-          background-color: blanchedalmond;
+          background-color: white;
           border-radius: 10px;
           margin: 30px 100px;
         }
         &__text {
           width: 200px;
-          color: #fff;
+          color: black;
           font-size: 1.3rem;
           margin: 30px 100px;
         }
@@ -330,7 +328,7 @@
       }
     }
     .header__title {
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
     .isActive {

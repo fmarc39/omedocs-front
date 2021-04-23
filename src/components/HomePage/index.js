@@ -8,11 +8,9 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import classNames from 'classnames';
-import Box from '@material-ui/core/Box';
 
 // image
 import logo from 'src/assets/img/mortier.svg';
-import chip from 'src/assets/img/pill.svg';
 import pharmacy from 'src/assets/img/pharmacie.svg';
 import hopital from 'src/assets/img/hopital.svg';
 import money from 'src/assets/img/bank.svg';
@@ -118,6 +116,13 @@ const HomePage = () => {
           </p>
           <div className="goal__content--img" />
         </div>
+        <a onClick={handleScrollDownBtn}>
+          <img
+            src={scrollBtn}
+            alt="scroll-btn"
+            className="header__scroll-btn"
+          />
+        </a>
       </div>
       <div className="why" id="why">
         <div className="why__header">
