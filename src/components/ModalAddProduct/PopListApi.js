@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import drugsData from 'src/data/drugs.json';
 import { Box, List, Typography } from '@material-ui/core';
 import ListItems from './ListItems';
-import drugsData from 'src/data/drugs.json';
 
 const PopListApi = ({
   closePopList, // PopList closing function
@@ -39,7 +39,7 @@ const PopListApi = ({
       left="335px"
       zIndex="10"
     >
-      {/* Si il n'y a pas de résultat j'affiche un message d'erreur à la place de la liste*/}
+      {/* Si il n'y a pas de résultat j'affiche un message d'erreur à la place de la liste */}
       {drugs.length === 0 ? (
         <Typography variant="body1">Pas de résultat...</Typography>
       ) : (

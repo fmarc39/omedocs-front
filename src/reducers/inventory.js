@@ -5,32 +5,7 @@ import {
 } from 'src/actions/inventory';
 
 export const initialState = {
-  drugs: [
-    {
-      name: 'DOLIPRANE 500mg',
-      cis: '515445',
-      expiration: '05/06/2021',
-      quantity: '12',
-      price: '1',
-      id: 1548,
-    },
-    {
-      name: 'DOLIPRANE 500mg',
-      cis: '515445',
-      expiration: '05/06/2021',
-      quantity: '12',
-      price: '1',
-      id: 1544,
-    },
-    {
-      name: 'DOLIPRANE 500mg',
-      cis: '515445',
-      expiration: '05/06/2021',
-      quantity: '12',
-      price: '1',
-      id: 1585,
-    },
-  ],
+  drugs: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -38,7 +13,7 @@ const reducer = (state = initialState, action = {}) => {
     case SAVE_INVENTORY:
       return {
         ...state,
-        drugs: [...state.drugs, ...action.drugs],
+        drugs: [...action.drugs],
       };
     case SAVE_NEW_PRODUCT_IN_INVENTORY:
       return {

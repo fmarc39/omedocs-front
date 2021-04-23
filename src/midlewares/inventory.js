@@ -13,16 +13,20 @@ export default (store) => (next) => (action) => {
   switch (action.type) {
     // Récupérer l'inventaire
     case FETCH_INVENTORY:
-      api
-        .get('/inventory')
-        .then((result) => result.data)
-        .then((inventory) => {
-          // sauvegarder l'inventaire dans le state
-          store.dispatch(saveInventory(inventory));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      {
+        const { user_id } = store.getState().user;
+        api
+          .get(`/inventory/${user_id}`)
+          .then((result) => result.data)
+          .then(({ userInventory }) => {
+            console.log(userInventory);
+            // sauvegarder l'inventaire dans le state
+            store.dispatch(saveInventory(userInventory));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
       return next(action);
     case DELETE_ROW_FROM_INVENTORY: {
       api
@@ -52,11 +56,11 @@ export default (store) => (next) => (action) => {
           expiration,
           user_id,
         })
-        //TODO: ATTENTION : Destructurer product?
-        .then((drug) => {
-          console.log(drug);
+        .then((result) => result.data)
+        .then(({ addedProduct }) => {
+          console.log(addedProduct);
           // On dispatch l'action qui va sauvegarder le nouveau produit dans la state
-          store.dispatch(saveNewProductInInventory(drug));
+          store.dispatch(saveNewProductInInventory(addedProduct[0]));
           store.dispatch(closeModalProduct());
           store.dispatch(openSnackBar("Le produit a bien été rajouter à l'inventaire", 'success'));
         })

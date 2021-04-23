@@ -54,6 +54,15 @@ export default (state = initialState, action = {}) => {
     case CLOSE_MODAL_PRODUCT:
       return {
         ...state,
+        product: {
+          id: '',
+          name: '',
+          cis: '',
+          quantity: '',
+          price: '',
+          expiration: '',
+        },
+
         openModalProduct: false,
       };
     case OPEN_MODAL_PRODUCT:

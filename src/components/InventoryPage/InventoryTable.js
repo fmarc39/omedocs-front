@@ -59,6 +59,7 @@ const useStyles = makeStyles({
 
   container: {
     minHeight: 350,
+    maxHeight: 507,
     minWidth: 700,
   },
 });
@@ -113,8 +114,8 @@ const InventoryTable = ({
   const rows = inventoryData.map((article) =>
     createData(
       article.name,
-      article.cis,
-      article.expiration,
+      article.cis_code,
+      article.expiration_date,
       <Box>
         {article.quantity}
         <IconButton aria-label="edit" onClick={handleEditClickBtn} className="edit-btn">
@@ -127,18 +128,18 @@ const InventoryTable = ({
             variant="outlined"
             size="small"
             type="number"
-            name={article.cis}
+            name={article.cis_code}
           />
           <IconButton color="primary" className="save-btn" name={article.cis} type="submit">
             <SaveIcon />
           </IconButton>
         </form>
       </Box>,
-      article.price,
+      article.unit_price,
       <IconButton
         aria-label="delete"
         onClick={handleDeleteCLickBtn}
-        name={article.cis}
+        name={article.cis_code}
         className="del-btn"
       >
         <DeleteIcon />
@@ -149,7 +150,7 @@ const InventoryTable = ({
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader aria-label="sticky table" size="small">
           <TableHead>
             <TableRow>
               {columns.map((column) => (

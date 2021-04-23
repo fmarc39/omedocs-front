@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleAddArticle: () => {
     dispatch(openModalProduct());
   },
-  fecthInventory: () => dispatch(fetchInventory()),
+  fetchInventory: () => dispatch(fetchInventory()),
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps)(InventoryPage);

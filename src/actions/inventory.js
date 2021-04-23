@@ -46,4 +46,5 @@ export const fetchInventory = () => ({
 
 export const saveInventory = (drugs) => ({
   type: SAVE_INVENTORY,
+  drugs,
 });

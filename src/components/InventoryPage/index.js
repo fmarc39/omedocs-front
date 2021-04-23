@@ -20,12 +20,10 @@ import './styles.scss';
 const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory }) => {
   // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
 
-  /* 
-A DECOMMENTER QUAND LE MIDDLEWARE INVENTORY SERA CONNECTER AU BACK
-  useEffect(()=>{
-    fetchInventory()
-}, [inventoryData])
-*/
+  useEffect(() => {
+    fetchInventory();
+  }, []);
+
   const handleAddArticleBtn = () => {
     handleAddArticle();
   };
@@ -83,6 +81,7 @@ A DECOMMENTER QUAND LE MIDDLEWARE INVENTORY SERA CONNECTER AU BACK
 InventoryPage.propTypes = {
   inventoryData: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleAddArticle: PropTypes.func.isRequired,
+  fetchInventory: PropTypes.func.isRequired,
 };
 
 export default InventoryPage;
