@@ -80,6 +80,7 @@
 
         &__login {
           margin-left: auto;
+          position: absolute
         }
       }
     }
@@ -116,6 +117,12 @@
     &__hamburger:hover {
       transform: scale(1.2);
     }
+  }
+
+  .header__login-btn {
+    position: absolute;
+    right: 30px;
+    top: 30px
   }
 
   /*----------------------------------------------------------------
@@ -402,7 +409,7 @@
   width: 100%;
 }
 .animated-title > div div {
-  font-size: 6vmin;
+  font-size: 5vmin;
   padding: 2vmin 0;
   position: absolute;
 }

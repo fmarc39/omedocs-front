@@ -22,8 +22,9 @@ import scrollBtn from 'src/assets/img/scroll.svg';
 const useStyles = makeStyles(() => ({
   button: {
     backgroundColor: '#2b88b4',
-    width: '150px',
-    borderRadius: '20px',
+    borderRadius: '30px',
+    padding: '.8rem',
+    fontSize: '1rem',
   },
 }));
 
@@ -81,25 +82,29 @@ const HomePage = () => {
             <div>de médicaments</div>
           </div>
         </div>
-        <Box display="flex" flexDirection="column">
-          <Link className="login" to="/login">
+        <a onClick={handleScrollDownBtn}>
+          <img
+            src={scrollBtn}
+            alt="scroll-btn"
+            className="header__scroll-btn"
+          />
+        </a>
+        <div className="header__login-btn">
+          <Link
+            className="login"
+            to="/login"
+            style={{ textDecoration: 'none' }}
+          >
             <Button
               className={classes.button}
               variant="contained"
               color="primary"
               size="large"
             >
-              Connexion
+              Connexion/ Inscription
             </Button>
           </Link>
-          <a onClick={handleScrollDownBtn}>
-            <img
-              src={scrollBtn}
-              alt="scroll-btn"
-              className="header__scroll-btn"
-            />
-          </a>
-        </Box>
+        </div>
       </header>
 
       <div className="goal" id="goal">
