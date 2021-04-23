@@ -2013,6 +2013,14 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, can
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001208.tgz"
   integrity sha512-OE5UE4+nBOro8Dyvv0lfx+SRtfVIOM9uhKqFmJeUbGriqhhStgp1A0OyBpgy3OUF8AhYCT+PVwPC1gMl2ZcQMA==
 
+card-validator@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/card-validator/-/card-validator-3.0.1.tgz#dcc2fabd6a1cd21f361b2536423a72de99a0894f"
+  integrity sha1-3ML6vWoc0h82GyU2Qjpy3pmgiU8=
+  dependencies:
+    credit-card-type "^5.0.0"
+    lodash "3.10.1"
+
 chalk@^2.0.0, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz"
@@ -2137,7 +2145,7 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
-clsx@^1.0.4:
+clsx@^1.0.4, clsx@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/clsx/-/clsx-1.1.1.tgz"
   integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
@@ -2393,6 +2401,11 @@ cosmiconfig@^7.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.10.0"
+
+credit-card-type@^5.0.0:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/credit-card-type/-/credit-card-type-5.0.4.tgz#2dd9df280411ce2bb91ed95ac31e814605717aed"
+  integrity sha1-LdnfKAQRziu5Htlawx6BRgVxeu0=
 
 cross-env@^7.0.3:
   version "7.0.3"
@@ -4850,10 +4863,20 @@ lodash.clonedeep@^4.5.0:
   resolved "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz"
   integrity sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=
 
+lodash.compact@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/lodash.compact/-/lodash.compact-3.0.1.tgz#540ce3837745975807471e16b4a2ba21e7256ca5"
+  integrity sha1-VAzjg3dFl1gHRx4WtKK6IeclbKU=
+
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
+
+lodash.every@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/lodash.every/-/lodash.every-4.6.0.tgz#eb89984bebc4364279bb3aefbbd1ca19bfa6c6a7"
+  integrity sha1-64mYS+vENkJ5uzrvu9HKGb+mxqc=
 
 lodash.flatten@^4.4.0:
   version "4.4.0"
@@ -4913,6 +4936,11 @@ lodash.noop@~2.3.0:
   resolved "https://registry.npmjs.org/lodash.noop/-/lodash.noop-2.3.0.tgz"
   integrity sha1-MFnWKNUbv5N80qC2/Dp/ISpmnCw=
 
+lodash.pick@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
+  integrity sha1-UvBWEP/53tQiYRRB7R/BI6AwAbM=
+
 lodash.support@~2.3.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/lodash.support/-/lodash.support-2.3.0.tgz"
@@ -4944,6 +4972,16 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
+
+lodash.values@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/lodash.values/-/lodash.values-4.3.0.tgz#a3a6c2b0ebecc5c2cba1c17e6e620fe81b53d347"
+  integrity sha1-o6bCsOvsxcLLocF+bmIP6BtT00c=
+
+lodash@3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
+  integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
 
 lodash@4.17.21, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21:
   version "4.17.21"
@@ -6437,7 +6475,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.7.2, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.7.2, prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -6577,6 +6615,31 @@ react-lifecycles-compat@^3.0.2:
   version "3.0.4"
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-native-credit-card-input@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-credit-card-input/-/react-native-credit-card-input-0.4.1.tgz#e62dd1a9beeab6787e5373ba23b93831cbf5f3de"
+  integrity sha1-5i3Rqb7qtnh+U3O6I7k4Mcv1894=
+  dependencies:
+    card-validator "^3.0.0"
+    lodash.compact "^3.0.1"
+    lodash.every "^4.6.0"
+    lodash.pick "^4.4.0"
+    lodash.values "^4.3.0"
+    prop-types "^15.6.0"
+    react-native-flip-card "^3.4.1"
+
+react-native-flip-card@^3.4.1:
+  version "3.5.6"
+  resolved "https://registry.yarnpkg.com/react-native-flip-card/-/react-native-flip-card-3.5.6.tgz#de26f0285aa6f8ee10bb4b696c60c6fb43bb580f"
+  integrity sha512-lqsjl4vF5DyHD7mjBJpyBoaLKVxalzoKfCosE63QF+TaCF9MKdJrxmGFQj/i64GDiMJqeS/5sNDcICUXtgFsVA==
+  dependencies:
+    prop-types "^15.5.10"
+
+react-native-keyboard-spacer@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
+  integrity sha1-RvGKMgQyCYol6p+on1FD3SVNMy0=
 
 react-redux@^7.2.3:
   version "7.2.3"
@@ -7731,6 +7794,11 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2, tiny-warning@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/tiny-warning/-/tiny-warning-1.0.3.tgz"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+tipsi-stripe@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/tipsi-stripe/-/tipsi-stripe-9.0.0.tgz#fd7e72167af297a5a5e1a5409e347cad5350b7fc"
+  integrity sha512-nOfFsRYlqvsr0zbDfCUmXypmZ8stWpp++zHmaKSVge67M5Sc4Swpg+p9+tBZYkssatg2MSYv1WRalCIni0TEIA==
 
 to-fast-properties@^2.0.0:
   version "2.0.0"
