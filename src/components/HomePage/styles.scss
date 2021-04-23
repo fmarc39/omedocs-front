@@ -9,16 +9,27 @@
   .chip {
     width: 40px;
   }
+  .scroll-btn {
+    margin-top: 2rem;
+    height: 3rem;
+    cursor: pointer;
+    animation: mover 1s infinite  alternate;
+    position: absolute;
+    left: calc(50% - 1.5rem);
+    bottom: 30px;
+
+  }
+
+  
 
   /*----------------------------------------------------------------
-                 HEADER
+                  HEADER
   -----------------------------------------------------------------*/
 
   .header {
     width: 100%;
     min-height: 100vh;
-    padding: 30px;
-    background: url('src/assets/img/adam-niescioruk-hWzrJsS8gwI-unsplash-min.jpg') center center no-repeat;
+    background: url('src/assets/img/header-bg.jpg') center center no-repeat;
     background-attachment: fixed;
     background-size: cover;
     text-align: center;
@@ -68,7 +79,7 @@
           content: '';
           width: 0;
           height: 3px;
-          background-color: #000;
+          background-color: #0368A3;
           transition: all 0.3s;
         }
 
@@ -97,15 +108,6 @@
       margin-bottom: 40px;
     }
 
-    &__scroll-btn {
-      margin-top: 2rem;
-      height: 3rem;
-      cursor: pointer;
-      animation: mover 1s infinite  alternate;
-      position: absolute;
-      left: calc(50% - 1.5rem);
-      bottom: 30px;
-    }
 
     &__hamburger {
       border: none;
@@ -132,38 +134,40 @@
   .goal {
     width: 100%;
     min-height: 100vh;
-    padding: 10px;
     color: black;
+    display: flex;
+    position: relative;
+    flex-direction: column;
     &__header {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 2.5rem;
       &--chip {
       }
       // style répétitif
       &--title {
         color: black;
+        height: 10%;
         font-size: 2rem;
-        font-weight: 700;
-        margin-left: 20px;
+        font-weight: bold;
+        margin: 2.5rem 0;
       }
     }
 
     &__content {
+      margin-top: 100px;
       display: flex;
       justify-content: center;
       align-items: center;
 
-      margin-top: 200px;
       &--text {
         font-size: 1.5rem;
-        font-weight: 700;
         line-height: 1.2;
         max-width: 400px;
         min-width: 200px;
         text-align: center;
         flex: none;
+        margin-right: 2.5rem;
       }
 
       &--img {
@@ -184,7 +188,7 @@
   .why {
     width: 100%;
     min-height: 100vh;
-    padding: 20px;
+    position: relative;
 
     &__header {
       display: flex;
@@ -198,6 +202,7 @@
         font-size: 2rem;
         font-weight: 700;
         margin-left: 20px;
+        margin: 2.5rem 0;
       }
     }
 
@@ -226,30 +231,29 @@
         }
       }
       &--card:hover {
-        transform: scale(1.05);
+        transform: scale(.98);
       }
     }
   }
 
   .services {
     width: 100%;
-    min-height: 80vh;
-    padding: 20px;
+    min-height: 100vh;
     .services__header {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 100px;
       &--title {
         color: black;
         font-size: 2rem;
         font-weight: 700;
         margin-left: 20px;
+        margin: 2.5rem 0;
       }
     }
     .services__content {
       .content-top {
-        margin-top: 100px;
+        margin-top: 2.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -263,8 +267,8 @@
 
         &__img {
           box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-          width: 300px;
-          height: 200px;
+          width: 350px;
+          height: 250px;
           background-color: white;
           text-shadow: 3px 0 5px rgba($color: #000000, $alpha: 0.3);
           border-radius: 10px;
@@ -272,15 +276,15 @@
         }
       }
       .content-bottom {
-        margin-top: 100px;
+        margin-top: 2.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
         &__img {
           box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-          width: 300px;
-          height: 200px;
+          width: 350px;
+          height: 250px;
           background-color: white;
           border-radius: 10px;
           margin: 30px 100px;

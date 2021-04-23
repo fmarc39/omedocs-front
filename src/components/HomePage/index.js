@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles.scss';
 import Footer from 'src/components/Footer';
+import { useInView } from 'react-intersection-observer';
 
 import { HiMenu } from 'react-icons/hi';
 import { GrClose } from 'react-icons/gr';
@@ -8,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import classNames from 'classnames';
+import Slide from '@material-ui/core/Slide';
 
 // image
 import logo from 'src/assets/img/mortier.svg';
@@ -19,7 +21,7 @@ import scrollBtn from 'src/assets/img/scroll.svg';
 
 const useStyles = makeStyles(() => ({
   button: {
-    backgroundColor: '#2b88b4',
+    backgroundColor: '#0368A3',
     borderRadius: '30px',
     padding: '.8rem',
     fontSize: '1rem',
@@ -36,6 +38,9 @@ const HomePage = () => {
     const pageHeight = window.innerHeight;
     window.scrollBy(0, pageHeight);
   };
+  const { ref, inView, entry } = useInView({
+    threshold: 0,
+  });
   return (
     <div className={classNames('homepage', { 'homepage--fixed': active })}>
       <header className="header">
@@ -81,11 +86,7 @@ const HomePage = () => {
           </div>
         </div>
         <a onClick={handleScrollDownBtn}>
-          <img
-            src={scrollBtn}
-            alt="scroll-btn"
-            className="header__scroll-btn"
-          />
+          <img src={scrollBtn} alt="scroll-btn" className="scroll-btn" />
         </a>
         <div className="header__login-btn">
           <Link
@@ -110,18 +111,15 @@ const HomePage = () => {
           <h2 className="goal__header--title"> Notre But</h2>
         </div>
         <div className="goal__content">
-          <p className="goal__content--text">
+          <p ref={ref} className="goal__content--text">
             Mettre en relation les professionnels de la santé pour luttre contre
-            le gaspillage des médicaments
+            le gaspillage des médicaments.
           </p>
+
           <div className="goal__content--img" />
         </div>
         <a onClick={handleScrollDownBtn}>
-          <img
-            src={scrollBtn}
-            alt="scroll-btn"
-            className="header__scroll-btn"
-          />
+          <img src={scrollBtn} alt="scroll-btn" className="scroll-btn" />
         </a>
       </div>
       <div className="why" id="why">
@@ -171,6 +169,9 @@ const HomePage = () => {
             </p>
           </div>
         </div>
+        <a onClick={handleScrollDownBtn}>
+          <img src={scrollBtn} alt="scroll-btn" className="scroll-btn" />
+        </a>
       </div>
       <div className="services" id="services">
         <div className="services__header">
