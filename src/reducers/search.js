@@ -7,7 +7,13 @@ export const initialState = {
   searchPharmacySelectValue: 'auvergne rhone alpes',
   searchPharmacyResult: [],
   searchProductResult: [],
-  productByPharmacyResults: [{ name: 'Doliprane', quantity: 1, price: 10 }],
+  productName: 'FENOFIBRATE TEVA 100 mg',
+  productCis: '6 000 228 5',
+  productByPharmacyResults: [
+    { name: 'Pharmacie de la gare', quantity: 99, price: 10 },
+    { name: 'Pharmacie du panier', quantity: 17, price: 3 },
+    { name: 'Pharacie de la drogue', quantity: 39, price: 3 },
+  ],
 };
 
 const reducer = (state = initialState, action = {}) => {

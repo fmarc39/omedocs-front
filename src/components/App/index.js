@@ -12,7 +12,7 @@ import SearchPharmachy from 'src/containers/SearchPharmacy';
 import ProfilPage from 'src/containers/ProfilPage';
 import InventoryPage from 'src/containers/InventoryPage';
 import PharmacyPage from 'src/components/PharmacyPage';
-import ProductPage from 'src/components/ProductPage';
+import ProductPage from 'src/containers/ProductPage';
 import LoginForm from 'src/containers/LoginForm';
 import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/components/Cart';
@@ -38,11 +38,21 @@ const App = ({ isLoading, logged, rehydrate }) => {
         <Route exact path="/login">
           {logged ? <Redirect to="/profil" /> : <LoginForm />}
         </Route>
-        <Route path="/profil">{!logged ? <Redirect to="/" /> : <ProfilPage />}</Route>
-        <Route path="/inventory">{!logged ? <Redirect to="/" /> : <InventoryPage />}</Route>
-        <Route path="/products">{!logged ? <Redirect to="/" /> : <PharmacyPage />}</Route>
-        <Route path="/product/id">{!logged ? <Redirect to="/" /> : <ProductPage />}</Route>
-        <Route path="/searchproduct">{!logged ? <Redirect to="/" /> : <SearchProduct />}</Route>
+        <Route path="/profil">
+          {!logged ? <Redirect to="/" /> : <ProfilPage />}
+        </Route>
+        <Route path="/inventory">
+          {!logged ? <Redirect to="/" /> : <InventoryPage />}
+        </Route>
+        <Route path="/products">
+          {!logged ? <Redirect to="/" /> : <PharmacyPage />}
+        </Route>
+        <Route path="/product/id">
+          {!logged ? <Redirect to="/" /> : <ProductPage />}
+        </Route>
+        <Route path="/searchproduct">
+          {!logged ? <Redirect to="/" /> : <SearchProduct />}
+        </Route>
         <Route path="/searchestablishement">
           {!logged ? <Redirect to="/" /> : <SearchPharmachy />}
         </Route>
