@@ -1,0 +1,14 @@
+.btn-checkout {
+    
+    &__checkout:not(:last-child) {
+        margin-bottom: 1.5rem;
+    }
+
+    &__checkout:first-child {
+        margin-top: 1.5rem;
+    }
+}
+
+.active * {
+    font-weight: bold;
+}

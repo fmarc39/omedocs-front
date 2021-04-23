@@ -141,7 +141,7 @@ export default function Checkout() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Valider le paiement' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Valider le paiement' : 'Suivant'}
                   </Button>
                 </div>
               </>

@@ -16,6 +16,7 @@ import ProductPage from 'src/components/ProductPage';
 import LoginForm from 'src/containers/LoginForm';
 import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/components/Cart';
+import Payment from 'src/components/Payment/Checkout';
 import Page404 from 'src/components/404';
 import SnackBar from 'src/containers/SnackBar';
 
@@ -56,6 +57,9 @@ const App = ({ isLoading, logged }) => (
       </Route>
       <Route exact path="/cart">
         <Cart />
+      </Route>
+      <Route patch="/checkout">
+        <Payment />
       </Route>
       <Route path="*">
         <Page404 />
