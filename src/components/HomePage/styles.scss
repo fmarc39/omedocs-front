@@ -221,6 +221,13 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+      opacity: 1;
+        transition: .6s ease-in-out ;
+      &__hide {
+        transform: translateY(300px);
+        opacity: 0;
+        transition: .6s ease-in-out ;
+      }
       &--card {
         text-align: center;
         padding: 20px;
@@ -268,6 +275,13 @@
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
+        opacity: 1;
+        transition: .6s ease-in-out ;
+        &__right {
+          transform: translateX(500px);
+          opacity: 0;
+          transition: .6s ease-in-out ;
+        }
         &__text {
           width: 200px;
           color: black;
@@ -291,6 +305,13 @@
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
+        opacity: 1;
+        transition: .6s ease-in-out ;
+        &__left {
+          transform: translateX(-500px);
+          opacity: 0;
+          transition: .6s ease-in-out ;
+        }
         &__img {
           box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
           width: 350px;
@@ -298,6 +319,13 @@
           background-color: white;
           border-radius: 10px;
           margin: 30px 100px;
+          opacity: 1;
+          transition: .6s ease-in-out ;
+          &__right {
+            transform: translateX(300px);
+            opacity: 0;
+            transition: .6s ease-in-out ;
+          }
         }
         &__text {
           width: 200px;

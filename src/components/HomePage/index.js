@@ -1,8 +1,11 @@
+// Import React
 import React, { useState } from 'react';
-import './styles.scss';
-import Footer from 'src/components/Footer';
-import { InView } from 'react-intersection-observer';
 
+// Import COMPOMENTS
+import Footer from 'src/components/Footer';
+
+// Inport NPM
+import { InView } from 'react-intersection-observer';
 import { HiMenu } from 'react-icons/hi';
 import { GrClose } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
@@ -18,6 +21,9 @@ import money from 'src/assets/img/bank.svg';
 import idea from 'src/assets/img/puzzle.svg';
 import scrollBtn from 'src/assets/img/scroll.svg';
 import upArrow from 'src/assets/img/up-arrow.svg';
+
+// Import CSS
+import './styles.scss';
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -37,11 +43,14 @@ const HomePage = () => {
   const activeMenu = () => {
     setActive(!active);
   };
+
+  // Gestion du click sur le scroll-down btn
   const handleScrollDownBtn = () => {
     const pageHeight = window.innerHeight;
     window.scrollBy(0, pageHeight);
   };
 
+  // Gestion de l'apparition du scroll-top-btn
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > 1500) {
@@ -51,6 +60,7 @@ const HomePage = () => {
     }
   };
 
+  // Gestion du click sur le croll-up btn
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -58,6 +68,7 @@ const HomePage = () => {
     });
   };
 
+  // Ajout de l'écouteur d'évènement sur le scroll de la page
   window.addEventListener('scroll', toggleVisible);
 
   return (
@@ -136,7 +147,7 @@ const HomePage = () => {
         <div className="goal__header">
           <h2 className="goal__header--title"> Notre But</h2>
         </div>
-        <InView>
+        <InView triggerOnce="true">
           {({ inView, ref }) => (
             <div
               ref={ref}
@@ -158,49 +169,61 @@ const HomePage = () => {
         <div className="why__header">
           <h2 className="why__header--title">Pourquoi?</h2>
         </div>
-        <div className="why__content">
-          <div className="why__content--card">
-            <img
-              className="why__content--card-img"
-              src={pharmacy}
-              alt="pharmacy"
-            />
-            <p className="why__content--card-text">
-              Actuellement en France, les pharmacies n'ont pas le droit de
-              vendre des médicaments dont la date de péremption est inférieur à
-              3 à 6 mois.
-            </p>
-          </div>
-          <div className="why__content--card">
-            <img className="why__content--card-img" src={money} alt="money" />
-            <p className="why__content--card-text">
-              Conséquence, les stock sont détruient. En moyenne un pharmacien
-              détruit pour 15 000€ de médicament par ans sans compté les tonnes
-              de déchets que cela représente.
-            </p>
-          </div>
-          <div className="why__content--card">
-            <img
-              className="why__content--card-img"
-              src={hopital}
-              alt="hopital"
-            />
-            <p className="why__content--card-text">
-              A contrario, les hôpitaux peuvent continuer à donner ces
-              médicaments jusqu'à péremption pendant la durée de séjour d'un
-              patient.
-            </p>
-          </div>
-          <div className="why__content--card">
-            <img className="why__content--card-img" src={idea} alt="idea" />
-            <p className="why__content--card-text">
-              Notre solution: O'médocs met à disposition une plateforme pour que
-              pharmacies et hôpitaux agissent ensemble. Les stock invendable
-              seront mis sur la plateforme par les pharmacies pour que les
-              hopitaux puissent les acheter à prix réduit
-            </p>
-          </div>
-        </div>
+        <InView triggerOnce="true">
+          {({ inView, ref }) => (
+            <div
+              className={inView ? 'why__content' : 'why__content__hide'}
+              ref={ref}
+            >
+              <div className="why__content--card">
+                <img
+                  className="why__content--card-img"
+                  src={pharmacy}
+                  alt="pharmacy"
+                />
+                <p className="why__content--card-text">
+                  Actuellement en France, les pharmacies n'ont pas le droit de
+                  vendre des médicaments dont la date de péremption est
+                  inférieur à 3 à 6 mois.
+                </p>
+              </div>
+              <div className="why__content--card">
+                <img
+                  className="why__content--card-img"
+                  src={money}
+                  alt="money"
+                />
+                <p className="why__content--card-text">
+                  Conséquence, les stock sont détruient. En moyenne un
+                  pharmacien détruit pour 15 000€ de médicament par ans sans
+                  compté les tonnes de déchets que cela représente.
+                </p>
+              </div>
+              <div className="why__content--card">
+                <img
+                  className="why__content--card-img"
+                  src={hopital}
+                  alt="hopital"
+                />
+                <p className="why__content--card-text">
+                  A contrario, les hôpitaux peuvent continuer à donner ces
+                  médicaments jusqu'à péremption pendant la durée de séjour d'un
+                  patient.
+                </p>
+              </div>
+              <div className="why__content--card">
+                <img className="why__content--card-img" src={idea} alt="idea" />
+                <p className="why__content--card-text">
+                  Notre solution: O'médocs met à disposition une plateforme pour
+                  que pharmacies et hôpitaux agissent ensemble. Les stock
+                  invendable seront mis sur la plateforme par les pharmacies
+                  pour que les hopitaux puissent les acheter à prix réduit
+                </p>
+              </div>
+            </div>
+          )}
+        </InView>
+
         <a onClick={handleScrollDownBtn}>
           <img src={scrollBtn} alt="scroll-btn" className="scroll-btn" />
         </a>
@@ -210,20 +233,35 @@ const HomePage = () => {
           <h2 className="services__header--title"> Nos services</h2>
         </div>
         <div className="services__content">
-          <div className="content-top">
-            <p className="content-top__text">
-              Gérer votre stock de médicament invendable et mettez le à
-              disposition sur notre plateforme
-            </p>
-            <div className="content-top__img" />
-          </div>
-          <div className="content-bottom">
-            <div className="content-bottom__img" />
-            <p className="content-bottom__text">
-              Consulter la liste de médicaments disponible sur la plateforme,
-              rechercher une pharmacie et consulter son stock
-            </p>
-          </div>
+          <InView triggerOnce="true">
+            {({ inView, ref }) => (
+              <div
+                className={inView ? 'content-top' : 'content-top__right'}
+                ref={ref}
+              >
+                <p className="content-top__text">
+                  Gérer votre stock de médicament invendable et mettez le à
+                  disposition sur notre plateforme
+                </p>
+                <div className="content-top__img" />
+              </div>
+            )}
+          </InView>
+
+          <InView triggerOnce="true">
+            {({ inView, ref }) => (
+              <div
+                className={inView ? 'content-bottom' : 'content-bottom__left'}
+                ref={ref}
+              >
+                <div className="content-bottom__img" />
+                <p className="content-bottom__text">
+                  Consulter la liste de médicaments disponible sur la
+                  plateforme, rechercher une pharmacie et consulter son stock
+                </p>
+              </div>
+            )}
+          </InView>
         </div>
       </div>
       <Footer />
