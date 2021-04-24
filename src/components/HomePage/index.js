@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import classNames from 'classnames';
-import Slide from '@material-ui/core/Slide';
 
 // image
 import logo from 'src/assets/img/mortier.svg';
@@ -18,6 +17,7 @@ import hopital from 'src/assets/img/hopital.svg';
 import money from 'src/assets/img/bank.svg';
 import idea from 'src/assets/img/puzzle.svg';
 import scrollBtn from 'src/assets/img/scroll.svg';
+import upArrow from 'src/assets/img/up-arrow.svg';
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -31,6 +31,8 @@ const useStyles = makeStyles(() => ({
 const HomePage = () => {
   const classes = useStyles();
   const [active, setActive] = useState(false);
+  const [visible, setVisible] = useState(false);
+
   const activeMenu = () => {
     setActive(!active);
   };
@@ -41,6 +43,25 @@ const HomePage = () => {
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });
+
+  const toggleVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 1500) {
+      setVisible(true);
+    } else if (scrolled <= 1500) {
+      setVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  window.addEventListener('scroll', toggleVisible);
+
   return (
     <div className={classNames('homepage', { 'homepage--fixed': active })}>
       <header className="header">
@@ -104,6 +125,13 @@ const HomePage = () => {
             </Button>
           </Link>
         </div>
+        <a onClick={scrollToTop}>
+          <img
+            src={upArrow}
+            alt="scroll-btn"
+            className={visible ? 'showBtn' : 'scroll-top-btn'}
+          />
+        </a>
       </header>
 
       <div className="goal" id="goal">

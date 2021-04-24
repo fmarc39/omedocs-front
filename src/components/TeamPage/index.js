@@ -1,12 +1,15 @@
 // Import React
 import React from 'react';
 
+// Import COMPONENTS
+import Header from 'src/components/Header';
+import ContactPage from 'src/components/ContactPage';
+import Footer from 'src/components/Footer';
+
 // Import from MATERIAL-UI
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Header from 'src/components/Header';
-import ContactPage from 'src/components/ContactPage';
 import Lambert from 'src/assets/img/team-id/lambert.jpg';
 import Geoffrey from 'src/assets/img/team-id/goeffrey.jpg';
 import Francois from 'src/assets/img/team-id/francois.jpg';
@@ -327,6 +330,7 @@ const TeamPage = () => {
             </Box>
           </Box>
         </Box>
+        <Footer />
       </Box>
     </>
   );
