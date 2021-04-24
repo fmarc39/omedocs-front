@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './styles.scss';
 import Footer from 'src/components/Footer';
-import { useInView } from 'react-intersection-observer';
+import { InView } from 'react-intersection-observer';
 
 import { HiMenu } from 'react-icons/hi';
 import { GrClose } from 'react-icons/gr';
@@ -31,6 +31,7 @@ const useStyles = makeStyles(() => ({
 const HomePage = () => {
   const classes = useStyles();
   const [active, setActive] = useState(false);
+  // Hooks qui va permettre l'apparition de scroll-to-top-btn
   const [visible, setVisible] = useState(false);
 
   const activeMenu = () => {
@@ -40,9 +41,6 @@ const HomePage = () => {
     const pageHeight = window.innerHeight;
     window.scrollBy(0, pageHeight);
   };
-  const { ref, inView, entry } = useInView({
-    threshold: 0,
-  });
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
@@ -138,14 +136,20 @@ const HomePage = () => {
         <div className="goal__header">
           <h2 className="goal__header--title"> Notre But</h2>
         </div>
-        <div className="goal__content">
-          <p ref={ref} className="goal__content--text">
-            Mettre en relation les professionnels de la santé pour luttre contre
-            le gaspillage des médicaments.
-          </p>
-
-          <div className="goal__content--img" />
-        </div>
+        <InView>
+          {({ inView, ref }) => (
+            <div
+              ref={ref}
+              className={inView ? 'goal__content' : 'goal__content-hide'}
+            >
+              <p className="goal__content--text">
+                Mettre en relation les professionnels de la santé pour luttre
+                contre le gaspillage des médicaments.
+              </p>
+              <div className="goal__content--img" />
+            </div>
+          )}
+        </InView>
         <a onClick={handleScrollDownBtn}>
           <img src={scrollBtn} alt="scroll-btn" className="scroll-btn" />
         </a>
