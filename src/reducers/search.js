@@ -1,22 +1,36 @@
-import { CHANGE_INPUT_VALUE } from 'src/actions/search';
+import {
+  CHANGE_INPUT_VALUE,
+  RESULT_SEARCH_PRODUCT,
+  RESULT_SEARCH_ESTABLISHMENT,
+} from 'src/actions/search';
 
 export const initialState = {
   searchProductInputValue: '',
   searchProductSelectValue: 'name',
-  searchPharmacyInputValue: '',
-  searchPharmacySelectValue: 'auvergne rhone alpes',
-  searchPharmacyResult: [],
-  searchProductResult: [],
-  productByPharmacyResults: [{ name: 'Doliprane', quantity: 1, price: 10 }],
+  searchEstablishmentInputValue: '',
+  searchEstablishmentSelectValue: '',
+  searchEstablishmentResult: [],
+  searchProductResult: [{ name: 'Doliprane', cis: '485452', quantity: 1, price: 10 }],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case RESULT_SEARCH_PRODUCT:
+      return {
+        ...state,
+        searchProductResult: action.data,
+      };
     case CHANGE_INPUT_VALUE:
       return {
         ...state,
         [action.fieldName]: action.fieldValue,
       };
+    case RESULT_SEARCH_ESTABLISHMENT: {
+      return {
+        ...state,
+        searchEstablismentResult: action.data,
+      };
+    }
     default:
       return state;
   }

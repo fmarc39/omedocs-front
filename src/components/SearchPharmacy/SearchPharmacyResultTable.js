@@ -35,7 +35,7 @@ const useStyles = makeStyles({
   },
 });
 
-const PharmacyTable = ({ pharmacyResultsData }) => {
+const PharmacyTable = ({ establishmentResultsData }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -52,8 +52,8 @@ const PharmacyTable = ({ pharmacyResultsData }) => {
   };
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
-  const rows = pharmacyResultsData.map((pharmacy) =>
-    createData(pharmacy.name, pharmacy.region)
+  const rows = establishmentResultsData.map((pharmacy) =>
+    createData(pharmacy.name, pharmacy.region),
   );
 
   return (
@@ -74,22 +74,18 @@ const PharmacyTable = ({ pharmacyResultsData }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                {columns.map((column) => {
+                  const value = row[column.id];
+                  return (
+                    <TableCell key={column.id} align={column.align}>
+                      {column.format && typeof value === 'number' ? column.format(value) : value}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
@@ -108,7 +104,7 @@ const PharmacyTable = ({ pharmacyResultsData }) => {
 };
 
 PharmacyTable.propTypes = {
-  pharmacyResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  establishmentResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default PharmacyTable;

@@ -28,21 +28,21 @@ const SearchProduct = ({
   searchInputValue,
   searchSelectValue,
   productResultsData,
+  submitForm,
 }) => {
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeSearchInput = (event) => {
     // Au 'onChange' on récupère la valeur de l'input et son nom
     handleChange(event.target.value, event.target.name);
   };
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    submitForm();
+  };
 
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -64,11 +64,9 @@ const SearchProduct = ({
               borderRadius="40px"
               boxShadow={3}
             >
-              <form autoComplete="off">
+              <form autoComplete="off" onSubmit={handleOnSubmit}>
                 <div>
-                  <InputLabel htmlFor="search-product-input">
-                    Nom du médicament
-                  </InputLabel>
+                  <InputLabel htmlFor="search-product-input">Nom du médicament</InputLabel>
                   <Input
                     id="search-product-input"
                     onChange={handleChangeSearchInput}
@@ -93,14 +91,9 @@ const SearchProduct = ({
                   >
                     <MenuItem value="name">Nom</MenuItem>
                     <MenuItem value="cis">CIS</MenuItem>
-                    <MenuItem value="pathology">Pathologie</MenuItem>
                   </Select>
                 </FormControl>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  endIcon={<CheckIcon />}
-                >
+                <Button type="submit" variant="contained" color="primary" endIcon={<CheckIcon />}>
                   Valider
                 </Button>
               </form>
@@ -121,6 +114,7 @@ SearchProduct.propTypes = {
   searchInputValue: PropTypes.string.isRequired,
   searchSelectValue: PropTypes.string.isRequired,
   productResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  submitForm: PropTypes.func.isRequired,
 };
 
 export default SearchProduct;

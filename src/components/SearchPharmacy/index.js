@@ -27,21 +27,21 @@ const SearchPharmacy = ({
   handleChange,
   searchInputValue,
   searchSelectValue,
-  pharmacyResultsData,
+  establishmentResultsData,
+  submitForm,
 }) => {
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
   };
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    submitForm();
+  };
 
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -63,14 +63,12 @@ const SearchPharmacy = ({
               borderRadius="40px"
               boxShadow={3}
             >
-              <form autoComplete="off">
+              <form autoComplete="off" onSubmit={handleOnSubmit}>
                 <div>
-                  <InputLabel htmlFor="input-with-icon-adornment">
-                    Votre recherche ici
-                  </InputLabel>
+                  <InputLabel htmlFor="input-with-icon-adornment">Votre recherche ici</InputLabel>
                   <Input
                     id="input-with-icon-adornment"
-                    name="searchPharmacyInputValue"
+                    name="searchEstablishmentInputValue"
                     onChange={handleChangeInput}
                     value={searchInputValue}
                     startAdornment={
@@ -86,49 +84,35 @@ const SearchPharmacy = ({
                   <Select
                     labelId="typeSelect"
                     id="typeSelectBtn"
-                    name="searchPharmacySelectValue"
+                    name="searchEstablishmentSelectValue"
                     value={searchSelectValue}
                     onChange={handleChangeInput}
                   >
-                    <MenuItem value="auvergne rhone alpes">
-                      Auvergne-Rhône-Alpes
-                    </MenuItem>
-                    <MenuItem value="bourgogne franche comte">
-                      Bourgogne-Franche-Comté
-                    </MenuItem>
-                    <MenuItem value="bretagne">Bretagne</MenuItem>
-                    <MenuItem value="centre val de loire">
-                      Centre-Val de Loire
-                    </MenuItem>
-                    <MenuItem value="corse">Corse</MenuItem>
-                    <MenuItem value="grand est">Grand Est</MenuItem>
-                    <MenuItem value="hauts de france">Hauts-de-France</MenuItem>
-                    <MenuItem value="ile de France">Ile-de-France</MenuItem>
-                    <MenuItem value="normandie">Normandie</MenuItem>
-                    <MenuItem value="nouvelle aquitaine">
-                      Nouvelle-Aquitaine
-                    </MenuItem>
-                    <MenuItem value="occitanie">Occitanie</MenuItem>
-                    <MenuItem value="pays de la loire">
-                      Pays de la Loire
-                    </MenuItem>
-                    <MenuItem value="provence alpes cote d azur">
+                    <MenuItem value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</MenuItem>
+                    <MenuItem value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</MenuItem>
+                    <MenuItem value="Bretagne">Bretagne</MenuItem>
+                    <MenuItem value="Centre-Val de Loire">Centre-Val de Loire</MenuItem>
+                    <MenuItem value="Corse">Corse</MenuItem>
+                    <MenuItem value="Grand Est">Grand Est</MenuItem>
+                    <MenuItem value=">Hauts-de-France">Hauts-de-France</MenuItem>
+                    <MenuItem value="Ile-de-France">Ile-de-France</MenuItem>
+                    <MenuItem value="Normandie">Normandie</MenuItem>
+                    <MenuItem value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</MenuItem>
+                    <MenuItem value="Occitanie">Occitanie</MenuItem>
+                    <MenuItem value="Pays de la Loire">Pays de la Loire</MenuItem>
+                    <MenuItem value="Provence-Alpes-Côte d’Azur">
                       Provence-Alpes-Côte d’Azur
                     </MenuItem>
                   </Select>
                 </FormControl>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  endIcon={<CheckIcon />}
-                >
+                <Button type="submit" variant="contained" color="primary" endIcon={<CheckIcon />}>
                   Valider
                 </Button>
               </form>
             </Box>
             {/* Affichage conditionnel du tableau de résultat si
             la longueur du tableau est différente de 0  */}
-            {pharmacyResultsData.length !== 0 && <PharmacyTable />}
+            {establishmentResultsData.length !== 0 && <PharmacyTable />}
           </Box>
         </Box>
         <Footer />
@@ -139,9 +123,15 @@ const SearchPharmacy = ({
 
 SearchPharmacy.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  searchInputValue: PropTypes.string.isRequired,
-  searchSelectValue: PropTypes.string.isRequired,
-  pharmacyResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  searchInputValue: PropTypes.string,
+  searchSelectValue: PropTypes.string,
+  establishmentResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  submitForm: PropTypes.func.isRequired,
+};
+
+SearchPharmacy.defaultProps = {
+  searchInputValue: '',
+  searchSelectValue: '',
 };
 
 export default SearchPharmacy;

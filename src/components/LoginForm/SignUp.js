@@ -220,19 +220,19 @@ const SignUp = ({
                 onChange={handleOnChange}
                 required
               >
-                <MenuItem value="auvergne rhone alpes">Auvergne-Rhône-Alpes</MenuItem>
-                <MenuItem value="bourgogne franche comte">Bourgogne-Franche-Comté</MenuItem>
-                <MenuItem value="bretagne">Bretagne</MenuItem>
-                <MenuItem value="centre val de loire">Centre-Val de Loire</MenuItem>
-                <MenuItem value="corse">Corse</MenuItem>
-                <MenuItem value="grand est">Grand Est</MenuItem>
-                <MenuItem value="hauts de france">Hauts-de-France</MenuItem>
-                <MenuItem value="ile de France">Ile-de-France</MenuItem>
-                <MenuItem value="normandie">Normandie</MenuItem>
-                <MenuItem value="nouvelle aquitaine">Nouvelle-Aquitaine</MenuItem>
-                <MenuItem value="occitanie">Occitanie</MenuItem>
-                <MenuItem value="pays de la loire">Pays de la Loire</MenuItem>
-                <MenuItem value="provence alpes cote d azur">Provence-Alpes-Côte d’Azur</MenuItem>
+                <MenuItem value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</MenuItem>
+                <MenuItem value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</MenuItem>
+                <MenuItem value="Bretagne">Bretagne</MenuItem>
+                <MenuItem value="Centre-Val de Loire">Centre-Val de Loire</MenuItem>
+                <MenuItem value="Corse">Corse</MenuItem>
+                <MenuItem value="Grand Est">Grand Est</MenuItem>
+                <MenuItem value=">Hauts-de-France">Hauts-de-France</MenuItem>
+                <MenuItem value="Ile-de-France">Ile-de-France</MenuItem>
+                <MenuItem value="Normandie">Normandie</MenuItem>
+                <MenuItem value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</MenuItem>
+                <MenuItem value="Occitanie">Occitanie</MenuItem>
+                <MenuItem value="Pays de la Loire">Pays de la Loire</MenuItem>
+                <MenuItem value="Provence-Alpes-Côte d’Azur">Provence-Alpes-Côte d’Azur</MenuItem>
               </Select>
             </FormControl>
 

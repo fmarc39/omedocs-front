@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import SearchPharmacy from 'src/components/SearchPharmacy';
-import { changeInputValue } from 'src/actions/search';
+import { changeInputValue, searchEstablishment } from 'src/actions/search';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => ({
-  searchInputValue: state.search.searchPharmacyInputValue,
-  searchSelectValue: state.search.searchPharmacySelectValue,
-  pharmacyResultsData: state.search.searchPharmacyResult,
+  searchInputValue: state.search.searchEstablishmentInputValue,
+  searchSelectValue: state.search.searchEstablishmentSelectValue,
+  establishmentResultsData: state.search.searchEstablishmentResult,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (fieldValue, fieldName) => {
     dispatch(changeInputValue(fieldValue, fieldName));
   },
+  submitForm: () => dispatch(searchEstablishment()),
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps)(SearchPharmacy);

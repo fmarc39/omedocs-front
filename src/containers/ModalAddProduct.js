@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import ModalAddProduct from 'src/components/ModalAddProduct';
-import { closeModalProduct, addProduct } from 'src/actions/utils';
-import { openPopListApi } from 'src/actions/utils';
+import { closeModalProduct, addProduct, openPopListApi } from 'src/actions/utils';
 import { submitAddProduct } from 'src/actions/inventory';
 
 const mapStateToProps = (state) => ({
