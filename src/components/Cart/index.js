@@ -25,8 +25,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PaymentIcon from '@material-ui/icons/Payment';
 import Button from '@material-ui/core/Button';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 const TAX_RATE = 0.0;
 
@@ -185,12 +185,28 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CartPage = () => {
+const CartPage = ({ cartData }) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const rows = cartData.map((article) => {
+    createData(
+      article.productname,
+      <>
+        <IconButton aria-label="delete" className={classes.margin}>
+          <AddIcon fontSize="small" />
+        </IconButton>
+        {article.quantity}
+        <IconButton aria-label="delete" className={classes.margin}>
+          <AddIcon fontSize="small" />
+        </IconButton>
+      </>,
+      article.price
+    );
+  });
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
