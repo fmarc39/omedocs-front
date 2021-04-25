@@ -1,8 +1,16 @@
 import { ADD_ARTICLE_TO_CART } from 'src/actions/cart';
 
 export const initialState = {
-  nbOfArticles: 1,
-  cart: [],
+  cart: [
+    {
+      pharmacyname: 'Pharmacie de la gare',
+      price: '10',
+      productid: '6 000 228 5',
+      productname: 'FENOFIBRATE TEVA 100 mg',
+      quantity: '99',
+      quantityToBuy: '11',
+    },
+  ],
 };
 
 const reducer = (state = initialState, action = {}) => {

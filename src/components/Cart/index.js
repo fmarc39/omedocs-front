@@ -28,6 +28,38 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
+// Configuration des colones avec le nom, le label, la largeur
+const headCells = [
+  {
+    id: 'name',
+    numeric: false,
+    disablePadding: true,
+    label: 'Nom du produit',
+  },
+  {
+    id: 'qty',
+    disablePadding: false,
+    label: 'Quantité',
+  },
+  {
+    id: 'unit',
+    numeric: true,
+    disablePadding: false,
+    label: 'Prix unitaire',
+  },
+  {
+    id: 'price',
+    numeric: true,
+    disablePadding: false,
+    label: 'Prix total',
+  },
+
+  {
+    id: 'del',
+    minWidth: 50,
+  },
+];
+
 const TAX_RATE = 0.0;
 
 function ccyFormat(num) {
@@ -38,14 +70,14 @@ function priceRow(qty, unit) {
   return qty * unit;
 }
 
-function createData(name, qty, unit, del) {
+function createData(name, qty, unit, dellRow) {
   const price = priceRow(qty, unit);
   return {
     name,
-    qty,
-    unit,
-    del,
+    qty: Number(qty),
+    unit: Number(unit),
     price,
+    dellRow,
   };
 }
 
@@ -53,12 +85,7 @@ function subtotal(items) {
   return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
 }
 
-const rows = [
-  createData('Doliprane 500mg', 12, 111.8325),
-  createData('Gbobo', 10, 0.345),
-  createData('Gmal-Partout', 15, 0.434),
-  createData('Anti gueule-de-bois', 1, 14.11),
-];
+let rows = [];
 
 const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
@@ -89,33 +116,6 @@ function stableSort(array, comparator) {
   });
   return stabilizedThis.map((el) => el[0]);
 }
-
-const headCells = [
-  {
-    id: 'name',
-    numeric: false,
-    disablePadding: true,
-    label: 'Nom du produit',
-  },
-  {
-    id: 'qty',
-    numeric: true,
-    disablePadding: false,
-    label: 'Quantité',
-  },
-  {
-    id: 'unit',
-    numeric: true,
-    disablePadding: false,
-    label: 'Prix unitaire',
-  },
-  {
-    id: 'price',
-    numeric: true,
-    disablePadding: false,
-    label: 'Prix total',
-  },
-];
 
 function EnhancedTableHead(props) {
   const { classes, order, orderBy, rowCount, onRequestSort } = props;
@@ -183,6 +183,16 @@ const useStyles = makeStyles(() => ({
     top: 20,
     width: 1,
   },
+  btn: {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    background: '#0368A3',
+    '&:hover': {
+      background: '#CDD0D4',
+      color: '#0368A3',
+    },
+    borderRadius: '15px',
+  },
 }));
 
 const CartPage = ({ cartData }) => {
@@ -192,21 +202,22 @@ const CartPage = ({ cartData }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const rows = cartData.map((article) => {
+  rows = cartData.map((article) =>
     createData(
       article.productname,
-      <>
-        <IconButton aria-label="delete" className={classes.margin}>
-          <AddIcon fontSize="small" />
-        </IconButton>
-        {article.quantity}
-        <IconButton aria-label="delete" className={classes.margin}>
-          <AddIcon fontSize="small" />
-        </IconButton>
-      </>,
-      article.price
-    );
-  });
+      article.quantityToBuy,
+      article.price,
+      <IconButton
+        aria-label="delete"
+        // onClick={handleDeleteCLickBtn}
+        // name={article.cis}
+        className="del-btn"
+      >
+        <DeleteIcon />
+      </IconButton>
+    )
+  );
+  console.log(cartData);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -232,101 +243,105 @@ const CartPage = ({ cartData }) => {
         justifyContent="space-between"
         height="100vh"
       >
+        <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
-
-          <div className={classes.root}>
-            <Paper className={classes.paper}>
-              <TableContainer>
-                <Table
-                  className={classes.table}
-                  aria-labelledby="tableTitle"
-                  aria-label="enhanced table"
-                >
-                  <EnhancedTableHead
-                    classes={classes}
-                    order={order}
-                    orderBy={orderBy}
-                    onRequestSort={handleRequestSort}
-                    rowCount={rows.length}
-                  />
-                  <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                      .map((row, index) => {
-                        const labelId = `enhanced-table-checkbox-${index}`;
-
-                        return (
-                          <TableRow hover tabIndex={-1} key={row.name}>
-                            <TableCell
-                              component="th"
-                              id={labelId}
-                              scope="row"
-                              padding="none"
-                            >
-                              {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.qty}</TableCell>
-                            <TableCell align="right">{row.unit}</TableCell>
-                            <TableCell align="right">
-                              {ccyFormat(row.price)}
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    <TableRow>
-                      <TableCell rowSpan={3} />
-                      <TableCell colSpan={1}>Sous-total</TableCell>
-                      <TableCell align="right">
-                        {ccyFormat(invoiceSubtotal)}
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>TVA</TableCell>
-                      <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-                        0
-                      )} %`}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell colSpan={1}>Total</TableCell>
-                      <TableCell align="right">
-                        {ccyFormat(invoiceTotal)}
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <Tooltip title="Procéder au paiement">
-                <NavLink
-                  to="/checkout"
-                  style={{ textDecoration: 'none', position: 'right' }}
-                >
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    endIcon={<PaymentIcon />}
-                    size="medium"
-                    className="btn-checkout"
-                    fullWidth
+          <Box
+            bgcolor="#C6C6C6"
+            height="100%"
+            width="100%"
+            p={4}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <div className={classes.root}>
+              <Paper className={classes.paper}>
+                <TableContainer>
+                  <Table
+                    className={classes.table}
+                    aria-labelledby="tableTitle"
+                    aria-label="enhanced table"
                   >
-                    Payer :
-                  </Button>
-                </NavLink>
-              </Tooltip>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-              />
-            </Paper>
-          </div>
+                    <EnhancedTableHead
+                      classes={classes}
+                      order={order}
+                      orderBy={orderBy}
+                      onRequestSort={handleRequestSort}
+                      rowCount={rows.length}
+                    />
+                    <TableBody>
+                      {stableSort(rows, getComparator(order, orderBy))
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((row, index) => {
+                          const labelId = `enhanced-table-checkbox-${index}`;
+
+                          return (
+                            <TableRow hover tabIndex={-1} key={row.name}>
+                              <TableCell
+                                component="th"
+                                id={labelId}
+                                scope="row"
+                                padding="none"
+                              >
+                                {row.name}
+                              </TableCell>
+                              <TableCell align="left">{row.qty}</TableCell>
+                              <TableCell align="left">{row.unit}</TableCell>
+                              <TableCell align="left">
+                                {ccyFormat(row.price)}
+                              </TableCell>
+                              <TableCell align="left">{row.dellRow}</TableCell>
+                            </TableRow>
+                          );
+                        })}
+                      <TableRow>
+                        <TableCell rowSpan={3} />
+                        <TableCell colSpan={1}>Sous-total</TableCell>
+                        <TableCell align="right">
+                          {ccyFormat(invoiceSubtotal)}
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>TVA</TableCell>
+                        <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
+                          0
+                        )} %`}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell colSpan={1}>Total</TableCell>
+                        <TableCell align="right">
+                          {ccyFormat(invoiceTotal)}
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+                <Tooltip
+                  title="Procéder au paiement"
+                  placement="'bottom-right'"
+                >
+                  <NavLink
+                    to="/checkout"
+                    style={{ textDecoration: 'none', position: 'right' }}
+                  >
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      endIcon={<PaymentIcon />}
+                      size="medium"
+                      className={classes.btn}
+                    >
+                      Payer
+                    </Button>
+                  </NavLink>
+                </Tooltip>
+              </Paper>
+            </div>
+          </Box>
         </Box>
       </Box>
       <Footer />

@@ -18,7 +18,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
-import Grow from '@material-ui/core/Grow';
 
 // Import CSS styles
 
@@ -117,7 +116,11 @@ const InventoryTable = ({
       article.expiration,
       <Box>
         {article.quantity}
-        <IconButton aria-label="edit" onClick={handleEditClickBtn} className="edit-btn">
+        <IconButton
+          aria-label="edit"
+          onClick={handleEditClickBtn}
+          className="edit-btn"
+        >
           <EditIcon />
         </IconButton>
         <form className="edit-tools hidden" onSubmit={handleSubmitForm}>
@@ -129,7 +132,12 @@ const InventoryTable = ({
             type="number"
             name={article.cis}
           />
-          <IconButton color="primary" className="save-btn" name={article.cis} type="submit">
+          <IconButton
+            color="primary"
+            className="save-btn"
+            name={article.cis}
+            type="submit"
+          >
             <SaveIcon />
           </IconButton>
         </form>
@@ -142,8 +150,8 @@ const InventoryTable = ({
         className="del-btn"
       >
         <DeleteIcon />
-      </IconButton>,
-    ),
+      </IconButton>
+    )
   );
 
   return (
@@ -164,24 +172,28 @@ const InventoryTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow
-                hover
-                role="checkbox"
-                tabIndex={-1}
-                key={row.code}
-                className={classes.tableRow}
-              >
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof value === 'number' ? column.format(value) : value}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={row.code}
+                  className={classes.tableRow}
+                >
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
