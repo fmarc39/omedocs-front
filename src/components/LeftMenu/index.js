@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
+import { makeStyles } from '@material-ui/core/styles';
 import LocalPharmacyIcon from '@material-ui/icons/LocalPharmacy';
 import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -23,13 +24,26 @@ import avatarImg from '../../assets/img_avatar.png';
 // Import CSS
 import './styles.scss';
 
+// Mise en place du style material-UI
+const useStyles = makeStyles(() => ({
+  btn: {
+    background: '#0368A3',
+    '&:hover': {
+      background: '#CDD0D4',
+      color: '#0368A3',
+    },
+    borderRadius: '15px',
+    marginBottom: '1.5rem',
+  },
+}));
+
 const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
   const handleLogoutBtn = () => {
     handleLogout();
   };
+  const classes = useStyles();
   return (
     <Box
-      boxShadow={1}
       p={2}
       display="flex"
       flexDirection="column"
@@ -38,17 +52,27 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
       width="250px"
       height="100%"
       color="primary.contrastText"
-      bgcolor="#AAAAAA"
+      bgcolor="#bfcee2"
       className="left-menu"
     >
       <Avatar alt="avatarLogo" src={avatarImg} className="left-menu__avatar" />
 
-      <Typography variant="h5" component="h5" className="left-menu__welcome-message" align="center">
+      <Typography
+        variant="h5"
+        component="h5"
+        className="left-menu__welcome-message"
+        align="center"
+      >
         Bienvenue <br />
         {establishment}
       </Typography>
 
-      <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
+      <Box
+        display="flex"
+        flexDirection="column"
+        textAlign="center"
+        className="let-menu__btn-box"
+      >
         <Button
           variant="outlined"
           onClick={handleLogoutBtn}
@@ -66,7 +90,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
             color="primary"
             endIcon={<AccountCircleIcon />}
             size="large"
-            className="btn-box__btn"
+            className={classes.btn}
             fullWidth={true}
           >
             Profil
@@ -79,7 +103,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
               color="primary"
               endIcon={<SearchIcon />}
               size="large"
-              className="btn-box__btn"
+              className={classes.btn}
             >
               Rechercher un produit
             </Button>
@@ -91,7 +115,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
             color="primary"
             endIcon={<LocalPharmacyIcon />}
             size="large"
-            className="btn-box__btn"
+            className={classes.btn}
           >
             Chercher un établissement
           </Button>
@@ -108,7 +132,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
                 </Badge>
               }
               size="large"
-              className="btn-box__btn"
+              className={classes.btn}
             >
               Acceder au panier
             </Button>
@@ -121,7 +145,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
               color="primary"
               endIcon={<TableChartIcon />}
               size="large"
-              className="btn-box__btn"
+              className={classes.btn}
             >
               Acceder a l'inventaire
             </Button>

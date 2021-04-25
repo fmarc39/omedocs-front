@@ -6,7 +6,7 @@ export const initialState = {
   searchPharmacyInputValue: '',
   searchPharmacySelectValue: 'auvergne rhone alpes',
   searchPharmacyResult: [],
-  searchProductResult: [],
+  searchProductResult: [{ title: 'doliprane', code: 124323, quantity: '12' }],
   productName: 'FENOFIBRATE TEVA 100 mg',
   productCis: '6 000 228 5',
   productByPharmacyResults: [

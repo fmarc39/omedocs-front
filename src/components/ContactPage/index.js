@@ -1,9 +1,20 @@
+// Import React
 import React, { useState } from 'react';
 
+// Import From MATERIAL-UI
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
+
+// Mise en place des styles MATERIAL-UI
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 220,
+    margin: '.4em',
+  },
+});
 
 const ContactPage = () => {
   const [status, setStatus] = useState('Envoyer');

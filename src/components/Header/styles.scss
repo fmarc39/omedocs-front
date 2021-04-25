@@ -1,12 +1,7 @@
 .header {
   width: 100%;
-  padding: 20px;
-  background: rgb(137, 203, 219);
-  background: linear-gradient(
-    280deg,
-    rgba(137, 203, 219, 1) 35%,
-    rgba(50, 142, 183, 1) 100%
-  );
+  padding: 15px;
+  background: #bfcee2;
   .logo {
     display: flex;
     align-items: center;
@@ -17,6 +12,7 @@
       font-size: 1.8rem;
       font-weight: bold;
       margin-left: 20px;
+      color: black;
     }
   }
 }

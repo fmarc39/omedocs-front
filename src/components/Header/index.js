@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 // image
-import logo from 'src/assets/img/logo.svg';
+import logo from 'src/assets/img/mortier.svg';
 
 const Header = () => (
   <header className="header">

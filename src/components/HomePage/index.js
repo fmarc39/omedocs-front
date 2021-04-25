@@ -27,7 +27,11 @@ import './styles.scss';
 
 const useStyles = makeStyles(() => ({
   button: {
-    backgroundColor: '#0368A3',
+    background: '#0368A3',
+    '&:hover': {
+      background: '#CDD0D4',
+      color: '#0368A3',
+    },
     borderRadius: '30px',
     padding: '.8rem',
     fontSize: '1rem',
@@ -67,6 +71,9 @@ const HomePage = () => {
       behavior: 'smooth',
     });
   };
+
+  // Seuil de déclanchement de l'intersection observer
+  const threshold = 0.2;
 
   // Ajout de l'écouteur d'évènement sur le scroll de la page
   window.addEventListener('scroll', toggleVisible);
@@ -147,7 +154,7 @@ const HomePage = () => {
         <div className="goal__header">
           <h2 className="goal__header--title"> Notre But</h2>
         </div>
-        <InView triggerOnce="true">
+        <InView triggerOnce="true" threshold={threshold}>
           {({ inView, ref }) => (
             <div
               ref={ref}
@@ -169,7 +176,7 @@ const HomePage = () => {
         <div className="why__header">
           <h2 className="why__header--title">Pourquoi?</h2>
         </div>
-        <InView triggerOnce="true">
+        <InView triggerOnce="true" threshold={threshold}>
           {({ inView, ref }) => (
             <div
               className={inView ? 'why__content' : 'why__content__hide'}
@@ -233,7 +240,7 @@ const HomePage = () => {
           <h2 className="services__header--title"> Nos services</h2>
         </div>
         <div className="services__content">
-          <InView triggerOnce="true">
+          <InView triggerOnce="true" threshold={threshold}>
             {({ inView, ref }) => (
               <div
                 className={inView ? 'content-top' : 'content-top__right'}
@@ -248,7 +255,7 @@ const HomePage = () => {
             )}
           </InView>
 
-          <InView triggerOnce="true">
+          <InView triggerOnce="true" threshold={threshold}>
             {({ inView, ref }) => (
               <div
                 className={inView ? 'content-bottom' : 'content-bottom__left'}
