@@ -14,9 +14,19 @@ const useStyles = makeStyles({
     maxWidth: 220,
     margin: '.4em',
   },
+  btn: {
+    color: 'white',
+    borderRadius: '15px',
+    background: '#0368A3',
+    '&:hover': {
+      background: '#CDD0D4',
+      color: '#0368A3',
+    },
+  },
 });
 
 const ContactPage = () => {
+  const classes = useStyles();
   const [status, setStatus] = useState('Envoyer');
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,7 +71,12 @@ const ContactPage = () => {
               variant="outlined"
             />
           </Box>
-          <Button variant="contained" color="primary" endIcon={<SendIcon />}>
+          <Button
+            variant="contained"
+            className={classes.btn}
+            color="primary"
+            endIcon={<SendIcon />}
+          >
             {status}
           </Button>
         </Box>
