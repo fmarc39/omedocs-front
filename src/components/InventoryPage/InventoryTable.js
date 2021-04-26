@@ -61,6 +61,9 @@ const useStyles = makeStyles({
     maxHeight: 507,
     minWidth: 700,
   },
+  delBtn: {
+    color: '#0368A3',
+  },
 });
 
 const InventoryTable = ({
@@ -148,7 +151,7 @@ const InventoryTable = ({
         aria-label="delete"
         onClick={handleDeleteCLickBtn}
         name={article.cis_code}
-        className="del-btn"
+        className={classes.delBtn}
       >
         <DeleteIcon />
       </IconButton>
@@ -164,10 +167,11 @@ const InventoryTable = ({
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
-                  align={column.align}
+                  align="left"
                   style={{ minWidth: column.minWidth }}
+                  padding="default"
                 >
-                  {column.label}
+                  <p className="cells-title">{column.label}</p>
                 </TableCell>
               ))}
             </TableRow>
@@ -186,7 +190,7 @@ const InventoryTable = ({
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
-                      <TableCell key={column.id} align={column.align}>
+                      <TableCell key={column.id} align="left">
                         {column.format && typeof value === 'number'
                           ? column.format(value)
                           : value}

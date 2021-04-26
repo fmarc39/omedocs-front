@@ -53,7 +53,7 @@ const PharmacyTable = ({ establishmentResultsData }) => {
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
   const rows = establishmentResultsData.map((pharmacy) =>
-    createData(pharmacy.name, pharmacy.region),
+    createData(pharmacy.name, pharmacy.region)
   );
 
   return (
@@ -65,27 +65,31 @@ const PharmacyTable = ({ establishmentResultsData }) => {
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
-                  align={column.align}
+                  align="right"
                   style={{ minWidth: column.minWidth }}
                 >
-                  {column.label}
+                  <p className="cells-title">{column.label}</p>
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof value === 'number' ? column.format(value) : value}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

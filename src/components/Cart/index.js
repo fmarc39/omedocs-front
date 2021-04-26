@@ -337,9 +337,9 @@ const CartPage = ({ cartData, deleteArticle }) => {
                                   {row.name}
                                 </TableCell>
                                 <TableCell align="left">{row.qty}</TableCell>
-                                <TableCell align="left">{row.unit}</TableCell>
+                                <TableCell align="left">{row.unit} €</TableCell>
                                 <TableCell align="left">
-                                  {ccyFormat(row.price)}
+                                  {ccyFormat(row.price)} €
                                 </TableCell>
                                 <TableCell align="left">
                                   {row.dellRow}
