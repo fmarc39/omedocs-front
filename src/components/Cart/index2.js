@@ -7,11 +7,10 @@ import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
-import CartTable from './';
+import { makeStyles } from '@material-ui/core/styles';
+import CartTable from '.';
 
 // Import MATERIAL UI
-
-import { makeStyles } from '@material-ui/core/styles';
 
 // Import CSS
 import './styles.scss';

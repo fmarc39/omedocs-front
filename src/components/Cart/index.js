@@ -5,9 +5,14 @@ import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import LeftMenu from 'src/containers/LeftMenu';
+import axios from 'axios';
 
 // Import react-router-dom pour ajouter des links aux boutons
 import { NavLink } from 'react-router-dom';
+
+// Import des composants Stripe pour les paiements
+import StripeCheckout from 'react-stripe-checkout';
+import { toast } from 'react-toastify';
 
 // IMPORT MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -118,7 +123,9 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-  const { classes, order, orderBy, rowCount, onRequestSort } = props;
+  const {
+    classes, order, orderBy, rowCount, onRequestSort,
+  } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -202,21 +209,19 @@ const CartPage = ({ cartData }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  rows = cartData.map((article) =>
-    createData(
-      article.productname,
-      article.quantityToBuy,
-      article.price,
-      <IconButton
-        aria-label="delete"
+  rows = cartData.map((article) => createData(
+    article.productname,
+    article.quantityToBuy,
+    article.price,
+    <IconButton
+      aria-label="delete"
         // onClick={handleDeleteCLickBtn}
         // name={article.cis}
-        className="del-btn"
-      >
-        <DeleteIcon />
-      </IconButton>
-    )
-  );
+      className="del-btn"
+    >
+      <DeleteIcon />
+    </IconButton>,
+  ));
   console.log(cartData);
 
   const handleRequestSort = (event, property) => {
@@ -234,6 +239,21 @@ const CartPage = ({ cartData }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  async function handleToken(token, addresses) {
+    const response = await axios.post(
+      'server.js',
+      { token, product },
+    );
+    const { status } = response.data;
+    console.log('Response:', response.data);
+    if (status === 'success') {
+      toast('Success! Check email for details', { type: 'success' });
+    }
+    else {
+      toast('Something went wrong', { type: 'error' });
+    }
+  }
 
   return (
     <>
@@ -274,7 +294,7 @@ const CartPage = ({ cartData }) => {
                       {stableSort(rows, getComparator(order, orderBy))
                         .slice(
                           page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
+                          page * rowsPerPage + rowsPerPage,
                         )
                         .map((row, index) => {
                           const labelId = `enhanced-table-checkbox-${index}`;
@@ -308,8 +328,9 @@ const CartPage = ({ cartData }) => {
                       <TableRow>
                         <TableCell>TVA</TableCell>
                         <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-                          0
-                        )} %`}</TableCell>
+                          0,
+                        )} %`}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell colSpan={1}>Total</TableCell>
@@ -324,21 +345,28 @@ const CartPage = ({ cartData }) => {
                   title="Procéder au paiement"
                   placement="'bottom-right'"
                 >
-                  <NavLink
-                    to="/checkout"
-                    style={{ textDecoration: 'none', position: 'right' }}
+
+                  <Button
+                    role="link"
+                    variant="contained"
+                    color="primary"
+                    endIcon={<PaymentIcon />}
+                    size="medium"
+                    className={classes.btn}
                   >
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      endIcon={<PaymentIcon />}
-                      size="medium"
-                      className={classes.btn}
-                    >
-                      Payer
-                    </Button>
-                  </NavLink>
+                    Payer
+                  </Button>
                 </Tooltip>
+                <StripeCheckout
+                  stripeKey="pk_test_51Ij1IsAClzkudXaoJHimun68AE67pw5ry6KRTJdgS2tu6SScPbUPCqAFXlvkTb9EnzAZOYbXfErMtxRD9LZD3F8e00byaYzYhA"
+                  token={handleToken}
+                  endIcon={<PaymentIcon />}
+                  className={classes.btn}
+                  data-locale="auto"
+                  name="O'Medocs"
+                  billingAddress
+                  shippingAddress
+                />
               </Paper>
             </div>
           </Box>
