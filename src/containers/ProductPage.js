@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import ProductPage from 'src/components/ProductPage';
 
 const mapStateToProps = (state) => ({
-  products: state.search.searchProductResult,
+  productName: state.search.productName,
+  productCis: state.search.productCis,
 });
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

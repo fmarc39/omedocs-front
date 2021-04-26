@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
   userType: state.user.userType,
   establishment: state.user.establishment,
   id: state.user.id,
-  nbOfArticles: state.cart.nbOfArticles,
+  nbOfArticles: state.cart.cart.length,
 });
 
 const mapDispatchToProps = (dispatch) => ({

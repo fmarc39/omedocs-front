@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Import from MATERIAL-UI
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
@@ -17,6 +18,17 @@ import InventoryTable from 'src/containers/Tables/InventoryTable';
 // Import CSS
 import './styles.scss';
 
+const useStyles = makeStyles(() => ({
+  btn: {
+    background: '#0368A3',
+    '&:hover': {
+      background: '#CDD0D4',
+      color: '#0368A3',
+    },
+    borderRadius: '15px',
+  },
+}));
+
 const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory }) => {
   // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
 
@@ -27,9 +39,15 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory }) => {
   const handleAddArticleBtn = () => {
     handleAddArticle();
   };
+  const classes = useStyles();
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -57,6 +75,7 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory }) => {
                 color="primary"
                 size="large"
                 startIcon={<AddCircleOutlineIcon />}
+                className={classes.btn}
               >
                 Ajouter un article
               </Button>

@@ -15,7 +15,7 @@ import PharmacyPage from 'src/components/PharmacyPage';
 import ProductPage from 'src/containers/ProductPage';
 import LoginForm from 'src/containers/LoginForm';
 import TeamPage from 'src/components/TeamPage';
-import Cart from 'src/components/Cart';
+import Cart from 'src/containers/CartPage';
 import Payment from 'src/components/Payment/Checkout';
 import Page404 from 'src/components/404';
 import SnackBar from 'src/containers/SnackBar';

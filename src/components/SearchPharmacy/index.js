@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box';
 
 // Import MATERIAL UI
 import Input from '@material-ui/core/Input';
+import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -22,6 +23,18 @@ import PharmacyTable from 'src/containers/Tables/SearchPharmacyResultTable';
 
 // Import CSS
 import './styles.scss';
+
+// Mise en place du style material-UI
+const useStyles = makeStyles(() => ({
+  btn: {
+    background: '#0368A3',
+    '&:hover': {
+      background: '#CDD0D4',
+      color: '#0368A3',
+    },
+    borderRadius: '15px',
+  },
+}));
 
 const SearchPharmacy = ({
   handleChange,
@@ -39,6 +52,7 @@ const SearchPharmacy = ({
     submitForm();
   };
 
+  const classes = useStyles();
   return (
     <>
       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
@@ -105,7 +119,13 @@ const SearchPharmacy = ({
                     </MenuItem>
                   </Select>
                 </FormControl>
-                <Button type="submit" variant="contained" color="primary" endIcon={<CheckIcon />}>
+                <Button
+                  className={classes.btn}
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  endIcon={<CheckIcon />}
+                >
                   Valider
                 </Button>
               </form>

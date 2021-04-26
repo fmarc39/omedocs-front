@@ -18,6 +18,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
+import Grow from '@material-ui/core/Grow';
 
 // Import CSS styles
 
@@ -39,14 +40,13 @@ const columns = [
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, cis, expiration, quantity, price, dellRow) {
+function createData(name, qty, unit) {
+  const price = priceRow(qty, unit);
   return {
     name,
-    cis,
-    expiration,
-    quantity,
+    qty,
+    unit,
     price,
-    dellRow,
   };
 }
 
@@ -58,7 +58,6 @@ const useStyles = makeStyles({
 
   container: {
     minHeight: 350,
-    maxHeight: 507,
     minWidth: 700,
   },
 });
@@ -110,55 +109,57 @@ const InventoryTable = ({
   };
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
-  const rows = inventoryData.map((article) =>
-    createData(
-      article.name,
-      article.cis_code,
-      article.expiration_date,
-      <Box>
-        {article.quantity}
-        <IconButton
-          aria-label="edit"
-          onClick={handleEditClickBtn}
-          className="edit-btn"
-        >
-          <EditIcon />
-        </IconButton>
-        <form className="edit-tools hidden" onSubmit={handleSubmitForm}>
-          <TextField
-            className="quantity-input"
-            label="quantité"
-            variant="outlined"
-            size="small"
-            type="number"
-            name={article.cis_code}
-          />
-          <IconButton
-            color="primary"
-            className="save-btn"
-            name={article.cis}
-            type="submit"
-          >
-            <SaveIcon />
-          </IconButton>
-        </form>
-      </Box>,
-      article.unit_price,
-      <IconButton
-        aria-label="delete"
-        onClick={handleDeleteCLickBtn}
-        name={article.cis_code}
-        className="del-btn"
-      >
-        <DeleteIcon />
-      </IconButton>
-    )
-  );
+  //   const rows = inventoryData.map((article) =>
+  //     createData(
+  //       article.name,
+  //       article.cis,
+  //       article.expiration,
+  //       <Box>
+  //         {article.quantity}
+  //         <IconButton
+  //           aria-label="edit"
+  //           onClick={handleEditClickBtn}
+  //           className="edit-btn"
+  //         >
+  //           <EditIcon />
+  //         </IconButton>
+  //         <form className="edit-tools hidden" onSubmit={handleSubmitForm}>
+  //           <TextField
+  //             className="quantity-input"
+  //             label="quantité"
+  //             variant="outlined"
+  //             size="small"
+  //             type="number"
+  //             name={article.cis}
+  //           />
+  //           <IconButton
+  //             color="primary"
+  //             className="save-btn"
+  //             name={article.cis}
+  //             type="submit"
+  //           >
+  //             <SaveIcon />
+  //           </IconButton>
+  //         </form>
+  //       </Box>,
+  //       article.price,
+  //       <IconButton
+  //         aria-label="delete"
+  //         onClick={handleDeleteCLickBtn}
+  //         name={article.cis}
+  //         className="del-btn"
+  //       >
+  //         <DeleteIcon />
+  //       </IconButton>
+  //     )
+  //   );
+
+  const rows = [];
 
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table" size="small">
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (

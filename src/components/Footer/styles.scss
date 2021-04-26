@@ -1,13 +1,14 @@
 .footer {
-  background-color: #2b88b4;
+  background-color: #0368A3;
   &__content {
     max-width: 600px;
-    padding: 50px;
+    padding: 1.5rem;
     margin-right: auto;
     margin-left: auto;
     display: flex;
     justify-content: space-between;
     font-size: 1rem;
     font-weight: 700;
+    color: white;
   }
 }

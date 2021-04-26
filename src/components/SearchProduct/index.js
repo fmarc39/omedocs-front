@@ -8,6 +8,7 @@ import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 
 // Import from MATERIAL-UI
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -39,6 +40,18 @@ const SearchProduct = ({
     event.preventDefault();
     submitForm();
   };
+  const useStyles = makeStyles(() => ({
+    btn: {
+      background: '#0368A3',
+      '&:hover': {
+        background: '#CDD0D4',
+        color: '#0368A3',
+      },
+      borderRadius: '15px',
+    },
+  }));
+
+  const classes = useStyles();
 
   return (
     <>
@@ -93,7 +106,13 @@ const SearchProduct = ({
                     <MenuItem value="cis">CIS</MenuItem>
                   </Select>
                 </FormControl>
-                <Button type="submit" variant="contained" color="primary" endIcon={<CheckIcon />}>
+                <Button
+                  className={classes.btn}
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  endIcon={<CheckIcon />}
+                >
                   Valider
                 </Button>
               </form>

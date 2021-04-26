@@ -1,11 +1,32 @@
+// Import React
 import React, { useState } from 'react';
 
+// Import From MATERIAL-UI
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
 
+// Mise en place des styles MATERIAL-UI
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 220,
+    margin: '.4em',
+  },
+  btn: {
+    color: 'white',
+    borderRadius: '15px',
+    background: '#0368A3',
+    '&:hover': {
+      background: '#CDD0D4',
+      color: '#0368A3',
+    },
+  },
+});
+
 const ContactPage = () => {
+  const classes = useStyles();
   const [status, setStatus] = useState('Envoyer');
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,7 +71,12 @@ const ContactPage = () => {
               variant="outlined"
             />
           </Box>
-          <Button variant="contained" color="primary" endIcon={<SendIcon />}>
+          <Button
+            variant="contained"
+            className={classes.btn}
+            color="primary"
+            endIcon={<SendIcon />}
+          >
             {status}
           </Button>
         </Box>
