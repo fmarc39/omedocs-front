@@ -16,7 +16,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
@@ -60,6 +59,7 @@ const headCells = [
   },
 ];
 
+// Taux de TVA
 const TAX_RATE = 0.0;
 
 function ccyFormat(num) {
@@ -70,13 +70,14 @@ function priceRow(qty, unit) {
   return qty * unit;
 }
 
+// Fonction qui va crer les lignes à insserer dans le tableau
 function createData(name, qty, unit, dellRow) {
   const price = priceRow(qty, unit);
   return {
     name,
     qty: Number(qty),
     unit: Number(unit),
-    price,
+    price: Number(price),
     dellRow,
   };
 }
@@ -223,16 +224,6 @@ const CartPage = ({ cartData }) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  };
-
-  // Gestion du nombre de pages dans le tableau
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-  // Gestion du nombre de pages
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
   };
 
   return (
