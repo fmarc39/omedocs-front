@@ -4,6 +4,8 @@ import {
   LAUCH_INSCRIPTION_FORM,
   CHANGE_USER_MAIL,
   CHANGE_USER_PHONE,
+  saveNewMail,
+  saveNewPhone,
 } from 'src/actions/user';
 import {
   openSnackBar,
@@ -77,14 +79,20 @@ export default (store) => (next) => (action) => {
     case CHANGE_USER_MAIL:
       {
         const { user_id, newEmail } = store.getState().user;
-        api.patch(`/editMail/${user_id}`, { newEmail });
+        api
+          .patch(`/editMail/${user_id}`, { newEmail })
+          .then((response) => store.dispatch(saveNewMail(response.mail)))
+          .catch((error) => console.log(error));
       }
       return next(action);
 
     case CHANGE_USER_PHONE:
       {
         const { user_id, newPhoneNumber } = store.getState().user;
-        api.patch(`/editphone/${user_id}`, { newPhoneNumber });
+        api
+          .patch(`/editphone/${user_id}`, { newPhoneNumber })
+          .then((response) => store.dispatch(saveNewPhone(response.phone)))
+          .catch((error) => console.log(error));
       }
       return next(action);
     default:
