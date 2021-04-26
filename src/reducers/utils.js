@@ -9,9 +9,11 @@ import {
   APPLY_INFO_DRUGS_API,
   CLOSE_POP_LIST_API,
   OPEN_POP_LIST_API,
+  OPEN_CLOSE_ACCORDION,
 } from 'src/actions/utils';
 
 const initialState = {
+  isExpanded: false,
   activePopList: false,
   errorInputValidation: {
     message: '',
@@ -35,6 +37,11 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case OPEN_CLOSE_ACCORDION:
+      return {
+        ...state,
+        isExpanded: !state.isExpanded,
+      };
     case CLOSE_ERROR_INPUT_VALIDATION:
       return {
         ...state,

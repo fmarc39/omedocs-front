@@ -53,7 +53,11 @@ const useStyles = makeStyles({
   },
 });
 
-const InventoryTable = ({ inventoryData }) => {
+const InventoryTable = ({ establishments }) => {
+  // TODO: RECUPERER LE STATE 'searchEstablishmentResult'
+  // TODO: FILTRER LE BON USER AVEC useParams
+  // TODO: AFFICHER LA LISTE DE MEDICAMENT DU USER
+
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -69,21 +73,20 @@ const InventoryTable = ({ inventoryData }) => {
   };
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
-  const rows = inventoryData.map((row) =>
+
+  //TODO: BOUCLER ICI SUR LES TABLEAU FILTRER A LA PLACE DE 'establishments'.
+
+  const rows = establishments.map((row) =>
     createData(
       row.drugName,
       row.cis,
       row.quantity,
       row.price,
       <TextField id="standard-basic" label="quantité" type="number" />,
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<AddShoppingCartIcon />}
-      >
+      <Button variant="contained" color="primary" endIcon={<AddShoppingCartIcon />}>
         Ajouter au panier
-      </Button>
-    )
+      </Button>,
+    ),
   );
 
   return (
@@ -104,22 +107,18 @@ const InventoryTable = ({ inventoryData }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                {columns.map((column) => {
+                  const value = row[column.id];
+                  return (
+                    <TableCell key={column.id} align={column.align}>
+                      {column.format && typeof value === 'number' ? column.format(value) : value}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
@@ -138,7 +137,7 @@ const InventoryTable = ({ inventoryData }) => {
 };
 
 InventoryTable.propTypes = {
-  inventoryData: PropTyes.array.isRequired,
+  establishments: PropTyes.array.isRequired,
 };
 
 export default InventoryTable;

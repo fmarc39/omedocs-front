@@ -3,7 +3,7 @@ import Table from 'src/components/PharmacyPage/PharmacyTable';
 import {} from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
-  inventoryData: state.inventory.drugs,
+  establishments: state.search.searchEstablishmentResult,
 });
 
 const mapDispatchToProps = (dispatch) => ({});

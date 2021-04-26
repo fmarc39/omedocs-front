@@ -9,8 +9,8 @@ export const initialState = {
   searchProductSelectValue: 'name',
   searchEstablishmentInputValue: '',
   searchEstablishmentSelectValue: '',
-  searchEstablishmentResult: [],
-  searchProductResult: [{ name: 'Doliprane', cis: '485452', quantity: 1, price: 10 }],
+  searchEstablishmentResult: [{}, {}],
+  searchProductResult: [{}, {}],
 };
 
 const reducer = (state = initialState, action = {}) => {

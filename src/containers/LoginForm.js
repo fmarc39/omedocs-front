@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import LoginForm from 'src/components/LoginForm';
 import { withRouter } from 'react-router-dom';
 import { changeUserInformations, submitLogin, lauchInscriptionForm } from 'src/actions/user';
-import { closeErrorInputValidation } from '../actions/utils';
+import { closeErrorInputValidation, closeOpenAccordion } from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
@@ -21,6 +21,7 @@ const mapStateToProps = (state) => ({
   userType: state.user.userType,
   errorMessage: state.utils.errorInputValidation.message,
   errorMessageIsOpen: state.utils.errorInputValidation.open,
+  isExpanded: state.utils.isExpanded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,6 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
   submitLogin: () => dispatch(submitLogin()),
   submitSubscribe: () => dispatch(lauchInscriptionForm()),
   closeErrorMessage: () => dispatch(closeErrorInputValidation()),
+  closeOpenAccordion: () => dispatch(closeOpenAccordion()),
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps)(LoginForm);

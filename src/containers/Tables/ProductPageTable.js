@@ -3,7 +3,7 @@ import Table from 'src/components/ProductPage/ProductPageTable';
 import {} from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
-  productResultsData: state.search.searchProductResult,
+  products: state.search.searchProductResult,
 });
 
 const mapDispatchToProps = (dispatch) => ({});

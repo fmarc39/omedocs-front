@@ -1,6 +1,7 @@
 // Import REACT
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -45,7 +46,11 @@ const useStyles = makeStyles({
   },
 });
 
-const ProductTable = ({ productResultsData }) => {
+const ProductTable = ({ products }) => {
+  // filter on result of search drugs
+  const { id } = useParams;
+  const filterProduct = products.filter((product) => product.id === id);
+
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -64,7 +69,7 @@ const ProductTable = ({ productResultsData }) => {
   };
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
-  const rows = productResultsData.map((pharmacy) =>
+  const rows = filterProduct.map((pharmacy) =>
     createData(
       pharmacy.name,
       pharmacy.quantity,
@@ -72,16 +77,11 @@ const ProductTable = ({ productResultsData }) => {
       <TextField id="quantity" label="quantité" type="number" />,
       <Box display="flex" justifyContent="flex-end" alignItems="center">
         <TextField id="quantity" label="quantité" type="number" />,
-        <Button
-          variant="contained"
-          type="submit"
-          color="primary"
-          endIcon={<AddShoppingCartIcon />}
-        >
+        <Button variant="contained" type="submit" color="primary" endIcon={<AddShoppingCartIcon />}>
           Ajouter au panier
         </Button>
-      </Box>
-    )
+      </Box>,
+    ),
   );
   return (
     <Paper className={classes.root}>
@@ -102,28 +102,24 @@ const ProductTable = ({ productResultsData }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow
-                  hover
-                  role="checkbox"
-                  onClick={handleAddToCartBtn}
-                  tabIndex={-1}
-                  key={row.code}
-                >
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <TableRow
+                hover
+                role="checkbox"
+                onClick={handleAddToCartBtn}
+                tabIndex={-1}
+                key={row.code}
+              >
+                {columns.map((column) => {
+                  const value = row[column.id];
+                  return (
+                    <TableCell key={column.id} align={column.align}>
+                      {column.format && typeof value === 'number' ? column.format(value) : value}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
@@ -142,7 +138,7 @@ const ProductTable = ({ productResultsData }) => {
 };
 
 ProductTable.propTypes = {
-  productResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductTable;

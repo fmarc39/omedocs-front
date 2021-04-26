@@ -13,6 +13,8 @@ export const CLOSE_POP_LIST_API = 'CLOSE_POP_LIST_API';
 export const OPEN_POP_LIST_API = 'OPEN_POP_LIST_API';
 export const APPLY_INFO_DRUGS_API = 'APPLY_INFO_DRUGS_API';
 
+export const OPEN_CLOSE_ACCORDION = 'OPEN_CLOSE_ACCORDION';
+
 // action creators
 export const closeModalProduct = () => ({
   type: CLOSE_MODAL_PRODUCT,
@@ -67,4 +69,8 @@ export const applyInfoDrugsApi = (name, cis) => ({
   type: APPLY_INFO_DRUGS_API,
   name,
   cis,
+});
+
+export const closeOpenAccordion = () => ({
+  type: OPEN_CLOSE_ACCORDION,
 });

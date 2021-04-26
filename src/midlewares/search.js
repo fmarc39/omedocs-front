@@ -13,8 +13,18 @@ export default (store) => (next) => (action) => {
       {
         const { searchProductInputValue } = store.getState().search;
         const { searchProductSelectValue } = store.getState().search;
+
+        // Requête par name ou cis selon la valeur du select
+        let searchRequest = '';
+
+        if (searchProductSelectValue === 'name') {
+          searchRequest = '/productbyname';
+        } else {
+          searchRequest = '/productbycis';
+        }
+
         api
-          .get('/searchproduct', {
+          .get(searchRequest, {
             searchProductInputValue,
             searchProductSelectValue,
           })

@@ -1,7 +1,7 @@
 import api from 'src/api/api';
 
 import { LAUCH_INSCRIPTION_FORM } from 'src/actions/user';
-import { openSnackBar, openErrorInputValidation } from 'src/actions/utils';
+import { openSnackBar, openErrorInputValidation, closeOpenAccordion } from 'src/actions/utils';
 import { LocalPharmacyTwoTone } from '@material-ui/icons';
 
 export default (store) => (next) => (action) => {
@@ -45,6 +45,7 @@ export default (store) => (next) => (action) => {
               store.dispatch(
                 openSnackBar('Merci de vous être inscrit. Vous pouvez vous connectez', 'success'),
               );
+              store.dispatch(closeOpenAccordion());
             })
             .catch((error) => {
               console.error(error);

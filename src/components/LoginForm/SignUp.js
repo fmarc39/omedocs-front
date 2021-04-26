@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -85,27 +85,35 @@ const SignUp = ({
   errorMessage,
   errorMessageIsOpen,
   closeErrorMessage,
+  isExpanded,
+  closeOpenAccordion,
 }) => {
   const classes = useStyles();
   const handleOnChange = (event) => {
     handleChange(event.target.value, event.target.name);
   };
+  // Booleen pour controller manuellement l'état ouvert ou fermer de l'accordeon.
+
   const handleOnSubmitSubscribe = (event) => {
     event.preventDefault();
     submitSubscribe();
   };
+
   useEffect(() => {
-    setTimeout(() => {
-      closeErrorMessage();
-    }, 4000);
-  });
+    if (errorMessageIsOpen) {
+      setTimeout(() => {
+        closeErrorMessage();
+      }, 4000);
+    }
+  }, [errorMessageIsOpen]);
   return (
     <div className={classes.root}>
-      <Accordion className={classes.accordion}>
+      <Accordion className={classes.accordion} expanded={isExpanded}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          onClick={closeOpenAccordion}
         >
           <Box>
             <Typography className={classes.heading} variant="body1">
@@ -304,6 +312,8 @@ SignUp.propTypes = {
   errorMessageIsOpen: PropTypes.bool,
   closeErrorMessage: PropTypes.func.isRequired,
   city: PropTypes.string,
+  isExpanded: PropTypes.bool.isRequired,
+  closeOpenAccordion: PropTypes.func.isRequired,
 };
 
 SignUp.defaultProps = {

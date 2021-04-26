@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
-import LeftMenu from 'src/components/LeftMenu';
+import LeftMenu from 'src/containers/LeftMenu';
 
 // Import react-router-dom pour ajouter des links aux boutons
 import { NavLink } from 'react-router-dom';
@@ -95,23 +95,33 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'name', numeric: false, disablePadding: true, label: 'Nom du produit',
+    id: 'name',
+    numeric: false,
+    disablePadding: true,
+    label: 'Nom du produit',
   },
   {
-    id: 'qty', numeric: true, disablePadding: false, label: 'Quantité',
+    id: 'qty',
+    numeric: true,
+    disablePadding: false,
+    label: 'Quantité',
   },
   {
-    id: 'unit', numeric: true, disablePadding: false, label: 'Prix unitaire',
+    id: 'unit',
+    numeric: true,
+    disablePadding: false,
+    label: 'Prix unitaire',
   },
   {
-    id: 'price', numeric: true, disablePadding: false, label: 'Prix total',
+    id: 'price',
+    numeric: true,
+    disablePadding: false,
+    label: 'Prix total',
   },
 ];
 
 function EnhancedTableHead(props) {
-  const {
-    classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort,
-  } = props;
+  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -171,13 +181,13 @@ const useToolbarStyles = makeStyles((theme) => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-        color: theme.palette.secondary.main,
-        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-      }
+          color: theme.palette.secondary.main,
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+        }
       : {
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.secondary.dark,
-      },
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.secondary.dark,
+        },
   title: {
     flex: '1 1 100%',
   },
@@ -208,10 +218,7 @@ const EnhancedTableToolbar = (props) => {
         )}
 
         <Tooltip title="Augmenter la quantité">
-          <IconButton
-            aria-label="more"
-            onClick={handleAddArticleBtn}
-          >
+          <IconButton aria-label="more" onClick={handleAddArticleBtn}>
             <AddCircleIcon />
           </IconButton>
         </Tooltip>
@@ -221,9 +228,7 @@ const EnhancedTableToolbar = (props) => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Supprimer">
-          <IconButton
-            aria-label="delete"
-          >
+          <IconButton aria-label="delete">
             <DeleteIcon />
           </IconButton>
         </Tooltip>
@@ -237,8 +242,7 @@ EnhancedTableToolbar.propTypes = {
   handleAddArticle: PropTypes.func.isRequired,
 };
 
-EnhancedTableToolbar.defaultProps = {
-};
+EnhancedTableToolbar.defaultProps = {};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -295,14 +299,11 @@ export default function EnhancedTable() {
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, name);
-    }
-    else if (selectedIndex === 0) {
+    } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
-    }
-    else if (selectedIndex === selected.length - 1) {
+    } else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
-    }
-    else if (selectedIndex > 0) {
+    } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
         selected.slice(selectedIndex + 1),
@@ -429,6 +430,5 @@ export default function EnhancedTable() {
       </Box>
       <Footer />
     </>
-
   );
 }

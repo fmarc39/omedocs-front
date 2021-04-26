@@ -20,7 +20,7 @@ const columns = [
   { id: 'link', label: 'Liens' },
 ];
 
-function createData(title, code, quantity, link = 'Liens vers la Pharmacie') {
+function createData(title, code, quantity, link = 'Liens vers les Pharmacies') {
   return { title, code, quantity, link };
 }
 
@@ -50,7 +50,7 @@ const ProductTable = ({ productResultsData }) => {
   };
 
   const rows = productResultsData.map((product) =>
-    createData(product.title, product.code, product.quantity)
+    createData(product.title, product.code, product.quantity),
   );
 
   return (
@@ -71,22 +71,18 @@ const ProductTable = ({ productResultsData }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                {columns.map((column) => {
+                  const value = row[column.id];
+                  return (
+                    <TableCell key={column.id} align={column.align}>
+                      {column.format && typeof value === 'number' ? column.format(value) : value}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

@@ -48,6 +48,8 @@ const LoginForm = ({
   errorMessage,
   errorMessageIsOpen,
   closeErrorMessage,
+  isExpanded,
+  closeOpenAccordion,
 }) => {
   const classes = useStyles();
 
@@ -142,6 +144,8 @@ const LoginForm = ({
             errorMessage={errorMessage}
             errorMessageIsOpen={errorMessageIsOpen}
             closeErrorMessage={closeErrorMessage}
+            isExpanded={isExpanded}
+            closeOpenAccordion={closeOpenAccordion}
           />
         </Box>
       </Box>
@@ -171,6 +175,8 @@ LoginForm.propTypes = {
   errorMessage: PropTypes.string,
   errorMessageIsOpen: PropTypes.bool,
   closeErrorMessage: PropTypes.func,
+  isExpanded: PropTypes.bool.isRequired,
+  closeOpenAccordion: PropTypes.func.isRequired,
 };
 LoginForm.defaultProps = {
   emailConnexion: '',

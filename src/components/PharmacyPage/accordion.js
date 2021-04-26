@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -27,14 +28,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const AccordionsPharmacyDetails = ({
-  establishment,
-  adress,
-  city,
-  zipCode,
-  email,
-  phoneNumer,
-}) => {
+const AccordionsPharmacyDetails = ({ establishments }) => {
+  // TODO: FILTRER LA PHARMACIE ICI POUR AFFICHER LES INFOS DANS L'ACCORDEON
+  const { id } = useParams();
+  //
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -44,16 +41,13 @@ const AccordionsPharmacyDetails = ({
 
   return (
     <div className={classes.root}>
-      <Accordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-      >
+      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography className={classes.heading}>{establishment}</Typography>
+          <Typography className={classes.heading}>Nom de l'établissement</Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.body}>
           <Box
@@ -67,19 +61,20 @@ const AccordionsPharmacyDetails = ({
             p={2}
             bgcolor="rgb(155, 230, 247, 0.2)"
           >
-            <p>{adress}</p>
-            <p>{city}</p>
-            <p>{zipCode}</p>
+            <p>Adresse</p>
+            <p>Ville</p>
+            <p>Code Postal</p>
             <Button
               variant="contained"
               color="primary"
               size="small"
               id="phoneBtn"
               className={classes.button}
-              href={`tel: ${phoneNumer}`}
+              // TODO: Numéro de tel ici
+              // href={`tel: ${phoneNumer}`}
               startIcon={<PhoneForwardedIcon />}
             >
-              {phoneNumer}
+              Numéro
             </Button>
             <Divider />
             <Button
@@ -88,9 +83,10 @@ const AccordionsPharmacyDetails = ({
               size="small"
               className={classes.button}
               startIcon={<EmailIcon />}
-              href={`mailto: ${email}`}
+              // TODO: MAIL ici
+              //  href={`mailto: ${email}`}
             >
-              {email}
+              Email
             </Button>
           </Box>
         </AccordionDetails>
@@ -100,12 +96,7 @@ const AccordionsPharmacyDetails = ({
 };
 
 AccordionsPharmacyDetails.propTypes = {
-  establishment: PropTypes.string.isRequired,
-  adress: PropTypes.string.isRequired,
-  city: PropTypes.string.isRequired,
-  zipCode: PropTypes.number.isRequired,
-  email: PropTypes.string.isRequired,
-  phoneNumer: PropTypes.number.isRequired,
+  establishments: PropTypes.array.isRequired,
 };
 
 export default AccordionsPharmacyDetails;
