@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Import COMPONENTS
-import ConfirmationBox from './DialogBox';
+import ConfirmationBox from 'src/containers/DialogBoxAddToCart';
 import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
@@ -22,12 +22,17 @@ import './styles.scss';
 
 const ProductPage = ({ products }) => {
   // filter on result of search drugs
-  const { id } = useParams;
-  const filterProduct = products.filter((product) => product.id === id);
+  // const { id } = useParams;
+  // const filterProduct = products.filter((product) => product.id === id);
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />

@@ -1,6 +1,8 @@
 import {
   ADD_ARTICLE_TO_CART,
   DELETE_ARTICLE_FROM_CART,
+  CLOSE_DIALOG_BOX,
+  OPEN_DIALOG_BOX,
 } from 'src/actions/cart';
 
 export const initialState = {
@@ -33,6 +35,7 @@ export const initialState = {
       id: 3,
     },
   ],
+  validationBox: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -43,7 +46,6 @@ const reducer = (state = initialState, action = {}) => {
         cart: [...state.cart, action.payload],
       };
     case DELETE_ARTICLE_FROM_CART:
-      console.log(action.articleId);
       return {
         ...state,
         cart: [
@@ -51,6 +53,16 @@ const reducer = (state = initialState, action = {}) => {
             (article) => Number(article.id) !== Number(action.articleId)
           ),
         ],
+      };
+    case CLOSE_DIALOG_BOX:
+      return {
+        ...state,
+        validationBox: false,
+      };
+    case OPEN_DIALOG_BOX:
+      return {
+        ...state,
+        validationBox: true,
       };
     default:
       return state;

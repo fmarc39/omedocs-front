@@ -88,7 +88,7 @@ const InventoryTable = ({
   };
   // Gestion du click sur le btn delete
   const handleDeleteCLickBtn = (event) => {
-    handleDeleteCLick(event.target.closest('.del-btn').name);
+    handleDeleteCLick(event.target.closest('button').name);
   };
 
   // Gestion du click sur le btn edit
@@ -151,6 +151,7 @@ const InventoryTable = ({
         aria-label="delete"
         onClick={handleDeleteCLickBtn}
         name={article.cis_code}
+        id="del-btn"
         className={classes.delBtn}
       >
         <DeleteIcon />

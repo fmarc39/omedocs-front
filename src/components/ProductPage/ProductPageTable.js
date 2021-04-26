@@ -1,7 +1,6 @@
 // Import REACT
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -49,13 +48,12 @@ const useStyles = makeStyles({
     minHeight: 350,
     minWidth: 700,
   },
+  addToCartBtn: {
+    color: '#0368A3',
+  },
 });
 
-const ProductTable = ({ addToCart, products }) => {
-  // filter on result of search drugs
-  const { id } = useParams;
-  const filterProduct = products.filter((product) => product.id === id);
-
+const ProductTable = ({ addToCart, products, openDialogBox }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -73,13 +71,23 @@ const ProductTable = ({ addToCart, products }) => {
     event.preventDefault();
     // On récupère les datas du form avec dataset
     const {
-      dataset: { pharmacyname, price, quantity, productname, productid },
+      dataset: {
+        pharmacyname,
+        price,
+        quantity,
+        productname,
+        productid,
+        pharmacyId,
+      },
     } = event.target;
     // On récupère la quantité rentré par l'user
     const formData = new FormData(event.target);
     const quantityToBuy = formData.get('quantityToBuy');
     // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
-    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
+    if (
+      Number(quantityToBuy) > Number(quantity) ||
+      Number(quantityToBuy) === 0
+    ) {
       event.target.classList.add('error');
       setTimeout(() => {
         event.target.classList.remove('error');
@@ -96,6 +104,8 @@ const ProductTable = ({ addToCart, products }) => {
       };
       // On envois les data dans le panier via un action
       addToCart(dataToSendToCart);
+      // On envois l'action pour l'ouverture de la dialogBox
+      openDialogBox();
     }
   };
 
@@ -110,6 +120,7 @@ const ProductTable = ({ addToCart, products }) => {
         <form
           onSubmit={handleSubmitForm}
           data-pharmacyname={pharmacy.name}
+          data-pharmacyId={pharmacy.id}
           data-price={pharmacy.price}
           data-quantity={pharmacy.quantity}
           data-productname={filterProduct.name}
@@ -123,12 +134,17 @@ const ProductTable = ({ addToCart, products }) => {
             name="quantityToBuy"
             InputProps={{ inputProps: { min: 1, max: pharmacy.quantity } }}
           />
-          <IconButton variant="contained" type="submit" color="primary">
+          <IconButton
+            variant="contained"
+            type="submit"
+            color="primary"
+            className={classes.addToCartBtn}
+          >
             <AddShoppingCartIcon />
           </IconButton>
         </form>
-      </Box>,
-    ),
+      </Box>
+    )
   );
   return (
     <Paper className={classes.root}>
@@ -143,24 +159,28 @@ const ProductTable = ({ addToCart, products }) => {
                   align="left"
                   style={{ minWidth: column.minWidth }}
                 >
-                  {column.label}
+                  <p className="cells-title">{column.label}</p>
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover tabIndex={-1} key={row.code}>
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof value === 'number' ? column.format(value) : value}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <TableRow hover tabIndex={-1} key={row.code}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
@@ -181,6 +201,7 @@ const ProductTable = ({ addToCart, products }) => {
 ProductTable.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   addToCart: PropTypes.func.isRequired,
+  openDialogBox: PropTypes.func.isRequired,
 };
 
 export default ProductTable;

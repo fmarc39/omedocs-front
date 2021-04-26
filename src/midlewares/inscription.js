@@ -1,7 +1,15 @@
 import api from 'src/api/api';
 
-import { LAUCH_INSCRIPTION_FORM } from 'src/actions/user';
-import { openSnackBar, openErrorInputValidation, closeOpenAccordion } from 'src/actions/utils';
+import {
+  LAUCH_INSCRIPTION_FORM,
+  CHANGE_USER_MAIL,
+  CHANGE_USER_PHONE,
+} from 'src/actions/user';
+import {
+  openSnackBar,
+  openErrorInputValidation,
+  closeOpenAccordion,
+} from 'src/actions/utils';
 import { LocalPharmacyTwoTone } from '@material-ui/icons';
 
 export default (store) => (next) => (action) => {
@@ -24,9 +32,13 @@ export default (store) => (next) => (action) => {
         } = store.getState().user;
 
         if (email !== confirmEmail) {
-          store.dispatch(openErrorInputValidation('Les emails doivent correspondres'));
+          store.dispatch(
+            openErrorInputValidation('Les emails doivent correspondres')
+          );
         } else if (password !== confirmPassword) {
-          store.dispatch(openErrorInputValidation('Les mots de passe doivent correspondres'));
+          store.dispatch(
+            openErrorInputValidation('Les mots de passe doivent correspondres')
+          );
         } else {
           api
             .post('/signup', {
@@ -43,7 +55,10 @@ export default (store) => (next) => (action) => {
             })
             .then(() => {
               store.dispatch(
-                openSnackBar('Merci de vous être inscrit. Vous pouvez vous connectez', 'success'),
+                openSnackBar(
+                  'Merci de vous être inscrit. Vous pouvez vous connectez',
+                  'success'
+                )
               );
               store.dispatch(closeOpenAccordion());
             })
@@ -52,14 +67,26 @@ export default (store) => (next) => (action) => {
               store.dispatch(
                 openSnackBar(
                   "Une erreur s'est produite lors de l'inscription, veuillez réessayer",
-                  'error',
-                ),
+                  'error'
+                )
               );
             });
         }
       }
       return next(action);
+    case CHANGE_USER_MAIL:
+      {
+        const { user_id, newEmail } = store.getState().user;
+        api.patch(`/editMail/${user_id}`, { newEmail });
+      }
+      return next(action);
 
+    case CHANGE_USER_PHONE:
+      {
+        const { user_id, newPhoneNumber } = store.getState().user;
+        api.patch(`/editphone/${user_id}`, { newPhoneNumber });
+      }
+      return next(action);
     default:
       return next(action);
   }

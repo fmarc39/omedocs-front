@@ -6,6 +6,8 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const LAUCH_INSCRIPTION_FORM = ' LAUCH_INSCRIPTION_FORM';
 export const LOGIN_FROM_REHYDRATE = 'LOGIN_FROM_REHYDRATE';
+export const CHANGE_USER_MAIL = 'CHANGE_USER_MAIL';
+export const CHANGE_USER_PHONE = 'CHANGE_USER_PHONE';
 
 // action creators
 export const changeUserInformations = (value, name) => ({
@@ -36,6 +38,14 @@ export const lauchInscriptionForm = () => ({
   type: LAUCH_INSCRIPTION_FORM,
 });
 
+export const changeUserMail = () => ({
+  type: CHANGE_USER_MAIL,
+});
+
+export const changeUserPhone = () => ({
+  type: CHANGE_USER_PHONE,
+});
+
 export const loginFromRehydrate = (
   accessToken,
   establishment,
@@ -46,7 +56,7 @@ export const loginFromRehydrate = (
   address,
   zipCode,
   userType,
-  user_id,
+  user_id
 ) => ({
   type: LOGIN_FROM_REHYDRATE,
   accessToken,

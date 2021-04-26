@@ -14,11 +14,18 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
+const DialogChangeInformationsModal = ({
+  isOpen,
+  handleClose,
+  handleChangeInfo,
+}) => {
   const handleCloseBtn = () => {
     handleClose();
   };
-  const handleValidation = () => {};
+  const handleValidation = (event) => {
+    console.log(event.target.closest('button').name);
+    handleChangeInfo();
+  };
 
   return (
     <div>
@@ -49,6 +56,7 @@ const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
 DialogChangeInformationsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
+  handleChangeInfo: PropTypes.func.isRequired,
 };
 
 export default DialogChangeInformationsModal;
