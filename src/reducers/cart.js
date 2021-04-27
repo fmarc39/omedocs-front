@@ -1,5 +1,3 @@
-import { loadState } from 'src/locaStorage';
-
 import {
   ADD_ARTICLE_TO_CART,
   DELETE_ARTICLE_FROM_CART,
@@ -7,11 +5,12 @@ import {
   OPEN_DIALOG_BOX,
 } from 'src/actions/cart';
 
-// chargement du localStorage
-const { cart } = loadState();
+import { loadState } from 'src/locaStorage';
+
+const persistedState = loadState();
 
 export const initialState = {
-  cart: cart,
+  cart: persistedState ? persistedState.cart : [],
   validationBox: false,
 };
 
@@ -25,7 +24,11 @@ const reducer = (state = initialState, action = {}) => {
     case DELETE_ARTICLE_FROM_CART:
       return {
         ...state,
-        cart: [...state.cart.filter((article) => Number(article.id) !== Number(action.articleId))],
+        cart: [
+          ...state.cart.filter(
+            (article) => Number(article.id) !== Number(action.articleId)
+          ),
+        ],
       };
     case CLOSE_DIALOG_BOX:
       return {

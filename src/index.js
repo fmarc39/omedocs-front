@@ -3,19 +3,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { saveState } from 'src/locaStorage';
 import store from 'src/store';
 
 // == Import : local
 // Composants
 import App from 'src/containers/App';
-
-// Sauvegarde du state dans le local storage pour pouvoir faire perssisté le panier
-store.subscribe(() => {
-  saveState({
-    cart: store.getState().cart.cart,
-  });
-});
 
 // == Render
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)
