@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import LeftMenu from 'src/containers/LeftMenu';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
+import ConfirmationBox from 'src/containers/DialogBoxAddToCart';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -55,7 +56,12 @@ const SearchProduct = ({
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -79,7 +85,9 @@ const SearchProduct = ({
             >
               <form autoComplete="off" onSubmit={handleOnSubmit}>
                 <div>
-                  <InputLabel htmlFor="search-product-input">Nom du médicament</InputLabel>
+                  <InputLabel htmlFor="search-product-input">
+                    Nom du médicament
+                  </InputLabel>
                   <Input
                     id="search-product-input"
                     onChange={handleChangeSearchInput}
@@ -121,6 +129,7 @@ const SearchProduct = ({
             la longueur du tableau est différente de 0  */}
             {productResultsData.length !== 0 && <ProductPageTable />}
           </Box>
+          <ConfirmationBox />
         </Box>
         <Footer />
       </Box>

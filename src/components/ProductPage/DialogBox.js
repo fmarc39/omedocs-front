@@ -44,7 +44,7 @@ const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
   return (
     <div>
       <Dialog
-        open="true"
+        open={isOpen}
         TransitionComponent={Transition}
         keepMounted
         onClose={handleCloseBtn}

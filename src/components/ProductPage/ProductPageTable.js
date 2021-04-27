@@ -23,15 +23,27 @@ import './styles.scss';
 // Configuration des colones avec le nom, le label, la largeur
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300 },
-  { id: 'quantity', label: 'Quantité disponible', minWidth: 100 },
-  { id: 'price', label: 'Prix unitaire H.T', minWidth: 100 },
-  { id: 'addToCart', minWidth: 100 },
+  { id: 'pharmacyName', label: 'Nom de la Pharmacie', minWidth: 200 },
+  { id: 'expirationDate', label: "Date d'expiration" },
+  { id: 'quantity', label: 'Quantité disponible', minWidth: 50 },
+  { id: 'price', label: 'Prix unitaire H.T', minWidth: 50 },
+  { id: 'addToCart', minWidth: 150 },
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, quantity, price, quantityToBuy, addToCart) {
+function createData(
+  name,
+  pharmacyName,
+  expirationDate,
+  quantity,
+  price,
+  quantityToBuy,
+  addToCart
+) {
   return {
     name,
+    pharmacyName,
+    expirationDate,
     quantity,
     price,
     quantityToBuy,
@@ -110,6 +122,8 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
   const rows = products.map((product) =>
     createData(
       product.name,
+      product.establishment,
+      product.expiration_date,
       product.quantity,
       `${product.unit_price}  €`,
       <TextField id="quantity" label="quantité" type="number" />,
