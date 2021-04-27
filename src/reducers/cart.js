@@ -6,35 +6,7 @@ import {
 } from 'src/actions/cart';
 
 export const initialState = {
-  cart: [
-    {
-      pharmacyname: 'Pharmacie de la gare',
-      price: '10',
-      productid: '6 000 228 5',
-      productname: 'FENOFIBRATE TEVA 100 mg',
-      quantity: '99',
-      quantityToBuy: '11',
-      id: 10,
-    },
-    {
-      pharmacyname: 'Pharmacie de la gare',
-      price: '10',
-      productid: '6 000 228 5',
-      productname: 'FENOFIBRATE TEVA 100 mg',
-      quantity: '99',
-      quantityToBuy: '39',
-      id: 21,
-    },
-    {
-      pharmacyname: 'Pharmacie de la gare',
-      price: '10',
-      productid: '6 000 228 5',
-      productname: 'FENOFIBRATE TEVA 100 mg',
-      quantity: '99',
-      quantityToBuy: '11',
-      id: 34,
-    },
-  ],
+  cart: [],
   validationBox: false,
 };
 

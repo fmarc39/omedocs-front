@@ -50,7 +50,7 @@ function createData(
     addToCart,
   };
 }
-
+// Ajout des styles sur les composants MATERIAL-UI
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -75,13 +75,19 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
     setPage(newPage);
   };
 
-  console.log(products);
-
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
+  // Reset de la valeur de tous les inputs
+  const handleReset = () => {
+    Array.from(document.querySelectorAll('input')).forEach(
+      (input) => (input.value = '')
+    );
+  };
+
+  // Gestion de la soumission du formulaire addProduct pour l'envois au panier
   const handleSubmitForm = (event) => {
     event.preventDefault();
     // On récupère les datas du form avec dataset
@@ -101,6 +107,7 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
         event.target.classList.remove('error');
       }, 1000);
     } else {
+      handleReset();
       // On met toutes les datas dans un objet pour les envoyes dans le panier
       const dataToSendToCart = {
         pharmacyname,

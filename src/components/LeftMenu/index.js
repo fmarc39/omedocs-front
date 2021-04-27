@@ -101,7 +101,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
             endIcon={<AccountCircleIcon />}
             size="large"
             className={classes.btn}
-            fullWidth={true}
+            fullWidth="true"
           >
             Profil
           </Button>
