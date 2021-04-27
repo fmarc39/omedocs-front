@@ -20,3 +20,4 @@ export const closeDialogBox = () => ({
 export const openDialogBoxAction = () => ({
   type: OPEN_DIALOG_BOX,
 });
+

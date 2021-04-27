@@ -25,6 +25,10 @@ import { DonutLargeSharp } from '@material-ui/icons';
 const App = ({ isLoading, logged, rehydrate }) => {
   useEffect(() => {
     rehydrate();
+    const cartFromLocalStorage = localStorage.getItem('cart');
+    if (!cartFromLocalStorage) {
+      localStorage.setItem('cart', []);
+    }
   }, []);
 
   return (

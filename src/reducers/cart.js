@@ -1,3 +1,5 @@
+import { loadState } from 'src/locaStorage';
+
 import {
   ADD_ARTICLE_TO_CART,
   DELETE_ARTICLE_FROM_CART,
@@ -5,36 +7,11 @@ import {
   OPEN_DIALOG_BOX,
 } from 'src/actions/cart';
 
+// chargement du localStorage
+const { cart } = loadState();
+
 export const initialState = {
-  cart: [
-    {
-      pharmacyname: 'Pharmacie de la gare',
-      price: '10',
-      productid: '6 000 228 5',
-      productname: 'FENOFIBRATE TEVA 100 mg',
-      quantity: '99',
-      quantityToBuy: '11',
-      id: 1,
-    },
-    {
-      pharmacyname: 'Pharmacie de la gare',
-      price: '10',
-      productid: '6 000 228 5',
-      productname: 'FENOFIBRATE TEVA 100 mg',
-      quantity: '99',
-      quantityToBuy: '39',
-      id: 2,
-    },
-    {
-      pharmacyname: 'Pharmacie de la gare',
-      price: '10',
-      productid: '6 000 228 5',
-      productname: 'FENOFIBRATE TEVA 100 mg',
-      quantity: '99',
-      quantityToBuy: '11',
-      id: 3,
-    },
-  ],
+  cart: cart,
   validationBox: false,
 };
 
@@ -48,11 +25,7 @@ const reducer = (state = initialState, action = {}) => {
     case DELETE_ARTICLE_FROM_CART:
       return {
         ...state,
-        cart: [
-          ...state.cart.filter(
-            (article) => Number(article.id) !== Number(action.articleId)
-          ),
-        ],
+        cart: [...state.cart.filter((article) => Number(article.id) !== Number(action.articleId))],
       };
     case CLOSE_DIALOG_BOX:
       return {

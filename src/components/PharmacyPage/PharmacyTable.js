@@ -104,7 +104,7 @@ const InventoryTable = ({ fetchInventory, inventory, establishment }) => {
 
   return (
     <div>
-        {/* Si l'établissement est une pharmacie et qu'elle a des médicaments en stock on affiche le tableau */}
+      {/* Si l'établissement est une pharmacie et qu'elle a des médicaments en stock on affiche le tableau */}
       {typeRender === 'pharmacyHasInventory' ? (
         <Paper className={classes.root}>
           <TableContainer className={classes.container}>
@@ -151,14 +151,11 @@ const InventoryTable = ({ fetchInventory, inventory, establishment }) => {
             onChangeRowsPerPage={handleChangeRowsPerPage}
           />
         </Paper>
-        {/* Si l'établissement est une pharmacie sans médicament*/}
-      ) 
-      : typeRender === 'pharmacyHasNoInventory' ? (
+      ) : typeRender === 'pharmacyHasNoInventory' ? (
+        // Si l'établissement est une pharmacie sans inventaire
         <h1>Cet pharmacie n'a pas de médicament en stock</h1>
-      ) 
-      : 
-        {/* Si l'établissement est un hôpital*/}
-      (
+      ) : (
+        // Si l'établissement est un hôpital
         <h1> Pas de stock a afficher pour les hôpitaux</h1>
       )}
     </div>
