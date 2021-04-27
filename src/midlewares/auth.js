@@ -63,17 +63,17 @@ export default (store) => (next) => (action) => {
           console.log(user);
           // Je stock le token et le user dans le localStorage
           localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('user_id', user[0].id);
-          localStorage.setItem('establishment', user[0].establishment);
-          localStorage.setItem('email', user[0].email);
-          localStorage.setItem('phoneNumber', user[0].phone_number);
-          localStorage.setItem('rpps', user[0].rpps);
-          localStorage.setItem('city', user[0].city);
-          localStorage.setItem('address', user[0].address);
-          localStorage.setItem('zipCode', user[0].zip_code);
-          localStorage.setItem('userType', user[0].user_type);
+          localStorage.setItem('user_id', user.id);
+          localStorage.setItem('establishment', user.establishment);
+          localStorage.setItem('email', user.email);
+          localStorage.setItem('phoneNumber', user.phone_number);
+          localStorage.setItem('rpps', user.rpps);
+          localStorage.setItem('city', user.city);
+          localStorage.setItem('address', user.address);
+          localStorage.setItem('zipCode', user.zip_code);
+          localStorage.setItem('userType', user.user_type);
           // Dispatch LOGIN
-          store.dispatch(login(user[0], accessToken));
+          store.dispatch(login(user, accessToken));
           // Success Message
           store.dispatch(openSnackBar('Connexion réussi', 'success'));
         })

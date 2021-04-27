@@ -9,8 +9,8 @@ export const initialState = {
   searchProductSelectValue: 'name',
   searchEstablishmentInputValue: '',
   searchEstablishmentSelectValue: '',
-  searchEstablishmentResult: [{}, {}],
-  searchProductResult: [{}, {}],
+  searchEstablishmentResult: [],
+  searchProductResult: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -18,7 +18,7 @@ const reducer = (state = initialState, action = {}) => {
     case RESULT_SEARCH_PRODUCT:
       return {
         ...state,
-        searchProductResult: action.data,
+        searchProductResult: action.products,
       };
     case CHANGE_INPUT_VALUE:
       return {
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action = {}) => {
     case RESULT_SEARCH_ESTABLISHMENT: {
       return {
         ...state,
-        searchEstablismentResult: action.data,
+        searchEstablishmentResult: action.establishments,
       };
     }
     default:

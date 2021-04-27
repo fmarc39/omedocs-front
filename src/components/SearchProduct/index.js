@@ -19,7 +19,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
-import ProductTable from 'src/containers/Tables/SearchProductsResultTable';
+import ProductPageTable from 'src/containers/Tables/ProductPageTable';
 
 // Import CSS
 import './styles.scss';
@@ -119,7 +119,7 @@ const SearchProduct = ({
             </Box>
             {/* Affichage conditionnel du tableau de résultat si
             la longueur du tableau est différente de 0  */}
-            {productResultsData.length !== 0 && <ProductTable />}
+            {productResultsData.length !== 0 && <ProductPageTable />}
           </Box>
         </Box>
         <Footer />

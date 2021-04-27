@@ -23,16 +23,16 @@ export const searchProduct = () => ({
   type: SEARCH_PRODUCT,
 });
 
-export const resultSearchProduct = (data) => ({
+export const resultSearchProduct = (products) => ({
   type: RESULT_SEARCH_PRODUCT,
-  data,
+  products,
 });
 
 export const searchEstablishment = () => ({
   type: SEARCH_ESTABLISHMENT,
 });
 
-export const resultSearchEstablishment = (data) => ({
+export const resultSearchEstablishment = (establishments) => ({
   type: RESULT_SEARCH_ESTABLISHMENT,
-  data,
+  establishments,
 });

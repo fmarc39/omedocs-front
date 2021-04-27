@@ -12,7 +12,6 @@ import SearchPharmachy from 'src/containers/SearchPharmacy';
 import ProfilPage from 'src/containers/ProfilPage';
 import InventoryPage from 'src/containers/InventoryPage';
 import PharmacyPage from 'src/components/PharmacyPage';
-import ProductPage from 'src/containers/ProductPage';
 import LoginForm from 'src/containers/LoginForm';
 import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/containers/CartPage';
@@ -42,9 +41,6 @@ const App = ({ isLoading, logged, rehydrate }) => {
         <Route path="/inventory">{!logged ? <Redirect to="/" /> : <InventoryPage />}</Route>
         <Route path="/establishment/:id">
           <PharmacyPage />
-        </Route>
-        <Route path="/product/:id">
-          <ProductPage />
         </Route>
         <Route path="/searchproduct">{!logged ? <Redirect to="/" /> : <SearchProduct />}</Route>
         <Route path="/searchestablishement">

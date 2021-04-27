@@ -53,8 +53,6 @@ const useStyles = makeStyles({
 
 const ProductTable = ({ addToCart, products }) => {
   // filter on result of search drugs
-  const { id } = useParams;
-  const filterProduct = products.filter((product) => product.id === id);
 
   const classes = useStyles();
   const [page, setPage] = React.useState(0);

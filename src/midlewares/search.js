@@ -18,20 +18,17 @@ export default (store) => (next) => (action) => {
         let searchRequest = '';
 
         if (searchProductSelectValue === 'name') {
-          searchRequest = '/productbyname';
+          searchRequest = '/productsbyname';
         } else {
-          searchRequest = '/productbycis';
+          searchRequest = '/productsbycis';
         }
 
         api
-          .get(searchRequest, {
-            searchProductInputValue,
-            searchProductSelectValue,
-          })
+          .get(searchRequest, { params: { value: searchProductInputValue } })
           .then((result) => result.data)
-          .then(({ data }) => {
-            console.log(data);
-            store.dispatch(resultSearchProduct(data));
+          .then(({ products }) => {
+            console.log(products);
+            store.dispatch(resultSearchProduct(products));
           })
           .catch((error) => {
             console.error(error);
@@ -44,17 +41,16 @@ export default (store) => (next) => (action) => {
         const { searchEstablishmentInputValue } = store.getState().search;
         const { searchEstablishmentSelectValue } = store.getState().search;
 
-        console.log(searchEstablishmentInputValue, searchEstablishmentSelectValue);
-
         api
-          .get('/searchestablishment', {
-            searchEstablishmentInputValue,
-            searchEstablishmentSelectValue,
+          .get('/searchestablishments', {
+            params: {
+              value: searchEstablishmentInputValue,
+              region: searchEstablishmentSelectValue,
+            },
           })
           .then((result) => result.data)
-          .then(({ data }) => {
-            console.log(data);
-            store.dispatch(resultSearchEstablishment(data));
+          .then(({ establishments }) => {
+            store.dispatch(resultSearchEstablishment(establishments));
           })
           .catch((error) => {
             console.error(error);

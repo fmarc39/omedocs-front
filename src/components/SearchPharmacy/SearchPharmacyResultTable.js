@@ -15,13 +15,15 @@ import TableRow from '@material-ui/core/TableRow';
 
 // Configuration des colones avec le nom, le label, la largeur
 const columns = [
-  { id: 'name', label: 'Nom de la Pharmacie', minWidth: 300 },
-  { id: 'region', label: 'Région', minWidth: 200 },
+  { id: 'name', label: 'Nom de la Pharmacie', minWidth: 200 },
+  { id: 'user_type', label: 'Etablissement', minWidth: 100 },
+  { id: 'rpps', label: 'Rpps', minWidth: 100 },
+  { id: 'region', label: 'Région', minWidth: 100 },
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, region) {
-  return { name, region };
+function createData(name, user_type, rpps, region) {
+  return { name, user_type, rpps, region };
 }
 
 // Configuration des styles du tableau avec MATERIAL-UI
@@ -30,12 +32,13 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    minHeight: 350,
+    minHeight: 100,
     minWidth: 700,
   },
 });
 
-const PharmacyTable = ({ establishmentResultsData }) => {
+const PharmacyTable = ({ establishments }) => {
+  console.log(establishments);
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -52,14 +55,14 @@ const PharmacyTable = ({ establishmentResultsData }) => {
   };
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
-  const rows = establishmentResultsData.map((pharmacy) =>
-    createData(pharmacy.name, pharmacy.region),
+  const rows = establishments.map((pharmacy) =>
+    createData(pharmacy.establishment, pharmacy.user_type, pharmacy.rpps, pharmacy.region),
   );
 
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader aria-label="sticky table" size="small">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -73,9 +76,9 @@ const PharmacyTable = ({ establishmentResultsData }) => {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody onClick={(event) => console.log(event.target.closest('.MuiTableRow-root'))}>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+              <TableRow hover role="checkbox" tabIndex={-1} key={row.code} name={row.rpps}>
                 {columns.map((column) => {
                   const value = row[column.id];
                   return (
@@ -104,7 +107,7 @@ const PharmacyTable = ({ establishmentResultsData }) => {
 };
 
 PharmacyTable.propTypes = {
-  establishmentResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  establishments: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default PharmacyTable;
