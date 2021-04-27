@@ -5,12 +5,17 @@ import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import LeftMenu from 'src/containers/LeftMenu';
+import axios from 'axios';
 
 // Import react-router-dom pour ajouter des links aux boutons
 import { NavLink, Link } from 'react-router-dom';
 
 // Icons
 import ShoppingCart from 'src/assets/img/shopping-cart.svg';
+
+// Import des composants Stripe pour les paiements
+import StripeCheckout from 'react-stripe-checkout';
+import { toast } from 'react-toastify';
 
 // IMPORT MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -221,8 +226,8 @@ const CartPage = ({ cartData, deleteArticle }) => {
         className={classes.delBtn}
       >
         <DeleteIcon />
-      </IconButton>
-    )
+      </IconButton>,
+    ),
   );
 
   function subtotal(items) {
@@ -239,14 +244,20 @@ const CartPage = ({ cartData, deleteArticle }) => {
     setOrderBy(property);
   };
 
+  async function handleToken(token, addresses) {
+    const response = await axios.post('server.js', { token, product });
+    const { status } = response.data;
+    console.log('Response:', response.data);
+    if (status === 'success') {
+      toast('Success! Check email for details', { type: 'success' });
+    } else {
+      toast('Something went wrong', { type: 'error' });
+    }
+  }
+
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -272,11 +283,7 @@ const CartPage = ({ cartData, deleteArticle }) => {
                   Votre panier est tristement
                   <span className="empty-cart__head-span"> vide</span>
                 </p>
-                <img
-                  src={ShoppingCart}
-                  alt="shopping-cart-icon"
-                  className="empty-cart__img"
-                />
+                <img src={ShoppingCart} alt="shopping-cart-icon" className="empty-cart__img" />
                 <p className="empty-cart__text">
                   Cliquez
                   <Link to="/searchproduct" className="empty-cart__link">
@@ -319,10 +326,7 @@ const CartPage = ({ cartData, deleteArticle }) => {
                       />
                       <TableBody>
                         {stableSort(rows, getComparator(order, orderBy))
-                          .slice(
-                            page * rowsPerPage,
-                            page * rowsPerPage + rowsPerPage
-                          )
+                          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                           .map((row, index) => {
                             const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -338,58 +342,41 @@ const CartPage = ({ cartData, deleteArticle }) => {
                                 </TableCell>
                                 <TableCell align="left">{row.qty}</TableCell>
                                 <TableCell align="left">{row.unit} €</TableCell>
-                                <TableCell align="left">
-                                  {ccyFormat(row.price)} €
-                                </TableCell>
-                                <TableCell align="left">
-                                  {row.dellRow}
-                                </TableCell>
+                                <TableCell align="left">{ccyFormat(row.price)} €</TableCell>
+                                <TableCell align="left">{row.dellRow}</TableCell>
                               </TableRow>
                             );
                           })}
                         <TableRow>
                           <TableCell rowSpan={3} />
                           <TableCell colSpan={1}>Sous-total</TableCell>
-                          <TableCell align="right">
-                            {ccyFormat(invoiceSubtotal)} €
-                          </TableCell>
+                          <TableCell align="right">{ccyFormat(invoiceSubtotal)} €</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>TVA</TableCell>
-                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-                            0
-                          )} %`}</TableCell>
+                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell colSpan={1}>Total</TableCell>
                           <TableCell align="right">
-                            <p className="total-price">
-                              {ccyFormat(invoiceTotal)} €
-                            </p>
+                            <p className="total-price">{ccyFormat(invoiceTotal)} €</p>
                           </TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
-                  </TableContainer>
-                  <Tooltip
-                    title="Procéder au paiement"
-                    placement="'bottom-right'"
-                  >
-                    <NavLink
-                      to="/checkout"
-                      style={{ textDecoration: 'none', position: 'right' }}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
+                    <div>
+                      <StripeCheckout
+                        stripeKey="pk_test_51Ij1IsAClzkudXaoJHimun68AE67pw5ry6KRTJdgS2tu6SScPbUPCqAFXlvkTb9EnzAZOYbXfErMtxRD9LZD3F8e00byaYzYhA"
+                        token={handleToken}
                         endIcon={<PaymentIcon />}
-                        size="large"
                         className={classes.btn}
-                      >
-                        Payer
-                      </Button>
-                    </NavLink>
-                  </Tooltip>
+                        data-locale="auto"
+                        name="O'Medocs"
+                        billingAddress
+                        shippingAddress
+                      />
+                    </div>
+                  </TableContainer>
                 </Paper>
               )}
             </div>
