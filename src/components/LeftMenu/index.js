@@ -35,6 +35,16 @@ const useStyles = makeStyles(() => ({
     borderRadius: '15px',
     marginBottom: '1.5rem',
   },
+  logoutBtn: {
+    color: '#0368A3',
+    marginBottom: '1.5rem',
+    marginTop: '1.5rem',
+    borderRadius: '15px',
+    '&:hover': {
+      background: '#0368A3',
+      color: 'white',
+    },
+  },
 }));
 
 const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
@@ -79,8 +89,8 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
           color="primary"
           endIcon={<ExitToAppIcon />}
           size="small"
-          className="btn-box__btn"
-          fullWidth={true}
+          fullWidth="true"
+          className={classes.logoutBtn}
         >
           Se déconnecter
         </Button>

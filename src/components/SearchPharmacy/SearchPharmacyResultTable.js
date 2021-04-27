@@ -66,12 +66,8 @@ const PharmacyTable = ({ establishments }) => {
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
+                <TableCell key={column.id} align="right" style={{ minWidth: column.minWidth }}>
+                  <p className="cells-title">{column.label}</p>
                 </TableCell>
               ))}
             </TableRow>

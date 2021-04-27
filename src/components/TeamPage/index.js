@@ -34,6 +34,9 @@ const useStyles = makeStyles({
     maxWidth: 220,
     margin: '.4em',
   },
+  link: {
+    color: '#0368A3',
+  },
 });
 
 const TeamPage = () => {

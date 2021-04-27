@@ -32,6 +32,8 @@ export const initialState = {
   accessToken: null,
   isLoading: false,
   changeInformationsModal: false,
+  mailChangeDialogBox: false,
+  phoneChangeDialogBox: false,
 };
 
 const reducer = (state = initialState, action = {}) => {

@@ -59,7 +59,8 @@ const ProfilPage = ({
     handleChange(event.target.value, event.target.name);
   };
 
-  const handleSaveBtn = () => {
+  const handleSaveBtn = (event) => {
+    event.preventDefault();
     handleSave();
   };
 
@@ -147,6 +148,7 @@ const ProfilPage = ({
                   <IconButton
                     color="primary"
                     onClick={handleSaveBtn}
+                    name="editmail"
                     className={editMailInputIsOpen ? '' : classes.field}
                   >
                     <SaveIcon />
@@ -201,6 +203,7 @@ const ProfilPage = ({
                   <IconButton
                     color="primary"
                     onClick={handleSaveBtn}
+                    name="editphone"
                     className={editPhoneInputIsOpen ? '' : classes.field}
                   >
                     <SaveIcon />
@@ -227,6 +230,7 @@ const ProfilPage = ({
                   <p className="profil-box__content-elt__content">{zipCode}</p>
                 </div>
               </div>
+              <DialogModal />
               <DialogModal />
             </Box>
           </Box>

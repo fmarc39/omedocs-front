@@ -7,16 +7,19 @@ import Box from '@material-ui/core/Box';
 import LeftMenu from 'src/containers/LeftMenu';
 
 // Import react-router-dom pour ajouter des links aux boutons
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+
+// Icons
+import ShoppingCart from 'src/assets/img/shopping-cart.svg';
 
 // IMPORT MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
+import Slide from '@material-ui/core/Slide';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
@@ -27,6 +30,9 @@ import PaymentIcon from '@material-ui/icons/Payment';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+
+// Import CSS
+import './styles.scss';
 
 // Configuration des colones avec le nom, le label, la largeur
 const headCells = [
@@ -60,6 +66,7 @@ const headCells = [
   },
 ];
 
+// Taux de TVA
 const TAX_RATE = 0.0;
 
 function ccyFormat(num) {
@@ -70,26 +77,19 @@ function priceRow(qty, unit) {
   return qty * unit;
 }
 
+// Fonction qui va crer les lignes à insserer dans le tableau
 function createData(name, qty, unit, dellRow) {
   const price = priceRow(qty, unit);
   return {
     name,
     qty: Number(qty),
     unit: Number(unit),
-    price,
+    price: Number(price),
     dellRow,
   };
 }
 
-function subtotal(items) {
-  return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-}
-
 let rows = [];
-
-const invoiceSubtotal = subtotal(rows);
-const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -118,7 +118,7 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-  const { classes, order, orderBy, rowCount, onRequestSort } = props;
+  const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -129,8 +129,8 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'default'}
+            align="left"
+            padding="default"
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -138,7 +138,7 @@ function EnhancedTableHead(props) {
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
-              {headCell.label}
+              <p className="cells-title">{headCell.label}</p>
               {orderBy === headCell.id ? (
                 <span className={classes.visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
@@ -157,7 +157,6 @@ EnhancedTableHead.propTypes = {
   onRequestSort: PropTypes.func.isRequired,
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
 };
 
 const useStyles = makeStyles(() => ({
@@ -193,14 +192,22 @@ const useStyles = makeStyles(() => ({
     },
     borderRadius: '15px',
   },
+  delBtn: {
+    color: '#0368A3',
+  },
 }));
 
-const CartPage = ({ cartData }) => {
+const CartPage = ({ cartData, deleteArticle }) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  // Gestion du btn delete pour gerer la supression d'un article du panier
+  const handleDeleteCLickBtn = (event) => {
+    deleteArticle(event.target.closest('button').name);
+  };
 
   rows = cartData.map((article) =>
     createData(
@@ -209,30 +216,27 @@ const CartPage = ({ cartData }) => {
       article.price,
       <IconButton
         aria-label="delete"
-        // onClick={handleDeleteCLickBtn}
-        // name={article.cis}
-        className="del-btn"
+        onClick={handleDeleteCLickBtn}
+        name={article.id}
+        className={classes.delBtn}
       >
         <DeleteIcon />
       </IconButton>
     )
   );
-  console.log(cartData);
+
+  function subtotal(items) {
+    return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
+  }
+
+  const invoiceSubtotal = subtotal(rows);
+  const invoiceTaxes = TAX_RATE * invoiceSubtotal;
+  const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  };
-
-  // Gestion du nombre de pages dans le tableau
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-  // Gestion du nombre de pages
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
   };
 
   return (
@@ -255,91 +259,139 @@ const CartPage = ({ cartData }) => {
             flexDirection="column"
             alignItems="center"
           >
-            <div className={classes.root}>
-              <Paper className={classes.paper}>
-                <TableContainer>
-                  <Table
-                    className={classes.table}
-                    aria-labelledby="tableTitle"
-                    aria-label="enhanced table"
-                  >
-                    <EnhancedTableHead
-                      classes={classes}
-                      order={order}
-                      orderBy={orderBy}
-                      onRequestSort={handleRequestSort}
-                      rowCount={rows.length}
-                    />
-                    <TableBody>
-                      {stableSort(rows, getComparator(order, orderBy))
-                        .slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                        .map((row, index) => {
-                          const labelId = `enhanced-table-checkbox-${index}`;
-
-                          return (
-                            <TableRow hover tabIndex={-1} key={row.name}>
-                              <TableCell
-                                component="th"
-                                id={labelId}
-                                scope="row"
-                                padding="none"
-                              >
-                                {row.name}
-                              </TableCell>
-                              <TableCell align="left">{row.qty}</TableCell>
-                              <TableCell align="left">{row.unit}</TableCell>
-                              <TableCell align="left">
-                                {ccyFormat(row.price)}
-                              </TableCell>
-                              <TableCell align="left">{row.dellRow}</TableCell>
-                            </TableRow>
-                          );
-                        })}
-                      <TableRow>
-                        <TableCell rowSpan={3} />
-                        <TableCell colSpan={1}>Sous-total</TableCell>
-                        <TableCell align="right">
-                          {ccyFormat(invoiceSubtotal)}
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>TVA</TableCell>
-                        <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-                          0
-                        )} %`}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell colSpan={1}>Total</TableCell>
-                        <TableCell align="right">
-                          {ccyFormat(invoiceTotal)}
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-                <Tooltip
-                  title="Procéder au paiement"
-                  placement="'bottom-right'"
+            {cartData.length === 0 && (
+              <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+                className="empty-cart"
+                boxShadow={4}
+              >
+                <p className="empty-cart__head">
+                  Votre panier est tristement
+                  <span className="empty-cart__head-span"> vide</span>
+                </p>
+                <img
+                  src={ShoppingCart}
+                  alt="shopping-cart-icon"
+                  className="empty-cart__img"
+                />
+                <p className="empty-cart__text">
+                  Cliquez
+                  <Link to="/searchproduct" className="empty-cart__link">
+                    ici
+                  </Link>
+                  pour rechercher un produit
+                </p>
+              </Box>
+            )}
+            {cartData.length !== 0 && (
+              <Slide direction="down" in="true" mountOnEnter unmountOnExit>
+                <Box
+                  className="cart-box"
+                  p={2}
+                  mb={2}
+                  borderRadius="10px"
+                  align="center"
+                  boxShadow={4}
                 >
-                  <NavLink
-                    to="/checkout"
-                    style={{ textDecoration: 'none', position: 'right' }}
-                  >
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      endIcon={<PaymentIcon />}
-                      size="medium"
-                      className={classes.btn}
+                  <h4 className="cart-box__title"> Votre panier </h4>
+                </Box>
+              </Slide>
+            )}
+
+            <div className={classes.root}>
+              {cartData.length !== 0 && (
+                <Paper className={classes.paper}>
+                  <TableContainer>
+                    <Table
+                      className={classes.table}
+                      aria-labelledby="tableTitle"
+                      aria-label="enhanced table"
                     >
-                      Payer
-                    </Button>
-                  </NavLink>
-                </Tooltip>
-              </Paper>
+                      <EnhancedTableHead
+                        classes={classes}
+                        order={order}
+                        orderBy={orderBy}
+                        onRequestSort={handleRequestSort}
+                        rowCount={rows.length}
+                      />
+                      <TableBody>
+                        {stableSort(rows, getComparator(order, orderBy))
+                          .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                          )
+                          .map((row, index) => {
+                            const labelId = `enhanced-table-checkbox-${index}`;
+
+                            return (
+                              <TableRow hover tabIndex={-1} key={row.name}>
+                                <TableCell
+                                  component="th"
+                                  id={labelId}
+                                  scope="row"
+                                  padding="default"
+                                >
+                                  {row.name}
+                                </TableCell>
+                                <TableCell align="left">{row.qty}</TableCell>
+                                <TableCell align="left">{row.unit} €</TableCell>
+                                <TableCell align="left">
+                                  {ccyFormat(row.price)} €
+                                </TableCell>
+                                <TableCell align="left">
+                                  {row.dellRow}
+                                </TableCell>
+                              </TableRow>
+                            );
+                          })}
+                        <TableRow>
+                          <TableCell rowSpan={3} />
+                          <TableCell colSpan={1}>Sous-total</TableCell>
+                          <TableCell align="right">
+                            {ccyFormat(invoiceSubtotal)} €
+                          </TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>TVA</TableCell>
+                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
+                            0
+                          )} %`}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell colSpan={1}>Total</TableCell>
+                          <TableCell align="right">
+                            <p className="total-price">
+                              {ccyFormat(invoiceTotal)} €
+                            </p>
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <Tooltip
+                    title="Procéder au paiement"
+                    placement="'bottom-right'"
+                  >
+                    <NavLink
+                      to="/checkout"
+                      style={{ textDecoration: 'none', position: 'right' }}
+                    >
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        endIcon={<PaymentIcon />}
+                        size="large"
+                        className={classes.btn}
+                      >
+                        Payer
+                      </Button>
+                    </NavLink>
+                  </Tooltip>
+                </Paper>
+              )}
             </div>
           </Box>
         </Box>
@@ -347,6 +399,10 @@ const CartPage = ({ cartData }) => {
       <Footer />
     </>
   );
+};
+
+CartPage.propTypes = {
+  deleteArticle: PropTypes.func.isRequired,
 };
 
 export default CartPage;
