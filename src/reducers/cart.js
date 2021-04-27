@@ -1,3 +1,5 @@
+import { loadState } from 'src/locaStorage';
+
 import {
   ADD_ARTICLE_TO_CART,
   DELETE_ARTICLE_FROM_CART,
@@ -5,8 +7,11 @@ import {
   OPEN_DIALOG_BOX,
 } from 'src/actions/cart';
 
+// chargement du localStorage
+const { cart } = loadState();
+
 export const initialState = {
-  cart: [],
+  cart: cart,
   validationBox: false,
 };
 
