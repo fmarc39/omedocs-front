@@ -69,7 +69,7 @@ const AccordionsPharmacyDetails = ({ establishment }) => {
               href={`tel: ${establishment[0].phone_number}`}
               startIcon={<PhoneForwardedIcon />}
             >
-              Numéro
+              {establishment[0].phone_number}
             </Button>
             <Divider />
             <Button
@@ -80,7 +80,7 @@ const AccordionsPharmacyDetails = ({ establishment }) => {
               startIcon={<EmailIcon />}
               href={`mailto: ${establishment[0].email}`}
             >
-              Email
+              {establishment[0].email}
             </Button>
           </Box>
         </AccordionDetails>
