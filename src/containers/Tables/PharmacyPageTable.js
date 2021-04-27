@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
 import Table from 'src/components/PharmacyPage/PharmacyTable';
-import {} from 'src/actions/utils';
+import { fetchInventoryEstablishment } from 'src/actions/search';
 
 const mapStateToProps = (state) => ({
-  establishments: state.search.searchEstablishmentResult,
+  inventory: state.search.inventoryEstablishment,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  fetchInventory: (id) => dispatch(fetchInventoryEstablishment(id)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

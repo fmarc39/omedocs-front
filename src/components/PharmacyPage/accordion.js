@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -28,10 +27,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const AccordionsPharmacyDetails = ({ establishments }) => {
-  // TODO: FILTRER LA PHARMACIE ICI POUR AFFICHER LES INFOS DANS L'ACCORDEON
-  const { id } = useParams();
-  //
+const AccordionsPharmacyDetails = ({ establishment }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -47,7 +43,7 @@ const AccordionsPharmacyDetails = ({ establishments }) => {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography className={classes.heading}>Nom de l'établissement</Typography>
+          <Typography className={classes.heading}>{establishment[0].establishment}</Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.body}>
           <Box
@@ -61,17 +57,16 @@ const AccordionsPharmacyDetails = ({ establishments }) => {
             p={2}
             bgcolor="rgb(155, 230, 247, 0.2)"
           >
-            <p>Adresse</p>
-            <p>Ville</p>
-            <p>Code Postal</p>
+            <p>{establishment[0].address}</p>
+            <p>{establishment[0].zip_code}</p>
+            <p>{establishment[0].city}</p>
             <Button
               variant="contained"
               color="primary"
               size="small"
               id="phoneBtn"
               className={classes.button}
-              // TODO: Numéro de tel ici
-              // href={`tel: ${phoneNumer}`}
+              href={`tel: ${establishment[0].phone_number}`}
               startIcon={<PhoneForwardedIcon />}
             >
               Numéro
@@ -83,8 +78,7 @@ const AccordionsPharmacyDetails = ({ establishments }) => {
               size="small"
               className={classes.button}
               startIcon={<EmailIcon />}
-              // TODO: MAIL ici
-              //  href={`mailto: ${email}`}
+              href={`mailto: ${establishment[0].email}`}
             >
               Email
             </Button>
@@ -96,7 +90,7 @@ const AccordionsPharmacyDetails = ({ establishments }) => {
 };
 
 AccordionsPharmacyDetails.propTypes = {
-  establishments: PropTypes.array.isRequired,
+  establishment: PropTypes.array.isRequired,
 };
 
 export default AccordionsPharmacyDetails;

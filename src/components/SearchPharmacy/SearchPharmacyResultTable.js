@@ -1,6 +1,7 @@
 // Import REACT
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect, Link } from 'react-router-dom';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,8 +23,8 @@ const columns = [
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, user_type, rpps, region) {
-  return { name, user_type, rpps, region };
+function createData(name, user_type, rpps, region, id) {
+  return { name, user_type, rpps, region, id };
 }
 
 // Configuration des styles du tableau avec MATERIAL-UI
@@ -38,6 +39,7 @@ const useStyles = makeStyles({
 });
 
 const PharmacyTable = ({ establishments }) => {
+  // Récupération de l'id de l'établissement au clic sur la ligne du tableau
   console.log(establishments);
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -56,7 +58,13 @@ const PharmacyTable = ({ establishments }) => {
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
   const rows = establishments.map((pharmacy) =>
-    createData(pharmacy.establishment, pharmacy.user_type, pharmacy.rpps, pharmacy.region),
+    createData(
+      pharmacy.establishment,
+      pharmacy.user_type,
+      pharmacy.rpps,
+      pharmacy.region,
+      pharmacy.id,
+    ),
   );
 
   return (
@@ -66,20 +74,22 @@ const PharmacyTable = ({ establishments }) => {
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <TableCell key={column.id} align="right" style={{ minWidth: column.minWidth }}>
+                <TableCell key={column.id} align="left" style={{ minWidth: column.minWidth }}>
                   <p className="cells-title">{column.label}</p>
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody onClick={(event) => console.log(event.target.closest('.MuiTableRow-root'))}>
+          <TableBody style={{ cursor: 'pointer' }}>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover role="checkbox" tabIndex={-1} key={row.code} name={row.rpps}>
+              <TableRow hover role="checkbox" tabIndex={-1} key={row.code} data-rpps={row.id}>
                 {columns.map((column) => {
                   const value = row[column.id];
                   return (
                     <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof value === 'number' ? column.format(value) : value}
+                      <Link to={`establishment/${row.id}`}>
+                        {column.format && typeof value === 'number' ? column.format(value) : value}
+                      </Link>
                     </TableCell>
                   );
                 })}

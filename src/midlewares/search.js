@@ -1,6 +1,8 @@
 import {
   SEARCH_PRODUCT,
   SEARCH_ESTABLISHMENT,
+  FETCH_INVENTORY_ESTABLISHMENT,
+  saveInventoryEstablishment,
   resultSearchEstablishment,
   resultSearchProduct,
 } from 'src/actions/search';
@@ -55,6 +57,21 @@ export default (store) => (next) => (action) => {
           .catch((error) => {
             console.error(error);
             store.dispatch(openSnackBar('Une erreur est survenue', 'error'));
+          });
+      }
+      return next(action);
+
+    case FETCH_INVENTORY_ESTABLISHMENT:
+      {
+        const { id } = action;
+        api
+          .get(`/inventory/${id}`)
+          .then((result) => result.data)
+          .then(({ userInventory }) => {
+            store.dispatch(saveInventoryEstablishment(userInventory));
+          })
+          .catch((error) => {
+            console.log(error);
           });
       }
       return next(action);

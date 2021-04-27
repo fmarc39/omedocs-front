@@ -1,6 +1,7 @@
+/* eslint-disable no-nested-ternary */
 // Import React
-import React from 'react';
-import PropTyes from 'prop-types';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -53,10 +54,12 @@ const useStyles = makeStyles({
   },
 });
 
-const InventoryTable = ({ establishments }) => {
-  // TODO: RECUPERER LE STATE 'searchEstablishmentResult'
-  // TODO: FILTRER LE BON USER AVEC useParams
-  // TODO: AFFICHER LA LISTE DE MEDICAMENT DU USER
+const InventoryTable = ({ fetchInventory, inventory, establishment }) => {
+  console.log(inventory);
+  //  fetch l'inventaire du user
+  useState(() => {
+    fetchInventory(establishment[0].id);
+  }, []);
 
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -76,7 +79,7 @@ const InventoryTable = ({ establishments }) => {
 
   //TODO: BOUCLER ICI SUR LES TABLEAU FILTRER A LA PLACE DE 'establishments'.
 
-  const rows = establishments.map((row) =>
+  const rows = inventory.map((row) =>
     createData(
       row.drugName,
       row.cis,
@@ -89,55 +92,88 @@ const InventoryTable = ({ establishments }) => {
     ),
   );
 
+  // variable crée pour conditioner l'afficher du tableau
+  let typeRender = '';
+  if (establishment[0].user_type === 'hospital') {
+    typeRender = 'hospital';
+  } else if (establishment[0].user_type === 'pharmacy' && inventory.length === 0) {
+    typeRender = 'pharmacyHasNoInventory';
+  } else {
+    typeRender = 'pharmacyHasInventory';
+  }
+
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof value === 'number' ? column.format(value) : value}
+    <div>
+        {/* Si l'établissement est une pharmacie et qu'elle a des médicaments en stock on affiche le tableau */}
+      {typeRender === 'pharmacyHasInventory' ? (
+        <Paper className={classes.root}>
+          <TableContainer className={classes.container}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                    >
+                      {column.label}
                     </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'Tous' }]}
-        labelRowsPerPage="Résultats par page"
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'Tous' }]}
+            labelRowsPerPage="Résultats par page"
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+        </Paper>
+        {/* Si l'établissement est une pharmacie sans médicament*/}
+      ) 
+      : typeRender === 'pharmacyHasNoInventory' ? (
+        <h1>Cet pharmacie n'a pas de médicament en stock</h1>
+      ) 
+      : 
+        {/* Si l'établissement est un hôpital*/}
+      (
+        <h1> Pas de stock a afficher pour les hôpitaux</h1>
+      )}
+    </div>
   );
 };
 
 InventoryTable.propTypes = {
-  establishments: PropTyes.array.isRequired,
+  fetchInventory: PropTypes.func.isRequired,
+  inventory: PropTypes.array,
+  establishment: PropTypes.array,
+};
+
+InventoryTable.defaultProps = {
+  inventory: [],
+  establishment: [],
 };
 
 export default InventoryTable;

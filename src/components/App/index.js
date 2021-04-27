@@ -11,7 +11,7 @@ import SearchProduct from 'src/containers/SearchProduct';
 import SearchPharmachy from 'src/containers/SearchPharmacy';
 import ProfilPage from 'src/containers/ProfilPage';
 import InventoryPage from 'src/containers/InventoryPage';
-import PharmacyPage from 'src/components/PharmacyPage';
+import PharmacyPage from 'src/containers/PharmacyPage';
 import LoginForm from 'src/containers/LoginForm';
 import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/containers/CartPage';
