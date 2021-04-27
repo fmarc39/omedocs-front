@@ -14,7 +14,7 @@ export const initialState = {
       productname: 'FENOFIBRATE TEVA 100 mg',
       quantity: '99',
       quantityToBuy: '11',
-      id: 1,
+      id: 10,
     },
     {
       pharmacyname: 'Pharmacie de la gare',
@@ -23,7 +23,7 @@ export const initialState = {
       productname: 'FENOFIBRATE TEVA 100 mg',
       quantity: '99',
       quantityToBuy: '39',
-      id: 2,
+      id: 21,
     },
     {
       pharmacyname: 'Pharmacie de la gare',
@@ -32,7 +32,7 @@ export const initialState = {
       productname: 'FENOFIBRATE TEVA 100 mg',
       quantity: '99',
       quantityToBuy: '11',
-      id: 3,
+      id: 34,
     },
   ],
   validationBox: false,

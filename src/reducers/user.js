@@ -60,7 +60,7 @@ const reducer = (state = initialState, action = {}) => {
       };
     case LOGIN: {
       // Je met le token dans les params de l'api
-      api.defaults.headers.common.Authorization = `Bearer ${action.accesToken}`;
+      api.defaults.headers.common.Authorization = `Bearer ${action.accessToken}`;
       const {
         id: user_id,
         email,

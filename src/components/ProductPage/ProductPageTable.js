@@ -46,6 +46,7 @@ const useStyles = makeStyles({
   },
   container: {
     minHeight: 350,
+    maxHeight: 500,
     minWidth: 700,
   },
   addToCartBtn: {
@@ -62,6 +63,8 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
     setPage(newPage);
   };
 
+  console.log(products);
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
@@ -71,14 +74,7 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
     event.preventDefault();
     // On récupère les datas du form avec dataset
     const {
-      dataset: {
-        pharmacyname,
-        price,
-        quantity,
-        productname,
-        productid,
-        pharmacyId,
-      },
+      dataset: { pharmacyname, price, productid, productname, quantity, id },
     } = event.target;
     // On récupère la quantité rentré par l'user
     const formData = new FormData(event.target);
@@ -97,10 +93,11 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
       const dataToSendToCart = {
         pharmacyname,
         price,
-        quantity,
-        productname,
         productid,
+        productname,
+        quantity,
         quantityToBuy,
+        id,
       };
       // On envois les data dans le panier via un action
       addToCart(dataToSendToCart);
@@ -110,21 +107,22 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
   };
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
-  const rows = filterProduct.map((pharmacy) =>
+  const rows = products.map((product) =>
     createData(
-      pharmacy.name,
-      pharmacy.quantity,
-      `${pharmacy.price}  €`,
+      product.name,
+      product.quantity,
+      `${product.unit_price}  €`,
       <TextField id="quantity" label="quantité" type="number" />,
       <Box display="flex" justifyContent="flex-end" alignItems="start">
         <form
           onSubmit={handleSubmitForm}
-          data-pharmacyname={pharmacy.name}
-          data-pharmacyId={pharmacy.id}
-          data-price={pharmacy.price}
-          data-quantity={pharmacy.quantity}
-          data-productname={filterProduct.name}
-          data-productid={filterProduct.cis}
+          data-pharmacyname={product.establishment}
+          data-pharmacyId={product.user_id}
+          data-price={product.unit_price}
+          data-quantity={product.quantity}
+          data-productname={product.name}
+          data-productid={product.cis_code}
+          data-id={product.rpps}
           name="addProduct"
           className="addProductToCart"
         >
@@ -132,7 +130,7 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
             label="quantité"
             type="number"
             name="quantityToBuy"
-            InputProps={{ inputProps: { min: 1, max: pharmacy.quantity } }}
+            InputProps={{ inputProps: { min: 1, max: product.quantity } }}
           />
           <IconButton
             variant="contained"
