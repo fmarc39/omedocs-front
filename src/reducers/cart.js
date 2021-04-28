@@ -3,6 +3,8 @@ import {
   DELETE_ARTICLE_FROM_CART,
   CLOSE_DIALOG_BOX,
   OPEN_DIALOG_BOX,
+  INCREASES_ARTICLE_QUANTITY,
+  DECREASES_ARTICLE_QUANTITY,
 } from 'src/actions/cart';
 
 import { loadState } from 'src/locaStorage';
@@ -24,7 +26,11 @@ const reducer = (state = initialState, action = {}) => {
     case DELETE_ARTICLE_FROM_CART:
       return {
         ...state,
-        cart: [...state.cart.filter((article) => Number(article.id) !== Number(action.articleId))],
+        cart: [
+          ...state.cart.filter(
+            (article) => Number(article.id) !== Number(action.articleId)
+          ),
+        ],
       };
     case CLOSE_DIALOG_BOX:
       return {
@@ -36,6 +42,33 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         validationBox: true,
       };
+    case DECREASES_ARTICLE_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((item) => {
+          if (Number(item.id) === Number(action.articleId)) {
+            if (item.quantityToBuy === 0) {
+              return item;
+            }
+            item.quantityToBuy -= 1;
+          }
+          return item;
+        }),
+      };
+    case INCREASES_ARTICLE_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((item) => {
+          if (
+            Number(item.id) === Number(action.articleId) &&
+            Number(item.quantityToBuy < item.quantity)
+          ) {
+            item.quantityToBuy++;
+          }
+          return item;
+        }),
+      };
+
     default:
       return state;
   }

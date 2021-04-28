@@ -200,9 +200,18 @@ const useStyles = makeStyles(() => ({
   delBtn: {
     color: '#0368A3',
   },
+  quantityBtn: {
+    size: 'small',
+    color: '#0368A3',
+  },
 }));
 
-const CartPage = ({ cartData, deleteArticle }) => {
+const CartPage = ({
+  cartData,
+  deleteArticle,
+  addQuantity,
+  remmoveQuantity,
+}) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -219,7 +228,7 @@ const CartPage = ({ cartData, deleteArticle }) => {
     createData(
       article.id,
       article.productname,
-      <div>{article.quantityToBuy}</div>,
+      article.quantityToBuy,
       article.price,
       <IconButton
         aria-label="delete"
@@ -231,6 +240,15 @@ const CartPage = ({ cartData, deleteArticle }) => {
       </IconButton>
     )
   );
+
+  const handleRemoveBtn = (event) => {
+    event.preventDefault();
+    remmoveQuantity(event.target.closest('button').name);
+  };
+  const handleAddBtn = (event) => {
+    event.preventDefault();
+    addQuantity(event.target.closest('button').name);
+  };
 
   function subtotal(items) {
     return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
@@ -354,7 +372,25 @@ const CartPage = ({ cartData, deleteArticle }) => {
                                 >
                                   {row.name}
                                 </TableCell>
-                                <TableCell align="left">{row.qty}</TableCell>
+                                <TableCell align="left">
+                                  <IconButton
+                                    aria-label="remove"
+                                    name={row.id}
+                                    onClick={handleRemoveBtn}
+                                    className={classes.quantityBtn}
+                                  >
+                                    <RemoveIcon />
+                                  </IconButton>
+                                  {row.qty}
+                                  <IconButton
+                                    aria-label="add"
+                                    name={row.id}
+                                    onClick={handleAddBtn}
+                                    className={classes.quantityBtn}
+                                  >
+                                    <AddIcon />
+                                  </IconButton>
+                                </TableCell>
                                 <TableCell align="left">{row.unit} €</TableCell>
                                 <TableCell align="left">
                                   {ccyFormat(row.price)} €
@@ -414,6 +450,8 @@ const CartPage = ({ cartData, deleteArticle }) => {
 
 CartPage.propTypes = {
   deleteArticle: PropTypes.func.isRequired,
+  addQuantity: PropTypes.func.isRequired,
+  remmoveQuantity: PropTypes.func.isRequired,
 };
 
 export default CartPage;

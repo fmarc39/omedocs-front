@@ -1,6 +1,10 @@
 import { connect } from 'react-redux';
 import CartPage from 'src/components/Cart';
-import { deleteArticleFromCart } from 'src/actions/cart';
+import {
+  deleteArticleFromCart,
+  increasesArticleQuantity,
+  descreasesArticleQuantity,
+} from 'src/actions/cart';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => ({
@@ -10,6 +14,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   deleteArticle: (productId) => {
     dispatch(deleteArticleFromCart(productId));
+  },
+  addQuantity: (productId) => {
+    dispatch(increasesArticleQuantity(productId));
+  },
+  remmoveQuantity: (productId) => {
+    dispatch(descreasesArticleQuantity(productId));
   },
 });
 
