@@ -23,7 +23,7 @@ const PharmacyPage = ({ establishments }) => {
   return (
     <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
       <Header />
-      <Box height="100%" width="100%" display="flex" id="body">
+      <Box minHeight="calc(100vh - 143.44px)" width="100%" display="flex" id="body">
         <LeftMenu />
         <Box
           bgcolor="#C6C6C6"

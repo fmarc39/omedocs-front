@@ -16,6 +16,7 @@ import TextField from '@material-ui/core/TextField';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
+import { Typography } from '@material-ui/core';
 
 // Import CSS
 import './styles.scss';
@@ -47,6 +48,7 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
     overflow: 'hidden',
+    textAlign: 'center',
   },
   container: {
     minHeight: 350,
@@ -154,48 +156,62 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
   );
   return (
     <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
-        <Table stickyHeader size="small">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  className="tableCell"
-                  key={column.id}
-                  align="left"
-                  style={{ minWidth: column.minWidth }}
-                >
-                  <p className="cells-title">{column.label}</p>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover tabIndex={-1} key={row.code}>
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof value === 'number' ? column.format(value) : value}
+      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+        Liste des Médicaments
+      </Typography>
+
+      {products.length !== 0 ? (
+        <>
+          <TableContainer className={classes.container}>
+            <Table stickyHeader size="small">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      className="tableCell"
+                      key={column.id}
+                      align="left"
+                      style={{ minWidth: column.minWidth }}
+                    >
+                      <p className="cells-title">{column.label}</p>
                     </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'Tous' }]}
-        labelRowsPerPage="Résultats par page"
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                  <TableRow hover tabIndex={-1} key={row.code}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'Tous' }]}
+            labelRowsPerPage="Résultats par page"
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+        </>
+      ) : (
+        <h1 style={{ padding: '5px', fontWeight: '700' }}>
+          Il n'y a aucun stock pour ce médicament
+        </h1>
+      )}
     </Paper>
   );
 };

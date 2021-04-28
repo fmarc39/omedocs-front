@@ -36,13 +36,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SearchPharmacy = ({
-  handleChange,
-  searchInputValue,
-  searchSelectValue,
-  establishmentResultsData,
-  submitForm,
-}) => {
+const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue, submitForm }) => {
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
@@ -91,7 +85,6 @@ const SearchPharmacy = ({
                     name="searchEstablishmentInputValue"
                     onChange={handleChangeInput}
                     value={searchInputValue}
-                    required
                     startAdornment={
                       // eslint-disable-next-line react/jsx-wrap-multilines
                       <InputAdornment position="start">
@@ -140,7 +133,7 @@ const SearchPharmacy = ({
             </Box>
             {/* Affichage conditionnel du tableau de résultat si
             la longueur du tableau est différente de 0  */}
-            {establishmentResultsData.length !== 0 && <PharmacyTable />}
+            <PharmacyTable />
           </Box>
         </Box>
         <Footer />

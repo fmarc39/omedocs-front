@@ -45,24 +45,38 @@ const App = ({ isLoading, logged, rehydrate }) => {
         <Route exact path="/">
           <HomePage />
         </Route>
+
+        <Route path="/teampage">
+          <TeamPage />
+        </Route>
+
         <Route exact path="/login">
           {logged ? <Redirect to="/profil" /> : <LoginForm />}
         </Route>
-        <Route path="/profil">{!logged ? <Redirect to="/" /> : <ProfilPage />}</Route>
-        <Route path="/inventory">{!logged ? <Redirect to="/" /> : <InventoryPage />}</Route>
-        <Route path="/establishment/:id">
-          <PharmacyPage />
-        </Route>
-        <Route path="/searchproduct">{!logged ? <Redirect to="/" /> : <SearchProduct />}</Route>
-        <Route path="/searchestablishement">
-          {!logged ? <Redirect to="/" /> : <SearchPharmachy />}
-        </Route>
-        <Route exact path="/cart">
-          {!logged ? <Redirect to="/" /> : <Cart />}
-        </Route>
-        <Route exact path="/teampage">
-          <TeamPage />
-        </Route>
+
+        {logged && (
+          <>
+            <Route path="/profil">
+              <ProfilPage />
+            </Route>
+            <Route path="/inventory">
+              <InventoryPage />
+            </Route>
+            <Route path="/establishment/:id">
+              <PharmacyPage />
+            </Route>
+            <Route path="/searchproduct">
+              <SearchProduct />
+            </Route>
+            <Route path="/searchestablishement">
+              <SearchPharmachy />
+            </Route>
+            <Route path="/cart">
+              <Cart />
+            </Route>
+          </>
+        )}
+
         <Route path="*">
           <Page404 />
         </Route>

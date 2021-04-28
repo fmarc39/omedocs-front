@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Import react-router-dom pour ajouter des links aux boutons
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 // Import des composants depuis MATERIAL UI
 
@@ -51,6 +51,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
   const handleLogoutBtn = () => {
     handleLogout();
   };
+
   const classes = useStyles();
   return (
     <Box
@@ -67,33 +68,26 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
     >
       <Avatar alt="avatarLogo" src={avatarImg} className="left-menu__avatar" />
 
-      <Typography
-        variant="h5"
-        component="h5"
-        className="left-menu__welcome-message"
-        align="center"
-      >
+      <Typography variant="h5" component="h5" className="left-menu__welcome-message" align="center">
         Bienvenue <br />
         {establishment}
       </Typography>
 
-      <Box
-        display="flex"
-        flexDirection="column"
-        textAlign="center"
-        className="let-menu__btn-box"
-      >
-        <Button
-          variant="outlined"
-          onClick={handleLogoutBtn}
-          color="primary"
-          endIcon={<ExitToAppIcon />}
-          size="small"
-          fullWidth="true"
-          className={classes.logoutBtn}
-        >
-          Se déconnecter
-        </Button>
+      <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
+        <Link exact to="/">
+          <Button
+            variant="outlined"
+            onClick={handleLogoutBtn}
+            color="primary"
+            endIcon={<ExitToAppIcon />}
+            size="small"
+            fullWidth="true"
+            className={classes.logoutBtn}
+          >
+            Se déconnecter
+          </Button>
+        </Link>
+
         <NavLink to="/profil" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"

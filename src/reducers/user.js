@@ -84,7 +84,7 @@ const reducer = (state = initialState, action = {}) => {
       };
     }
 
-    case LOGOUT:
+    case LOGOUT: {
       localStorage.clear();
       return {
         ...state,
@@ -108,6 +108,8 @@ const reducer = (state = initialState, action = {}) => {
         token: null,
         logged: false,
       };
+    }
+
     case OPEN_VALIDATION_CHANGE_MODAL:
       return {
         ...state,

@@ -74,45 +74,55 @@ const PharmacyTable = ({ establishments }) => {
       <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
         Liste des établissements
       </Typography>
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table" size="small">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell key={column.id} align="left" style={{ minWidth: column.minWidth }}>
-                  <p className="cells-title">{column.label}</p>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody style={{ cursor: 'pointer' }}>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover role="checkbox" tabIndex={-1} key={row.code} data-rpps={row.id}>
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align}>
-                      <Link to={`establishment/${row.id}`}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </Link>
+      {establishments.length !== 0 ? (
+        <>
+          <TableContainer className={classes.container}>
+            <Table stickyHeader aria-label="sticky table" size="small">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell key={column.id} align="left" style={{ minWidth: column.minWidth }}>
+                      <p className="cells-title">{column.label}</p>
                     </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'Tous' }]}
-        labelRowsPerPage="Résultats par page"
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody style={{ cursor: 'pointer' }}>
+                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code} data-rpps={row.id}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          <Link to={`establishment/${row.id}`}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </Link>
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'Tous' }]}
+            labelRowsPerPage="Résultats par page"
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+        </>
+      ) : (
+        <h1 style={{ padding: '5px', fontWeight: '700' }}>
+          Il n'y a aucun établissement de ce nom présent sur le site
+        </h1>
+      )}
     </Paper>
   );
 };

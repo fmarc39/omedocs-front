@@ -25,17 +25,10 @@ import ProductPageTable from 'src/containers/Tables/ProductPageTable';
 // Import CSS
 import './styles.scss';
 
-const SearchProduct = ({
-  handleChange,
-  searchInputValue,
-  searchSelectValue,
-  productResultsData,
-  submitForm,
-}) => {
+const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue, submitForm }) => {
   useEffect(() => {
     submitForm();
     handleChange('', 'searchProductInputValue');
-    handleChange('', 'searchProductSelectValue');
   }, []);
 
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
@@ -91,7 +84,6 @@ const SearchProduct = ({
                     id="search-product-input"
                     onChange={handleChangeSearchInput}
                     value={searchInputValue}
-                    required
                     name="searchProductInputValue"
                     startAdornment={
                       // eslint-disable-next-line react/jsx-wrap-multilines
@@ -125,9 +117,7 @@ const SearchProduct = ({
                 </Button>
               </form>
             </Box>
-            {/* Affichage conditionnel du tableau de résultat si
-            la longueur du tableau est différente de 0  */}
-            {productResultsData.length !== 0 && <ProductPageTable />}
+            <ProductPageTable />
           </Box>
           <ConfirmationBox />
         </Box>

@@ -259,11 +259,11 @@ const CartPage = ({ cartData, deleteArticle }) => {
     <>
       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
-        <Box height="100%" width="100%" display="flex" id="body">
+        <Box width="100%" height="100%" display="flex" id="body">
           <LeftMenu />
           <Box
             bgcolor="#C6C6C6"
-            height="100%"
+            minHeight="calc(100vh - 143.44px)"
             width="100%"
             p={4}
             display="flex"

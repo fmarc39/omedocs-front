@@ -44,12 +44,7 @@ const TeamPage = () => {
   const annimation = true;
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
         <Box width="100%" display="flex" id="body">
           <Box
@@ -62,9 +57,7 @@ const TeamPage = () => {
             alignItems="center"
             className="main-box"
           >
-            <h1 className="main-box__main-title">
-              Qui se cache derrière O'Medocs ?
-            </h1>
+            <h1 className="main-box__main-title">Qui se cache derrière O'Medocs ?</h1>
             <Box display="flex" flexWrap="wrap" p={4} justifyContent="center">
               <Grow
                 in={annimation}
@@ -79,15 +72,10 @@ const TeamPage = () => {
                       height="300"
                       image={Lambert}
                       title="lambert-img"
-                      classname={classes.img}
+                      className={classes.img}
                     />
                     <CardContent>
-                      <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h5"
-                        align="center"
-                      >
+                      <Typography gutterBottom variant="h5" component="h5" align="center">
                         Lambert
                       </Typography>
                       <Typography
@@ -101,18 +89,10 @@ const TeamPage = () => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<GitHubIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
                       GitHub
                     </Button>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<LinkedInIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
                       LinkeDin
                     </Button>
                   </CardActions>
@@ -134,12 +114,7 @@ const TeamPage = () => {
                       classname={classes.img}
                     />
                     <CardContent>
-                      <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h5"
-                        align="center"
-                      >
+                      <Typography gutterBottom variant="h5" component="h5" align="center">
                         François
                       </Typography>
                       <Typography
@@ -153,18 +128,10 @@ const TeamPage = () => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<GitHubIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
                       GitHub
                     </Button>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<LinkedInIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
                       LinkeDin
                     </Button>
                   </CardActions>
@@ -183,15 +150,10 @@ const TeamPage = () => {
                       height="300"
                       image={Geoffrey}
                       title="lambert-img"
-                      classname={classes.img}
+                      className={classes.img}
                     />
                     <CardContent>
-                      <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h5"
-                        align="center"
-                      >
+                      <Typography gutterBottom variant="h5" component="h5" align="center">
                         Geoffrey
                       </Typography>
                       <Typography
@@ -205,18 +167,10 @@ const TeamPage = () => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<GitHubIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
                       GitHub
                     </Button>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<LinkedInIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
                       LinkeDin
                     </Button>
                   </CardActions>
@@ -235,15 +189,10 @@ const TeamPage = () => {
                       height="300"
                       image={Zachary}
                       title="zachary-img"
-                      classname={classes.img}
+                      className={classes.img}
                     />
                     <CardContent>
-                      <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h5"
-                        align="center"
-                      >
+                      <Typography gutterBottom variant="h5" component="h5" align="center">
                         Zachary
                       </Typography>
                       <Typography
@@ -257,18 +206,10 @@ const TeamPage = () => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<GitHubIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
                       GitHub
                     </Button>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<LinkedInIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
                       LinkeDin
                     </Button>
                   </CardActions>
@@ -290,12 +231,7 @@ const TeamPage = () => {
                       classname={classes.img}
                     />
                     <CardContent>
-                      <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h5"
-                        align="center"
-                      >
+                      <Typography gutterBottom variant="h5" component="h5" align="center">
                         Bahri
                       </Typography>
                       <Typography
@@ -309,18 +245,10 @@ const TeamPage = () => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<GitHubIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
                       GitHub
                     </Button>
-                    <Button
-                      size="small"
-                      color="primary"
-                      startIcon={<LinkedInIcon />}
-                    >
+                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
                       LinkeDin
                     </Button>
                   </CardActions>
