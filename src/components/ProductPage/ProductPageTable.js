@@ -31,8 +31,18 @@ const columns = [
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, pharmacyName, expirationDate, quantity, price, quantityToBuy, addToCart) {
+function createData(
+  id,
+  name,
+  pharmacyName,
+  expirationDate,
+  quantity,
+  price,
+  quantityToBuy,
+  addToCart
+) {
   return {
+    id,
     name,
     pharmacyName,
     expirationDate,
@@ -74,7 +84,9 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
 
   // Reset de la valeur de tous les inputs
   const handleReset = () => {
-    Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
+    Array.from(document.querySelectorAll('input')).forEach(
+      (input) => (input.value = '')
+    );
   };
 
   // Gestion de la soumission du formulaire addProduct pour l'envois au panier
@@ -88,12 +100,16 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
     const formData = new FormData(event.target);
     const quantityToBuy = formData.get('quantityToBuy');
     // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
-    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
+    if (
+      Number(quantityToBuy) > Number(quantity) ||
+      Number(quantityToBuy) === 0
+    ) {
       event.target.classList.add('error');
       setTimeout(() => {
         event.target.classList.remove('error');
       }, 1000);
     } else {
+      // Fonction pour vider les champs
       handleReset();
       // On met toutes les datas dans un objet pour les envoyes dans le panier
       const dataToSendToCart = {
@@ -115,6 +131,7 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
   const rows = products.map((product) =>
     createData(
+      product.id,
       product.name,
       product.establishment,
       product.expiration_date,
@@ -125,12 +142,12 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
         <form
           onSubmit={handleSubmitForm}
           data-pharmacyname={product.establishment}
-          data-pharmacyId={product.user_id}
+          data-pharmacyid={product.user_id}
           data-price={product.unit_price}
           data-quantity={product.quantity}
           data-productname={product.name}
           data-productid={product.cis_code}
-          data-id={product.rpps}
+          data-id={product.id}
           name="addProduct"
           className="addProductToCart"
         >
@@ -149,8 +166,8 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
             <AddShoppingCartIcon />
           </IconButton>
         </form>
-      </Box>,
-    ),
+      </Box>
+    )
   );
   return (
     <Paper className={classes.root}>
@@ -171,18 +188,22 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover tabIndex={-1} key={row.code}>
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof value === 'number' ? column.format(value) : value}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <TableRow hover tabIndex={-1} key={row.id}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id}>
+                        {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

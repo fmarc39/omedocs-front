@@ -47,6 +47,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const fullWidth = true;
 const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
   const handleLogoutBtn = () => {
     handleLogout();
@@ -89,7 +90,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
           color="primary"
           endIcon={<ExitToAppIcon />}
           size="small"
-          fullWidth="true"
+          fullWidth={fullWidth}
           className={classes.logoutBtn}
         >
           Se déconnecter
@@ -101,7 +102,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
             endIcon={<AccountCircleIcon />}
             size="large"
             className={classes.btn}
-            fullWidth="true"
+            fullWidth={fullWidth}
           >
             Profil
           </Button>
