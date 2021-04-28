@@ -39,8 +39,9 @@ const columns = [
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, cis, expiration, quantity, price, dellRow) {
+function createData(id, name, cis, expiration, quantity, price, dellRow) {
   return {
+    id,
     name,
     cis,
     expiration,
@@ -115,10 +116,11 @@ const InventoryTable = ({
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
   const rows = inventoryData.map((article) =>
     createData(
+      article.id,
       article.name,
       article.cis_code,
       article.expiration_date,
-      <Box>
+      <Box display="flex" alignItems="center">
         {article.quantity}
         <IconButton
           aria-label="edit"
@@ -139,7 +141,7 @@ const InventoryTable = ({
           <IconButton
             color="primary"
             className="save-btn"
-            name={article.cis}
+            name={article.id}
             type="submit"
           >
             <SaveIcon />
@@ -150,7 +152,7 @@ const InventoryTable = ({
       <IconButton
         aria-label="delete"
         onClick={handleDeleteCLickBtn}
-        name={article.cis_code}
+        name={article.id}
         id="del-btn"
         className={classes.delBtn}
       >
@@ -185,7 +187,7 @@ const InventoryTable = ({
                   hover
                   role="checkbox"
                   tabIndex={-1}
-                  key={row.code}
+                  key={row.id}
                   className={classes.tableRow}
                 >
                   {columns.map((column) => {
