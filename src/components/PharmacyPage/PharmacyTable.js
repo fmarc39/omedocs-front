@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-// Import React
+// Import REACT
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,48 +14,57 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import Box from '@material-ui/core/Box';
+import IconButton from '@material-ui/core/IconButton';
 
-// Import CSS styles
+// Import CSS
 import './styles.scss';
+import { Typography } from '@material-ui/core';
 
 // Configuration des colones avec le nom, le label, la largeur
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300 },
-  { id: 'cis', label: 'CIS', minWidth: 100 },
-  { id: 'quantity', label: 'Quantité disponible', minWidth: 100 },
-  { id: 'price', label: 'Prix unitaire H.T', minWidth: 100 },
-  { id: 'quantityToBuy', label: 'Quantité', minWidth: 100 },
-  { id: 'addToCart', minWidth: 200 },
+  { id: 'cis', label: 'Cis', minWidth: 200 },
+  { id: 'expirationDate', label: "Date d'expiration" },
+  { id: 'quantity', label: 'Quantité disponible', minWidth: 50 },
+  { id: 'price', label: 'Prix unitaire H.T', minWidth: 50 },
+  { id: 'addToCart', minWidth: 150 },
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, cis, quantity, price, quantityToBuy, addToCart) {
+function createData(name, cis, expirationDate, quantity, price, quantityToBuy, addToCart) {
   return {
     name,
     cis,
+    expirationDate,
     quantity,
     price,
     quantityToBuy,
     addToCart,
   };
 }
-
-// Configuration des styles MATERIAL-UI
+// Ajout des styles sur les composants MATERIAL-UI
 const useStyles = makeStyles({
   root: {
     width: '100%',
     overflow: 'hidden',
+    textAlign: 'center',
   },
   container: {
-    minHeight: 350,
+    minHeight: 150,
+    maxHeight: 500,
     minWidth: 700,
+  },
+  addToCartBtn: {
+    color: '#0368A3',
   },
 });
 
-const InventoryTable = ({ fetchInventory, inventory, establishment }) => {
-  console.log(inventory);
+const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, establishment }) => {
+  console.log(`inventaire: ${inventory}`);
+  console.log(`établissement: ${establishment}`);
+
   //  fetch l'inventaire du user
   useState(() => {
     fetchInventory(establishment[0].id);
@@ -65,30 +74,95 @@ const InventoryTable = ({ fetchInventory, inventory, establishment }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  // Gestion du nombre de pages dans le tableau
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-  // Gestion du nombre de pages
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
+  // Reset de la valeur de tous les inputs
+  const handleReset = () => {
+    Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
+  };
+
+  // Gestion de la soumission du formulaire addProduct pour l'envois au panier
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    // On récupère les datas du form avec dataset
+    const {
+      dataset: { pharmacyname, price, productid, productname, quantity, id },
+    } = event.target;
+
+    // On récupère la quantité rentré par l'user
+    const formData = new FormData(event.target);
+
+    const quantityToBuy = formData.get('quantityToBuy');
+    // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
+    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
+      event.target.classList.add('error');
+      setTimeout(() => {
+        event.target.classList.remove('error');
+      }, 1000);
+    } else {
+      handleReset();
+      // On met toutes les datas dans un objet pour les envoyes dans le panier
+      const dataToSendToCart = {
+        pharmacyname,
+        price,
+        productid,
+        productname,
+        quantity,
+        quantityToBuy,
+        id,
+      };
+      // On envois les data dans le panier via un action
+      addToCart(dataToSendToCart);
+      // On envois l'action pour l'ouverture de la dialogBox
+      openDialogBox();
+    }
+  };
+
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
-
-  //TODO: BOUCLER ICI SUR LES TABLEAU FILTRER A LA PLACE DE 'establishments'.
-
-  const rows = inventory.map((row) =>
+  const rows = inventory.map((product) =>
     createData(
-      row.drugName,
-      row.cis,
-      row.quantity,
-      row.price,
-      <TextField id="standard-basic" label="quantité" type="number" />,
-      <Button variant="contained" color="primary" endIcon={<AddShoppingCartIcon />}>
-        Ajouter au panier
-      </Button>,
+      product.name,
+      product.cis_code,
+      product.expiration_date,
+      product.quantity,
+      `${product.unit_price}  €`,
+      <TextField id="quantity" label="quantité" type="number" />,
+      <Box display="flex" justifyContent="flex-end" alignItems="start">
+        <form
+          onSubmit={handleSubmitForm}
+          data-pharmacyname={product.establishment}
+          data-pharmacyId={product.user_id}
+          data-price={product.unit_price}
+          data-quantity={product.quantity}
+          data-productname={product.name}
+          data-productid={product.cis_code}
+          data-id={product.rpps}
+          name="addProduct"
+          className="addProductToCart"
+        >
+          <TextField
+            label="quantité"
+            type="number"
+            name="quantityToBuy"
+            InputProps={{ inputProps: { min: 1, max: product.quantity } }}
+          />
+          <IconButton
+            variant="contained"
+            type="submit"
+            color="primary"
+            className={classes.addToCartBtn}
+          >
+            <AddShoppingCartIcon />
+          </IconButton>
+        </form>
+      </Box>,
     ),
   );
 
@@ -104,27 +178,32 @@ const InventoryTable = ({ fetchInventory, inventory, establishment }) => {
 
   return (
     <div>
-      {/* Si l'établissement est une pharmacie et qu'elle a des médicaments en stock on affiche le tableau */}
+      {/* Si l'établissement est une pharmacie
+       et qu'elle a des médicaments en stock on affiche le tableau */}
       {typeRender === 'pharmacyHasInventory' ? (
         <Paper className={classes.root}>
+          <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+            Inventaire de la pharmacie
+          </Typography>
           <TableContainer className={classes.container}>
-            <Table stickyHeader aria-label="sticky table">
+            <Table stickyHeader size="small">
               <TableHead>
                 <TableRow>
                   {columns.map((column) => (
                     <TableCell
+                      className="tableCell"
                       key={column.id}
-                      align={column.align}
+                      align="left"
                       style={{ minWidth: column.minWidth }}
                     >
-                      {column.label}
+                      <p className="cells-title">{column.label}</p>
                     </TableCell>
                   ))}
                 </TableRow>
               </TableHead>
               <TableBody>
                 {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover tabIndex={-1} key={row.code} size="small">
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -162,15 +241,17 @@ const InventoryTable = ({ fetchInventory, inventory, establishment }) => {
   );
 };
 
-InventoryTable.propTypes = {
+PharmacyTable.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+  openDialogBox: PropTypes.func.isRequired,
   fetchInventory: PropTypes.func.isRequired,
   inventory: PropTypes.array,
   establishment: PropTypes.array,
 };
 
-InventoryTable.defaultProps = {
+PharmacyTable.defaultProps = {
   inventory: [],
   establishment: [],
 };
 
-export default InventoryTable;
+export default PharmacyTable;

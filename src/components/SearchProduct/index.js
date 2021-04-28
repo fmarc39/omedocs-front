@@ -56,12 +56,7 @@ const SearchProduct = ({
 
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -85,13 +80,12 @@ const SearchProduct = ({
             >
               <form autoComplete="off" onSubmit={handleOnSubmit}>
                 <div>
-                  <InputLabel htmlFor="search-product-input">
-                    Nom du médicament
-                  </InputLabel>
+                  <InputLabel htmlFor="search-product-input">Nom du médicament</InputLabel>
                   <Input
                     id="search-product-input"
                     onChange={handleChangeSearchInput}
                     value={searchInputValue}
+                    required
                     name="searchProductInputValue"
                     startAdornment={
                       // eslint-disable-next-line react/jsx-wrap-multilines

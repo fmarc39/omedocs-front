@@ -155,7 +155,7 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader>
+        <Table stickyHeader size="small">
           <TableHead>
             <TableRow>
               {columns.map((column) => (

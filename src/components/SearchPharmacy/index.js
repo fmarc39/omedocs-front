@@ -1,5 +1,5 @@
 // Import REACT
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Import COMPONENTS
@@ -51,6 +51,10 @@ const SearchPharmacy = ({
     event.preventDefault();
     submitForm();
   };
+  // Affiche tout les établissement à l'affichage du composant
+  useEffect(() => {
+    submitForm();
+  }, []);
 
   const classes = useStyles();
   return (
@@ -85,6 +89,7 @@ const SearchPharmacy = ({
                     name="searchEstablishmentInputValue"
                     onChange={handleChangeInput}
                     value={searchInputValue}
+                    required
                     startAdornment={
                       // eslint-disable-next-line react/jsx-wrap-multilines
                       <InputAdornment position="start">

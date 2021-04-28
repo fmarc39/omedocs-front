@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import DialogBox from 'src/components/ProductPage/DialogBox';
+import DialogBoxAddToCard from 'src/components/DialogBoxAddToCard';
+
 import { closeDialogBox } from 'src/actions/cart';
 
 const mapStateToProps = (state) => ({
@@ -12,4 +13,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DialogBox);
+export default connect(mapStateToProps, mapDispatchToProps)(DialogBoxAddToCard);

@@ -13,6 +13,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import { Typography } from '@material-ui/core';
 
 // Configuration des colones avec le nom, le label, la largeur
 const columns = [
@@ -31,6 +32,7 @@ function createData(name, user_type, rpps, region, id) {
 const useStyles = makeStyles({
   root: {
     width: '100%',
+    textAlign: 'center',
   },
   container: {
     minHeight: 100,
@@ -73,6 +75,9 @@ const PharmacyTable = ({ establishments }) => {
 
   return (
     <Paper className={classes.root}>
+      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+        Liste des établissements
+      </Typography>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table" size="small">
           <TableHead>
