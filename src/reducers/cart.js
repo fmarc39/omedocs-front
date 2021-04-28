@@ -48,7 +48,6 @@ const reducer = (state = initialState, action = {}) => {
         cart: state.cart.map((item) => {
           if (Number(item.id) === Number(action.articleId)) {
             if (item.quantityToBuy === 0) {
-              return item;
             }
             item.quantityToBuy -= 1;
           }
