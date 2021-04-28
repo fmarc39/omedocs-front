@@ -13,7 +13,7 @@ export const initialState = {
   newEmail: '',
   newPhoneNumber: '',
   rpps: '',
-  userType: 'hospital',
+  userType: '',
   city: '',
   address: '',
   zipCode: '',
@@ -21,7 +21,7 @@ export const initialState = {
   passwordConnexion: '',
   password: '',
   confirmPassword: '',
-  logged: true,
+  logged: false,
   accessToken: null,
   isLoading: false,
   changeInformationsModal: false,
@@ -36,7 +36,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case LOGIN_FROM_REHYDRATE:
+    case LOGIN_FROM_REHYDRATE: {
       return {
         ...state,
         accessToken: action.accessToken,
@@ -51,6 +51,7 @@ const reducer = (state = initialState, action = {}) => {
         user_id: action.user_id,
         logged: true,
       };
+    }
     case LOGIN: {
       // Je met le token dans les params de l'api
       api.defaults.headers.common.Authorization = action.accessToken;

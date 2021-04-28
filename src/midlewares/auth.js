@@ -60,6 +60,7 @@ export default (store) => (next) => (action) => {
         })
         .then((result) => result.data)
         .then(({ user, accessToken }) => {
+          console.log(user);
           // Je stock le token et le user dans le localStorage
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('user_id', user.id);

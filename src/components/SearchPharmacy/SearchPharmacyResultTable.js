@@ -1,7 +1,7 @@
 // Import REACT
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,10 +41,6 @@ const useStyles = makeStyles({
 });
 
 const PharmacyTable = ({ establishments }) => {
-  const handlerOnClickRow = () => {
-    console.log('je passe dans le callback');
-    return <Redirect to="/lien" />;
-  };
   // Récupération de l'id de l'établissement au clic sur la ligne du tableau
   console.log(establishments);
   const classes = useStyles();
@@ -91,14 +87,7 @@ const PharmacyTable = ({ establishments }) => {
           </TableHead>
           <TableBody style={{ cursor: 'pointer' }}>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow
-                hover
-                role="checkbox"
-                tabIndex={-1}
-                key={row.code}
-                data-rpps={row.id}
-                onClick={handlerOnClickRow}
-              >
+              <TableRow hover role="checkbox" tabIndex={-1} key={row.code} data-rpps={row.id}>
                 {columns.map((column) => {
                   const value = row[column.id];
                   return (

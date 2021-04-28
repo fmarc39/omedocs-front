@@ -51,9 +51,11 @@ const SearchPharmacy = ({
     event.preventDefault();
     submitForm();
   };
-  // Affiche tout les établissement à l'affichage du composant
+  // A l'affichage du composant, affiche tout les établissement, et vide les champs de recherche
   useEffect(() => {
     submitForm();
+    handleChange('', 'searchEstablishmentInputValue');
+    handleChange('', 'searchEstablishmentSelectValue');
   }, []);
 
   const classes = useStyles();

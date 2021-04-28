@@ -16,7 +16,6 @@ import PharmacyPage from 'src/containers/PharmacyPage';
 import LoginForm from 'src/containers/LoginForm';
 import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/containers/CartPage';
-import Payment from 'src/components/Payment/Checkout';
 import Page404 from 'src/components/404';
 import SnackBar from 'src/containers/SnackBar';
 
@@ -49,18 +48,12 @@ const App = ({ isLoading, logged, rehydrate }) => {
         <Route exact path="/login">
           {logged ? <Redirect to="/profil" /> : <LoginForm />}
         </Route>
-        <Route path="/profil">
-          {!logged ? <Redirect to="/" /> : <ProfilPage />}
-        </Route>
-        <Route path="/inventory">
-          {!logged ? <Redirect to="/" /> : <InventoryPage />}
-        </Route>
+        <Route path="/profil">{!logged ? <Redirect to="/" /> : <ProfilPage />}</Route>
+        <Route path="/inventory">{!logged ? <Redirect to="/" /> : <InventoryPage />}</Route>
         <Route path="/establishment/:id">
           <PharmacyPage />
         </Route>
-        <Route path="/searchproduct">
-          {!logged ? <Redirect to="/" /> : <SearchProduct />}
-        </Route>
+        <Route path="/searchproduct">{!logged ? <Redirect to="/" /> : <SearchProduct />}</Route>
         <Route path="/searchestablishement">
           {!logged ? <Redirect to="/" /> : <SearchPharmachy />}
         </Route>

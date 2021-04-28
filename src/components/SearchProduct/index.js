@@ -1,5 +1,5 @@
 // Import REACT
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Import COMPONENTS
@@ -32,6 +32,12 @@ const SearchProduct = ({
   productResultsData,
   submitForm,
 }) => {
+  useEffect(() => {
+    submitForm();
+    handleChange('', 'searchProductInputValue');
+    handleChange('', 'searchProductSelectValue');
+  }, []);
+
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeSearchInput = (event) => {
     // Au 'onChange' on récupère la valeur de l'input et son nom
