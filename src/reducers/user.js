@@ -37,6 +37,7 @@ const reducer = (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
     case LOGIN_FROM_REHYDRATE: {
+      api.defaults.headers.common.Authorization = `Bearer ${action.accessToken}`;
       return {
         ...state,
         accessToken: action.accessToken,
@@ -54,7 +55,7 @@ const reducer = (state = initialState, action = {}) => {
     }
     case LOGIN: {
       // Je met le token dans les params de l'api
-      api.defaults.headers.common.Authorization = action.accessToken;
+      api.defaults.headers.common.Authorization = `Bearer ${action.accessToken}`;
       const {
         id: user_id,
         email,
