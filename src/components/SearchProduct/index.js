@@ -21,11 +21,18 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
 import ProductPageTable from 'src/containers/Tables/ProductPageTable';
+import Loading from 'src/components/Loading';
 
 // Import CSS
 import './styles.scss';
 
-const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue, submitForm }) => {
+const SearchProduct = ({
+  handleChange,
+  searchInputValue,
+  searchSelectValue,
+  submitForm,
+  isLoading,
+}) => {
   useEffect(() => {
     submitForm();
     handleChange('', 'searchProductInputValue');
@@ -117,7 +124,7 @@ const SearchProduct = ({ handleChange, searchInputValue, searchSelectValue, subm
                 </Button>
               </form>
             </Box>
-            <ProductPageTable />
+            {isLoading ? <Loading /> : <ProductPageTable />}
           </Box>
           <ConfirmationBox />
         </Box>
@@ -131,8 +138,8 @@ SearchProduct.propTypes = {
   handleChange: PropTypes.func.isRequired,
   searchInputValue: PropTypes.string.isRequired,
   searchSelectValue: PropTypes.string.isRequired,
-  productResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   submitForm: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default SearchProduct;

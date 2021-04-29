@@ -124,7 +124,6 @@ const LoginForm = ({
                 Connexion
               </Button>
             </form>
-            <Typography variant="body2">Mot de passe oublié ?</Typography>
           </Box>
           <Accordion
             email={email}

@@ -10,17 +10,21 @@ import {
   CLOSE_POP_LIST_API,
   OPEN_POP_LIST_API,
   OPEN_CLOSE_ACCORDION,
+  ON_OFF_LOADING,
 } from 'src/actions/utils';
 
 const initialState = {
-  isExpanded: false,
-  activePopList: false,
+  isLoading: false, // état de chargement pendant les requêtes
+  isExpanded: false, // état ouvert / fermer de la page signup
+  activePopList: false, // afficher la PopList qui filtre le Json des médicaments
   errorInputValidation: {
+    // message erreur email/password non correspondant
     message: '',
     open: true,
   },
-  openModalProduct: false,
+  openModalProduct: false, // modal ajout médicament à l'inventaire
   snackBar: {
+    // message d'erreur ou de succés
     open: false,
     message: '',
     typeColor: '', // success | info | warning | error
@@ -37,6 +41,11 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case ON_OFF_LOADING:
+      return {
+        ...state,
+        isLoading: !state.isLoading,
+      };
     case OPEN_CLOSE_ACCORDION:
       return {
         ...state,

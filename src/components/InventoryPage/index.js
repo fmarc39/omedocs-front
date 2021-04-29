@@ -11,6 +11,7 @@ import LeftMenu from 'src/containers/LeftMenu';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ModalAddProduct from 'src/containers/ModalAddProduct';
+import Loading from 'src/components/Loading';
 
 // Import COMPONENTS
 import InventoryTable from 'src/containers/Tables/InventoryTable';
@@ -29,7 +30,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory }) => {
+const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoading }) => {
   // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
 
   useEffect(() => {
@@ -42,12 +43,7 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory }) => {
   const classes = useStyles();
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
@@ -68,7 +64,6 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory }) => {
               alignItems="center"
               flexDirection="column"
             >
-              <h2 className="page-title">Votre inventaire</h2>
               <Button
                 variant="contained"
                 onClick={handleAddArticleBtn}
@@ -81,7 +76,7 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory }) => {
               </Button>
             </Box>
             {inventoryData.length !== 0 ? (
-              <InventoryTable />
+              <>{isLoading ? <Loading /> : <InventoryTable />}</>
             ) : (
               <div className="up-arrow">
                 <p>Votre inventaire est vide.</p>
@@ -101,6 +96,7 @@ InventoryPage.propTypes = {
   inventoryData: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleAddArticle: PropTypes.func.isRequired,
   fetchInventory: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default InventoryPage;

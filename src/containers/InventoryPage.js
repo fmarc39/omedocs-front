@@ -6,6 +6,7 @@ import { fetchInventory } from 'src/actions/inventory';
 
 const mapStateToProps = (state) => ({
   inventoryData: state.inventory.drugs,
+  isLoading: state.utils.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -6,12 +6,13 @@ import {
   resultSearchEstablishment,
   resultSearchProduct,
 } from 'src/actions/search';
-import { openSnackBar } from 'src/actions/utils';
+import { openSnackBar, onOffLoading } from 'src/actions/utils';
 import api from 'src/api/api';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case SEARCH_PRODUCT:
+      store.dispatch(onOffLoading());
       {
         const { searchProductInputValue } = store.getState().search;
         const { searchProductSelectValue } = store.getState().search;
@@ -35,10 +36,14 @@ export default (store) => (next) => (action) => {
           .catch((error) => {
             console.error(error);
             store.dispatch(openSnackBar('Une erreur est survenue', 'error'));
+          })
+          .finally(() => {
+            store.dispatch(onOffLoading());
           });
       }
       return next(action);
     case SEARCH_ESTABLISHMENT:
+      store.dispatch(onOffLoading());
       {
         const { searchEstablishmentInputValue } = store.getState().search;
         const { searchEstablishmentSelectValue } = store.getState().search;
@@ -57,11 +62,15 @@ export default (store) => (next) => (action) => {
           .catch((error) => {
             console.error(error);
             store.dispatch(openSnackBar('Une erreur est survenue', 'error'));
+          })
+          .finally(() => {
+            store.dispatch(onOffLoading());
           });
       }
       return next(action);
 
     case FETCH_INVENTORY_ESTABLISHMENT:
+      store.dispatch(onOffLoading());
       {
         const { id } = action;
         api
@@ -72,6 +81,9 @@ export default (store) => (next) => (action) => {
           })
           .catch((error) => {
             console.log(error);
+          })
+          .finally(() => {
+            store.dispatch(onOffLoading());
           });
       }
       return next(action);

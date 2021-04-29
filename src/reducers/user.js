@@ -23,7 +23,6 @@ export const initialState = {
   confirmPassword: '',
   logged: false,
   accessToken: null,
-  isLoading: false,
   changeInformationsModal: false,
   mailChangeDialogBox: false,
   phoneChangeDialogBox: false,

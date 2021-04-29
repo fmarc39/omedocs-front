@@ -33,16 +33,7 @@ const columns = [
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(
-  id,
-  name,
-  cis,
-  expirationDate,
-  quantity,
-  price,
-  quantityToBuy,
-  addToCart
-) {
+function createData(id, name, cis, expirationDate, quantity, price, quantityToBuy, addToCart) {
   return {
     id,
     name,
@@ -71,18 +62,7 @@ const useStyles = makeStyles({
   },
 });
 
-const PharmacyTable = ({
-  addToCart,
-  openDialogBox,
-  fetchInventory,
-  inventory,
-  establishment,
-}) => {
-  //  fetch l'inventaire du user
-  useState(() => {
-    fetchInventory(establishment[0].id);
-  }, []);
-
+const PharmacyTable = ({ addToCart, openDialogBox, inventory, establishment }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -98,9 +78,7 @@ const PharmacyTable = ({
 
   // Reset de la valeur de tous les inputs
   const handleReset = () => {
-    Array.from(document.querySelectorAll('input')).forEach(
-      (input) => (input.value = '')
-    );
+    Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
   };
 
   // Gestion de la soumission du formulaire addProduct pour l'envois au panier
@@ -118,10 +96,7 @@ const PharmacyTable = ({
 
     const quantityToBuy = formData.get('quantityToBuy');
     // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
-    if (
-      Number(quantityToBuy) > Number(quantity) ||
-      Number(quantityToBuy) === 0
-    ) {
+    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
       event.target.classList.add('error');
       setTimeout(() => {
         event.target.classList.remove('error');
@@ -181,18 +156,15 @@ const PharmacyTable = ({
             <AddShoppingCartIcon />
           </IconButton>
         </form>
-      </Box>
-    )
+      </Box>,
+    ),
   );
 
   // variable crée pour conditioner l'afficher du tableau
   let typeRender = '';
   if (establishment[0].user_type === 'hospital') {
     typeRender = 'hospital';
-  } else if (
-    establishment[0].user_type === 'pharmacy' &&
-    inventory.length === 0
-  ) {
+  } else if (establishment[0].user_type === 'pharmacy' && inventory.length === 0) {
     typeRender = 'pharmacyHasNoInventory';
   } else {
     typeRender = 'pharmacyHasInventory';
@@ -204,10 +176,7 @@ const PharmacyTable = ({
        et qu'elle a des médicaments en stock on affiche le tableau */}
       {typeRender === 'pharmacyHasInventory' ? (
         <Paper className={classes.root}>
-          <Typography
-            variant="h6"
-            style={{ padding: '10px', backgroundColor: '#A8C1E2' }}
-          >
+          <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
             Inventaire de la pharmacie
           </Typography>
           <TableContainer className={classes.container}>
@@ -227,22 +196,20 @@ const PharmacyTable = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
-                    <TableRow hover tabIndex={-1} key={row.id} size="small">
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  ))}
+                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                  <TableRow hover tabIndex={-1} key={row.id} size="small">
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -271,7 +238,6 @@ const PharmacyTable = ({
 PharmacyTable.propTypes = {
   addToCart: PropTypes.func.isRequired,
   openDialogBox: PropTypes.func.isRequired,
-  fetchInventory: PropTypes.func.isRequired,
   inventory: PropTypes.array,
   establishment: PropTypes.array,
 };

@@ -76,6 +76,8 @@
     "react-stripe-checkout": "^2.6.3",
     "react-toastify": "^7.0.4",
     "redux": "^4.0.5",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3",
     "stripe": "^8.145.0",
     "tipsi-stripe": "^9.0.0"
   }

@@ -20,6 +20,7 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
 import PharmacyTable from 'src/containers/Tables/SearchPharmacyResultTable';
+import Loading from 'src/components/Loading';
 
 // Import CSS
 import './styles.scss';
@@ -36,7 +37,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue, submitForm }) => {
+const SearchPharmacy = ({
+  handleChange,
+  searchInputValue,
+  searchSelectValue,
+  submitForm,
+  isLoading,
+}) => {
   // Gestion du 'onChange' de l'input search et lien avec le containers REDUX
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
@@ -131,9 +138,7 @@ const SearchPharmacy = ({ handleChange, searchInputValue, searchSelectValue, sub
                 </Button>
               </form>
             </Box>
-            {/* Affichage conditionnel du tableau de résultat si
-            la longueur du tableau est différente de 0  */}
-            <PharmacyTable />
+            {isLoading ? <Loading /> : <PharmacyTable />}
           </Box>
         </Box>
         <Footer />
@@ -146,8 +151,8 @@ SearchPharmacy.propTypes = {
   handleChange: PropTypes.func.isRequired,
   searchInputValue: PropTypes.string,
   searchSelectValue: PropTypes.string,
-  establishmentResultsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   submitForm: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 SearchPharmacy.defaultProps = {

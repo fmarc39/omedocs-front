@@ -1,5 +1,5 @@
 import api from 'src/api/api';
-import { openSnackBar, closeModalProduct } from 'src/actions/utils';
+import { openSnackBar, closeModalProduct, onOffLoading } from 'src/actions/utils';
 import {
   DELETE_ROW_FROM_INVENTORY,
   SUBMIT_ADD_PRODUCT,
@@ -14,6 +14,8 @@ export default (store) => (next) => (action) => {
     // Récupérer l'inventaire
     case FETCH_INVENTORY:
       {
+        store.dispatch(onOffLoading());
+
         const { user_id } = store.getState().user;
         api
           .get(`/inventory/${user_id}`)
@@ -25,6 +27,9 @@ export default (store) => (next) => (action) => {
           })
           .catch((error) => {
             console.log(error);
+          })
+          .finally(() => {
+            store.dispatch(onOffLoading());
           });
       }
       return next(action);
