@@ -8,9 +8,10 @@ import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import InventoryTable from 'src/containers/Tables/PharmacyPageTable';
 import Loading from 'src/components/Loading';
+import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
 import Accordion from './accordion';
 
-import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
+import GoogleMap from 'src/components/GoogleMap';
 
 const PharmacyPage = ({ establishments, isLoading, inventory, fetchInventory }) => {
   // je filtre les établissements pour afficher la page d'un établissement
@@ -43,6 +44,7 @@ const PharmacyPage = ({ establishments, isLoading, inventory, fetchInventory }) 
           alignItems="center"
         >
           <Accordion establishment={establishment} />
+          <GoogleMap />
           {isLoading ? (
             <Loading />
           ) : (
