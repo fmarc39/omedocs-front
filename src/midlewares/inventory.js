@@ -4,6 +4,7 @@ import {
   DELETE_ROW_FROM_INVENTORY,
   SUBMIT_ADD_PRODUCT,
   FETCH_INVENTORY,
+  SAVE_NEW_QUANTITY_FROM_INVENTORY,
   saveInventory,
   deleteRowFromState,
   saveNewProductInInventory,
@@ -32,14 +33,21 @@ export default (store) => (next) => (action) => {
       api
         .delete(`/deleteProduct/${action.rowId}`)
         .then((result) => {
-          console.log(result);
-          store.dispatch(deleteRowFromState(result.product[0].id));
+          store.dispatch(deleteRowFromState(result.data.product[0].id));
         })
         .catch((error) => {
           console.log(error);
         });
       return next(action);
     }
+    case SAVE_NEW_QUANTITY_FROM_INVENTORY:
+      api
+        .patch(`/modifyProduct/${action.fieldId}`, {
+          quantity: action.fieldValue,
+        })
+        .then((result) => console.log(result));
+
+      return next(action);
     case SUBMIT_ADD_PRODUCT: {
       // A la soumisison de formulaire addProduct
       // on fait une requête pour ajouter le produit en back
@@ -66,7 +74,7 @@ export default (store) => (next) => (action) => {
         .then(({ addedProduct }) => {
           console.log(addedProduct);
           // On dispatch l'action qui va sauvegarder le nouveau produit dans la state
-          store.dispatch(saveNewProductInInventory(addedProduct[0]));
+          store.dispatch(saveNewProductInInventory(addedProduct));
           store.dispatch(closeModalProduct());
           store.dispatch(
             openSnackBar(

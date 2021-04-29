@@ -61,7 +61,7 @@ const ProfilPage = ({
 
   const handleSaveBtn = (event) => {
     event.preventDefault();
-    handleSave();
+    handleSave(event.target.closest('button').name);
   };
 
   return (
@@ -231,7 +231,6 @@ const ProfilPage = ({
                 </div>
               </div>
               <DialogModal />
-              <DialogModal />
             </Box>
           </Box>
         </Box>
@@ -241,18 +240,18 @@ const ProfilPage = ({
   );
 };
 
-/*ProfilPage.propTypes = {
+ProfilPage.propTypes = {
   phoneNumber: PropTypes.string.isRequired,
   establishment: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  rpps: PropTypes.number.isRequired,
+  rpps: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  zipCode: PropTypes.number.isRequired,
+  zipCode: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   newEmail: PropTypes.string.isRequired,
   newPhoneNumber: PropTypes.string.isRequired,
   handleSave: PropTypes.func.isRequired,
-};*/
+};
 
 export default ProfilPage;

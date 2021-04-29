@@ -105,7 +105,7 @@ const InventoryTable = ({
     // A la soumission on boucle sur tous les elements
     // de l'inventaire pour ajouter la classe 'hidden'
     allForms.forEach((form) => form.classList.add('hidden'));
-    // Fonction qui va récuperer les données et l'ID du form 'edit-quantity'
+    // Fonction qui va récuperer les données de l'userInput et l'ID du form 'edit-quantity'
     const newFormObj = new FormData(event.target);
     const data = Array.from(newFormObj.entries());
     const fieldValue = data[0][1];
@@ -136,7 +136,7 @@ const InventoryTable = ({
             variant="outlined"
             size="small"
             type="number"
-            name={article.cis_code}
+            name={article.id}
           />
           <IconButton
             color="primary"

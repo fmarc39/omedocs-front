@@ -1,5 +1,13 @@
-import { CHANGE_USER_INFORMATIONS, LOGIN, LOGOUT, LOGIN_FROM_REHYDRATE } from 'src/actions/user';
-import { OPEN_VALIDATION_CHANGE_MODAL, CLOSE_VALIDATION_CHANGE_MODAL } from 'src/actions/utils';
+import {
+  CHANGE_USER_INFORMATIONS,
+  LOGIN,
+  LOGOUT,
+  LOGIN_FROM_REHYDRATE,
+} from 'src/actions/user';
+import {
+  OPEN_VALIDATION_CHANGE_MODAL,
+  CLOSE_VALIDATION_CHANGE_MODAL,
+} from 'src/actions/utils';
 
 import api from 'src/api/api';
 
@@ -21,6 +29,7 @@ export const initialState = {
   passwordConnexion: '',
   password: '',
   confirmPassword: '',
+  fieldToChange: '',
   logged: false,
   accessToken: null,
   isLoading: false,

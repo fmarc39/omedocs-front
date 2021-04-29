@@ -139,7 +139,6 @@ const PharmacyTable = ({
       quantityToBuy: Number(quantityToBuy),
       id,
     };
-
     // Fonction qui va vérifier si l'article est déja présent dans le panier
     const isAlreadyInCart = cartData.some((article) => article.id === id);
 
