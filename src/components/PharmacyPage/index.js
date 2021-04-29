@@ -10,6 +10,8 @@ import InventoryTable from 'src/containers/Tables/PharmacyPageTable';
 import Loading from 'src/components/Loading';
 import Accordion from './accordion';
 
+import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
+
 const PharmacyPage = ({ establishments, isLoading, inventory, fetchInventory }) => {
   // je filtre les établissements pour afficher la page d'un établissement
   const { id } = useParams();
@@ -32,7 +34,7 @@ const PharmacyPage = ({ establishments, isLoading, inventory, fetchInventory }) 
       <Box minHeight="calc(100vh - 143.44px)" width="100%" display="flex" id="body">
         <LeftMenu />
         <Box
-          bgcolor="#C6C6C6"
+          style={{ background: `url(${backgroundImage}) center center / cover` }}
           height="100%"
           width="100%"
           p={2}

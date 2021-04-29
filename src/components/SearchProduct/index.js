@@ -22,6 +22,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
 import ProductPageTable from 'src/containers/Tables/ProductPageTable';
 import Loading from 'src/components/Loading';
+import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
 
 // Import CSS
 import './styles.scss';
@@ -67,7 +68,7 @@ const SearchProduct = ({
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            bgcolor="#C6C6C6"
+            style={{ background: `url(${backgroundImage}) center center / cover` }}
             height="100%"
             width="100%"
             p={4}

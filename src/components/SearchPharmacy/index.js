@@ -25,6 +25,9 @@ import Loading from 'src/components/Loading';
 // Import CSS
 import './styles.scss';
 
+// import Image
+import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
+
 // Mise en place du style material-UI
 const useStyles = makeStyles(() => ({
   btn: {
@@ -67,7 +70,7 @@ const SearchPharmacy = ({
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            bgcolor="#C6C6C6"
+            style={{ background: `url(${backgroundImage}) center center / cover` }}
             height="100%"
             width="100%"
             p={4}

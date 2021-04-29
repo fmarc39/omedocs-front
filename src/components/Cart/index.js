@@ -38,6 +38,9 @@ import RemoveIcon from '@material-ui/icons/Remove';
 // Import CSS
 import './styles.scss';
 
+// import Image
+import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
+
 // Configuration des colones avec le nom, le label, la largeur
 const headCells = [
   {
@@ -206,12 +209,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CartPage = ({
-  cartData,
-  deleteArticle,
-  addQuantity,
-  remmoveQuantity,
-}) => {
+const CartPage = ({ cartData, deleteArticle, addQuantity, remmoveQuantity }) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -237,8 +235,8 @@ const CartPage = ({
         className={classes.delBtn}
       >
         <DeleteIcon />
-      </IconButton>
-    )
+      </IconButton>,
+    ),
   );
 
   const handleRemoveBtn = (event) => {
@@ -277,17 +275,12 @@ const CartPage = ({
 
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Header />
         <Box width="100%" height="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            bgcolor="#C6C6C6"
+            style={{ background: `url(${backgroundImage}) center center / cover` }}
             minHeight="calc(100vh - 143.44px)"
             width="100%"
             p={4}
@@ -308,11 +301,7 @@ const CartPage = ({
                   Votre panier est tristement
                   <span className="empty-cart__head-span"> vide</span>
                 </p>
-                <img
-                  src={ShoppingCart}
-                  alt="shopping-cart-icon"
-                  className="empty-cart__img"
-                />
+                <img src={ShoppingCart} alt="shopping-cart-icon" className="empty-cart__img" />
                 <p className="empty-cart__text">
                   Cliquez
                   <Link to="/searchproduct" className="empty-cart__link">
@@ -355,10 +344,7 @@ const CartPage = ({
                       />
                       <TableBody>
                         {stableSort(rows, getComparator(order, orderBy))
-                          .slice(
-                            page * rowsPerPage,
-                            page * rowsPerPage + rowsPerPage
-                          )
+                          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                           .map((row, index) => {
                             const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -392,34 +378,24 @@ const CartPage = ({
                                   </IconButton>
                                 </TableCell>
                                 <TableCell align="left">{row.unit} €</TableCell>
-                                <TableCell align="left">
-                                  {ccyFormat(row.price)} €
-                                </TableCell>
-                                <TableCell align="left">
-                                  {row.dellRow}
-                                </TableCell>
+                                <TableCell align="left">{ccyFormat(row.price)} €</TableCell>
+                                <TableCell align="left">{row.dellRow}</TableCell>
                               </TableRow>
                             );
                           })}
                         <TableRow>
                           <TableCell rowSpan={3} />
                           <TableCell colSpan={1}>Sous-total</TableCell>
-                          <TableCell align="right">
-                            {ccyFormat(invoiceSubtotal)} €
-                          </TableCell>
+                          <TableCell align="right">{ccyFormat(invoiceSubtotal)} €</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>TVA</TableCell>
-                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-                            0
-                          )} %`}</TableCell>
+                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell colSpan={1}>Total</TableCell>
                           <TableCell align="right">
-                            <p className="total-price">
-                              {ccyFormat(invoiceTotal)} €
-                            </p>
+                            <p className="total-price">{ccyFormat(invoiceTotal)} €</p>
                           </TableCell>
                         </TableRow>
                       </TableBody>

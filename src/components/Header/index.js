@@ -5,12 +5,10 @@ import './styles.scss';
 import logo from 'src/assets/img/mortier.svg';
 
 const Header = () => (
-  <header className="header">
-    <Link to="/" style={{ textDecoration: 'none' }}>
-      <div className="logo">
-        <img className="logo__img" src={logo} alt="logo" />
-        <div className="logo__name">O'Médocs</div>
-      </div>
+  <header className="header-top">
+    <Link className="center-logo" to="/" style={{ textDecoration: 'none' }}>
+      <img className="center-logo__img" src={logo} alt="logo" />
+      <div className="center-logo__name">O'Médocs</div>
     </Link>
   </header>
 );

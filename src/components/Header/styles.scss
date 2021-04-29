@@ -1,8 +1,11 @@
-.header {
+.header-top {
   width: 100%;
   padding: 15px;
   background: #bfcee2;
-  .logo {
+  .center-logo {
+    width: 100px;
+    margin-right: auto;
+    margin-left: auto;
     display: flex;
     align-items: center;
     &__img {

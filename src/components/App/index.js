@@ -18,6 +18,7 @@ import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/containers/CartPage';
 import Page404 from 'src/components/404';
 import SnackBar from 'src/containers/SnackBar';
+import Home from 'src/components/Home';
 
 import './styles.scss';
 import { DonutLargeSharp } from '@material-ui/icons';
@@ -51,11 +52,14 @@ const App = ({ isLoading, logged, rehydrate }) => {
         </Route>
 
         <Route exact path="/login">
-          {logged ? <Redirect to="/profil" /> : <LoginForm />}
+          {logged ? <Redirect to="/home" /> : <LoginForm />}
         </Route>
 
         {logged && (
           <>
+            <Route path="/home">
+              <Home />
+            </Route>
             <Route path="/profil">
               <ProfilPage />
             </Route>

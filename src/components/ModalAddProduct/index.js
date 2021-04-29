@@ -53,6 +53,7 @@ const ModalAddProduct = ({
   const handlerOnChange = (evt) => {
     if ((evt.target.name === 'name' || evt.target.name === 'cis') && evt.target.value.length >= 4)
       openPopList();
+
     onChange(evt.target.value, evt.target.name);
   };
 

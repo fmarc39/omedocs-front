@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ModalAddProduct from 'src/containers/ModalAddProduct';
 import Loading from 'src/components/Loading';
+import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
 
 // Import COMPONENTS
 import InventoryTable from 'src/containers/Tables/InventoryTable';
@@ -48,13 +49,13 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoad
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            bgcolor="#C6C6C6"
             height="100%"
             width="100%"
             p={4}
             display="flex"
             flexDirection="column"
             alignItems="center"
+            style={{ background: `url(${backgroundImage}) center center / cover` }}
           >
             <Box
               display="flex"
