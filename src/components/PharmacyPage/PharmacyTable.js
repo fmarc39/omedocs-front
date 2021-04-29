@@ -33,8 +33,18 @@ const columns = [
 ];
 
 // Fonction qui va insérer les données dans le tableau
-function createData(name, cis, expirationDate, quantity, price, quantityToBuy, addToCart) {
+function createData(
+  id,
+  name,
+  cis,
+  expirationDate,
+  quantity,
+  price,
+  quantityToBuy,
+  addToCart
+) {
   return {
+    id,
     name,
     cis,
     expirationDate,
@@ -61,10 +71,13 @@ const useStyles = makeStyles({
   },
 });
 
-const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, establishment }) => {
-  console.log(`inventaire: ${inventory}`);
-  console.log(`établissement: ${establishment}`);
-
+const PharmacyTable = ({
+  addToCart,
+  openDialogBox,
+  fetchInventory,
+  inventory,
+  establishment,
+}) => {
   //  fetch l'inventaire du user
   useState(() => {
     fetchInventory(establishment[0].id);
@@ -85,15 +98,19 @@ const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, es
 
   // Reset de la valeur de tous les inputs
   const handleReset = () => {
-    Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
+    Array.from(document.querySelectorAll('input')).forEach(
+      (input) => (input.value = '')
+    );
   };
 
   // Gestion de la soumission du formulaire addProduct pour l'envois au panier
   const handleSubmitForm = (event) => {
+    const pharmacyName = establishment[0].establishment;
+
     event.preventDefault();
     // On récupère les datas du form avec dataset
     const {
-      dataset: { pharmacyname, price, productid, productname, quantity, id },
+      dataset: { price, productid, productname, quantity, id },
     } = event.target;
 
     // On récupère la quantité rentré par l'user
@@ -101,7 +118,10 @@ const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, es
 
     const quantityToBuy = formData.get('quantityToBuy');
     // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
-    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
+    if (
+      Number(quantityToBuy) > Number(quantity) ||
+      Number(quantityToBuy) === 0
+    ) {
       event.target.classList.add('error');
       setTimeout(() => {
         event.target.classList.remove('error');
@@ -110,12 +130,12 @@ const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, es
       handleReset();
       // On met toutes les datas dans un objet pour les envoyes dans le panier
       const dataToSendToCart = {
-        pharmacyname,
-        price,
+        pharmacyName,
+        price: Number(price),
         productid,
         productname,
-        quantity,
-        quantityToBuy,
+        quantity: Number(quantity),
+        quantityToBuy: Number(quantityToBuy),
         id,
       };
       // On envois les data dans le panier via un action
@@ -128,6 +148,7 @@ const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, es
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
   const rows = inventory.map((product) =>
     createData(
+      product.id,
       product.name,
       product.cis_code,
       product.expiration_date,
@@ -137,13 +158,11 @@ const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, es
       <Box display="flex" justifyContent="flex-end" alignItems="start">
         <form
           onSubmit={handleSubmitForm}
-          data-pharmacyname={product.establishment}
-          data-pharmacyId={product.user_id}
+          data-pharmacyid={product.user_id}
           data-price={product.unit_price}
           data-quantity={product.quantity}
           data-productname={product.name}
-          data-productid={product.cis_code}
-          data-id={product.rpps}
+          data-id={product.id}
           name="addProduct"
           className="addProductToCart"
         >
@@ -162,15 +181,18 @@ const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, es
             <AddShoppingCartIcon />
           </IconButton>
         </form>
-      </Box>,
-    ),
+      </Box>
+    )
   );
 
   // variable crée pour conditioner l'afficher du tableau
   let typeRender = '';
   if (establishment[0].user_type === 'hospital') {
     typeRender = 'hospital';
-  } else if (establishment[0].user_type === 'pharmacy' && inventory.length === 0) {
+  } else if (
+    establishment[0].user_type === 'pharmacy' &&
+    inventory.length === 0
+  ) {
     typeRender = 'pharmacyHasNoInventory';
   } else {
     typeRender = 'pharmacyHasInventory';
@@ -182,7 +204,10 @@ const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, es
        et qu'elle a des médicaments en stock on affiche le tableau */}
       {typeRender === 'pharmacyHasInventory' ? (
         <Paper className={classes.root}>
-          <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+          <Typography
+            variant="h6"
+            style={{ padding: '10px', backgroundColor: '#A8C1E2' }}
+          >
             Inventaire de la pharmacie
           </Typography>
           <TableContainer className={classes.container}>
@@ -202,20 +227,22 @@ const PharmacyTable = ({ addToCart, openDialogBox, fetchInventory, inventory, es
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                  <TableRow hover tabIndex={-1} key={row.code} size="small">
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                ))}
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <TableRow hover tabIndex={-1} key={row.id} size="small">
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>

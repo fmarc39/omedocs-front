@@ -80,7 +80,7 @@ export default (store) => (next) => (action) => {
       {
         const { user_id, newEmail } = store.getState().user;
         api
-          .patch(`/editMail/${user_id}`, { newEmail })
+          .patch(`/editmail/${user_id}`, { newEmail })
           .then((response) => store.dispatch(saveNewMail(response.mail)))
           .catch((error) => console.log(error));
       }

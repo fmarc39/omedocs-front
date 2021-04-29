@@ -29,7 +29,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PaymentIcon from '@material-ui/icons/Payment';
 import Button from '@material-ui/core/Button';
@@ -83,9 +82,10 @@ function priceRow(qty, unit) {
 }
 
 // Fonction qui va crer les lignes à insserer dans le tableau
-function createData(name, qty, unit, dellRow) {
+function createData(id, name, qty, unit, dellRow) {
   const price = priceRow(qty, unit);
   return {
+    id,
     name,
     qty: Number(qty),
     unit: Number(unit),
@@ -200,9 +200,18 @@ const useStyles = makeStyles(() => ({
   delBtn: {
     color: '#0368A3',
   },
+  quantityBtn: {
+    size: 'small',
+    color: '#0368A3',
+  },
 }));
 
-const CartPage = ({ cartData, deleteArticle }) => {
+const CartPage = ({
+  cartData,
+  deleteArticle,
+  addQuantity,
+  remmoveQuantity,
+}) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -211,11 +220,13 @@ const CartPage = ({ cartData, deleteArticle }) => {
 
   // Gestion du btn delete pour gerer la supression d'un article du panier
   const handleDeleteCLickBtn = (event) => {
+    console.log(event.target.closest('button').name);
     deleteArticle(event.target.closest('button').name);
   };
 
   rows = cartData.map((article) =>
     createData(
+      article.id,
       article.productname,
       article.quantityToBuy,
       article.price,
@@ -226,9 +237,18 @@ const CartPage = ({ cartData, deleteArticle }) => {
         className={classes.delBtn}
       >
         <DeleteIcon />
-      </IconButton>,
-    ),
+      </IconButton>
+    )
   );
+
+  const handleRemoveBtn = (event) => {
+    event.preventDefault();
+    remmoveQuantity(event.target.closest('button').name);
+  };
+  const handleAddBtn = (event) => {
+    event.preventDefault();
+    addQuantity(event.target.closest('button').name);
+  };
 
   function subtotal(items) {
     return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
@@ -257,7 +277,12 @@ const CartPage = ({ cartData, deleteArticle }) => {
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
         <Box width="100%" height="100%" display="flex" id="body">
           <LeftMenu />
@@ -283,7 +308,11 @@ const CartPage = ({ cartData, deleteArticle }) => {
                   Votre panier est tristement
                   <span className="empty-cart__head-span"> vide</span>
                 </p>
-                <img src={ShoppingCart} alt="shopping-cart-icon" className="empty-cart__img" />
+                <img
+                  src={ShoppingCart}
+                  alt="shopping-cart-icon"
+                  className="empty-cart__img"
+                />
                 <p className="empty-cart__text">
                   Cliquez
                   <Link to="/searchproduct" className="empty-cart__link">
@@ -326,12 +355,15 @@ const CartPage = ({ cartData, deleteArticle }) => {
                       />
                       <TableBody>
                         {stableSort(rows, getComparator(order, orderBy))
-                          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                          .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                          )
                           .map((row, index) => {
                             const labelId = `enhanced-table-checkbox-${index}`;
 
                             return (
-                              <TableRow hover tabIndex={-1} key={row.name}>
+                              <TableRow hover tabIndex={-1} key={row.id}>
                                 <TableCell
                                   component="th"
                                   id={labelId}
@@ -340,26 +372,54 @@ const CartPage = ({ cartData, deleteArticle }) => {
                                 >
                                   {row.name}
                                 </TableCell>
-                                <TableCell align="left">{row.qty}</TableCell>
+                                <TableCell align="left">
+                                  <IconButton
+                                    aria-label="remove"
+                                    name={row.id}
+                                    onClick={handleRemoveBtn}
+                                    className={classes.quantityBtn}
+                                  >
+                                    <RemoveIcon />
+                                  </IconButton>
+                                  {row.qty}
+                                  <IconButton
+                                    aria-label="add"
+                                    name={row.id}
+                                    onClick={handleAddBtn}
+                                    className={classes.quantityBtn}
+                                  >
+                                    <AddIcon />
+                                  </IconButton>
+                                </TableCell>
                                 <TableCell align="left">{row.unit} €</TableCell>
-                                <TableCell align="left">{ccyFormat(row.price)} €</TableCell>
-                                <TableCell align="left">{row.dellRow}</TableCell>
+                                <TableCell align="left">
+                                  {ccyFormat(row.price)} €
+                                </TableCell>
+                                <TableCell align="left">
+                                  {row.dellRow}
+                                </TableCell>
                               </TableRow>
                             );
                           })}
                         <TableRow>
                           <TableCell rowSpan={3} />
                           <TableCell colSpan={1}>Sous-total</TableCell>
-                          <TableCell align="right">{ccyFormat(invoiceSubtotal)} €</TableCell>
+                          <TableCell align="right">
+                            {ccyFormat(invoiceSubtotal)} €
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>TVA</TableCell>
-                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
+                            0
+                          )} %`}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell colSpan={1}>Total</TableCell>
                           <TableCell align="right">
-                            <p className="total-price">{ccyFormat(invoiceTotal)} €</p>
+                            <p className="total-price">
+                              {ccyFormat(invoiceTotal)} €
+                            </p>
                           </TableCell>
                         </TableRow>
                       </TableBody>
@@ -390,6 +450,8 @@ const CartPage = ({ cartData, deleteArticle }) => {
 
 CartPage.propTypes = {
   deleteArticle: PropTypes.func.isRequired,
+  addQuantity: PropTypes.func.isRequired,
+  remmoveQuantity: PropTypes.func.isRequired,
 };
 
 export default CartPage;

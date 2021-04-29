@@ -47,6 +47,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const fullWidth = true;
 const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
   const handleLogoutBtn = () => {
     handleLogout();
@@ -74,20 +75,17 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
       </Typography>
 
       <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
-        <Link exact to="/">
-          <Button
-            variant="outlined"
-            onClick={handleLogoutBtn}
-            color="primary"
-            endIcon={<ExitToAppIcon />}
-            size="small"
-            fullWidth="true"
-            className={classes.logoutBtn}
-          >
-            Se déconnecter
-          </Button>
-        </Link>
-
+        <Button
+          variant="outlined"
+          onClick={handleLogoutBtn}
+          color="primary"
+          endIcon={<ExitToAppIcon />}
+          size="small"
+          fullWidth={fullWidth}
+          className={classes.logoutBtn}
+        >
+          Se déconnecter
+        </Button>
         <NavLink to="/profil" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
@@ -95,7 +93,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
             endIcon={<AccountCircleIcon />}
             size="large"
             className={classes.btn}
-            fullWidth="true"
+            fullWidth={fullWidth}
           >
             Profil
           </Button>
