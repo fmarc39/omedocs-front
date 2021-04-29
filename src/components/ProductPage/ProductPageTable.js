@@ -2,9 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Import COMPONENTS
-import SnackBar from 'src/components/SnackBar';
-
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -79,6 +76,7 @@ const ProductTable = ({
   openDialogBox,
   cartData,
   pharmacyToOrder,
+  openSnackBar,
 }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -148,14 +146,18 @@ const ProductTable = ({
       Number(quantityToBuy) === 0
     ) {
       handleShake(event);
-      // On vérifie si le produit est déja dans le panier
     } // On vérifie si le produit est déja dans le panier
     else if (isAlreadyInCart === true) {
+      openSnackBar('Ce produit est déjà dans votre panier', 'warning');
       handleShake(event);
     } else if (pharmacyToOrder !== null) {
-      // On vérifie si la commande ne comporte qu'un seul pharmacyId
+      // On vérifie si la commande ne comporte qu'une seul pharmacyId
       if (Number(pharmacyToOrder) !== Number(pharmacyid)) {
         handleShake(event);
+        openSnackBar(
+          "Vous ne pouvez commander qu'auprès d'une pharmacie à la fois",
+          'warning'
+        );
       } else {
         // Fonction pour vider les champs
         handleReset();
@@ -288,6 +290,7 @@ ProductTable.propTypes = {
   openDialogBox: PropTypes.func.isRequired,
   cartData: PropTypes.arrayOf(PropTypes.object).isRequired,
   pharmacyToOrder: PropTypes.string.isRequired,
+  openSnackBar: PropTypes.func.isRequired,
 };
 
 export default ProductTable;

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Table from 'src/components/ProductPage/ProductPageTable';
 import { addArticleToCart, openDialogBoxAction } from 'src/actions/cart';
+import { openSnackBar } from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
   products: state.search.searchProductResult,
@@ -14,6 +15,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   openDialogBox: () => {
     dispatch(openDialogBoxAction());
+  },
+  openSnackBar: (message, color) => {
+    dispatch(openSnackBar(message, color));
   },
 });
 

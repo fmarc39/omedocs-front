@@ -314,11 +314,11 @@ const CartPage = ({
                   className="empty-cart__img"
                 />
                 <p className="empty-cart__text">
-                  Cliquez
+                  Cliquez &nbsp;
                   <Link to="/searchproduct" className="empty-cart__link">
                     ici
                   </Link>
-                  pour rechercher un produit
+                  &nbsp; pour rechercher un produit
                 </p>
               </Box>
             )}

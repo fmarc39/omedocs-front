@@ -33,7 +33,9 @@ const reducer = (state = initialState, action = {}) => {
             (article) => Number(article.id) !== Number(action.articleId)
           ),
         ],
+        pharmacyToOrder: state.cart.length === 1 ? null : state.pharmacyToOrder,
       };
+
     case CLOSE_DIALOG_BOX:
       return {
         ...state,
