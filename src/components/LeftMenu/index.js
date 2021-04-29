@@ -1,6 +1,7 @@
 // Import React
 import React from 'react';
 import PropTypes from 'prop-types';
+import DarkMode from 'src/components/DarkMode';
 
 // Import react-router-dom pour ajouter des links aux boutons
 import { NavLink } from 'react-router-dom';
@@ -47,7 +48,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
+const LeftMenu = ({
+  userType, nbOfArticles, handleLogout, establishment,
+}) => {
   const handleLogoutBtn = () => {
     handleLogout();
   };
@@ -65,8 +68,10 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
       bgcolor="#bfcee2"
       className="left-menu"
     >
+      <DarkMode
+        className="let-menu__btn-box"
+      />
       <Avatar alt="avatarLogo" src={avatarImg} className="left-menu__avatar" />
-
       <Typography
         variant="h5"
         component="h5"
@@ -101,7 +106,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
             endIcon={<AccountCircleIcon />}
             size="large"
             className={classes.btn}
-            fullWidth={true}
+            fullWidth
           >
             Profil
           </Button>

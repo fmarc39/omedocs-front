@@ -123,7 +123,9 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-  const { classes, order, orderBy, onRequestSort } = props;
+  const {
+    classes, order, orderBy, onRequestSort,
+  } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -214,21 +216,19 @@ const CartPage = ({ cartData, deleteArticle }) => {
     deleteArticle(event.target.closest('button').name);
   };
 
-  rows = cartData.map((article) =>
-    createData(
-      article.productname,
-      article.quantityToBuy,
-      article.price,
-      <IconButton
-        aria-label="delete"
-        onClick={handleDeleteCLickBtn}
-        name={article.id}
-        className={classes.delBtn}
-      >
-        <DeleteIcon />
-      </IconButton>,
-    ),
-  );
+  rows = cartData.map((article) => createData(
+    article.productname,
+    article.quantityToBuy,
+    article.price,
+    <IconButton
+      aria-label="delete"
+      onClick={handleDeleteCLickBtn}
+      name={article.id}
+      className={classes.delBtn}
+    >
+      <DeleteIcon />
+    </IconButton>,
+  ));
 
   function subtotal(items) {
     return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
@@ -245,12 +245,13 @@ const CartPage = ({ cartData, deleteArticle }) => {
   };
 
   async function handleToken(token, addresses) {
-    const response = await axios.post('server.js', { token, product });
+    const response = await axios.post('app.js', { token, product });
     const { status } = response.data;
     console.log('Response:', response.data);
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
-    } else {
+    }
+    else {
       toast('Something went wrong', { type: 'error' });
     }
   }

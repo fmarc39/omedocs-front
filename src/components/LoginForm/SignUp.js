@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -218,7 +218,6 @@ const SignUp = ({
               size="small"
             />
             <FormControl
-              size="medium"
               style={{ width: '300px', margin: '15px' }}
               size="small"
             >
