@@ -11,6 +11,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
 import EmailIcon from '@material-ui/icons/Email';
 import Divider from '@material-ui/core/Divider';
+import { MdLocalHospital } from 'react-icons/md';
 
 // Import CSS
 import './styles.scss';
@@ -43,6 +44,11 @@ const AccordionsPharmacyDetails = ({ establishment }) => {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
+          <MdLocalHospital
+            size="2rem"
+            style={{ marginRight: '20px' }}
+            color={establishment[0].user_type === 'hospital' ? 'red' : 'green'}
+          />
           <Typography className={classes.heading}>{establishment[0].establishment}</Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.body}>
