@@ -1,23 +1,22 @@
 .left-menu {
-
-    &__avatar {
-        margin: 1.5rem 0 2.5rem 0;
-        box-shadow: 2px 2px 4px rgb(126, 126, 126);
-    }
-
+  &__avatar {
+    margin: 1.5rem 0 1rem 0;
+    box-shadow: 0 0 4px rgb(126, 126, 126);
+    width: 60px !important;
+    height: 60px !important;
+  }
 }
 
 .btn-box {
-    
-    &__btn:not(:last-child) {
-        margin-bottom: 1.5rem;
-    }
+  &__btn:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
 
-    &__btn:first-child {
-        margin-top: 1.5rem;
-    }
+  &__btn:first-child {
+    margin-top: 1.5rem;
+  }
 }
 
 .active * {
-    font-weight: bold;
+  font-weight: bold;
 }
