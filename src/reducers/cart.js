@@ -13,7 +13,7 @@ const persistedState = loadState();
 
 export const initialState = {
   cart: persistedState ? persistedState.cart : [],
-  pharmacyToOrder: false,
+  pharmacyToOrder: null,
   validationBox: false,
 };
 

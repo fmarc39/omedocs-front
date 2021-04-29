@@ -130,6 +130,18 @@ const ProductTable = ({
     // Fonction qui va vérifier si l'article est déja présent dans le panier
     const isAlreadyInCart = cartData.some((article) => article.id === id);
 
+    // On met toutes les datas dans un objet pour les envoyes dans le panier
+    const dataToSendToCart = {
+      pharmacyname,
+      pharmacyid,
+      price,
+      productid,
+      productname,
+      quantity,
+      quantityToBuy,
+      id,
+    };
+
     // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
     if (
       Number(quantityToBuy) > Number(quantity) ||
@@ -140,23 +152,21 @@ const ProductTable = ({
     } // On vérifie si le produit est déja dans le panier
     else if (isAlreadyInCart === true) {
       handleShake(event);
-    } else if (Number(pharmacyToOrder) !== Number(pharmacyid)) {
-      console.log('okkk');
-      handleShake(event);
+    } else if (pharmacyToOrder !== null) {
+      // On vérifie si la commande ne comporte qu'un seul pharmacyId
+      if (Number(pharmacyToOrder) !== Number(pharmacyid)) {
+        handleShake(event);
+      } else {
+        // Fonction pour vider les champs
+        handleReset();
+        // On envois les data dans le panier via un action
+        addToCart(dataToSendToCart, pharmacyid);
+        // On envois l'action pour l'ouverture de la dialogBox
+        openDialogBox();
+      }
     } else {
       // Fonction pour vider les champs
       handleReset();
-      // On met toutes les datas dans un objet pour les envoyes dans le panier
-      const dataToSendToCart = {
-        pharmacyname,
-        pharmacyid,
-        price,
-        productid,
-        productname,
-        quantity,
-        quantityToBuy,
-        id,
-      };
       // On envois les data dans le panier via un action
       addToCart(dataToSendToCart, pharmacyid);
       // On envois l'action pour l'ouverture de la dialogBox
