@@ -30,10 +30,10 @@ export default (store) => (next) => (action) => {
       return next(action);
     case DELETE_ROW_FROM_INVENTORY: {
       api
-        .delete(`/deletefromInventory/${action.rowId}`)
+        .delete(`/deleteProduct/${action.rowId}`)
         .then((result) => {
           console.log(result);
-          store.dispatch(deleteRowFromState(result.id));
+          store.dispatch(deleteRowFromState(result.product[0].id));
         })
         .catch((error) => {
           console.log(error);
@@ -46,7 +46,13 @@ export default (store) => (next) => (action) => {
       // On récupère l'id de l'user pour l'envoyer au back
       const { user_id } = store.getState().user;
       // On récupère les champs du form dans le state pour les envoyers au back
-      const { name, cis, quantity, price, expiration } = store.getState().utils.product;
+      const {
+        name,
+        cis,
+        quantity,
+        price,
+        expiration,
+      } = store.getState().utils.product;
       api
         .post('/addproduct', {
           name,
@@ -62,12 +68,20 @@ export default (store) => (next) => (action) => {
           // On dispatch l'action qui va sauvegarder le nouveau produit dans la state
           store.dispatch(saveNewProductInInventory(addedProduct[0]));
           store.dispatch(closeModalProduct());
-          store.dispatch(openSnackBar("Le produit a bien été rajouter à l'inventaire", 'success'));
+          store.dispatch(
+            openSnackBar(
+              "Le produit a bien été rajouter à l'inventaire",
+              'success'
+            )
+          );
         })
         .catch((error) => {
           console.log(error);
           store.dispatch(
-            openSnackBar("Un souci est survenu lors de l'ajout d'un produit", 'error'),
+            openSnackBar(
+              "Un souci est survenu lors de l'ajout d'un produit",
+              'error'
+            )
           );
         });
       return next(action);
