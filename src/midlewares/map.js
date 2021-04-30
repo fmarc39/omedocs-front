@@ -8,7 +8,7 @@ export default (store) => (next) => (action) => {
       {
         const { address } = action;
         Geocode.setRegion('fr');
-        Geocode.fromAddress(address, 'AIzaSyAjvkpmOBJm_ekOQDNI_7EjK9y4BNWJpLs').then((response) => {
+        Geocode.fromAddress(address, process.env.APIKEY_GOOGLE).then((response) => {
           const { lat, lng } = response.results[0]?.geometry?.location;
           store.dispatch(saveCoordonates(lat, lng));
         });
