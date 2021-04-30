@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 // Import REACT
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // Import from MATERIAL-UI
@@ -62,7 +62,15 @@ const useStyles = makeStyles({
   },
 });
 
-const PharmacyTable = ({ addToCart, openDialogBox, inventory, establishment }) => {
+const PharmacyTable = ({
+  addToCart,
+  openDialogBox,
+  inventory,
+  establishment,
+  pharmacyToOrder,
+  cartData,
+  openSnackBar,
+}) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -88,33 +96,60 @@ const PharmacyTable = ({ addToCart, openDialogBox, inventory, establishment }) =
     event.preventDefault();
     // On récupère les datas du form avec dataset
     const {
-      dataset: { price, productid, productname, quantity, id },
+      dataset: { price, productid, productname, pharmacyid, quantity, id },
     } = event.target;
 
     // On récupère la quantité rentré par l'user
     const formData = new FormData(event.target);
-
     const quantityToBuy = formData.get('quantityToBuy');
-    // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
-    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
+
+    // Fonction qui va déclencher une annimation en cas d'erreur
+    const handleShake = (event) => {
       event.target.classList.add('error');
       setTimeout(() => {
         event.target.classList.remove('error');
       }, 1000);
+    };
+
+    // On met toutes les datas dans un objet pour les envoyes dans le panier
+    const dataToSendToCart = {
+      pharmacyName,
+      pharmacyid,
+      price: Number(price),
+      productid,
+      productname,
+      quantity: Number(quantity),
+      quantityToBuy: Number(quantityToBuy),
+      id,
+    };
+    // Fonction qui va vérifier si l'article est déja présent dans le panier
+    const isAlreadyInCart = cartData.some((article) => article.id === id);
+
+    // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
+    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
+      handleShake(event);
+    } // On vérifie si le produit est déja dans le panier
+    else if (isAlreadyInCart === true) {
+      openSnackBar('Ce produit est déjà dans votre panier', 'warning');
+      handleShake(event);
+    } else if (pharmacyToOrder !== null) {
+      // On vérifie si la commande ne comporte qu'une seul pharmacyId
+      if (Number(pharmacyToOrder) !== Number(pharmacyid)) {
+        handleShake(event);
+        openSnackBar("Vous ne pouvez commander qu'auprès d'une pharmacie à la fois", 'warning');
+      } else {
+        // Fonction pour vider les champs
+        handleReset();
+        // On envois les data dans le panier via un action
+        addToCart(dataToSendToCart, pharmacyid);
+        // On envois l'action pour l'ouverture de la dialogBox
+        openDialogBox();
+      }
     } else {
+      // Fonction pour vider les champs
       handleReset();
-      // On met toutes les datas dans un objet pour les envoyes dans le panier
-      const dataToSendToCart = {
-        pharmacyName,
-        price: Number(price),
-        productid,
-        productname,
-        quantity: Number(quantity),
-        quantityToBuy: Number(quantityToBuy),
-        id,
-      };
       // On envois les data dans le panier via un action
-      addToCart(dataToSendToCart);
+      addToCart(dataToSendToCart, pharmacyid);
       // On envois l'action pour l'ouverture de la dialogBox
       openDialogBox();
     }
@@ -240,6 +275,8 @@ PharmacyTable.propTypes = {
   openDialogBox: PropTypes.func.isRequired,
   inventory: PropTypes.array,
   establishment: PropTypes.array,
+  cartData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  openSnackBar: PropTypes.func.isRequired,
 };
 
 PharmacyTable.defaultProps = {

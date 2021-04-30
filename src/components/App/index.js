@@ -36,6 +36,7 @@ const App = ({ isLoading, logged, rehydrate }) => {
   store.subscribe(() => {
     saveState({
       cart: store.getState().cart.cart,
+      pharmacyToOrder: store.getState().cart.pharmacyToOrder,
     });
   });
 

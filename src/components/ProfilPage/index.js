@@ -50,6 +50,7 @@ const ProfilPage = ({
   const [editMailInputIsOpen, setEditMailInputIsOpen] = useState(false);
   const [editPhoneInputIsOpen, setEditPhoneInputIsOpen] = useState(false);
 
+  let targetField = '';
   const handleEditPhoneNumberBtn = () => {
     setEditPhoneInputIsOpen(!editPhoneInputIsOpen);
   };
@@ -63,8 +64,14 @@ const ProfilPage = ({
   };
 
   const handleSaveBtn = (event) => {
+    targetField = event.target.closest('button').name;
     event.preventDefault();
     handleSave();
+  };
+
+  const handleValidation = (event) => {
+    console.log(targetField);
+    console.log(newEmail);
   };
 
   return (
@@ -195,8 +202,7 @@ const ProfilPage = ({
                   <p className="profil-box__content-elt__content">{zipCode}</p>
                 </div>
               </div>
-              <DialogModal />
-              <DialogModal />
+              <DialogModal validation={handleValidation} />
             </Box>
           </Box>
         </Box>
@@ -210,10 +216,10 @@ ProfilPage.propTypes = {
   phoneNumber: PropTypes.string.isRequired,
   establishment: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  rpps: PropTypes.number.isRequired,
+  rpps: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  zipCode: PropTypes.number.isRequired,
+  zipCode: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   newEmail: PropTypes.string.isRequired,
   newPhoneNumber: PropTypes.string.isRequired,

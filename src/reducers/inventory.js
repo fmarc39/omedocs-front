@@ -23,6 +23,7 @@ const reducer = (state = initialState, action = {}) => {
     case DELETE_ROW_FROM_STATE:
       return {
         ...state,
+        drugs: state.drugs.filter((article) => article.id !== action.rowId),
       };
     default:
       return state;

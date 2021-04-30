@@ -5,9 +5,10 @@ export const OPEN_DIALOG_BOX = 'OPEN_DIALOG_BOX';
 export const INCREASES_ARTICLE_QUANTITY = 'INCREASES_ARTICLE_QUANTITY';
 export const DECREASES_ARTICLE_QUANTITY = 'DECREASES_ARTICLE_QUANTITY';
 
-export const addArticleToCart = (payload) => ({
+export const addArticleToCart = (payload, pharmacyId) => ({
   type: ADD_ARTICLE_TO_CART,
   payload,
+  pharmacyId,
 });
 
 export const deleteArticleFromCart = (articleId) => ({

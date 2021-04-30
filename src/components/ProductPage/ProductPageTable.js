@@ -40,7 +40,7 @@ function createData(
   quantity,
   price,
   quantityToBuy,
-  addToCart,
+  addToCart
 ) {
   return {
     id,
@@ -70,7 +70,14 @@ const useStyles = makeStyles({
   },
 });
 
-const ProductTable = ({ addToCart, products, openDialogBox }) => {
+const ProductTable = ({
+  addToCart,
+  products,
+  openDialogBox,
+  cartData,
+  pharmacyToOrder,
+  openSnackBar,
+}) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -86,40 +93,84 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
 
   // Reset de la valeur de tous les inputs
   const handleReset = () => {
-    Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
+    Array.from(document.querySelectorAll('input')).forEach(
+      // eslint-disable-next-line no-return-assign
+      (input) => (input.value = '')
+    );
   };
 
+  // Fonction qui va déclencher une annimation en cas d'erreur
+  const handleShake = (event) => {
+    event.target.classList.add('error');
+    setTimeout(() => {
+      event.target.classList.remove('error');
+    }, 1000);
+  };
   // Gestion de la soumission du formulaire addProduct pour l'envois au panier
   const handleSubmitForm = (event) => {
     event.preventDefault();
     // On récupère les datas du form avec dataset
     const {
-      dataset: { pharmacyname, price, productid, productname, quantity, id },
-    } = event.target;
-    // On récupère la quantité rentré par l'user
-    const formData = new FormData(event.target);
-    const quantityToBuy = formData.get('quantityToBuy');
-    // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
-    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
-      event.target.classList.add('error');
-      setTimeout(() => {
-        event.target.classList.remove('error');
-      }, 1000);
-    } else {
-      // Fonction pour vider les champs
-      handleReset();
-      // On met toutes les datas dans un objet pour les envoyes dans le panier
-      const dataToSendToCart = {
+      dataset: {
         pharmacyname,
+        pharmacyid,
         price,
         productid,
         productname,
         quantity,
-        quantityToBuy,
         id,
-      };
+      },
+    } = event.target;
+    // On récupère la quantité rentré par l'user
+    const formData = new FormData(event.target);
+    const quantityToBuy = formData.get('quantityToBuy');
+
+    // Fonction qui va vérifier si l'article est déja présent dans le panier
+    const isAlreadyInCart = cartData.some((article) => article.id === id);
+
+    // On met toutes les datas dans un objet pour les envoyes dans le panier
+    const dataToSendToCart = {
+      pharmacyname,
+      pharmacyid,
+      price,
+      productid,
+      productname,
+      quantity,
+      quantityToBuy,
+      id,
+    };
+
+    // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
+    if (
+      Number(quantityToBuy) > Number(quantity) ||
+      Number(quantityToBuy) === 0
+    ) {
+      handleShake(event);
+    } // On vérifie si le produit est déja dans le panier
+    else if (isAlreadyInCart === true) {
+      openSnackBar('Ce produit est déjà dans votre panier', 'warning');
+      handleShake(event);
+    } else if (pharmacyToOrder !== null) {
+      // On vérifie si la commande ne comporte qu'une seul pharmacyId
+      if (Number(pharmacyToOrder) !== Number(pharmacyid)) {
+        handleShake(event);
+        openSnackBar(
+          "Vous ne pouvez commander qu'auprès d'une pharmacie à la fois",
+          'warning'
+        );
+      } else {
+        // Fonction pour vider les champs
+        handleReset();
+        // On envois les data dans le panier via un action
+        addToCart(dataToSendToCart, pharmacyid);
+        // On envois l'action pour l'ouverture de la dialogBox
+        openDialogBox();
+      }
+    } else {
+      // Fonction pour vider les champs
+      handleReset();
       // On envois les data dans le panier via un action
-      addToCart(dataToSendToCart);
+      addToCart(dataToSendToCart, pharmacyid);
       // On envois l'action pour l'ouverture de la dialogBox
       openDialogBox();
     }
@@ -163,12 +214,15 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
             <AddShoppingCartIcon />
           </IconButton>
         </form>
-      </Box>,
-    ),
+      </Box>
+    )
   );
   return (
     <Paper className={classes.root}>
-      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+      <Typography
+        variant="h6"
+        style={{ padding: '10px', backgroundColor: '#A8C1E2' }}
+      >
         Liste des Médicaments
       </Typography>
 
@@ -191,20 +245,22 @@ const ProductTable = ({ addToCart, products, openDialogBox }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                  <TableRow hover tabIndex={-1} key={row.id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                ))}
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <TableRow hover tabIndex={-1} key={row.id}>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align="left">
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -232,6 +288,9 @@ ProductTable.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   addToCart: PropTypes.func.isRequired,
   openDialogBox: PropTypes.func.isRequired,
+  cartData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  pharmacyToOrder: PropTypes.string.isRequired,
+  openSnackBar: PropTypes.func.isRequired,
 };
 
 export default ProductTable;

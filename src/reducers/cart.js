@@ -13,6 +13,7 @@ const persistedState = loadState();
 
 export const initialState = {
   cart: persistedState ? persistedState.cart : [],
+  pharmacyToOrder: null,
   validationBox: false,
 };
 
@@ -22,6 +23,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         cart: [...state.cart, action.payload],
+        pharmacyToOrder: action.pharmacyId,
       };
     case DELETE_ARTICLE_FROM_CART:
       return {
@@ -31,7 +33,9 @@ const reducer = (state = initialState, action = {}) => {
             (article) => Number(article.id) !== Number(action.articleId)
           ),
         ],
+        pharmacyToOrder: state.cart.length === 1 ? null : state.pharmacyToOrder,
       };
+
     case CLOSE_DIALOG_BOX:
       return {
         ...state,
