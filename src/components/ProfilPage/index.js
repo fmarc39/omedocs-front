@@ -21,9 +21,6 @@ import Grow from '@material-ui/core/Grow';
 // Import CSS
 import './styles.scss';
 
-// Import image
-import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
-
 // Modifications des stymes MATERIAL_UI
 const useStyles = makeStyles(() => ({
   field: {
@@ -43,6 +40,8 @@ const ProfilPage = ({
   newEmail,
   newPhoneNumber,
   handleSave,
+  emailValidationForm,
+  phoneValidationForm,
 }) => {
   const classes = useStyles();
 
@@ -70,18 +69,28 @@ const ProfilPage = ({
   };
 
   const handleValidation = (event) => {
-    console.log(targetField);
-    console.log(newEmail);
+    if (targetField === 'editmail') {
+      emailValidationForm(targetField, newEmail);
+      setEditMailInputIsOpen(false);
+    } else if (targetField === 'editphone') {
+      phoneValidationForm(targetField, newPhoneNumber);
+      setEditPhoneInputIsOpen(false);
+    }
   };
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            style={{ background: `url(${backgroundImage}) center center / cover` }}
+            bgcolor="#C6C6C6"
             height="100%"
             width="100%"
             p={2}
@@ -90,23 +99,43 @@ const ProfilPage = ({
             alignItems="center"
             justifyContent="center"
           >
-            <Box p={4} bgcolor="white" boxShadow={3} borderRadius="10px" className="profil-box">
+            <Box
+              p={4}
+              bgcolor="white"
+              boxShadow={3}
+              borderRadius="10px"
+              className="profil-box"
+            >
               <h2 className="profil-box__main-title">Vos informations</h2>
               <div className="profil-box__content">
                 <div className="profil-box__content-elt">
-                  <p className="profil-box__content-elt__infos">Nom de l'organisme:</p>
-                  <p className="profil-box__content-elt__content">{establishment}</p>
+                  <p className="profil-box__content-elt__infos">
+                    Nom de l'organisme:
+                  </p>
+                  <p className="profil-box__content-elt__content">
+                    {establishment}
+                  </p>
                 </div>
                 <Divider color="primary" />
                 <div className="profil-box__content-elt">
-                  <p className={editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__infos'}>
+                  <p
+                    className={
+                      editMailInputIsOpen
+                        ? 'hidden'
+                        : 'profil-box__content-elt__infos'
+                    }
+                  >
                     e-mail:
                   </p>
                   <IconButton onClick={handleEditMailBtn}>
                     <EditIcon color="primary" />
                   </IconButton>
                   <p
-                    className={editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'}
+                    className={
+                      editMailInputIsOpen
+                        ? 'hidden'
+                        : 'profil-box__content-elt__content'
+                    }
                   >
                     {email}
                   </p>
@@ -141,14 +170,27 @@ const ProfilPage = ({
                 </div>
                 <Divider />
                 <div className="profil-box__content-elt">
-                  <p className={editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__infos'}>
+                  <p
+                    className={
+                      editPhoneInputIsOpen
+                        ? 'hidden'
+                        : 'profil-box__content-elt__infos'
+                    }
+                  >
                     N° de téléphonne:
                   </p>
-                  <IconButton aria-label="delete" onClick={handleEditPhoneNumberBtn}>
+                  <IconButton
+                    aria-label="delete"
+                    onClick={handleEditPhoneNumberBtn}
+                  >
                     <EditIcon color="primary" />
                   </IconButton>
                   <p
-                    className={editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'}
+                    className={
+                      editPhoneInputIsOpen
+                        ? 'hidden'
+                        : 'profil-box__content-elt__content'
+                    }
                   >
                     {phoneNumber}
                   </p>
@@ -224,6 +266,8 @@ ProfilPage.propTypes = {
   newEmail: PropTypes.string.isRequired,
   newPhoneNumber: PropTypes.string.isRequired,
   handleSave: PropTypes.func.isRequired,
+  emailValidationForm: PropTypes.func.isRequired,
+  phoneValidationForm: PropTypes.func.isRequired,
 };
 
 export default ProfilPage;

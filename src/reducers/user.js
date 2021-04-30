@@ -3,6 +3,8 @@ import {
   LOGIN,
   LOGOUT,
   LOGIN_FROM_REHYDRATE,
+  SAVE_NEW_MAIL,
+  SAVE_NEW_PHONE,
 } from 'src/actions/user';
 import {
   OPEN_VALIDATION_CHANGE_MODAL,
@@ -129,6 +131,18 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         changeInformationsModal: false,
         newEmail: '',
+        newPhoneNumber: '',
+      };
+    case SAVE_NEW_MAIL:
+      return {
+        ...state,
+        email: action.mail,
+        newEmail: '',
+      };
+    case SAVE_NEW_PHONE:
+      return {
+        ...state,
+        phoneNumber: action.phone,
         newPhoneNumber: '',
       };
     default:
