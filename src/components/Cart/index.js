@@ -204,7 +204,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CartPage = ({ cartData, deleteArticle }) => {
+const CartPage = ({
+  cartData, deleteArticle, title, price,
+}) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -371,8 +373,10 @@ const CartPage = ({ cartData, deleteArticle }) => {
                         token={handleToken}
                         endIcon={<PaymentIcon />}
                         className={classes.btn}
+                        amount={price * 100}
                         data-locale="auto"
                         name="O'Medocs"
+                        description={title}
                         billingAddress
                         shippingAddress
                       />
@@ -391,6 +395,8 @@ const CartPage = ({ cartData, deleteArticle }) => {
 
 CartPage.propTypes = {
   deleteArticle: PropTypes.func.isRequired,
+  price: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default CartPage;

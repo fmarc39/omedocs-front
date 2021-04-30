@@ -9,7 +9,6 @@ import {
 
 // Import COMPONENTS
 import HomePage from 'src/components/HomePage';
-import DarkMode from 'src/components/DarkMode/';
 import SearchProduct from 'src/containers/SearchProduct';
 import SearchPharmachy from 'src/containers/SearchPharmacy';
 import ProfilPage from 'src/containers/ProfilPage';
@@ -21,6 +20,9 @@ import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/containers/CartPage';
 import Page404 from 'src/components/404';
 import SnackBar from 'src/containers/SnackBar';
+import Checkout from 'src/components/Stripe/Checkout';
+import Success from 'src/components/Stripe/Success';
+import Canceled from 'src/components/Stripe/Canceled';
 
 import './styles.scss';
 import { DonutLargeSharp } from '@material-ui/icons';
@@ -36,9 +38,6 @@ const App = ({ isLoading, logged, rehydrate }) => {
       <Switch>
         <Route exact path="/">
           <HomePage />
-        </Route>
-        <Route exact path="/darkmode">
-          <DarkMode />
         </Route>
         <Route exact path="/login">
           {logged ? <Redirect to="/profil" /> : <LoginForm />}
@@ -57,6 +56,15 @@ const App = ({ isLoading, logged, rehydrate }) => {
         </Route>
         <Route exact path="/cart">
           {!logged ? <Redirect to="/" /> : <Cart />}
+        </Route>
+        <Route path="/success">
+          <Success />
+        </Route>
+        <Route path="/canceled">
+          <Canceled />
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
         </Route>
         <Route exact path="/teampage">
           <TeamPage />
