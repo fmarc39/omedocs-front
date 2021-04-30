@@ -12,6 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(closeValidationChangeModal());
   },
   handleChangeInfo: () => {
+    console.log('ok');
     dispatch(changeUserInformations());
   },
 });

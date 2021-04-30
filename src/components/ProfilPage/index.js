@@ -47,6 +47,7 @@ const ProfilPage = ({
   const [editMailInputIsOpen, setEditMailInputIsOpen] = useState(false);
   const [editPhoneInputIsOpen, setEditPhoneInputIsOpen] = useState(false);
 
+  let targetField = '';
   const handleEditPhoneNumberBtn = () => {
     setEditPhoneInputIsOpen(!editPhoneInputIsOpen);
   };
@@ -60,8 +61,14 @@ const ProfilPage = ({
   };
 
   const handleSaveBtn = (event) => {
+    targetField = event.target.closest('button').name;
     event.preventDefault();
-    handleSave(event.target.closest('button').name);
+    handleSave();
+  };
+
+  const handleValidation = (event) => {
+    console.log(targetField);
+    console.log(newEmail);
   };
 
   return (
@@ -230,7 +237,7 @@ const ProfilPage = ({
                   <p className="profil-box__content-elt__content">{zipCode}</p>
                 </div>
               </div>
-              <DialogModal />
+              <DialogModal validation={handleValidation} />
             </Box>
           </Box>
         </Box>
