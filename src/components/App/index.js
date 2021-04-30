@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import store from 'src/store';
 import { saveState } from 'src/locaStorage';
 // Import react-router-dom
-import {
-  Switch, Route, Redirect,
-} from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Import COMPONENTS
 import HomePage from 'src/components/HomePage';
@@ -29,7 +27,7 @@ import Canceled from 'src/components/Stripe/Canceled';
 import './styles.scss';
 import { DonutLargeSharp } from '@material-ui/icons';
 
-const App = ({ isLoading, logged, rehydrate }) => {
+const App = ({ logged, rehydrate }) => {
   useEffect(() => {
     rehydrate();
     // const cartFromLocalStorage = localStorage.getItem('cart');
@@ -59,12 +57,18 @@ const App = ({ isLoading, logged, rehydrate }) => {
         <Route exact path="/login/reset">
           <ResetPassword />
         </Route>
-        <Route path="/profil">{!logged ? <Redirect to="/" /> : <ProfilPage />}</Route>
-        <Route path="/inventory">{!logged ? <Redirect to="/" /> : <InventoryPage />}</Route>
+        <Route path="/profil">
+          {!logged ? <Redirect to="/" /> : <ProfilPage />}
+        </Route>
+        <Route path="/inventory">
+          {!logged ? <Redirect to="/" /> : <InventoryPage />}
+        </Route>
         <Route path="/establishment/:id">
           <PharmacyPage />
         </Route>
-        <Route path="/searchproduct">{!logged ? <Redirect to="/" /> : <SearchProduct />}</Route>
+        <Route path="/searchproduct">
+          {!logged ? <Redirect to="/" /> : <SearchProduct />}
+        </Route>
         <Route path="/searchestablishement">
           {!logged ? <Redirect to="/" /> : <SearchPharmachy />}
         </Route>
@@ -84,18 +88,15 @@ const App = ({ isLoading, logged, rehydrate }) => {
           <TeamPage />
         </Route>
 
-
-          <Route path="*">
+        <Route path="*">
           <Page404 />
         </Route>
       </Switch>
     </div>
-  )}
-
-    
+  );
+};
 
 App.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   logged: PropTypes.bool.isRequired,
   rehydrate: PropTypes.func.isRequired,
 };

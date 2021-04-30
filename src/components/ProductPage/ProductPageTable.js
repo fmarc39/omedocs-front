@@ -26,11 +26,11 @@ import './styles.scss';
 // Configuration des colones avec le nom, le label, la largeur
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300 },
-  { id: 'pharmacyName', label: 'Nom de la Pharmacie', minWidth: 200 },
-  { id: 'expirationDate', label: "Date d'expiration" },
+  { id: 'pharmacyName', label: 'Nom de la Pharmacie', minWidth: 250 },
+  { id: 'expirationDate', label: "Date d'expiration", minWidth: 50 },
   { id: 'quantity', label: 'Quantité disponible', minWidth: 50 },
-  { id: 'price', label: 'Prix unitaire H.T', minWidth: 50 },
-  { id: 'addToCart', minWidth: 150 },
+  { id: 'price', label: 'Prix unitaire H.T', minWidth: 70 },
+  { id: 'addToCart', minWidth: 130 },
 ];
 
 // Fonction qui va insérer les données dans le tableau
@@ -70,12 +70,18 @@ const useStyles = makeStyles({
   addToCartBtn: {
     color: '#0368A3',
   },
+  quantityInput: {
+    marginRight: '1rem',
+    width: '90px',
+    color: '#0368A3',
+  },
 });
 
 const ProductTable = ({
   addToCart,
   products,
   openDialogBox,
+  closeDialogBox,
   cartData,
   pharmacyToOrder,
   openSnackBar,
@@ -85,6 +91,7 @@ const ProductTable = ({
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const history = useHistory();
 
+  // Gestion du changement de page dans notre tableau de résultats
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -101,6 +108,7 @@ const ProductTable = ({
   };
 
   const handleRedirect = () => {
+    closeDialogBox();
     history.push(`/establishment/${userId}`);
   };
 
@@ -217,6 +225,7 @@ const ProductTable = ({
           <TextField
             label="quantité"
             type="number"
+            className={classes.quantityInput}
             name="quantityToBuy"
             InputProps={{ inputProps: { min: 1, max: product.quantity } }}
           />
