@@ -126,7 +126,9 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-  const { classes, order, orderBy, onRequestSort } = props;
+  const {
+    classes, order, orderBy, onRequestSort,
+  } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -209,7 +211,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CartPage = ({ cartData, deleteArticle, addQuantity, remmoveQuantity }) => {
+const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQuantity }) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -263,12 +265,13 @@ const CartPage = ({ cartData, deleteArticle, addQuantity, remmoveQuantity }) => 
   };
 
   async function handleToken(token, addresses) {
-    const response = await axios.post('server.js', { token, product });
+    const response = await axios.post('app.js', { token, product });
     const { status } = response.data;
     console.log('Response:', response.data);
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
-    } else {
+    }
+    else {
       toast('Something went wrong', { type: 'error' });
     }
   }
@@ -406,8 +409,10 @@ const CartPage = ({ cartData, deleteArticle, addQuantity, remmoveQuantity }) => 
                         token={handleToken}
                         endIcon={<PaymentIcon />}
                         className={classes.btn}
+                        amount={price * 100}
                         data-locale="auto"
                         name="O'Medocs"
+                        description={title}
                         billingAddress
                         shippingAddress
                       />
@@ -428,6 +433,8 @@ CartPage.propTypes = {
   deleteArticle: PropTypes.func.isRequired,
   addQuantity: PropTypes.func.isRequired,
   remmoveQuantity: PropTypes.func.isRequired,
+  price: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default CartPage;

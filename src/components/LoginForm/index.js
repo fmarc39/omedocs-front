@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import logo from 'src/assets/img/logo.svg';
 import TextField from '@material-ui/core/TextField';
@@ -124,6 +125,7 @@ const LoginForm = ({
                 Connexion
               </Button>
             </form>
+            <Link to="/login/reset">Mot de passe oublié ?</Link>
           </Box>
           <Accordion
             email={email}
