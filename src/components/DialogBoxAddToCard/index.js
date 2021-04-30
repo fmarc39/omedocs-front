@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // Import NPM
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 // Import from MATERIAL_UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -35,6 +35,9 @@ const useStyles = makeStyles({
 });
 
 const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
+  // Je récupère l'url actuelle
+  const path = useHistory();
+
   const handleCloseBtn = () => {
     handleClose();
   };
@@ -54,25 +57,20 @@ const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
         <DialogTitle id="alert-dialog-slide-title">
           <p className="head-title">Que souhaitez vous faire ?</p>
         </DialogTitle>
-        <DialogActions>
-          <Button
-            onClick={handleCloseBtn}
-            className={classes.btn}
-            endIcon={<ShoppingCartIcon />}
-          >
+        <DialogActions style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button onClick={handleCloseBtn} className={classes.btn} Icon={<ShoppingCartIcon />}>
             <Link to="/cart" style={{ textDecoration: 'none' }}>
               Acceder à votre panier
             </Link>
           </Button>
-          <Button
-            onClick={handleCloseBtn}
-            className={classes.btn}
-            endIcon={<StorefrontIcon />}
-          >
-            <Link to="/cart" style={{ textDecoration: 'none' }}>
-              Acceder à la boutique de la pharmacie
-            </Link>
-          </Button>
+          {/* Si je suis sur l'url d'un établissement, je n'affiche pas le bouton de redirection */}
+          {!path.location.pathname.match('/establishment/') ? (
+            <Button onClick={handleCloseBtn} className={classes.btn} Icon={<StorefrontIcon />}>
+              <Link to="/cart" style={{ textDecoration: 'none' }}>
+                Acceder à la boutique de la pharmacie
+              </Link>
+            </Button>
+          ) : null}
         </DialogActions>
       </Dialog>
     </div>

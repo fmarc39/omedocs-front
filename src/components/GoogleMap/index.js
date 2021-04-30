@@ -1,22 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import GoogleMapReact from 'google-map-react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-const AnyReactComponent = ({ text }) => (
+const Cursor = ({ lat, lng }) => (
   <>
-    <a href="https://www.google.fr/maps/@43.2241038,2.3594958,16.75z" target="blank">
+    <a href={`https://www.google.fr/maps/@${lat},${lng},18.25z`} target="blank">
       <FaMapMarkerAlt color="red" size="1.5rem" style={{ cursor: 'pointer' }} />
     </a>
   </>
 );
 
-const GoogleMap = () => {
+const GoogleMap = ({ lat, lng }) => {
   const defaultProps = {
     center: {
-      lat: 43.18,
-      lng: 2.41,
+      lat: lat,
+      lng: lng,
     },
-    zoom: 16,
+    zoom: 17.25,
   };
 
   return (
@@ -29,14 +31,20 @@ const GoogleMap = () => {
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
-        <AnyReactComponent
-          lat={defaultProps.center.lat}
-          lng={defaultProps.center.lng}
-          text="L'établissement"
-        />
+        <Cursor lat={defaultProps.center.lat} lng={defaultProps.center.lng} />
       </GoogleMapReact>
     </div>
   );
+};
+
+GoogleMap.propTypes = {
+  lat: PropTypes.number,
+  lng: PropTypes.number,
+};
+
+GoogleMap.defaultProps = {
+  lat: 48.85837,
+  lng: 2.294481,
 };
 
 export default GoogleMap;

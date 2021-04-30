@@ -1,5 +1,8 @@
+// React
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Material-ui
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -11,7 +14,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
 import EmailIcon from '@material-ui/icons/Email';
 import Divider from '@material-ui/core/Divider';
+
+// Icone / Image
 import { MdLocalHospital } from 'react-icons/md';
+import map from 'src/assets/img/map.svg';
 
 // Import CSS
 import './styles.scss';
@@ -28,7 +34,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const AccordionsPharmacyDetails = ({ establishment }) => {
+const AccordionsPharmacyDetails = ({ establishment, setOpen }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -88,6 +94,12 @@ const AccordionsPharmacyDetails = ({ establishment }) => {
             >
               {establishment[0].email}
             </Button>
+            <img
+              src={map}
+              alt="map"
+              style={{ width: '60px', marginTop: '16px', cursor: 'pointer' }}
+              onClick={() => setOpen(true)}
+            />
           </Box>
         </AccordionDetails>
       </Accordion>
@@ -97,6 +109,7 @@ const AccordionsPharmacyDetails = ({ establishment }) => {
 
 AccordionsPharmacyDetails.propTypes = {
   establishment: PropTypes.array.isRequired,
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default AccordionsPharmacyDetails;

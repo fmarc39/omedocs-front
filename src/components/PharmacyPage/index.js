@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, Redirect } from 'react-router-dom';
 import ConfirmationBox from 'src/containers/DialogBoxAddToCart';
@@ -11,9 +11,17 @@ import Loading from 'src/components/Loading';
 import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
 import Accordion from './accordion';
 
-import GoogleMap from 'src/components/GoogleMap';
+import MapModal from './MapModal';
 
-const PharmacyPage = ({ establishments, isLoading, inventory, fetchInventory }) => {
+const PharmacyPage = ({
+  establishments,
+  isLoading,
+  inventory,
+  fetchInventory,
+  fetchLatLng,
+  lat,
+  lng,
+}) => {
   // je filtre les établissements pour afficher la page d'un établissement
   const { id } = useParams();
   const establishment = establishments.filter((item) => parseInt(id, 10) === item.id);
@@ -24,15 +32,21 @@ const PharmacyPage = ({ establishments, isLoading, inventory, fetchInventory }) 
     return <Redirect to="/searchestablishement" />;
   }
 
-  //  fetch l'inventaire du user
-  useState(() => {
+  //  fetch l'inventaire du user et les coordonnées en fonction de l'adresse
+  useEffect(() => {
     fetchInventory(establishment[0].id);
+    fetchLatLng(
+      `${establishment[0].address}, ${establishment[0].zip_code} ${establishment[0].city}`,
+    );
   }, []);
+
+  // state de l'état ouvert ou fermer de la MapModal
+  const [open, setOpen] = useState(false);
 
   return (
     <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
       <Header />
-      <Box minHeight="calc(100vh - 143.44px)" width="100%" display="flex" id="body">
+      <Box height="100%" width="100%" display="flex" id="body">
         <LeftMenu />
         <Box
           style={{ background: `url(${backgroundImage}) center center / cover` }}
@@ -43,8 +57,7 @@ const PharmacyPage = ({ establishments, isLoading, inventory, fetchInventory }) 
           flexDirection="column"
           alignItems="center"
         >
-          <Accordion establishment={establishment} />
-          <GoogleMap />
+          <Accordion establishment={establishment} setOpen={setOpen} />
           {isLoading ? (
             <Loading />
           ) : (
@@ -54,6 +67,7 @@ const PharmacyPage = ({ establishments, isLoading, inventory, fetchInventory }) 
       </Box>
       <Footer />
       <ConfirmationBox />
+      <MapModal open={open} setOpen={setOpen} lat={lat} lng={lng} />
     </Box>
   );
 };
@@ -63,9 +77,14 @@ PharmacyPage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   fetchInventory: PropTypes.func.isRequired,
   inventory: PropTypes.array,
+  fetchLatLng: PropTypes.func.isRequired,
+  lat: PropTypes.number,
+  lng: PropTypes.number,
 };
 
 PharmacyPage.defaultProps = {
   inventory: [],
+  lat: null,
+  lng: null,
 };
 export default PharmacyPage;

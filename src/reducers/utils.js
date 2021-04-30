@@ -13,7 +13,13 @@ import {
   ON_OFF_LOADING,
 } from 'src/actions/utils';
 
+import { SAVE_COORDONATES } from 'src/actions/map';
+
 const initialState = {
+  map: {
+    lat: null,
+    lng: null,
+  },
   isLoading: false, // état de chargement pendant les requêtes
   isExpanded: false, // état ouvert / fermer de la page signup
   activePopList: false, // afficher la PopList qui filtre le Json des médicaments
@@ -41,6 +47,15 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case SAVE_COORDONATES: {
+      return {
+        ...state,
+        map: {
+          lat: action.lat,
+          lng: action.lng,
+        },
+      };
+    }
     case ON_OFF_LOADING:
       return {
         ...state,

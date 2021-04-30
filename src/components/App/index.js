@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import store from 'src/store';
 import { saveState } from 'src/locaStorage';
 // Import react-router-dom
-import {
-  Switch, Route, Redirect,
-} from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Import COMPONENTS
 import HomePage from 'src/components/HomePage';
@@ -54,7 +52,10 @@ const App = ({ isLoading, logged, rehydrate }) => {
           <HomePage />
         </Route>
         <Route exact path="/login">
-          {logged ? <Redirect to="/profil" /> : <LoginForm />}
+          {logged ? <Redirect to="/home" /> : <LoginForm />}
+        </Route>
+        <Route exact path="/home">
+          <Home />
         </Route>
         <Route exact path="/login/reset">
           <ResetPassword />
@@ -83,16 +84,13 @@ const App = ({ isLoading, logged, rehydrate }) => {
         <Route exact path="/teampage">
           <TeamPage />
         </Route>
-
-
-          <Route path="*">
+        <Route path="*">
           <Page404 />
         </Route>
       </Switch>
     </div>
-  )}
-
-    
+  );
+};
 
 App.propTypes = {
   isLoading: PropTypes.bool.isRequired,

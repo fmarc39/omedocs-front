@@ -22,7 +22,6 @@ export default (store) => (next) => (action) => {
           .get(`/inventory/${user_id}`)
           .then((result) => result.data)
           .then(({ userInventory }) => {
-            console.log(userInventory);
             // sauvegarder l'inventaire dans le state
             store.dispatch(saveInventory(userInventory));
           })
@@ -59,13 +58,7 @@ export default (store) => (next) => (action) => {
       // On récupère l'id de l'user pour l'envoyer au back
       const { user_id } = store.getState().user;
       // On récupère les champs du form dans le state pour les envoyers au back
-      const {
-        name,
-        cis,
-        quantity,
-        price,
-        expiration,
-      } = store.getState().utils.product;
+      const { name, cis, quantity, price, expiration } = store.getState().utils.product;
       api
         .post('/addproduct', {
           name,
@@ -81,20 +74,12 @@ export default (store) => (next) => (action) => {
           // On dispatch l'action qui va sauvegarder le nouveau produit dans la state
           store.dispatch(saveNewProductInInventory(addedProduct));
           store.dispatch(closeModalProduct());
-          store.dispatch(
-            openSnackBar(
-              "Le produit a bien été rajouter à l'inventaire",
-              'success'
-            )
-          );
+          store.dispatch(openSnackBar("Le produit a bien été rajouter à l'inventaire", 'success'));
         })
         .catch((error) => {
           console.log(error);
           store.dispatch(
-            openSnackBar(
-              "Un souci est survenu lors de l'ajout d'un produit",
-              'error'
-            )
+            openSnackBar("Un souci est survenu lors de l'ajout d'un produit", 'error'),
           );
         });
       return next(action);

@@ -33,6 +33,8 @@ const useStyles = makeStyles(() => ({
 
 const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoading }) => {
   // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
+  console.log(inventoryData);
+  inventoryData.map((drug) => console.log(drug));
 
   useEffect(() => {
     fetchInventory();
