@@ -1,5 +1,5 @@
 // Import React
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Import react-router-dom pour ajouter des links aux boutons
@@ -17,8 +17,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import LocalPharmacyIcon from '@material-ui/icons/LocalPharmacy';
 import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TableChartIcon from '@material-ui/icons/TableChart';
+import IconButton from '@material-ui/core/IconButton';
+import Divider from '@material-ui/core/Divider';
 
 // Image
 import pharmacy from 'src/assets/img/pharmacie.svg';
@@ -30,17 +33,21 @@ import './styles.scss';
 // Mise en place du style material-UI
 const useStyles = makeStyles(() => ({
   btn: {
+    transition: 'all 0.3s',
+    paddingRight: 30,
     background: '#0368A3',
     '&:hover': {
       background: '#CDD0D4',
       color: '#0368A3',
     },
     borderRadius: '15px',
-    marginBottom: '1.5rem',
+    marginBottom: '2rem',
   },
   logoutBtn: {
+    transition: 'all 0.3s',
+    paddingRight: 24,
     color: '#0368A3',
-    marginBottom: '1.5rem',
+    marginBottom: '2.5rem',
     marginTop: '1.5rem',
     borderRadius: '15px',
     '&:hover': {
@@ -50,7 +57,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
+const LeftMenu = ({
+  userType,
+  nbOfArticles,
+  handleLogout,
+  establishment,
+  menuIsOpen,
+  openCloseMenu,
+}) => {
   const handleLogoutBtn = () => {
     handleLogout();
   };
@@ -63,46 +77,59 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
       flexDirection="column"
       justifyContent="flex-start"
       alignItems="center"
-      width="250px"
+      width={menuIsOpen ? '250px' : '80px'}
       height="100%"
       color="primary.contrastText"
       bgcolor="#bfcee2"
       className="left-menu"
     >
+      <IconButton style={{ marginLeft: 'auto' }}>
+        <ExitToAppIcon
+          size="large"
+          style={{ color: ' #0368A3', transform: menuIsOpen ? 'rotate(180deg)' : null }}
+          onClick={() => openCloseMenu()}
+        />
+      </IconButton>
+
       <Avatar
         alt="avatarLogo"
         src={userType === 'pharmacy' ? pharmacy : hopital}
         className="left-menu__avatar"
-        variant="rounded"
+        variant={menuIsOpen ? 'rounded' : 'circle'}
       />
-
-      <Typography variant="h5" component="h5" className="left-menu__welcome-message" align="center">
-        Bienvenue <br />
-        {establishment}
-      </Typography>
-
+      {menuIsOpen && (
+        <Typography
+          variant="h6"
+          component="h6"
+          className="left-menu__welcome-message"
+          align="center"
+        >
+          {establishment}
+        </Typography>
+      )}
       <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
+        <Divider />
         <Button
           variant="outlined"
           onClick={handleLogoutBtn}
           color="primary"
-          endIcon={<ExitToAppIcon />}
-          size="small"
+          endIcon={<MeetingRoomIcon />}
           fullWidth
           className={classes.logoutBtn}
+          style={{ width: !menuIsOpen ? '50px' : null }}
         >
-          Se déconnecter
+          {menuIsOpen ? 'Se déconnecter' : ''}
         </Button>
         <NavLink to="/profil" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
             color="primary"
             endIcon={<AccountCircleIcon />}
-            size="large"
             className={classes.btn}
             fullWidth
+            style={{ width: !menuIsOpen ? '50px' : null }}
           >
-            Profil
+            {menuIsOpen ? 'Profil' : ''}
           </Button>
         </NavLink>
         <NavLink to="/searchproduct" style={{ textDecoration: 'none' }}>
@@ -110,11 +137,12 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
             <Button
               variant="contained"
               color="primary"
-              endIcon={<SearchIcon />}
-              size="large"
+              icon={<SearchIcon />}
               className={classes.btn}
+              fullWidth
+              style={{ width: !menuIsOpen ? '50px' : null }}
             >
-              Rechercher un produit
+              {menuIsOpen ? 'Rechercher un produit' : ''}
             </Button>
           )}
         </NavLink>
@@ -125,8 +153,10 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
             endIcon={<LocalPharmacyIcon />}
             size="large"
             className={classes.btn}
+            fullWidth
+            style={{ width: !menuIsOpen ? '50px' : null }}
           >
-            Chercher un établissement
+            {menuIsOpen ? ' Chercher un établissement' : ''}
           </Button>
         </NavLink>
         <NavLink to="/cart" style={{ textDecoration: 'none' }}>
@@ -143,7 +173,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
               size="large"
               className={classes.btn}
             >
-              Acceder au panier
+              {menuIsOpen ? 'Acceder au panier' : ''}
             </Button>
           )}
         </NavLink>
@@ -155,8 +185,9 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
               endIcon={<TableChartIcon />}
               size="large"
               className={classes.btn}
+              style={{ width: !menuIsOpen ? '50px' : null }}
             >
-              Acceder a l'inventaire
+              {menuIsOpen ? "Acceder a l'inventaire" : ''}
             </Button>
           )}
         </NavLink>
@@ -170,6 +201,8 @@ LeftMenu.propTypes = {
   nbOfArticles: PropTypes.number,
   handleLogout: PropTypes.func.isRequired,
   establishment: PropTypes.string.isRequired,
+  menuIsOpen: PropTypes.bool.isRequired,
+  openCloseMenu: PropTypes.func.isRequired,
 };
 
 LeftMenu.defaultProps = {

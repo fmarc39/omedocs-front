@@ -43,7 +43,7 @@ const App = ({ isLoading, logged, rehydrate }) => {
       pharmacyToOrder: store.getState().cart.pharmacyToOrder,
     });
   });
-  console.log(process.env);
+
   return (
     <div className="app">
       <SnackBar />

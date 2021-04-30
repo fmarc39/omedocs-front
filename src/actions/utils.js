@@ -16,6 +16,8 @@ export const APPLY_INFO_DRUGS_API = 'APPLY_INFO_DRUGS_API';
 export const OPEN_CLOSE_ACCORDION = 'OPEN_CLOSE_ACCORDION';
 // Loading
 export const ON_OFF_LOADING = 'ON_OFF_LOADING';
+// ouverture / fermeture LeftMenu
+export const OPEN_CLOSE_MENU = 'OPEN_CLOSE_MENU';
 
 // ACTION CREATORS
 export const closeModalProduct = () => ({
@@ -79,4 +81,8 @@ export const closeOpenAccordion = () => ({
 
 export const onOffLoading = () => ({
   type: ON_OFF_LOADING,
+});
+
+export const openCloseMenu = () => ({
+  type: OPEN_CLOSE_MENU,
 });

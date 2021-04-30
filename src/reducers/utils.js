@@ -11,6 +11,7 @@ import {
   OPEN_POP_LIST_API,
   OPEN_CLOSE_ACCORDION,
   ON_OFF_LOADING,
+  OPEN_CLOSE_MENU,
 } from 'src/actions/utils';
 
 import { SAVE_COORDONATES } from 'src/actions/map';
@@ -20,6 +21,7 @@ const initialState = {
     lat: null,
     lng: null,
   },
+  menuIsOpen: true, // état ouvert / fermé du LeftMenu
   isLoading: false, // état de chargement pendant les requêtes
   isExpanded: false, // état ouvert / fermer de la page signup
   activePopList: false, // afficher la PopList qui filtre le Json des médicaments
@@ -47,6 +49,12 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case OPEN_CLOSE_MENU: {
+      return {
+        ...state,
+        menuIsOpen: !state.menuIsOpen,
+      };
+    }
     case SAVE_COORDONATES: {
       return {
         ...state,
