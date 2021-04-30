@@ -1,6 +1,7 @@
 // Import REACT
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link, useHistory } from 'react-router-dom';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +15,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import ConfirmationBox from 'src/containers/DialogBoxAddToCart';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import { Typography } from '@material-ui/core';
@@ -81,6 +83,7 @@ const ProductTable = ({
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const history = useHistory();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -89,6 +92,16 @@ const ProductTable = ({
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  const [userId, setUserId] = useState('');
+
+  const getUserId = (event) => {
+    setUserId(Number(event.target.closest('button').name));
+  };
+
+  const handleRedirect = () => {
+    history.push(`/establishment/${userId}`);
   };
 
   // Reset de la valeur de tous les inputs
@@ -181,7 +194,9 @@ const ProductTable = ({
     createData(
       product.id,
       product.name,
-      product.establishment,
+      <Link to={`/establishment/${product.user_id}`}>
+        {product.establishment}
+      </Link>,
       product.expiration_date,
       product.quantity,
       `${product.unit_price}  €`,
@@ -205,8 +220,11 @@ const ProductTable = ({
             name="quantityToBuy"
             InputProps={{ inputProps: { min: 1, max: product.quantity } }}
           />
+
           <IconButton
             variant="contained"
+            onClick={getUserId}
+            name={product.user_id}
             type="submit"
             color="primary"
             className={classes.addToCartBtn}
@@ -264,6 +282,7 @@ const ProductTable = ({
               </TableBody>
             </Table>
           </TableContainer>
+          <ConfirmationBox handleRedirect={handleRedirect} />
           <TablePagination
             rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'Tous' }]}
             labelRowsPerPage="Résultats par page"

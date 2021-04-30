@@ -34,9 +34,17 @@ const useStyles = makeStyles({
   },
 });
 
-const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
+const DialogChangeInformationsModal = ({
+  isOpen,
+  handleClose,
+  handleRedirect,
+}) => {
   const handleCloseBtn = () => {
     handleClose();
+  };
+
+  const handleRedirectBtn = () => {
+    handleRedirect();
   };
 
   const classes = useStyles();
@@ -65,13 +73,11 @@ const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
             </Link>
           </Button>
           <Button
-            onClick={handleCloseBtn}
+            onClick={handleRedirectBtn}
             className={classes.btn}
             endIcon={<StorefrontIcon />}
           >
-            <Link to="/cart" style={{ textDecoration: 'none' }}>
-              Acceder à la boutique de la pharmacie
-            </Link>
+            Acceder à la boutique de la pharmacie
           </Button>
         </DialogActions>
       </Dialog>
@@ -81,7 +87,8 @@ const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
 
 DialogChangeInformationsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  handleClose: PropTypes.bool.isRequired,
+  handleRedirect: PropTypes.func.isRequired,
 };
 
 export default DialogChangeInformationsModal;
