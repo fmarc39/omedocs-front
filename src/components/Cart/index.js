@@ -8,7 +8,7 @@ import LeftMenu from 'src/containers/LeftMenu';
 import axios from 'axios';
 
 // Import react-router-dom pour ajouter des links aux boutons
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Icons
 import ShoppingCart from 'src/assets/img/shopping-cart.svg';
@@ -31,7 +31,6 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PaymentIcon from '@material-ui/icons/Payment';
-import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
@@ -76,10 +75,12 @@ const headCells = [
 // Taux de TVA
 const TAX_RATE = 0.0;
 
+// Fonction va convertir les inputs
 function ccyFormat(num) {
   return `${num.toFixed(2)}`;
 }
 
+// Fconction qui va multiplier les quantité par les produit
 function priceRow(qty, unit) {
   return qty * unit;
 }
@@ -126,9 +127,7 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-  const {
-    classes, order, orderBy, onRequestSort,
-  } = props;
+  const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -211,7 +210,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQuantity }) => {
+const CartPage = ({
+  cartData,
+  deleteArticle,
+  title,
+  price,
+  addQuantity,
+  remmoveQuantity,
+}) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -237,8 +243,8 @@ const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQ
         className={classes.delBtn}
       >
         <DeleteIcon />
-      </IconButton>,
-    ),
+      </IconButton>
+    )
   );
 
   const handleRemoveBtn = (event) => {
@@ -270,22 +276,27 @@ const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQ
     console.log('Response:', response.data);
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
-    }
-    else {
+    } else {
       toast('Something went wrong', { type: 'error' });
     }
   }
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-        <Header />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Box width="100%" height="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            style={{ background: `url(${backgroundImage}) center center / cover` }}
-            minHeight="calc(100vh - 143.44px)"
+            style={{
+              background: `url(${backgroundImage}) center center / cover`,
+            }}
             width="100%"
+            height="100%"
             p={4}
             display="flex"
             flexDirection="column"
@@ -304,7 +315,11 @@ const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQ
                   Votre panier est tristement
                   <span className="empty-cart__head-span"> vide</span>
                 </p>
-                <img src={ShoppingCart} alt="shopping-cart-icon" className="empty-cart__img" />
+                <img
+                  src={ShoppingCart}
+                  alt="shopping-cart-icon"
+                  className="empty-cart__img"
+                />
                 <p className="empty-cart__text">
                   Cliquez &nbsp;
                   <Link to="/searchproduct" className="empty-cart__link">
@@ -347,7 +362,10 @@ const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQ
                       />
                       <TableBody>
                         {stableSort(rows, getComparator(order, orderBy))
-                          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                          .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                          )
                           .map((row, index) => {
                             const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -381,24 +399,34 @@ const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQ
                                   </IconButton>
                                 </TableCell>
                                 <TableCell align="left">{row.unit} €</TableCell>
-                                <TableCell align="left">{ccyFormat(row.price)} €</TableCell>
-                                <TableCell align="left">{row.dellRow}</TableCell>
+                                <TableCell align="left">
+                                  {ccyFormat(row.price)} €
+                                </TableCell>
+                                <TableCell align="left">
+                                  {row.dellRow}
+                                </TableCell>
                               </TableRow>
                             );
                           })}
                         <TableRow>
                           <TableCell rowSpan={3} />
                           <TableCell colSpan={1}>Sous-total</TableCell>
-                          <TableCell align="right">{ccyFormat(invoiceSubtotal)} €</TableCell>
+                          <TableCell align="right">
+                            {ccyFormat(invoiceSubtotal)} €
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>TVA</TableCell>
-                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
+                            0
+                          )} %`}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell colSpan={1}>Total</TableCell>
                           <TableCell align="right">
-                            <p className="total-price">{ccyFormat(invoiceTotal)} €</p>
+                            <p className="total-price">
+                              {ccyFormat(invoiceTotal)} €
+                            </p>
                           </TableCell>
                         </TableRow>
                       </TableBody>

@@ -65,12 +65,18 @@ const SearchPharmacy = ({
   const classes = useStyles();
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-        <Header />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            style={{ background: `url(${backgroundImage}) center center / cover` }}
+            style={{
+              background: `url(${backgroundImage}) center center / cover`,
+            }}
             height="100%"
             width="100%"
             p={4}
@@ -89,7 +95,9 @@ const SearchPharmacy = ({
             >
               <form autoComplete="off" onSubmit={handleOnSubmit}>
                 <div>
-                  <InputLabel htmlFor="input-with-icon-adornment">Votre recherche ici</InputLabel>
+                  <InputLabel htmlFor="input-with-icon-adornment">
+                    Votre recherche ici
+                  </InputLabel>
                   <Input
                     id="input-with-icon-adornment"
                     name="searchEstablishmentInputValue"
@@ -112,19 +120,33 @@ const SearchPharmacy = ({
                     value={searchSelectValue}
                     onChange={handleChangeInput}
                   >
-                    <MenuItem value="Toute les régions">Toute les régions</MenuItem>
-                    <MenuItem value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</MenuItem>
-                    <MenuItem value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</MenuItem>
+                    <MenuItem value="Toute les régions">
+                      Toute les régions
+                    </MenuItem>
+                    <MenuItem value="Auvergne-Rhône-Alpes">
+                      Auvergne-Rhône-Alpes
+                    </MenuItem>
+                    <MenuItem value="Bourgogne-Franche-Comté">
+                      Bourgogne-Franche-Comté
+                    </MenuItem>
                     <MenuItem value="Bretagne">Bretagne</MenuItem>
-                    <MenuItem value="Centre-Val de Loire">Centre-Val de Loire</MenuItem>
+                    <MenuItem value="Centre-Val de Loire">
+                      Centre-Val de Loire
+                    </MenuItem>
                     <MenuItem value="Corse">Corse</MenuItem>
                     <MenuItem value="Grand Est">Grand Est</MenuItem>
-                    <MenuItem value=">Hauts-de-France">Hauts-de-France</MenuItem>
+                    <MenuItem value=">Hauts-de-France">
+                      Hauts-de-France
+                    </MenuItem>
                     <MenuItem value="Ile-de-France">Ile-de-France</MenuItem>
                     <MenuItem value="Normandie">Normandie</MenuItem>
-                    <MenuItem value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</MenuItem>
+                    <MenuItem value="Nouvelle-Aquitaine">
+                      Nouvelle-Aquitaine
+                    </MenuItem>
                     <MenuItem value="Occitanie">Occitanie</MenuItem>
-                    <MenuItem value="Pays de la Loire">Pays de la Loire</MenuItem>
+                    <MenuItem value="Pays de la Loire">
+                      Pays de la Loire
+                    </MenuItem>
                     <MenuItem value="Provence-Alpes-Côte d’Azur">
                       Provence-Alpes-Côte d’Azur
                     </MenuItem>

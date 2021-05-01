@@ -86,7 +86,6 @@ const ProfilPage = ({
         justifyContent="space-between"
         height="100vh"
       >
-        <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box

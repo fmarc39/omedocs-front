@@ -76,12 +76,22 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
         variant="rounded"
       />
 
-      <Typography variant="h5" component="h5" className="left-menu__welcome-message" align="center">
+      <Typography
+        variant="h5"
+        component="h5"
+        className="left-menu__welcome-message"
+        align="center"
+      >
         Bienvenue <br />
         {establishment}
       </Typography>
 
-      <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
+      <Box
+        display="flex"
+        flexDirection="column"
+        textAlign="center"
+        className="let-menu__btn-box"
+      >
         <Button
           variant="outlined"
           onClick={handleLogoutBtn}

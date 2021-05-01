@@ -90,23 +90,26 @@ const ProductTable = ({
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const history = useHistory();
+  const [userId, setUserId] = useState('');
 
   // Gestion du changement de page dans notre tableau de résultats
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  // Gestion du nombre de pages dans le tableau
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
-  const [userId, setUserId] = useState('');
-
+  // fonction qui va permettre de récuperer l'id de l'user au moment du clique sur
+  // le btn de l'ajout au panier
   const getUserId = (event) => {
     setUserId(Number(event.target.closest('button').name));
   };
 
+  // Gestion de la redirection sur la page de la pharmacie au moment
+  // du click sur le btn "aller sur la page pharmacie"
   const handleRedirect = () => {
     closeDialogBox();
     history.push(`/establishment/${userId}`);
@@ -184,7 +187,7 @@ const ProductTable = ({
         handleReset();
         // On envois les data dans le panier via un action
         addToCart(dataToSendToCart, pharmacyid);
-        // On envois l'action pour l'ouverture de la dialogBox
+        // On envois l'action pour l'ouverture de la dialogBox add to cart
         openDialogBox();
       }
     } else {
