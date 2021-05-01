@@ -13,7 +13,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { Typography } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
+
+// Import Img
+import noResultsLogo from 'src/assets/img/no-results.svg';
 
 // Configuration des colones avec le nom, le label, la largeur
 const columns = [
@@ -65,13 +68,16 @@ const PharmacyTable = ({ establishments }) => {
       pharmacy.user_type,
       pharmacy.rpps,
       pharmacy.region,
-      pharmacy.id,
-    ),
+      pharmacy.id
+    )
   );
 
   return (
     <Paper className={classes.root}>
-      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+      <Typography
+        variant="h6"
+        style={{ padding: '10px', backgroundColor: '#A8C1E2' }}
+      >
         Liste des établissements
       </Typography>
       {establishments.length !== 0 ? (
@@ -81,29 +87,41 @@ const PharmacyTable = ({ establishments }) => {
               <TableHead>
                 <TableRow>
                   {columns.map((column) => (
-                    <TableCell key={column.id} align="left" style={{ minWidth: column.minWidth }}>
+                    <TableCell
+                      key={column.id}
+                      align="left"
+                      style={{ minWidth: column.minWidth }}
+                    >
                       <p className="cells-title">{column.label}</p>
                     </TableCell>
                   ))}
                 </TableRow>
               </TableHead>
               <TableBody style={{ cursor: 'pointer' }}>
-                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code} data-rpps={row.id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          <Link to={`establishment/${row.id}`}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </Link>
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                ))}
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.code}
+                      data-rpps={row.id}
+                    >
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            <Link to={`establishment/${row.id}`}>
+                              {column.format && typeof value === 'number'
+                                ? column.format(value)
+                                : value}
+                            </Link>
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -119,9 +137,18 @@ const PharmacyTable = ({ establishments }) => {
           />
         </>
       ) : (
-        <h1 style={{ padding: '5px', fontWeight: '700' }}>
-          Il n'y a aucun établissement de ce nom présent sur le site
-        </h1>
+        <Box p={4}>
+          <h1
+            style={{ padding: '5px', fontWeight: '700', marginBottom: '2rem' }}
+          >
+            Il n'y a aucun établissement de ce nom présent sur le site
+          </h1>
+          <img
+            style={{ width: '150px' }}
+            src={noResultsLogo}
+            alt="no-results-logo"
+          />
+        </Box>
       )}
     </Paper>
   );

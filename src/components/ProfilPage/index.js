@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 // Import COMPONENTS
 import LeftMenu from 'src/containers/LeftMenu';
-import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 
 // Import from MATERIAL-UI
+import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,6 +18,9 @@ import SaveIcon from '@material-ui/icons/Save';
 import DialogModal from 'src/containers/ModalChangeInformations';
 import Grow from '@material-ui/core/Grow';
 
+// Import Logo
+import profilLogo from 'src/assets/img/profiles.svg';
+
 // Import CSS
 import './styles.scss';
 
@@ -25,6 +28,9 @@ import './styles.scss';
 const useStyles = makeStyles(() => ({
   field: {
     display: 'none',
+  },
+  btn: {
+    color: '#0368A3',
   },
 }));
 
@@ -99,13 +105,17 @@ const ProfilPage = ({
             justifyContent="center"
           >
             <Box
-              p={4}
+              p={3}
               bgcolor="white"
-              boxShadow={3}
-              borderRadius="10px"
+              boxShadow={4}
+              borderRadius="15px"
               className="profil-box"
             >
-              <h2 className="profil-box__main-title">Vos informations</h2>
+              <img
+                className="profil-box__main-title"
+                src={profilLogo}
+                alt="profil-logo"
+              />
               <div className="profil-box__content">
                 <div className="profil-box__content-elt">
                   <p className="profil-box__content-elt__infos">
@@ -126,8 +136,11 @@ const ProfilPage = ({
                   >
                     e-mail:
                   </p>
-                  <IconButton onClick={handleEditMailBtn}>
-                    <EditIcon color="primary" />
+                  <IconButton
+                    onClick={handleEditMailBtn}
+                    className={classes.btn}
+                  >
+                    <EditIcon />
                   </IconButton>
                   <p
                     className={
@@ -144,7 +157,6 @@ const ProfilPage = ({
                     {...(editMailInputIsOpen ? { timeout: 1000 } : {})}
                   >
                     <TextField
-                      id="outlined-basic"
                       label="E-mail"
                       name="newEmail"
                       variant="outlined"
@@ -181,8 +193,9 @@ const ProfilPage = ({
                   <IconButton
                     aria-label="delete"
                     onClick={handleEditPhoneNumberBtn}
+                    className={classes.btn}
                   >
-                    <EditIcon color="primary" />
+                    <EditIcon />
                   </IconButton>
                   <p
                     className={
@@ -199,7 +212,6 @@ const ProfilPage = ({
                     {...(editPhoneInputIsOpen ? { timeout: 1000 } : {})}
                   >
                     <TextField
-                      id="outlined-basic"
                       label="N° de téléphonne"
                       variant="outlined"
                       name="newPhoneNumber"

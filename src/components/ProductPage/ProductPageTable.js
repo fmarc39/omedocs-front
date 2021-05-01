@@ -20,6 +20,9 @@ import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import { Typography } from '@material-ui/core';
 
+// Import Img
+import noResultsLogo from 'src/assets/img/no-results.svg';
+
 // Import CSS
 import './styles.scss';
 
@@ -307,9 +310,18 @@ const ProductTable = ({
           />
         </>
       ) : (
-        <h1 style={{ padding: '5px', fontWeight: '700' }}>
-          Il n'y a aucun stock pour ce médicament
-        </h1>
+        <Box p={4}>
+          <h1
+            style={{ padding: '5px', fontWeight: '700', marginBottom: '2rem' }}
+          >
+            Cette référence n'est pas disponible à la vente
+          </h1>
+          <img
+            style={{ width: '150px' }}
+            src={noResultsLogo}
+            alt="no-results-logo"
+          />
+        </Box>
       )}
     </Paper>
   );

@@ -308,6 +308,64 @@ const TeamPage = () => {
                   </CardActions>
                 </Card>
               </Grow>
+              <Grow
+                in={annimation}
+                style={{ transformOrigin: '0 0 0' }}
+                {...(annimation ? { timeout: 3000 } : {})}
+              >
+                <Card className={classes.root}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="img-scrum-master"
+                      height="300"
+                      image={Lambert}
+                      title="Bahri  -img"
+                      className={classes.img}
+                    />
+                    <CardContent>
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
+                        Bahri
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                        align="center"
+                      >
+                        Scrum master
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions className={classes.btnBox}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      color="primary"
+                      startIcon={<GitHubIcon />}
+                      className={classes.btn}
+                      href="https://github.com/ZacharyBournand"
+                    >
+                      GitHub
+                    </Button>
+                    <Button
+                      size="small"
+                      target="blank"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                      className={classes.btn}
+                      href="https://www.linkedin.com/in/zachary-bournand-6908a5168/"
+                    >
+                      LinkeDin
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grow>
             </Box>
             <h1 className="main-box__main-title">Nous Contacter</h1>
             <Box display="flex" flexDirection="column">
