@@ -1,6 +1,7 @@
 // Import React
 import React from 'react';
 import PropTypes from 'prop-types';
+import Chatbox from 'src/components/Chatbot';
 
 // Import react-router-dom pour ajouter des links aux boutons
 import { NavLink } from 'react-router-dom';
@@ -50,7 +51,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
+const LeftMenu = ({
+  userType, nbOfArticles, handleLogout, establishment,
+}) => {
   const handleLogoutBtn = () => {
     handleLogout();
   };
@@ -161,6 +164,7 @@ const LeftMenu = ({ userType, nbOfArticles, handleLogout, establishment }) => {
           )}
         </NavLink>
       </Box>
+      <Chatbox />
     </Box>
   );
 };

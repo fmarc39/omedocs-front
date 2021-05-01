@@ -84,15 +84,13 @@ const App = ({ isLoading, logged, rehydrate }) => {
           <TeamPage />
         </Route>
 
-
-          <Route path="*">
+        <Route path="*">
           <Page404 />
         </Route>
       </Switch>
     </div>
-  )}
-
-    
+  );
+};
 
 App.propTypes = {
   isLoading: PropTypes.bool.isRequired,

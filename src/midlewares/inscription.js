@@ -35,13 +35,15 @@ export default (store) => (next) => (action) => {
 
         if (email !== confirmEmail) {
           store.dispatch(
-            openErrorInputValidation('Les emails doivent correspondres')
+            openErrorInputValidation('Les emails doivent correspondres'),
           );
-        } else if (password !== confirmPassword) {
+        }
+        else if (password !== confirmPassword) {
           store.dispatch(
-            openErrorInputValidation('Les mots de passe doivent correspondres')
+            openErrorInputValidation('Les mots de passe doivent correspondres'),
           );
-        } else {
+        }
+        else {
           api
             .post('/signup', {
               establishment,
@@ -59,8 +61,8 @@ export default (store) => (next) => (action) => {
               store.dispatch(
                 openSnackBar(
                   'Merci de vous être inscrit. Vous pouvez vous connectez',
-                  'success'
-                )
+                  'success',
+                ),
               );
               store.dispatch(closeOpenAccordion());
             })
@@ -69,8 +71,8 @@ export default (store) => (next) => (action) => {
               store.dispatch(
                 openSnackBar(
                   "Une erreur s'est produite lors de l'inscription, veuillez réessayer",
-                  'error'
-                )
+                  'error',
+                ),
               );
             });
         }

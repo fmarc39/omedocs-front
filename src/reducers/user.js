@@ -30,7 +30,7 @@ export const initialState = {
   password: '',
   confirmPassword: '',
   fieldToChange: '',
-  logged: false,
+  logged: true,
   accessToken: null,
   changeInformationsModal: false,
   mailChangeDialogBox: false,

@@ -3,7 +3,7 @@ import React from 'react';
 
 // Import COMPONENTS
 import Header from 'src/components/Header';
-import ContactPage from 'src/components/ContactPage';
+import Chatbox from 'src/components/Chatbot';
 import Footer from 'src/components/Footer';
 
 // Import from MATERIAL-UI
@@ -255,9 +255,8 @@ const TeamPage = () => {
                 </Card>
               </Grow>
             </Box>
-            <h1 className="main-box__main-title">Nous Contacter</h1>
             <Box display="flex" flexDirection="column">
-              <ContactPage />
+              <Chatbox />
             </Box>
           </Box>
         </Box>
