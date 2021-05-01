@@ -18,6 +18,9 @@ export const OPEN_CLOSE_ACCORDION = 'OPEN_CLOSE_ACCORDION';
 export const ON_OFF_LOADING = 'ON_OFF_LOADING';
 // ouverture / fermeture LeftMenu
 export const OPEN_CLOSE_MENU = 'OPEN_CLOSE_MENU';
+// Count
+export const FETCH_COUNT = 'FETCH_COUNT';
+export const SAVE_COUNT = 'SAVE_COUNT';
 
 // ACTION CREATORS
 export const closeModalProduct = () => ({
@@ -85,4 +88,13 @@ export const onOffLoading = () => ({
 
 export const openCloseMenu = () => ({
   type: OPEN_CLOSE_MENU,
+});
+
+export const fetchCount = () => ({
+  type: FETCH_COUNT,
+});
+
+export const saveCount = (count) => ({
+  type: SAVE_COUNT,
+  count,
 });

@@ -18,6 +18,9 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 
+//Images
+import minion from 'src/assets/img/minion2.png';
+
 // Import CSS
 import './styles.scss';
 import { Typography } from '@material-ui/core';
@@ -261,10 +264,20 @@ const PharmacyTable = ({
         </Paper>
       ) : typeRender === 'pharmacyHasNoInventory' ? (
         // Si l'établissement est une pharmacie sans inventaire
-        <h1>Cet pharmacie n'a pas de médicament en stock</h1>
+        <div className="message">
+          <h1 className="message__text">Cette pharmacie n'a pas de médicament en stock</h1>
+          <div className="message__img">
+            <img src={minion} alt="minion" />
+          </div>
+        </div>
       ) : (
         // Si l'établissement est un hôpital
-        <h1> Pas de stock a afficher pour les hôpitaux</h1>
+        <div className="message">
+          <h1 className="message__text">Pas de stock à afficher pour les hôpitaux</h1>
+          <div className="message__img">
+            <img src={minion} alt="minion" />
+          </div>
+        </div>
       )}
     </div>
   );
@@ -277,6 +290,7 @@ PharmacyTable.propTypes = {
   establishment: PropTypes.array,
   cartData: PropTypes.arrayOf(PropTypes.object).isRequired,
   openSnackBar: PropTypes.func.isRequired,
+  pharmacyToOrder: PropTypes.number.isRequired,
 };
 
 PharmacyTable.defaultProps = {

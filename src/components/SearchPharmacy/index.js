@@ -112,7 +112,7 @@ const SearchPharmacy = ({
                     value={searchSelectValue}
                     onChange={handleChangeInput}
                   >
-                    <MenuItem value="Toute les régions">Toute les régions</MenuItem>
+                    <MenuItem value="Toutes les régions">Toutes les régions</MenuItem>
                     <MenuItem value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</MenuItem>
                     <MenuItem value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</MenuItem>
                     <MenuItem value="Bretagne">Bretagne</MenuItem>

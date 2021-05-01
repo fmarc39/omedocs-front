@@ -19,7 +19,7 @@ import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/containers/CartPage';
 import Page404 from 'src/components/404';
 import SnackBar from 'src/containers/SnackBar';
-import Home from 'src/components/Home';
+import Home from 'src/containers/Home';
 import Checkout from 'src/components/Stripe/Checkout';
 import Success from 'src/components/Stripe/Success';
 import Canceled from 'src/components/Stripe/Canceled';

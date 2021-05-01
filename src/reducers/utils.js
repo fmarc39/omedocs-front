@@ -12,11 +12,13 @@ import {
   OPEN_CLOSE_ACCORDION,
   ON_OFF_LOADING,
   OPEN_CLOSE_MENU,
+  SAVE_COUNT,
 } from 'src/actions/utils';
 
 import { SAVE_COORDONATES } from 'src/actions/map';
 
 const initialState = {
+  count: {},
   map: {
     lat: null,
     lng: null,
@@ -49,6 +51,11 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case SAVE_COUNT:
+      return {
+        ...state,
+        count: action.count,
+      };
     case OPEN_CLOSE_MENU: {
       return {
         ...state,

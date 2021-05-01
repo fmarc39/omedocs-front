@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Import react-router-dom pour ajouter des links aux boutons
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 // Import des composants depuis MATERIAL UI
 
@@ -22,6 +22,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
+import HomeIcon from '@material-ui/icons/Home';
 
 // Image
 import pharmacy from 'src/assets/img/pharmacie.svg';
@@ -90,13 +91,14 @@ const LeftMenu = ({
           onClick={() => openCloseMenu()}
         />
       </IconButton>
-
-      <Avatar
-        alt="avatarLogo"
-        src={userType === 'pharmacy' ? pharmacy : hopital}
-        className="left-menu__avatar"
-        variant={menuIsOpen ? 'rounded' : 'circle'}
-      />
+      <Link to="/">
+        <Avatar
+          alt="avatarLogo"
+          src={userType === 'pharmacy' ? pharmacy : hopital}
+          className="left-menu__avatar"
+          variant={menuIsOpen ? 'rounded' : 'circle'}
+        />
+      </Link>
       {menuIsOpen && (
         <Typography
           variant="h6"
@@ -120,6 +122,18 @@ const LeftMenu = ({
         >
           {menuIsOpen ? 'Se déconnecter' : ''}
         </Button>
+        <NavLink to="/home" style={{ textDecoration: 'none' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<HomeIcon />}
+            className={classes.btn}
+            fullWidth
+            style={{ width: !menuIsOpen ? '50px' : null }}
+          >
+            {menuIsOpen ? 'Acceuil' : ''}
+          </Button>
+        </NavLink>
         <NavLink to="/profil" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
@@ -137,7 +151,7 @@ const LeftMenu = ({
             <Button
               variant="contained"
               color="primary"
-              icon={<SearchIcon />}
+              endIcon={<SearchIcon />}
               className={classes.btn}
               fullWidth
               style={{ width: !menuIsOpen ? '50px' : null }}
@@ -171,6 +185,7 @@ const LeftMenu = ({
                 </Badge>
               }
               size="large"
+              style={{ width: !menuIsOpen ? '50px' : null }}
               className={classes.btn}
             >
               {menuIsOpen ? 'Acceder au panier' : ''}
