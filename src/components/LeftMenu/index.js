@@ -1,6 +1,7 @@
 // Import React
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Chatbox from 'src/components/Chatbot';
 
 // Import react-router-dom pour ajouter des links aux boutons
 import { NavLink, Link } from 'react-router-dom';
@@ -207,6 +208,7 @@ const LeftMenu = ({
           )}
         </NavLink>
       </Box>
+      <Chatbox />
     </Box>
   );
 };

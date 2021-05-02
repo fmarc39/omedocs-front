@@ -211,7 +211,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQuantity }) => {
+const CartPage = ({
+  cartData, deleteArticle, title, price, addQuantity, remmoveQuantity,
+}) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -224,22 +226,20 @@ const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQ
     deleteArticle(event.target.closest('button').name);
   };
 
-  rows = cartData.map((article) =>
-    createData(
-      article.id,
-      article.productname,
-      article.quantityToBuy,
-      article.price,
-      <IconButton
-        aria-label="delete"
-        onClick={handleDeleteCLickBtn}
-        name={article.id}
-        className={classes.delBtn}
-      >
-        <DeleteIcon />
-      </IconButton>,
-    ),
-  );
+  rows = cartData.map((article) => createData(
+    article.id,
+    article.productname,
+    article.quantityToBuy,
+    article.price,
+    <IconButton
+      aria-label="delete"
+      onClick={handleDeleteCLickBtn}
+      name={article.id}
+      className={classes.delBtn}
+    >
+      <DeleteIcon />
+    </IconButton>,
+  ));
 
   const handleRemoveBtn = (event) => {
     event.preventDefault();
@@ -264,10 +264,9 @@ const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQ
     setOrderBy(property);
   };
 
-  async function handleToken(token, addresses) {
-    const response = await axios.post('app.js', { token, product });
+  async function handleToken(token, product, addresses) {
+    const response = await axios.post('http://omedocs.herokuapp.com/checkout', { token, product, addresses });
     const { status } = response.data;
-    console.log('Response:', response.data);
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
     }
@@ -412,7 +411,6 @@ const CartPage = ({ cartData, deleteArticle, title, price, addQuantity, remmoveQ
                         amount={price * 100}
                         data-locale="auto"
                         name="O'Medocs"
-                        description={title}
                         billingAddress
                         shippingAddress
                       />
