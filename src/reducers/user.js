@@ -3,11 +3,10 @@ import {
   LOGIN,
   LOGOUT,
   LOGIN_FROM_REHYDRATE,
+  SAVE_NEW_MAIL,
+  SAVE_NEW_PHONE,
 } from 'src/actions/user';
-import {
-  OPEN_VALIDATION_CHANGE_MODAL,
-  CLOSE_VALIDATION_CHANGE_MODAL,
-} from 'src/actions/utils';
+import { OPEN_VALIDATION_CHANGE_MODAL, CLOSE_VALIDATION_CHANGE_MODAL } from 'src/actions/utils';
 
 import api from 'src/api/api';
 
@@ -30,7 +29,33 @@ export const initialState = {
   password: '',
   confirmPassword: '',
   fieldToChange: '',
-  logged: true,
+  orderHistory: [
+    {
+      orderNumber: 120,
+      orderDate: '31/01/2020',
+      totalPrice: 230,
+      status: 'payé',
+    },
+    {
+      orderNumber: 121,
+      orderDate: '31/01/2020',
+      totalPrice: 230,
+      status: 'payé',
+    },
+    {
+      orderNumber: 122,
+      orderDate: '31/01/2020',
+      totalPrice: 230,
+      status: 'payé',
+    },
+    {
+      orderNumber: 123,
+      orderDate: '31/01/2020',
+      totalPrice: 230,
+      status: 'payé',
+    },
+  ],
+  logged: false,
   accessToken: null,
   changeInformationsModal: false,
   mailChangeDialogBox: false,
@@ -129,6 +154,18 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         changeInformationsModal: false,
         newEmail: '',
+        newPhoneNumber: '',
+      };
+    case SAVE_NEW_MAIL:
+      return {
+        ...state,
+        email: action.mail,
+        newEmail: '',
+      };
+    case SAVE_NEW_PHONE:
+      return {
+        ...state,
+        phoneNumber: action.phone,
         newPhoneNumber: '',
       };
     default:

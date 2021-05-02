@@ -1,14 +1,13 @@
 /* eslint-disable no-mixed-operators */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import LeftMenu from 'src/containers/LeftMenu';
 import axios from 'axios';
 
 // Import react-router-dom pour ajouter des links aux boutons
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Icons
 import ShoppingCart from 'src/assets/img/shopping-cart.svg';
@@ -20,7 +19,6 @@ import { toast } from 'react-toastify';
 // IMPORT MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-import Slide from '@material-ui/core/Slide';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -31,7 +29,6 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PaymentIcon from '@material-ui/icons/Payment';
-import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
@@ -76,10 +73,12 @@ const headCells = [
 // Taux de TVA
 const TAX_RATE = 0.0;
 
+// Fonction va convertir les inputs
 function ccyFormat(num) {
   return `${num.toFixed(2)}`;
 }
 
+// Fconction qui va multiplier les quantité par les produit
 function priceRow(qty, unit) {
   return qty * unit;
 }
@@ -126,9 +125,7 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-  const {
-    classes, order, orderBy, onRequestSort,
-  } = props;
+  const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -212,7 +209,13 @@ const useStyles = makeStyles(() => ({
 }));
 
 const CartPage = ({
-  cartData, deleteArticle, title, price, addQuantity, remmoveQuantity,
+  cartData,
+  deleteArticle,
+  title,
+  price,
+  addQuantity,
+  remmoveQuantity,
+  saveOrder,
 }) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -226,20 +229,27 @@ const CartPage = ({
     deleteArticle(event.target.closest('button').name);
   };
 
-  rows = cartData.map((article) => createData(
-    article.id,
-    article.productname,
-    article.quantityToBuy,
-    article.price,
-    <IconButton
-      aria-label="delete"
-      onClick={handleDeleteCLickBtn}
-      name={article.id}
-      className={classes.delBtn}
-    >
-      <DeleteIcon />
-    </IconButton>,
-  ));
+  rows = cartData.map((article) =>
+    createData(
+      article.id,
+      article.productname,
+      article.quantityToBuy,
+      article.price,
+      <IconButton
+        aria-label="delete"
+        onClick={handleDeleteCLickBtn}
+        name={article.id}
+        className={classes.delBtn}
+      >
+        <DeleteIcon />
+      </IconButton>,
+    ),
+  );
+
+  const handleTest = (event) => {
+    console.log('ok ');
+    saveOrder(event.target.closest('button').name);
+  };
 
   const handleRemoveBtn = (event) => {
     event.preventDefault();
@@ -265,12 +275,15 @@ const CartPage = ({
   };
 
   async function handleToken(token, product, addresses) {
-    const response = await axios.post('http://omedocs.herokuapp.com/checkout', { token, product, addresses });
+    const response = await axios.post('http://omedocs.herokuapp.com/checkout', {
+      token,
+      product,
+      addresses,
+    });
     const { status } = response.data;
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
-    }
-    else {
+    } else {
       toast('Something went wrong', { type: 'error' });
     }
   }
@@ -278,13 +291,14 @@ const CartPage = ({
   return (
     <>
       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-        <Header />
         <Box width="100%" height="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            style={{ background: `url(${backgroundImage}) center center / cover` }}
-            minHeight="calc(100vh - 143.44px)"
+            style={{
+              background: `url(${backgroundImage}) center center / cover`,
+            }}
             width="100%"
+            height="100%"
             p={4}
             display="flex"
             flexDirection="column"
@@ -314,18 +328,16 @@ const CartPage = ({
               </Box>
             )}
             {cartData.length !== 0 && (
-              <Slide direction="down" in="true" mountOnEnter unmountOnExit>
-                <Box
-                  className="cart-box"
-                  p={2}
-                  mb={2}
-                  borderRadius="10px"
-                  align="center"
-                  boxShadow={4}
-                >
-                  <h4 className="cart-box__title"> Votre panier </h4>
-                </Box>
-              </Slide>
+              <Box
+                className="cart-box"
+                p={2}
+                mb={2}
+                borderRadius="10px"
+                align="center"
+                boxShadow={4}
+              >
+                <h4 className="cart-box__title"> Votre panier </h4>
+              </Box>
             )}
 
             <div className={classes.root}>
@@ -416,6 +428,9 @@ const CartPage = ({
                       />
                     </div>
                   </TableContainer>
+                  <IconButton onClick={handleTest} name={ccyFormat(invoiceTotal)}>
+                    <DeleteIcon />
+                  </IconButton>
                 </Paper>
               )}
             </div>
@@ -431,8 +446,13 @@ CartPage.propTypes = {
   deleteArticle: PropTypes.func.isRequired,
   addQuantity: PropTypes.func.isRequired,
   remmoveQuantity: PropTypes.func.isRequired,
-  price: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  price: PropTypes.number,
+  title: PropTypes.string,
+};
+
+CartPage.defaultProps = {
+  price: 0,
+  title: '',
 };
 
 export default CartPage;

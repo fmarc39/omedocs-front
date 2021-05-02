@@ -1,5 +1,5 @@
 // Import React
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Import from MATERIAL-UI
@@ -19,6 +19,7 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import { Typography } from '@material-ui/core';
+import Grow from '@material-ui/core/Grow';
 
 // Import CSS styles
 
@@ -67,6 +68,9 @@ const useStyles = makeStyles({
   delBtn: {
     color: '#0368A3',
   },
+  quantityInput: {
+    width: '90px',
+  },
 });
 
 const InventoryTable = ({
@@ -79,11 +83,29 @@ const InventoryTable = ({
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [editQtyInputIsOpen, setEditQtyInputIsOpen] = useState(false);
 
   // Gestion du nombre de pages dans le tableau
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
+  // Reset de la valeur de tous les inputs
+  const handleReset = () => {
+    Array.from(document.querySelectorAll('input')).forEach(
+      // eslint-disable-next-line no-return-assign
+      (input) => (input.value = '')
+    );
+  };
+
+  // Fonction qui va déclencher une annimation en cas d'erreur
+  const handleShake = (event) => {
+    event.target.classList.add('error');
+    setTimeout(() => {
+      event.target.classList.remove('error');
+    }, 1000);
+  };
+
   // Gestion du nombre de pages
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
@@ -96,6 +118,7 @@ const InventoryTable = ({
 
   // Gestion du click sur le btn edit
   const handleEditClickBtn = (event) => {
+    setEditQtyInputIsOpen(true);
     event.target.closest('.edit-btn').nextSibling.classList.toggle('hidden');
   };
 
@@ -104,15 +127,19 @@ const InventoryTable = ({
     event.preventDefault();
     // On cible tous les form de notre liste
     const allForms = document.querySelectorAll('.edit-tools');
-    // A la soumission on boucle sur tous les elements
-    // de l'inventaire pour ajouter la classe 'hidden'
-    allForms.forEach((form) => form.classList.add('hidden'));
     // Fonction qui va récuperer les données de l'userInput et l'ID du form 'edit-quantity'
     const newFormObj = new FormData(event.target);
     const data = Array.from(newFormObj.entries());
     const fieldValue = data[0][1];
     const fieldId = data[0][0];
-    handleSubmit(fieldValue, fieldId);
+    if (fieldValue) {
+      handleSubmit(fieldValue, fieldId);
+      // A la soumission on boucle sur tous les elements
+      // de l'inventaire pour ajouter la classe 'hidden'
+      allForms.forEach((form) => form.classList.add('hidden'));
+      handleReset();
+    }
+    handleShake(event);
   };
 
   // On récupere les resultats du state pour boucler dessus et les afficher dans le tableau
@@ -124,19 +151,35 @@ const InventoryTable = ({
       article.expiration_date,
       <Box display="flex" alignItems="center">
         {article.quantity}
-        <IconButton aria-label="edit" onClick={handleEditClickBtn} className="edit-btn">
+        <IconButton
+          aria-label="edit"
+          onClick={handleEditClickBtn}
+          className="edit-btn"
+        >
           <EditIcon />
         </IconButton>
         <form className="edit-tools hidden" onSubmit={handleSubmitForm}>
-          <TextField
-            className="quantity-input"
-            label="quantité"
-            variant="outlined"
-            size="small"
-            type="number"
+          <Grow
+            in={editQtyInputIsOpen}
+            style={{ transformOrigin: '0 200 0' }}
+            {...(editQtyInputIsOpen ? { timeout: 1000 } : {})}
+          >
+            <TextField
+              className={classes.quantityInput}
+              label="quantité"
+              variant="outlined"
+              size="small"
+              type="number"
+              name={article.id}
+              InputProps={{ inputProps: { min: 1 } }}
+            />
+          </Grow>
+          <IconButton
+            color="primary"
+            className="save-btn"
             name={article.id}
-          />
-          <IconButton color="primary" className="save-btn" name={article.id} type="submit">
+            type="submit"
+          >
             <SaveIcon />
           </IconButton>
         </form>
@@ -150,13 +193,16 @@ const InventoryTable = ({
         className={classes.delBtn}
       >
         <DeleteIcon />
-      </IconButton>,
-    ),
+      </IconButton>
+    )
   );
 
   return (
     <Paper className={classes.root}>
-      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+      <Typography
+        variant="h6"
+        style={{ padding: '10px', backgroundColor: '#A8C1E2' }}
+      >
         Liste des établissements
       </Typography>
       <TableContainer className={classes.container}>
@@ -176,24 +222,28 @@ const InventoryTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow
-                hover
-                role="checkbox"
-                tabIndex={-1}
-                key={row.id}
-                className={classes.tableRow}
-              >
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align="left">
-                      {column.format && typeof value === 'number' ? column.format(value) : value}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={row.id}
+                  className={classes.tableRow}
+                >
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align="left">
+                        {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

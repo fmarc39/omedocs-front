@@ -25,17 +25,27 @@ import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Grow from '@material-ui/core/Grow';
 
+// Import team DATA
+import teamData from 'src/data/teamData.json';
+
 // Import CSS
 import './styles.scss';
 
 // Mise en place des styles MATERIAL-UI
 const useStyles = makeStyles({
   root: {
-    maxWidth: 220,
+    maxWidth: 240,
     margin: '.4em',
   },
   link: {
     color: '#0368A3',
+  },
+  btn: {
+    color: '#0368A3',
+  },
+  btnBox: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 });
 
@@ -52,7 +62,12 @@ const TeamPage = () => {
   const annimation = true;
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Header />
         <Box width="100%" display="flex" id="body">
           <Box
@@ -65,7 +80,9 @@ const TeamPage = () => {
             alignItems="center"
             className="main-box"
           >
-            <h1 className="main-box__main-title">Qui se cache derrière O'Medocs ?</h1>
+            <h1 className="main-box__main-title">
+              Qui se cache derrière O'Medocs ?
+            </h1>
             <Box display="flex" flexWrap="wrap" p={4} justifyContent="center">
               <Grow
                 in={annimation}
@@ -83,7 +100,12 @@ const TeamPage = () => {
                       className={classes.img}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
                         Lambert
                       </Typography>
                       <Typography
@@ -96,11 +118,25 @@ const TeamPage = () => {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                  <CardActions>
-                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
+                  <CardActions className={classes.btnBox}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      href="https://github.com/LambertGuastavino"
+                      color="primary"
+                      className={classes.btn}
+                      startIcon={<GitHubIcon />}
+                    >
                       GitHub
                     </Button>
-                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      href="https://www.linkedin.com/in/lambert-guastavino-b8a811192/"
+                      color="primary"
+                      className={classes.btn}
+                      startIcon={<LinkedInIcon />}
+                    >
                       LinkeDin
                     </Button>
                   </CardActions>
@@ -122,7 +158,12 @@ const TeamPage = () => {
                       classname={classes.img}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
                         François
                       </Typography>
                       <Typography
@@ -135,11 +176,25 @@ const TeamPage = () => {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                  <CardActions>
-                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
+                  <CardActions className={classes.btnBox}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      color="primary"
+                      href="https://github.com/fmarc39"
+                      startIcon={<GitHubIcon />}
+                      className={classes.btn}
+                    >
                       GitHub
                     </Button>
-                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      href="https://www.linkedin.com/in/françois-marc-1a241661"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                      className={classes.btn}
+                    >
                       LinkeDin
                     </Button>
                   </CardActions>
@@ -161,7 +216,12 @@ const TeamPage = () => {
                       className={classes.img}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
                         Geoffrey
                       </Typography>
                       <Typography
@@ -174,11 +234,25 @@ const TeamPage = () => {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                  <CardActions>
-                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
+                  <CardActions className={classes.btnBox}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      color="primary"
+                      href="https://github.com/Geoffrey-Maillot"
+                      startIcon={<GitHubIcon />}
+                      className={classes.btn}
+                    >
                       GitHub
                     </Button>
-                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      href="https://www.linkedin.com/in/geoffrey-maillot-06a1411bb/"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                      className={classes.btn}
+                    >
                       LinkeDin
                     </Button>
                   </CardActions>
@@ -200,7 +274,12 @@ const TeamPage = () => {
                       className={classes.img}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
                         Zachary
                       </Typography>
                       <Typography
@@ -213,11 +292,25 @@ const TeamPage = () => {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                  <CardActions>
-                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
+                  <CardActions className={classes.btnBox}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      color="primary"
+                      startIcon={<GitHubIcon />}
+                      className={classes.btn}
+                      href="https://github.com/ZacharyBournand"
+                    >
                       GitHub
                     </Button>
-                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                      className={classes.btn}
+                      href="https://www.linkedin.com/in/zachary-bournand-6908a5168/"
+                    >
                       LinkeDin
                     </Button>
                   </CardActions>
@@ -235,11 +328,16 @@ const TeamPage = () => {
                       alt="img-scrum-master"
                       height="300"
                       image={Lambert}
-                      title="lambert-img"
-                      classname={classes.img}
+                      title="Bahri  -img"
+                      className={classes.img}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
                         Bahri
                       </Typography>
                       <Typography
@@ -248,15 +346,29 @@ const TeamPage = () => {
                         component="p"
                         align="center"
                       >
-                        Scrum Master
+                        Scrum master
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                  <CardActions>
-                    <Button size="small" color="primary" startIcon={<GitHubIcon />}>
+                  <CardActions className={classes.btnBox}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      color="primary"
+                      startIcon={<GitHubIcon />}
+                      className={classes.btn}
+                      href="https://github.com/ZacharyBournand"
+                    >
                       GitHub
                     </Button>
-                    <Button size="small" color="primary" startIcon={<LinkedInIcon />}>
+                    <Button
+                      size="small"
+                      target="blank"
+                      color="primary"
+                      startIcon={<LinkedInIcon />}
+                      className={classes.btn}
+                      href="https://www.linkedin.com/in/zachary-bournand-6908a5168/"
+                    >
                       LinkeDin
                     </Button>
                   </CardActions>

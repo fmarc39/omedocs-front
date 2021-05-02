@@ -83,7 +83,9 @@ export default (store) => (next) => (action) => {
         const { user_id, newEmail } = store.getState().user;
         api
           .patch(`/editmail/${user_id}`, { newEmail })
-          .then((response) => store.dispatch(saveNewMail(response.mail)))
+          .then((response) =>
+            store.dispatch(saveNewMail(response.data.profile.email))
+          )
           .catch((error) => console.log(error));
       }
       return next(action);
@@ -93,7 +95,9 @@ export default (store) => (next) => (action) => {
         const { user_id, newPhoneNumber } = store.getState().user;
         api
           .patch(`/editphone/${user_id}`, { newPhoneNumber })
-          .then((response) => store.dispatch(saveNewPhone(response.phone)))
+          .then((response) =>
+            store.dispatch(saveNewPhone(response.data.profile.phone_number))
+          )
           .catch((error) => console.log(error));
       }
       return next(action);

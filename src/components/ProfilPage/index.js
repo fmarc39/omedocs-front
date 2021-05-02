@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 // Import COMPONENTS
 import LeftMenu from 'src/containers/LeftMenu';
-import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 
 // Import from MATERIAL-UI
+import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,17 +17,26 @@ import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import DialogModal from 'src/containers/ModalChangeInformations';
 import Grow from '@material-ui/core/Grow';
+import { Typography } from '@material-ui/core';
+
+// Import Logo
+import profilLogo from 'src/assets/img/profiles.svg';
 
 // Import CSS
 import './styles.scss';
-
-// Import image
-import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
 
 // Modifications des stymes MATERIAL_UI
 const useStyles = makeStyles(() => ({
   field: {
     display: 'none',
+  },
+  btn: {
+    color: '#0368A3',
+  },
+  paper: {
+    overflow: 'hidden',
+    textAlign: 'center',
+    borderRadius: '15px',
   },
 }));
 
@@ -43,6 +52,8 @@ const ProfilPage = ({
   newEmail,
   newPhoneNumber,
   handleSave,
+  emailValidationForm,
+  phoneValidationForm,
 }) => {
   const classes = useStyles();
 
@@ -70,18 +81,27 @@ const ProfilPage = ({
   };
 
   const handleValidation = (event) => {
-    console.log(targetField);
-    console.log(newEmail);
+    if (targetField === 'editmail') {
+      emailValidationForm(targetField, newEmail);
+      setEditMailInputIsOpen(false);
+    } else if (targetField === 'editphone') {
+      phoneValidationForm(targetField, newPhoneNumber);
+      setEditPhoneInputIsOpen(false);
+    }
   };
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-        <Header />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            style={{ background: `url(${backgroundImage}) center center / cover` }}
+            bgcolor="#C6C6C6"
             height="100%"
             width="100%"
             p={2}
@@ -90,120 +110,177 @@ const ProfilPage = ({
             alignItems="center"
             justifyContent="center"
           >
-            <Box p={4} bgcolor="white" boxShadow={3} borderRadius="10px" className="profil-box">
-              <h2 className="profil-box__main-title">Vos informations</h2>
-              <div className="profil-box__content">
-                <div className="profil-box__content-elt">
-                  <p className="profil-box__content-elt__infos">Nom de l'organisme:</p>
-                  <p className="profil-box__content-elt__content">{establishment}</p>
-                </div>
-                <Divider color="primary" />
-                <div className="profil-box__content-elt">
-                  <p className={editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__infos'}>
-                    e-mail:
-                  </p>
-                  <IconButton onClick={handleEditMailBtn}>
-                    <EditIcon color="primary" />
-                  </IconButton>
-                  <p
-                    className={editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'}
-                  >
-                    {email}
-                  </p>
-                  <Grow
-                    in={editMailInputIsOpen}
-                    style={{ transformOrigin: '0 200 0' }}
-                    {...(editMailInputIsOpen ? { timeout: 1000 } : {})}
-                  >
-                    <TextField
-                      id="outlined-basic"
-                      label="E-mail"
-                      name="newEmail"
-                      variant="outlined"
-                      type="email"
-                      value={newEmail}
-                      onChange={handleChangeInput}
+            <Paper className={classes.paper}>
+              <Typography
+                variant="h6"
+                style={{
+                  padding: '15px',
+                  backgroundColor: '#0368A3',
+                  color: '#FFF',
+                }}
+              >
+                Votre profil
+              </Typography>
+              <Box
+                p={3}
+                bgcolor="white"
+                boxShadow={4}
+                borderRadius="15px"
+                className="profil-box"
+              >
+                <img
+                  className="profil-box__main-title"
+                  src={profilLogo}
+                  alt="profil-logo"
+                />
+                <div className="profil-box__content">
+                  <div className="profil-box__content-elt">
+                    <p className="profil-box__content-elt__infos">
+                      Nom de l'organisme:
+                    </p>
+                    <p className="profil-box__content-elt__content">
+                      {establishment}
+                    </p>
+                  </div>
+                  <Divider color="primary" />
+                  <div className="profil-box__content-elt">
+                    <p
                       className={
                         editMailInputIsOpen
-                          ? 'profil-box__content-elt__change-email'
-                          : classes.field
+                          ? 'hidden'
+                          : 'profil-box__content-elt__infos'
                       }
-                    />
-                  </Grow>
-                  <IconButton
-                    color="primary"
-                    onClick={handleSaveBtn}
-                    name="editmail"
-                    className={editMailInputIsOpen ? '' : classes.field}
-                  >
-                    <SaveIcon />
-                  </IconButton>
-                </div>
-                <Divider />
-                <div className="profil-box__content-elt">
-                  <p className={editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__infos'}>
-                    N° de téléphonne:
-                  </p>
-                  <IconButton aria-label="delete" onClick={handleEditPhoneNumberBtn}>
-                    <EditIcon color="primary" />
-                  </IconButton>
-                  <p
-                    className={editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'}
-                  >
-                    {phoneNumber}
-                  </p>
-                  <Grow
-                    in={editPhoneInputIsOpen}
-                    style={{ transformOrigin: '0 200 0' }}
-                    {...(editPhoneInputIsOpen ? { timeout: 1000 } : {})}
-                  >
-                    <TextField
-                      id="outlined-basic"
-                      label="N° de téléphonne"
-                      variant="outlined"
-                      name="newPhoneNumber"
-                      type="number"
-                      value={newPhoneNumber}
-                      onChange={handleChangeInput}
+                    >
+                      e-mail:
+                    </p>
+                    <IconButton
+                      onClick={handleEditMailBtn}
+                      className={classes.btn}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <p
+                      className={
+                        editMailInputIsOpen
+                          ? 'hidden'
+                          : 'profil-box__content-elt__content'
+                      }
+                    >
+                      {email}
+                    </p>
+                    <Grow
+                      in={editMailInputIsOpen}
+                      style={{ transformOrigin: '0 200 0' }}
+                      {...(editMailInputIsOpen ? { timeout: 1000 } : {})}
+                    >
+                      <TextField
+                        label="E-mail"
+                        name="newEmail"
+                        variant="outlined"
+                        type="email"
+                        value={newEmail}
+                        onChange={handleChangeInput}
+                        className={
+                          editMailInputIsOpen
+                            ? 'profil-box__content-elt__change-email'
+                            : classes.field
+                        }
+                      />
+                    </Grow>
+                    <IconButton
+                      color="primary"
+                      onClick={handleSaveBtn}
+                      name="editmail"
+                      className={editMailInputIsOpen ? '' : classes.field}
+                    >
+                      <SaveIcon />
+                    </IconButton>
+                  </div>
+                  <Divider />
+                  <div className="profil-box__content-elt">
+                    <p
                       className={
                         editPhoneInputIsOpen
-                          ? 'profil-box__content-elt__change-phone-number'
-                          : classes.field
+                          ? 'hidden'
+                          : 'profil-box__content-elt__infos'
                       }
-                    />
-                  </Grow>
-                  <IconButton
-                    color="primary"
-                    onClick={handleSaveBtn}
-                    name="editphone"
-                    className={editPhoneInputIsOpen ? '' : classes.field}
-                  >
-                    <SaveIcon />
-                  </IconButton>
+                    >
+                      N° de téléphonne:
+                    </p>
+                    <IconButton
+                      aria-label="delete"
+                      onClick={handleEditPhoneNumberBtn}
+                      className={classes.btn}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <p
+                      className={
+                        editPhoneInputIsOpen
+                          ? 'hidden'
+                          : 'profil-box__content-elt__content'
+                      }
+                    >
+                      {phoneNumber}
+                    </p>
+                    <Grow
+                      in={editPhoneInputIsOpen}
+                      style={{ transformOrigin: '0 200 0' }}
+                      {...(editPhoneInputIsOpen ? { timeout: 1000 } : {})}
+                    >
+                      <TextField
+                        label="N° de téléphonne"
+                        variant="outlined"
+                        name="newPhoneNumber"
+                        type="tel"
+                        value={newPhoneNumber}
+                        onChange={handleChangeInput}
+                        className={
+                          editPhoneInputIsOpen
+                            ? 'profil-box__content-elt__change-phone-number'
+                            : classes.field
+                        }
+                      />
+                    </Grow>
+                    <IconButton
+                      color="primary"
+                      onClick={handleSaveBtn}
+                      name="editphone"
+                      className={editPhoneInputIsOpen ? '' : classes.field}
+                    >
+                      <SaveIcon />
+                    </IconButton>
+                  </div>
+                  <Divider />
+                  <div className="profil-box__content-elt">
+                    <p className="profil-box__content-elt__infos">RPPS:</p>
+                    <p className="profil-box__content-elt__content">{rpps}</p>
+                  </div>
+                  <Divider />
+                  <div className="profil-box__content-elt">
+                    <p className="profil-box__content-elt__infos">Ville:</p>
+                    <p className="profil-box__content-elt__content">{city}</p>
+                  </div>
+                  <Divider />
+                  <div className="profil-box__content-elt">
+                    <p className="profil-box__content-elt__infos">Adresse:</p>
+                    <p className="profil-box__content-elt__content">
+                      {address}
+                    </p>
+                  </div>
+                  <Divider />
+                  <div className="profil-box__content-elt">
+                    <p className="profil-box__content-elt__infos">
+                      Code postal:
+                    </p>
+                    <p className="profil-box__content-elt__content">
+                      {zipCode}
+                    </p>
+                  </div>
                 </div>
-                <Divider />
-                <div className="profil-box__content-elt">
-                  <p className="profil-box__content-elt__infos">RPPS:</p>
-                  <p className="profil-box__content-elt__content">{rpps}</p>
-                </div>
-                <Divider />
-                <div className="profil-box__content-elt">
-                  <p className="profil-box__content-elt__infos">Ville:</p>
-                  <p className="profil-box__content-elt__content">{city}</p>
-                </div>
-                <Divider />
-                <div className="profil-box__content-elt">
-                  <p className="profil-box__content-elt__infos">Adresse:</p>
-                  <p className="profil-box__content-elt__content">{address}</p>
-                </div>
-                <Divider />
-                <div className="profil-box__content-elt">
-                  <p className="profil-box__content-elt__infos">Code postal:</p>
-                  <p className="profil-box__content-elt__content">{zipCode}</p>
-                </div>
-              </div>
-              <DialogModal validation={handleValidation} />
-            </Box>
+                <DialogModal validation={handleValidation} />
+              </Box>
+            </Paper>
           </Box>
         </Box>
         <Footer />
@@ -224,6 +301,8 @@ ProfilPage.propTypes = {
   newEmail: PropTypes.string.isRequired,
   newPhoneNumber: PropTypes.string.isRequired,
   handleSave: PropTypes.func.isRequired,
+  emailValidationForm: PropTypes.func.isRequired,
+  phoneValidationForm: PropTypes.func.isRequired,
 };
 
 export default ProfilPage;

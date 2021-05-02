@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // Import COMPONENTS
 import LeftMenu from 'src/containers/LeftMenu';
-import Header from 'src/components/Header';
+
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 
@@ -66,11 +66,12 @@ const SearchPharmacy = ({
   return (
     <>
       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-        <Header />
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            style={{ background: `url(${backgroundImage}) center center / cover` }}
+            style={{
+              background: `url(${backgroundImage}) center center / cover`,
+            }}
             height="100%"
             width="100%"
             p={4}

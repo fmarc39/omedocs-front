@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import LeftMenu from 'src/containers/LeftMenu';
 import Button from '@material-ui/core/Button';
@@ -31,7 +30,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoading }) => {
+const InventoryPage = ({
+  inventoryData,
+  handleAddArticle,
+  fetchInventory,
+  isLoading,
+}) => {
   // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
   console.log(inventoryData);
   inventoryData.map((drug) => console.log(drug));
@@ -46,8 +50,12 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoad
   const classes = useStyles();
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-        <Header />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
@@ -57,7 +65,9 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoad
             display="flex"
             flexDirection="column"
             alignItems="center"
-            style={{ background: `url(${backgroundImage}) center center / cover` }}
+            style={{
+              background: `url(${backgroundImage}) center center / cover`,
+            }}
           >
             <Box
               display="flex"

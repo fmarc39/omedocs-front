@@ -32,6 +32,17 @@ const useStyles = makeStyles(() => ({
     fontSize: '1.2rem',
     flexShrink: 0,
   },
+  btn: {
+    background: '#0368A3',
+    '&:hover': {
+      background: '#CDD0D4',
+      color: '#0368A3',
+    },
+    borderRadius: '15px',
+  },
+  accordion: {
+    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+  },
 }));
 
 const AccordionsPharmacyDetails = ({ establishment, setOpen }) => {
@@ -44,7 +55,11 @@ const AccordionsPharmacyDetails = ({ establishment, setOpen }) => {
 
   return (
     <div className={classes.root}>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <Accordion
+        expanded={expanded === 'panel1'}
+        onChange={handleChange('panel1')}
+        className={classes.accordion}
+      >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -55,7 +70,9 @@ const AccordionsPharmacyDetails = ({ establishment, setOpen }) => {
             style={{ marginRight: '20px' }}
             color={establishment[0].user_type === 'hospital' ? 'red' : 'green'}
           />
-          <Typography className={classes.heading}>{establishment[0].establishment}</Typography>
+          <Typography className={classes.heading}>
+            {establishment[0].establishment}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.body}>
           <Box
@@ -67,7 +84,7 @@ const AccordionsPharmacyDetails = ({ establishment, setOpen }) => {
             width="100%"
             boxShadow={2}
             p={2}
-            bgcolor="rgb(155, 230, 247, 0.2)"
+            bgcolor="#FFF"
           >
             <p>{establishment[0].address}</p>
             <p>{establishment[0].zip_code}</p>
@@ -77,7 +94,7 @@ const AccordionsPharmacyDetails = ({ establishment, setOpen }) => {
               color="primary"
               size="small"
               id="phoneBtn"
-              className={classes.button}
+              className={classes.btn}
               href={`tel: ${establishment[0].phone_number}`}
               startIcon={<PhoneForwardedIcon />}
             >
@@ -88,7 +105,7 @@ const AccordionsPharmacyDetails = ({ establishment, setOpen }) => {
               variant="contained"
               color="primary"
               size="small"
-              className={classes.button}
+              className={classes.btn}
               startIcon={<EmailIcon />}
               href={`mailto: ${establishment[0].email}`}
             >

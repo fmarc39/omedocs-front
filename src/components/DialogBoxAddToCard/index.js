@@ -34,12 +34,16 @@ const useStyles = makeStyles({
   },
 });
 
-const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
+const DialogChangeInformationsModal = ({ isOpen, handleClose, handleRedirect }) => {
   // Je récupère l'url actuelle
   const path = useHistory();
 
   const handleCloseBtn = () => {
     handleClose();
+  };
+
+  const handleRedirectBtn = () => {
+    handleRedirect();
   };
 
   const classes = useStyles();
@@ -65,10 +69,8 @@ const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
           </Button>
           {/* Si je suis sur l'url d'un établissement, je n'affiche pas le bouton de redirection */}
           {!path.location.pathname.match('/establishment/') ? (
-            <Button onClick={handleCloseBtn} className={classes.btn} Icon={<StorefrontIcon />}>
-              <Link to="/cart" style={{ textDecoration: 'none' }}>
-                Acceder à la boutique de la pharmacie
-              </Link>
+            <Button onClick={handleRedirectBtn} className={classes.btn} Icon={<StorefrontIcon />}>
+              Acceder à la boutique de la pharmacie
             </Button>
           ) : null}
         </DialogActions>
@@ -79,7 +81,8 @@ const DialogChangeInformationsModal = ({ isOpen, handleClose }) => {
 
 DialogChangeInformationsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  handleClose: PropTypes.bool.isRequired,
+  handleRedirect: PropTypes.func.isRequired,
 };
 
 export default DialogChangeInformationsModal;

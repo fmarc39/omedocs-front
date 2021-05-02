@@ -1,10 +1,15 @@
 import api from 'src/api/api';
-import { openSnackBar, closeModalProduct, onOffLoading } from 'src/actions/utils';
+import {
+  openSnackBar,
+  closeModalProduct,
+  onOffLoading,
+} from 'src/actions/utils';
 import {
   DELETE_ROW_FROM_INVENTORY,
   SUBMIT_ADD_PRODUCT,
   FETCH_INVENTORY,
   SAVE_NEW_QUANTITY_FROM_INVENTORY,
+  saveNewQuantity,
   saveInventory,
   deleteRowFromState,
   saveNewProductInInventory,
@@ -37,7 +42,7 @@ export default (store) => (next) => (action) => {
       api
         .delete(`/deleteProduct/${action.rowId}`)
         .then((result) => {
-          store.dispatch(deleteRowFromState(result.data.product[0].id));
+          store.dispatch(deleteRowFromState(result.data.product.id));
         })
         .catch((error) => {
           console.log(error);
@@ -49,7 +54,14 @@ export default (store) => (next) => (action) => {
         .patch(`/modifyProduct/${action.fieldId}`, {
           quantity: action.fieldValue,
         })
-        .then((result) => console.log(result));
+        .then((result) =>
+          store.dispatch(
+            saveNewQuantity(
+              result.data.product.quantity,
+              result.data.product.id
+            )
+          )
+        );
 
       return next(action);
     case SUBMIT_ADD_PRODUCT: {

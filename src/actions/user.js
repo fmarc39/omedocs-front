@@ -50,6 +50,18 @@ export const saveNewPhone = (phone) => ({
   phone,
 });
 
+export const changeUserMail = (querry, value) => ({
+  type: CHANGE_USER_MAIL,
+  querry,
+  value,
+});
+
+export const changeUserPhone = (querry, value) => ({
+  type: CHANGE_USER_PHONE,
+  querry,
+  value,
+});
+
 export const loginFromRehydrate = (
   accessToken,
   establishment,

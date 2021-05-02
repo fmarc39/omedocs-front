@@ -7,11 +7,12 @@ import search from 'src/midlewares/search';
 import inscription from 'src/midlewares/inscription';
 import map from 'src/midlewares/map';
 import count from 'src/midlewares/count';
+import cart from 'src/midlewares/cart';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // On liste les middleware dans "applyMiddleware"
 const enhancers = composeEnhancers(
-  applyMiddleware(auth, inscription, inventory, search, map, count),
+  applyMiddleware(auth, inscription, cart, inventory, search, map, count),
 );
 
 const store = createStore(reducer, enhancers);

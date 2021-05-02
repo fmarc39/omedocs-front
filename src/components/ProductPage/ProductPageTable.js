@@ -1,6 +1,7 @@
 // Import REACT
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link, useHistory } from 'react-router-dom';
 
 // Import from MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,9 +15,13 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import ConfirmationBox from 'src/containers/DialogBoxAddToCart';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import { Typography } from '@material-ui/core';
+
+// Import Img
+import noResultsLogo from 'src/assets/img/no-results.svg';
 
 // Import CSS
 import './styles.scss';
@@ -24,11 +29,11 @@ import './styles.scss';
 // Configuration des colones avec le nom, le label, la largeur
 const columns = [
   { id: 'name', label: 'Nom', minWidth: 300 },
-  { id: 'pharmacyName', label: 'Nom de la Pharmacie', minWidth: 200 },
-  { id: 'expirationDate', label: "Date d'expiration" },
+  { id: 'pharmacyName', label: 'Nom de la Pharmacie', minWidth: 250 },
+  { id: 'expirationDate', label: "Date d'expiration", minWidth: 50 },
   { id: 'quantity', label: 'Quantité disponible', minWidth: 50 },
-  { id: 'price', label: 'Prix unitaire H.T', minWidth: 50 },
-  { id: 'addToCart', minWidth: 150 },
+  { id: 'price', label: 'Prix unitaire H.T', minWidth: 70 },
+  { id: 'addToCart', minWidth: 130 },
 ];
 
 // Fonction qui va insérer les données dans le tableau
@@ -68,12 +73,18 @@ const useStyles = makeStyles({
   addToCartBtn: {
     color: '#0368A3',
   },
+  quantityInput: {
+    marginRight: '1rem',
+    width: '90px',
+    color: '#0368A3',
+  },
 });
 
 const ProductTable = ({
   addToCart,
   products,
   openDialogBox,
+  closeDialogBox,
   cartData,
   pharmacyToOrder,
   openSnackBar,
@@ -81,14 +92,30 @@ const ProductTable = ({
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const history = useHistory();
+  const [userId, setUserId] = useState('');
 
+  // Gestion du changement de page dans notre tableau de résultats
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  // Gestion du nombre de pages dans le tableau
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  // fonction qui va permettre de récuperer l'id de l'user au moment du clique sur
+  // le btn de l'ajout au panier
+  const getUserId = (event) => {
+    setUserId(Number(event.target.closest('button').name));
+  };
+
+  // Gestion de la redirection sur la page de la pharmacie au moment
+  // du click sur le btn "aller sur la page pharmacie"
+  const handleRedirect = () => {
+    closeDialogBox();
+    history.push(`/establishment/${userId}`);
   };
 
   // Reset de la valeur de tous les inputs
@@ -163,7 +190,7 @@ const ProductTable = ({
         handleReset();
         // On envois les data dans le panier via un action
         addToCart(dataToSendToCart, pharmacyid);
-        // On envois l'action pour l'ouverture de la dialogBox
+        // On envois l'action pour l'ouverture de la dialogBox add to cart
         openDialogBox();
       }
     } else {
@@ -181,7 +208,9 @@ const ProductTable = ({
     createData(
       product.id,
       product.name,
-      product.establishment,
+      <Link to={`/establishment/${product.user_id}`}>
+        {product.establishment}
+      </Link>,
       product.expiration_date,
       product.quantity,
       `${product.unit_price}  €`,
@@ -202,11 +231,15 @@ const ProductTable = ({
           <TextField
             label="quantité"
             type="number"
+            className={classes.quantityInput}
             name="quantityToBuy"
             InputProps={{ inputProps: { min: 1, max: product.quantity } }}
           />
+
           <IconButton
             variant="contained"
+            onClick={getUserId}
+            name={product.user_id}
             type="submit"
             color="primary"
             className={classes.addToCartBtn}
@@ -264,6 +297,7 @@ const ProductTable = ({
               </TableBody>
             </Table>
           </TableContainer>
+          <ConfirmationBox handleRedirect={handleRedirect} />
           <TablePagination
             rowsPerPageOptions={[10, 25, 50, { value: -1, label: 'Tous' }]}
             labelRowsPerPage="Résultats par page"
@@ -276,9 +310,18 @@ const ProductTable = ({
           />
         </>
       ) : (
-        <h1 style={{ padding: '5px', fontWeight: '700' }}>
-          Il n'y a aucun stock pour ce médicament
-        </h1>
+        <Box p={4}>
+          <h1
+            style={{ padding: '5px', fontWeight: '700', marginBottom: '2rem' }}
+          >
+            Cette référence n'est pas disponible à la vente
+          </h1>
+          <img
+            style={{ width: '150px' }}
+            src={noResultsLogo}
+            alt="no-results-logo"
+          />
+        </Box>
       )}
     </Paper>
   );

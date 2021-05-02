@@ -23,17 +23,15 @@ import Home from 'src/containers/Home';
 import Checkout from 'src/components/Stripe/Checkout';
 import Success from 'src/components/Stripe/Success';
 import Canceled from 'src/components/Stripe/Canceled';
+import OrderHistory from 'src/components/HistoryPage';
 
 import './styles.scss';
 import { DonutLargeSharp } from '@material-ui/icons';
+import HistoryPage from '../HistoryPage';
 
-const App = ({ isLoading, logged, rehydrate }) => {
+const App = ({ logged, rehydrate }) => {
   useEffect(() => {
     rehydrate();
-    // const cartFromLocalStorage = localStorage.getItem('cart');
-    // if (!cartFromLocalStorage) {
-    //   localStorage.setItem('cart', []);
-    // }
   }, []);
 
   // Sauvegarde du state dans le local storage pour pouvoir faire perssisté le panier
@@ -72,6 +70,10 @@ const App = ({ isLoading, logged, rehydrate }) => {
         <Route exact path="/cart">
           {!logged ? <Redirect to="/" /> : <Cart />}
         </Route>
+        <Route exact path="/history">
+          <HistoryPage />
+          {/* {!logged ? <Redirect to="/" /> : <OrderHistory />} */}
+        </Route>
         <Route path="/success">
           <Success />
         </Route>
@@ -84,6 +86,7 @@ const App = ({ isLoading, logged, rehydrate }) => {
         <Route exact path="/teampage">
           <TeamPage />
         </Route>
+
         <Route path="*">
           <Page404 />
         </Route>
@@ -93,7 +96,6 @@ const App = ({ isLoading, logged, rehydrate }) => {
 };
 
 App.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   logged: PropTypes.bool.isRequired,
   rehydrate: PropTypes.func.isRequired,
 };
