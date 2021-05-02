@@ -32,6 +32,32 @@ export const initialState = {
   password: '',
   confirmPassword: '',
   fieldToChange: '',
+  orderHistory: [
+    {
+      orderNumber: 120,
+      orderDate: '31/01/2020',
+      totalPrice: 230,
+      status: 'payé',
+    },
+    {
+      orderNumber: 121,
+      orderDate: '31/01/2020',
+      totalPrice: 230,
+      status: 'payé',
+    },
+    {
+      orderNumber: 122,
+      orderDate: '31/01/2020',
+      totalPrice: 230,
+      status: 'payé',
+    },
+    {
+      orderNumber: 123,
+      orderDate: '31/01/2020',
+      totalPrice: 230,
+      status: 'payé',
+    },
+  ],
   logged: false,
   accessToken: null,
   changeInformationsModal: false,

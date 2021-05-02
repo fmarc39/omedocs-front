@@ -4,6 +4,7 @@ import {
   deleteArticleFromCart,
   increasesArticleQuantity,
   descreasesArticleQuantity,
+  saveOrderInDb,
 } from 'src/actions/cart';
 import { withRouter } from 'react-router-dom';
 
@@ -20,6 +21,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   remmoveQuantity: (productId) => {
     dispatch(descreasesArticleQuantity(productId));
+  },
+  saveOrder: (totalPrice) => {
+    dispatch(saveOrderInDb(totalPrice));
   },
 });
 

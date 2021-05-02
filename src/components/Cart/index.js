@@ -20,7 +20,6 @@ import { toast } from 'react-toastify';
 // IMPORT MATERIAL-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-import Slide from '@material-ui/core/Slide';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -217,6 +216,7 @@ const CartPage = ({
   price,
   addQuantity,
   remmoveQuantity,
+  saveOrder,
 }) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -246,6 +246,11 @@ const CartPage = ({
       </IconButton>
     )
   );
+
+  const handleTest = (event) => {
+    console.log('ok ');
+    saveOrder(event.target.closest('button').name);
+  };
 
   const handleRemoveBtn = (event) => {
     event.preventDefault();
@@ -330,18 +335,16 @@ const CartPage = ({
               </Box>
             )}
             {cartData.length !== 0 && (
-              <Slide direction="down" in="true" mountOnEnter unmountOnExit>
-                <Box
-                  className="cart-box"
-                  p={2}
-                  mb={2}
-                  borderRadius="10px"
-                  align="center"
-                  boxShadow={4}
-                >
-                  <h4 className="cart-box__title"> Votre panier </h4>
-                </Box>
-              </Slide>
+              <Box
+                className="cart-box"
+                p={2}
+                mb={2}
+                borderRadius="10px"
+                align="center"
+                boxShadow={4}
+              >
+                <h4 className="cart-box__title"> Votre panier </h4>
+              </Box>
             )}
 
             <div className={classes.root}>
@@ -446,6 +449,12 @@ const CartPage = ({
                       />
                     </div>
                   </TableContainer>
+                  <IconButton
+                    onClick={handleTest}
+                    name={ccyFormat(invoiceTotal)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
                 </Paper>
               )}
             </div>
@@ -461,8 +470,13 @@ CartPage.propTypes = {
   deleteArticle: PropTypes.func.isRequired,
   addQuantity: PropTypes.func.isRequired,
   remmoveQuantity: PropTypes.func.isRequired,
-  price: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  price: PropTypes.number,
+  title: PropTypes.string,
+};
+
+CartPage.defaultProps = {
+  price: 0,
+  title: '',
 };
 
 export default CartPage;

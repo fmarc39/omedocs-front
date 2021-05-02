@@ -78,7 +78,7 @@ const AccordionsPharmacyDetails = ({ establishment }) => {
             width="100%"
             boxShadow={2}
             p={2}
-            bgcolor="FFF"
+            bgcolor="#FFF"
           >
             <p>{establishment[0].address}</p>
             <p>{establishment[0].zip_code}</p>

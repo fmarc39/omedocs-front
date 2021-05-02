@@ -125,7 +125,6 @@ const ProfilPage = ({
                 p={3}
                 bgcolor="white"
                 boxShadow={4}
-                borderRadiusBott
                 borderRadius="15px"
                 className="profil-box"
               >
