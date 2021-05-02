@@ -1,5 +1,5 @@
 // Import React
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Import COMPONENTS
 import Header from 'src/components/Header';
@@ -41,6 +41,14 @@ const useStyles = makeStyles({
 
 const TeamPage = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   const annimation = true;
   return (
     <>

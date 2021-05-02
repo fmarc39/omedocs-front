@@ -3,20 +3,12 @@ import React from 'react';
 import './styles.scss';
 
 // Import Components
-import Header from 'src/components/Header';
-import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import drugLogo from 'src/assets/medicine.svg';
 
 const index = () => (
   <>
-    <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="space-between"
-      height="100vh"
-    >
-      <Header />
+    <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
       <Box height="100%" width="100%" display="flex" id="body">
         <Box
           bgcolor="#FFF"
@@ -55,7 +47,6 @@ const index = () => (
           </div>
         </Box>
       </Box>
-      <Footer />
     </Box>
   </>
 );
