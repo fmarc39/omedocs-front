@@ -21,6 +21,8 @@ import money from 'src/assets/img/bank.svg';
 import idea from 'src/assets/img/puzzle.svg';
 import scrollBtn from 'src/assets/img/scroll.svg';
 import upArrow from 'src/assets/img/up-arrow.svg';
+import screen1 from 'src/assets/img/screen-add-product.jpg';
+import screen2 from 'src/assets/img/screen-page-establishment.jpg';
 
 // Import CSS
 import './styles.scss';
@@ -103,11 +105,7 @@ const HomePage = () => {
               Connexion
             </Link>
           </nav>
-          <button
-            className="header__hamburger"
-            type="button"
-            onClick={activeMenu}
-          >
+          <button className="header__hamburger" type="button" onClick={activeMenu}>
             {active ? <GrClose size="2rem" /> : <HiMenu size="2.5rem" />}
           </button>
         </div>
@@ -126,27 +124,14 @@ const HomePage = () => {
           <img src={scrollBtn} alt="scroll-btn" className="scroll-btn" />
         </a>
         <div className="header__login-btn">
-          <Link
-            className="login"
-            to="/login"
-            style={{ textDecoration: 'none' }}
-          >
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              size="large"
-            >
+          <Link className="login" to="/login" style={{ textDecoration: 'none' }}>
+            <Button className={classes.button} variant="contained" color="primary" size="large">
               Connexion/ Inscription
             </Button>
           </Link>
         </div>
         <a onClick={scrollToTop}>
-          <img
-            src={upArrow}
-            alt="scroll-btn"
-            className={visible ? 'showBtn' : 'scroll-top-btn'}
-          />
+          <img src={upArrow} alt="scroll-btn" className={visible ? 'showBtn' : 'scroll-top-btn'} />
         </a>
       </header>
 
@@ -156,13 +141,10 @@ const HomePage = () => {
         </div>
         <InView triggerOnce="true" threshold={threshold}>
           {({ inView, ref }) => (
-            <div
-              ref={ref}
-              className={inView ? 'goal__content' : 'goal__content-hide'}
-            >
+            <div ref={ref} className={inView ? 'goal__content' : 'goal__content-hide'}>
               <p className="goal__content--text">
-                Mettre en relation les professionnels de la santé pour luttre
-                contre le gaspillage des médicaments.
+                Mettre en relation les professionnels de la santé pour luttre contre le gaspillage
+                des médicaments.
               </p>
               <div className="goal__content--img" />
             </div>
@@ -178,53 +160,34 @@ const HomePage = () => {
         </div>
         <InView triggerOnce="true" threshold={threshold}>
           {({ inView, ref }) => (
-            <div
-              className={inView ? 'why__content' : 'why__content__hide'}
-              ref={ref}
-            >
+            <div className={inView ? 'why__content' : 'why__content__hide'} ref={ref}>
               <div className="why__content--card">
-                <img
-                  className="why__content--card-img"
-                  src={pharmacy}
-                  alt="pharmacy"
-                />
+                <img className="why__content--card-img" src={pharmacy} alt="pharmacy" />
                 <p className="why__content--card-text">
-                  Actuellement en France, les pharmacies n'ont pas le droit de
-                  vendre des médicaments dont la date de péremption est
-                  inférieur à 3 à 6 mois.
+                  Actuellement en France, les pharmacies n'ont pas le droit de vendre des
+                  médicaments dont la date de péremption est inférieur à 3 à 6 mois.
                 </p>
               </div>
               <div className="why__content--card">
-                <img
-                  className="why__content--card-img"
-                  src={money}
-                  alt="money"
-                />
+                <img className="why__content--card-img" src={money} alt="money" />
                 <p className="why__content--card-text">
-                  Conséquence, les stock sont détruient. En moyenne un
-                  pharmacien détruit pour 15 000€ de médicament par ans sans
-                  compté les tonnes de déchets que cela représente.
+                  Conséquence, les stock sont détruient. En moyenne un pharmacien détruit pour 15
+                  000€ de médicament par ans sans compté les tonnes de déchets que cela représente.
                 </p>
               </div>
               <div className="why__content--card">
-                <img
-                  className="why__content--card-img"
-                  src={hopital}
-                  alt="hopital"
-                />
+                <img className="why__content--card-img" src={hopital} alt="hopital" />
                 <p className="why__content--card-text">
-                  A contrario, les hôpitaux peuvent continuer à donner ces
-                  médicaments jusqu'à péremption pendant la durée de séjour d'un
-                  patient.
+                  A contrario, les hôpitaux peuvent continuer à donner ces médicaments jusqu'à
+                  péremption pendant la durée de séjour d'un patient.
                 </p>
               </div>
               <div className="why__content--card">
                 <img className="why__content--card-img" src={idea} alt="idea" />
                 <p className="why__content--card-text">
-                  Notre solution: O'médocs met à disposition une plateforme pour
-                  que pharmacies et hôpitaux agissent ensemble. Les stock
-                  invendable seront mis sur la plateforme par les pharmacies
-                  pour que les hopitaux puissent les acheter à prix réduit
+                  Notre solution: O'médocs met à disposition une plateforme pour que pharmacies et
+                  hôpitaux agissent ensemble. Les stock invendable seront mis sur la plateforme par
+                  les pharmacies pour que les hopitaux puissent les acheter à prix réduit
                 </p>
               </div>
             </div>
@@ -242,29 +205,29 @@ const HomePage = () => {
         <div className="services__content">
           <InView triggerOnce="true" threshold={threshold}>
             {({ inView, ref }) => (
-              <div
-                className={inView ? 'content-top' : 'content-top__right'}
-                ref={ref}
-              >
+              <div className={inView ? 'content-top' : 'content-top__right'} ref={ref}>
                 <p className="content-top__text">
-                  Gérer votre stock de médicament invendable et mettez le à
-                  disposition sur notre plateforme
+                  Gérer votre stock de médicament invendable et mettez le à disposition sur notre
+                  plateforme
                 </p>
-                <div className="content-top__img" />
+                <div className="content-top__img">
+                  {' '}
+                  <img src={screen1} alt="screen-add-product" />
+                </div>
               </div>
             )}
           </InView>
 
           <InView triggerOnce="true" threshold={threshold}>
             {({ inView, ref }) => (
-              <div
-                className={inView ? 'content-bottom' : 'content-bottom__left'}
-                ref={ref}
-              >
-                <div className="content-bottom__img" />
+              <div className={inView ? 'content-bottom' : 'content-bottom__left'} ref={ref}>
+                <div className="content-bottom__img">
+                  {' '}
+                  <img src={screen2} alt="sreen-page-establishment" />
+                </div>
                 <p className="content-bottom__text">
-                  Consulter la liste de médicaments disponible sur la
-                  plateforme, rechercher une pharmacie et consulter son stock
+                  Consulter la liste de médicaments disponible sur la plateforme, rechercher une
+                  pharmacie et consulter son stock
                 </p>
               </div>
             )}

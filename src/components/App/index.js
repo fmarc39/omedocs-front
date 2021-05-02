@@ -49,29 +49,23 @@ const App = ({ logged, rehydrate }) => {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route exact path="/login">
-          {logged ? <Redirect to="/home" /> : <LoginForm />}
-        </Route>
+        <Route path="/login">{logged ? <Redirect to="/home" /> : <LoginForm />}</Route>
         <Route exact path="/home">
-          <Home />
+          {!logged ? <Redirect to="/" /> : <Home />}
         </Route>
         <Route exact path="/login/reset">
           <ResetPassword />
         </Route>
         <Route path="/profil">{!logged ? <Redirect to="/" /> : <ProfilPage />}</Route>
         <Route path="/inventory">{!logged ? <Redirect to="/" /> : <InventoryPage />}</Route>
-        <Route path="/establishment/:id">
-          <PharmacyPage />
-        </Route>
+        <Route path="/establishment/:id">{!logged ? <Redirect to="/" /> : <PharmacyPage />}</Route>
         <Route path="/searchproduct">{!logged ? <Redirect to="/" /> : <SearchProduct />}</Route>
         <Route path="/searchestablishement">
           {!logged ? <Redirect to="/" /> : <SearchPharmachy />}
         </Route>
-        <Route exact path="/cart">
-          {!logged ? <Redirect to="/" /> : <Cart />}
-        </Route>
-        <Route exact path="/history">
-          <HistoryPage />
+        <Route path="/cart">{!logged ? <Redirect to="/" /> : <Cart />}</Route>
+        <Route path="/history">
+          {!logged ? <Redirect to="/" /> : <HistoryPage />}
           {/* {!logged ? <Redirect to="/" /> : <OrderHistory />} */}
         </Route>
         <Route path="/success">
@@ -83,7 +77,7 @@ const App = ({ logged, rehydrate }) => {
         <Route path="/checkout">
           <Checkout />
         </Route>
-        <Route exact path="/teampage">
+        <Route path="/teampage">
           <TeamPage />
         </Route>
 
