@@ -73,6 +73,7 @@ const PharmacyTable = ({
   pharmacyToOrder,
   cartData,
   openSnackBar,
+  userType,
 }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -127,9 +128,12 @@ const PharmacyTable = ({
     };
     // Fonction qui va vérifier si l'article est déja présent dans le panier
     const isAlreadyInCart = cartData.some((article) => article.id === id);
-
-    // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
-    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
+    // On vérifie que l'utilisateur est bien un hôpital
+    if (userType !== 'hospital') {
+      handleShake(event);
+      openSnackBar("Vous devez être connecté en tant qu'hôpital", 'warning');
+      // On va vérifier que la quantité n'est pas supérieur à la quantité dispo de l'article
+    } else if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
       handleShake(event);
     } // On vérifie si le produit est déja dans le panier
     else if (isAlreadyInCart === true) {
@@ -291,6 +295,7 @@ PharmacyTable.propTypes = {
   cartData: PropTypes.arrayOf(PropTypes.object).isRequired,
   openSnackBar: PropTypes.func.isRequired,
   pharmacyToOrder: PropTypes.number.isRequired,
+  userType: PropTypes.string.isRequired,
 };
 
 PharmacyTable.defaultProps = {

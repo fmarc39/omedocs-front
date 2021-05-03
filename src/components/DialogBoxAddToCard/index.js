@@ -62,14 +62,18 @@ const DialogChangeInformationsModal = ({ isOpen, handleClose, handleRedirect }) 
           <p className="head-title">Que souhaitez vous faire ?</p>
         </DialogTitle>
         <DialogActions style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button onClick={handleCloseBtn} className={classes.btn} Icon={<ShoppingCartIcon />}>
+          <Button onClick={handleCloseBtn} className={classes.btn} endIcon={<ShoppingCartIcon />}>
             <Link to="/cart" style={{ textDecoration: 'none' }}>
               Acceder à votre panier
             </Link>
           </Button>
           {/* Si je suis sur l'url d'un établissement, je n'affiche pas le bouton de redirection */}
           {!path.location.pathname.match('/establishment/') ? (
-            <Button onClick={handleRedirectBtn} className={classes.btn} Icon={<StorefrontIcon />}>
+            <Button
+              onClick={handleRedirectBtn}
+              className={classes.btn}
+              endIcon={<StorefrontIcon />}
+            >
               Acceder à la boutique de la pharmacie
             </Button>
           ) : null}

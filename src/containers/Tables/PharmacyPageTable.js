@@ -7,6 +7,7 @@ import { openSnackBar } from 'src/actions/utils';
 const mapStateToProps = (state) => ({
   pharmacyToOrder: state.cart.pharmacyToOrder,
   cartData: state.cart.cart,
+  userType: state.user.userType,
 });
 
 const mapDispatchToProps = (dispatch) => ({

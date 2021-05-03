@@ -69,7 +69,7 @@ const LoginForm = ({
         display="flex"
         flexDirection="column"
         justifyContent="center"
-        minHeight="calc(100vh - 165.46px)"
+        minHeight="calc(100vh - 143.46px)"
       >
         <Box
           width="100%"

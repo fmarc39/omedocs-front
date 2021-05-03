@@ -22,6 +22,9 @@ import { Typography } from '@material-ui/core';
 // Import Logo
 import profilLogo from 'src/assets/img/profiles.svg';
 
+// import Image
+import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
+
 // Import CSS
 import './styles.scss';
 
@@ -92,12 +95,7 @@ const ProfilPage = ({
 
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
@@ -109,6 +107,9 @@ const ProfilPage = ({
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
+            style={{
+              background: `url(${backgroundImage}) center center / cover`,
+            }}
           >
             <Paper className={classes.paper}>
               <Typography
@@ -121,49 +122,26 @@ const ProfilPage = ({
               >
                 Votre profil
               </Typography>
-              <Box
-                p={3}
-                bgcolor="white"
-                boxShadow={4}
-                borderRadius="15px"
-                className="profil-box"
-              >
-                <img
-                  className="profil-box__main-title"
-                  src={profilLogo}
-                  alt="profil-logo"
-                />
+              <Box p={3} bgcolor="white" boxShadow={4} borderRadius="15px" className="profil-box">
+                <img className="profil-box__main-title" src={profilLogo} alt="profil-logo" />
                 <div className="profil-box__content">
                   <div className="profil-box__content-elt">
-                    <p className="profil-box__content-elt__infos">
-                      Nom de l'organisme:
-                    </p>
-                    <p className="profil-box__content-elt__content">
-                      {establishment}
-                    </p>
+                    <p className="profil-box__content-elt__infos">Nom de l'organisme:</p>
+                    <p className="profil-box__content-elt__content">{establishment}</p>
                   </div>
                   <Divider color="primary" />
                   <div className="profil-box__content-elt">
                     <p
-                      className={
-                        editMailInputIsOpen
-                          ? 'hidden'
-                          : 'profil-box__content-elt__infos'
-                      }
+                      className={editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__infos'}
                     >
                       e-mail:
                     </p>
-                    <IconButton
-                      onClick={handleEditMailBtn}
-                      className={classes.btn}
-                    >
+                    <IconButton onClick={handleEditMailBtn} className={classes.btn}>
                       <EditIcon />
                     </IconButton>
                     <p
                       className={
-                        editMailInputIsOpen
-                          ? 'hidden'
-                          : 'profil-box__content-elt__content'
+                        editMailInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'
                       }
                     >
                       {email}
@@ -199,11 +177,7 @@ const ProfilPage = ({
                   <Divider />
                   <div className="profil-box__content-elt">
                     <p
-                      className={
-                        editPhoneInputIsOpen
-                          ? 'hidden'
-                          : 'profil-box__content-elt__infos'
-                      }
+                      className={editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__infos'}
                     >
                       N° de téléphonne:
                     </p>
@@ -216,9 +190,7 @@ const ProfilPage = ({
                     </IconButton>
                     <p
                       className={
-                        editPhoneInputIsOpen
-                          ? 'hidden'
-                          : 'profil-box__content-elt__content'
+                        editPhoneInputIsOpen ? 'hidden' : 'profil-box__content-elt__content'
                       }
                     >
                       {phoneNumber}
@@ -264,18 +236,12 @@ const ProfilPage = ({
                   <Divider />
                   <div className="profil-box__content-elt">
                     <p className="profil-box__content-elt__infos">Adresse:</p>
-                    <p className="profil-box__content-elt__content">
-                      {address}
-                    </p>
+                    <p className="profil-box__content-elt__content">{address}</p>
                   </div>
                   <Divider />
                   <div className="profil-box__content-elt">
-                    <p className="profil-box__content-elt__infos">
-                      Code postal:
-                    </p>
-                    <p className="profil-box__content-elt__content">
-                      {zipCode}
-                    </p>
+                    <p className="profil-box__content-elt__infos">Code postal:</p>
+                    <p className="profil-box__content-elt__content">{zipCode}</p>
                   </div>
                 </div>
                 <DialogModal validation={handleValidation} />

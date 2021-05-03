@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 // Import COMPONENTS
 import LeftMenu from 'src/containers/LeftMenu';
-import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 
 // Import from MATERIAL-UI
@@ -62,12 +61,7 @@ const SearchProduct = ({
 
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
@@ -92,9 +86,7 @@ const SearchProduct = ({
             >
               <form autoComplete="off" onSubmit={handleOnSubmit}>
                 <div>
-                  <InputLabel htmlFor="search-product-input">
-                    Nom du médicament
-                  </InputLabel>
+                  <InputLabel htmlFor="search-product-input">Nom du médicament</InputLabel>
                   <Input
                     id="search-product-input"
                     onChange={handleChangeSearchInput}

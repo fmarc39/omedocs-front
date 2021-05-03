@@ -178,7 +178,7 @@ const HomePage = () => {
               <div className="why__content--card">
                 <img className="why__content--card-img" src={hopital} alt="hopital" />
                 <p className="why__content--card-text">
-                  A contrario, les hôpitaux peuvent continuer à donner ces médicaments jusqu'à
+                  A contrario, les hôpitaux peuvent continuer à prescrire les médicaments jusqu'à
                   péremption pendant la durée de séjour d'un patient.
                 </p>
               </div>

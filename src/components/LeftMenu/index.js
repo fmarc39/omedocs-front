@@ -85,11 +85,10 @@ const LeftMenu = ({
       bgcolor="#bfcee2"
       className="left-menu"
     >
-      <IconButton style={{ marginLeft: 'auto' }}>
+      <IconButton style={{ marginLeft: 'auto' }} onClick={() => openCloseMenu()}>
         <ExitToAppIcon
           size="large"
           style={{ color: ' #0368A3', transform: menuIsOpen ? 'rotate(180deg)' : null }}
-          onClick={() => openCloseMenu()}
         />
       </IconButton>
       <Link to="/">
