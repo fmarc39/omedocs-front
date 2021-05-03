@@ -5,6 +5,7 @@ import {
   LOGIN_FROM_REHYDRATE,
   SAVE_NEW_MAIL,
   SAVE_NEW_PHONE,
+  CLEAN_INPUT_SIGNUP,
 } from 'src/actions/user';
 import { OPEN_VALIDATION_CHANGE_MODAL, CLOSE_VALIDATION_CHANGE_MODAL } from 'src/actions/utils';
 
@@ -64,6 +65,22 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAN_INPUT_SIGNUP:
+      return {
+        ...state,
+        establishment: '',
+        email: '',
+        phoneNumber: '',
+        rpps: '',
+        userType: '',
+        city: '',
+        address: '',
+        zipCode: '',
+        password: '',
+        region: '',
+        confirmPassword: '',
+        confirmEmail: '',
+      };
     case CHANGE_USER_INFORMATIONS:
       return {
         ...state,

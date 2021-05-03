@@ -20,6 +20,7 @@ const MapModal = ({
   setOpen,
   lat,
   lng,
+  userType,
 }) => {
   const classes = useStyles();
   return (
@@ -30,7 +31,7 @@ const MapModal = ({
       disablePortal
       disableEnforceFocus
     >
-      <GoogleMap lat={lat} lng={lng} />
+      <GoogleMap lat={lat} lng={lng} userType={userType} />
     </Modal>
   );
 };
@@ -40,6 +41,7 @@ MapModal.propTypes = {
   setOpen: PropTypes.func.isRequired,
   lat: PropTypes.number,
   lng: PropTypes.number,
+  userType: PropTypes.string.isRequired,
 };
 
 MapModal.defaultProps = {

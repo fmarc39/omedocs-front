@@ -4,15 +4,17 @@ import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-const Cursor = ({ lat, lng }) => (
+const Cursor = ({ lat, lng, userType }) => (
   <>
-    <a href={`https://www.google.fr/maps/@${lat},${lng},18.25z`} target="blank">
+    <a href={`https://www.google.fr/maps/search/${userType}/@${lat},${lng},18.25z`} target="blank">
       <FaMapMarkerAlt color="red" size="1.5rem" style={{ cursor: 'pointer' }} />
     </a>
   </>
 );
 
-const GoogleMap = ({ lat, lng }) => {
+const GoogleMap = ({ lat, lng, userType }) => {
+  userType === 'pharmacy' ? (userType = 'pharmacie') : (userType = 'hopital');
+
   const defaultProps = {
     center: {
       lat: lat,
@@ -31,7 +33,7 @@ const GoogleMap = ({ lat, lng }) => {
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
-        <Cursor lat={defaultProps.center.lat} lng={defaultProps.center.lng} />
+        <Cursor lat={defaultProps.center.lat} lng={defaultProps.center.lng} userType={userType} />
       </GoogleMapReact>
     </div>
   );
@@ -40,6 +42,7 @@ const GoogleMap = ({ lat, lng }) => {
 GoogleMap.propTypes = {
   lat: PropTypes.number,
   lng: PropTypes.number,
+  userType: PropTypes.string.isRequired,
 };
 
 GoogleMap.defaultProps = {

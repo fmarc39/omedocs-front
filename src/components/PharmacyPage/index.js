@@ -25,7 +25,6 @@ const PharmacyPage = ({
   // je filtre les établissements pour afficher la page d'un établissement
   const { id } = useParams();
   const establishment = establishments.filter((item) => parseInt(id, 10) === item.id);
-
   // Si il n'y a pas d'établissement on se redirige vers la page searchestablishement
 
   if (!establishment[0]) {
@@ -67,7 +66,13 @@ const PharmacyPage = ({
       </Box>
       <Footer />
       <ConfirmationBox />
-      <MapModal open={open} setOpen={setOpen} lat={lat} lng={lng} />
+      <MapModal
+        open={open}
+        setOpen={setOpen}
+        lat={lat}
+        lng={lng}
+        userType={establishment[0].user_type}
+      />
     </Box>
   );
 };

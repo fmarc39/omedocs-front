@@ -10,6 +10,7 @@ export const SAVE_NEW_MAIL = 'SAVE_NEW_MAIL';
 export const SAVE_NEW_PHONE = 'SAVE_NEW_PHONE';
 export const CHANGE_USER_MAIL = 'CHANGE_USER_MAIL';
 export const CHANGE_USER_PHONE = 'CHANGE_USER_PHONE';
+export const CLEAN_INPUT_SIGNUP = 'CLEAN_INPUT_SIGNUP';
 
 // action creators
 export const changeUserInformations = (value, name) => ({
@@ -72,7 +73,7 @@ export const loginFromRehydrate = (
   address,
   zipCode,
   userType,
-  user_id
+  user_id,
 ) => ({
   type: LOGIN_FROM_REHYDRATE,
   accessToken,
@@ -85,4 +86,8 @@ export const loginFromRehydrate = (
   zipCode,
   userType,
   user_id,
+});
+
+export const cleanInputSignUp = () => ({
+  type: CLEAN_INPUT_SIGNUP,
 });
