@@ -24,10 +24,10 @@ import Checkout from 'src/components/Stripe/Checkout';
 import Success from 'src/components/Stripe/Success';
 import Canceled from 'src/components/Stripe/Canceled';
 import OrderHistory from 'src/components/HistoryPage';
+import SalesHistory from 'src/components/SalesPage/index';
 
 import './styles.scss';
 import { DonutLargeSharp } from '@material-ui/icons';
-import HistoryPage from '../HistoryPage';
 
 const App = ({ logged, rehydrate }) => {
   useEffect(() => {
@@ -58,12 +58,18 @@ const App = ({ logged, rehydrate }) => {
         <Route exact path="/login/reset">
           <ResetPassword />
         </Route>
-        <Route path="/profil">{!logged ? <Redirect to="/" /> : <ProfilPage />}</Route>
-        <Route path="/inventory">{!logged ? <Redirect to="/" /> : <InventoryPage />}</Route>
+        <Route path="/profil">
+          {!logged ? <Redirect to="/" /> : <ProfilPage />}
+        </Route>
+        <Route path="/inventory">
+          {!logged ? <Redirect to="/" /> : <InventoryPage />}
+        </Route>
         <Route path="/establishment/:id">
           <PharmacyPage />
         </Route>
-        <Route path="/searchproduct">{!logged ? <Redirect to="/" /> : <SearchProduct />}</Route>
+        <Route path="/searchproduct">
+          {!logged ? <Redirect to="/" /> : <SearchProduct />}
+        </Route>
         <Route path="/searchestablishement">
           {!logged ? <Redirect to="/" /> : <SearchPharmachy />}
         </Route>
@@ -71,7 +77,11 @@ const App = ({ logged, rehydrate }) => {
           {!logged ? <Redirect to="/" /> : <Cart />}
         </Route>
         <Route exact path="/history">
-          <HistoryPage />
+          <OrderHistory />
+          {/* {!logged ? <Redirect to="/" /> : <OrderHistory />} */}
+        </Route>
+        <Route exact path="/sale">
+          <SalesHistory />
           {/* {!logged ? <Redirect to="/" /> : <OrderHistory />} */}
         </Route>
         <Route path="/success">

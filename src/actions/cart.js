@@ -3,6 +3,8 @@ export const DELETE_ARTICLE_FROM_CART = 'DELETE_ARTICLE_FROM_CART';
 export const CLOSE_DIALOG_BOX = 'CLOSE_DIALOG_BOX';
 export const OPEN_DIALOG_BOX = 'OPEN_DIALOG_BOX';
 export const SAVE_ORDER_IN_DB = 'SAVE_ORDER_IN_DB';
+export const SAVE_IN_ORDER_HISTORY = 'SAVE_IN_ORDER_HISTORY';
+export const SAVE_FETCHED_ORDERS_IN_STATE = 'SAVE_FETCHED_ORDERS_IN_STATE';
 export const FECTH_SALES_HISTORY = 'FECTH_SALES_HISTORY';
 export const FETCH_ORDER_HISTORY = 'FETCH_ORDER_HISTORY';
 export const INCREASES_ARTICLE_QUANTITY = 'INCREASES_ARTICLE_QUANTITY';
@@ -42,10 +44,21 @@ export const saveOrderInDb = (totalPrice) => ({
   totalPrice,
 });
 
-export const fetchOrderHistory = () => ({
+export const fetchOrderHistory = (userId) => ({
   type: FETCH_ORDER_HISTORY,
+  userId,
 });
 
 export const fetchSaleHistory = () => ({
   type: FECTH_SALES_HISTORY,
+});
+
+export const saveInOrderHistory = (payload) => ({
+  type: SAVE_IN_ORDER_HISTORY,
+  payload,
+});
+
+export const saveFetchedOrdersInState = (payload) => ({
+  type: SAVE_FETCHED_ORDERS_IN_STATE,
+  payload,
 });

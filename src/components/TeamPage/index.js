@@ -71,7 +71,6 @@ const TeamPage = () => {
         <Header />
         <Box width="100%" display="flex" id="body">
           <Box
-            bgcolor="#C6C6C6"
             height="100%"
             width="100%"
             p={4}

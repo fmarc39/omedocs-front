@@ -12,7 +12,7 @@ import cart from 'src/midlewares/cart';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // On liste les middleware dans "applyMiddleware"
 const enhancers = composeEnhancers(
-  applyMiddleware(auth, inscription, cart, inventory, search, map, count),
+  applyMiddleware(auth, inscription, inventory, search, map, cart, count)
 );
 
 const store = createStore(reducer, enhancers);

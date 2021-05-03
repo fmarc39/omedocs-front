@@ -9,6 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import EmptyLogo from 'src/assets/img/packing-list.svg';
 
 const useRowStyles = makeStyles({
   root: {
@@ -18,7 +20,7 @@ const useRowStyles = makeStyles({
   },
   paper: {
     minWidth: '800px',
-    overflow: 'hidden',
+    overflow: 'scroll',
     textAlign: 'center',
   },
 });
@@ -59,61 +61,90 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const HistoryPageTable = ({ orderHistory, fetchOrders }) => {
+const HistoryPageTable = ({ orderHistory, fetchOrders, userId }) => {
   // On va récuperer l'historique de commandes au moment du premier rendus du composant
   // et si l'historique de commande est modifié
   useEffect(() => {
-    fetchOrders();
-  }, [orderHistory]);
+    fetchOrders(userId);
+  }, []);
+
   const rows = orderHistory.map((order) =>
     createData(
-      `n° ${order.orderNumber}`,
-      order.orderDate,
-      `${order.totalPrice} €`,
+      `n° ${order.order_number}`,
+      order.date,
+      `${order.total_cost} €`,
       order.status
     )
   );
   const classes = useRowStyles();
   return (
-    <Paper className={classes.paper}>
-      <Typography
-        variant="h6"
-        style={{ padding: '15px', backgroundColor: '#0368A3', color: '#FFF' }}
-      >
-        Historique de vos commandes
-      </Typography>
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <p className="cells-title">Numéro de commande</p>
-              </TableCell>
-              <TableCell align="left">
-                <p className="cells-title">Date de commande</p>
-              </TableCell>
-              <TableCell align="left">
-                <p className="cells-title"> Montant total</p>
-              </TableCell>
-              <TableCell align="left">
-                <p className="cells-title">Statut</p>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <Row key={row.orderNumber} row={row} />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
+    <>
+      {orderHistory.length !== 0 && (
+        <Paper className={classes.paper}>
+          <Typography
+            variant="h6"
+            style={{
+              padding: '15px',
+              backgroundColor: '#0368A3',
+              color: '#FFF',
+            }}
+          >
+            Historique de vos commandes
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table aria-label="collapsible table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>
+                    <p className="cells-title">Numéro de commande</p>
+                  </TableCell>
+                  <TableCell align="left">
+                    <p className="cells-title">Date de commande</p>
+                  </TableCell>
+                  <TableCell align="left">
+                    <p className="cells-title"> Montant total</p>
+                  </TableCell>
+                  <TableCell align="left">
+                    <p className="cells-title">Statut</p>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <Row key={row.order_number} row={row} />
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      )}
+      {orderHistory.length === 0 && (
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          className="empty-cart"
+          boxShadow={4}
+        >
+          <p className="empty-cart__head">
+            Vous n'avez pas encore de commandes à afficher
+          </p>
+          <img
+            src={EmptyLogo}
+            alt="shopping-cart-icon"
+            className="empty-cart__img"
+          />
+        </Box>
+      )}
+    </>
   );
 };
 
 HistoryPageTable.propTypes = {
   orderHistory: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchOrders: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default HistoryPageTable;

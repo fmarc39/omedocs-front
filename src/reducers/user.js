@@ -6,7 +6,16 @@ import {
   SAVE_NEW_MAIL,
   SAVE_NEW_PHONE,
 } from 'src/actions/user';
-import { OPEN_VALIDATION_CHANGE_MODAL, CLOSE_VALIDATION_CHANGE_MODAL } from 'src/actions/utils';
+
+import {
+  OPEN_VALIDATION_CHANGE_MODAL,
+  CLOSE_VALIDATION_CHANGE_MODAL,
+} from 'src/actions/utils';
+
+import {
+  SAVE_IN_ORDER_HISTORY,
+  SAVE_FETCHED_ORDERS_IN_STATE,
+} from 'src/actions/cart';
 
 import api from 'src/api/api';
 
@@ -29,7 +38,8 @@ export const initialState = {
   password: '',
   confirmPassword: '',
   fieldToChange: '',
-  orderHistory: [
+  orderHistory: [],
+  saleHistory: [
     {
       orderNumber: 120,
       orderDate: '31/01/2020',
@@ -167,6 +177,19 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         phoneNumber: action.phone,
         newPhoneNumber: '',
+      };
+    case SAVE_IN_ORDER_HISTORY:
+      return {
+        ...state,
+        orderHistory: [...state.orderHistory, action.payload],
+      };
+    case SAVE_FETCHED_ORDERS_IN_STATE:
+      return {
+        ...state,
+        orderHistory: [
+          ...state.orderHistory,
+          ...action.payload.map((article) => article),
+        ],
       };
     default:
       return state;
