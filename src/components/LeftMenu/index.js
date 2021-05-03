@@ -43,7 +43,7 @@ const useStyles = makeStyles(() => ({
       color: '#0368A3',
     },
     borderRadius: '15px',
-    marginBottom: '2rem',
+    marginBottom: '1rem',
   },
   logoutBtn: {
     transition: 'all 0.3s',
@@ -88,7 +88,10 @@ const LeftMenu = ({
       <IconButton style={{ marginLeft: 'auto' }}>
         <ExitToAppIcon
           size="large"
-          style={{ color: ' #0368A3', transform: menuIsOpen ? 'rotate(180deg)' : null }}
+          style={{
+            color: ' #0368A3',
+            transform: menuIsOpen ? 'rotate(180deg)' : null,
+          }}
           onClick={() => openCloseMenu()}
         />
       </IconButton>
@@ -110,7 +113,12 @@ const LeftMenu = ({
           {establishment}
         </Typography>
       )}
-      <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
+      <Box
+        display="flex"
+        flexDirection="column"
+        textAlign="center"
+        className="let-menu__btn-box"
+      >
         <Divider />
         <Button
           variant="outlined"

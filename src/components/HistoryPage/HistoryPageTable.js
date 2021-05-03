@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -17,7 +17,7 @@ const useRowStyles = makeStyles({
     },
   },
   paper: {
-    minWidth: '800èx',
+    minWidth: '800px',
     overflow: 'hidden',
     textAlign: 'center',
   },
@@ -59,7 +59,12 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const HistoryPageTable = ({ orderHistory }) => {
+const HistoryPageTable = ({ orderHistory, fetchOrders }) => {
+  // On va récuperer l'historique de commandes au moment du premier rendus du composant
+  // et si l'historique de commande est modifié
+  useEffect(() => {
+    fetchOrders();
+  }, [orderHistory]);
   const rows = orderHistory.map((order) =>
     createData(
       `n° ${order.orderNumber}`,
@@ -108,6 +113,7 @@ const HistoryPageTable = ({ orderHistory }) => {
 
 HistoryPageTable.propTypes = {
   orderHistory: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchOrders: PropTypes.func.isRequired,
 };
 
 export default HistoryPageTable;
