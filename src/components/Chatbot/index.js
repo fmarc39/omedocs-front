@@ -65,15 +65,15 @@ class SimpleForm extends Component {
             {
               id: '7',
               component: (
-                <div> Bien sur, voici l'adresse mail : <a>o.medocs11@gmail.com</a> </div>
+                <div> Bien sûr, voici l'adresse mail : <a>o.medocs11@gmail.com</a> </div>
               ),
               asMessage: true,
-              end: true,
+              trigger: '11',
             },
             {
               id: '8',
               component: (
-                <div> Bien sur, rendez-vous sur cette page :<Link to="profil"> Vos informations</Link> </div>
+                <div> Bien sûr, rendez-vous sur cette page :<Link to="profil"> Vos informations</Link> </div>
               ),
               asMessage: true,
               end: true,
@@ -81,7 +81,7 @@ class SimpleForm extends Component {
             {
               id: '9',
               component: (
-                <div> Bien sur, rendez-vous sur cette page :<Link to="inventory"> Mon inventaire</Link> </div>
+                <div> Bien sûr, rendez-vous sur cette page :<Link to="inventory"> Mon inventaire</Link> </div>
               ),
               asMessage: true,
               end: true,
@@ -90,6 +90,23 @@ class SimpleForm extends Component {
               id: '10',
               message: 'Désolé, cette fonction est réservée aux vendeurs !',
               trigger: '3',
+            },
+            {
+              id: '11',
+              message: 'Autre chose ?',
+            },
+            {
+              id: '12',
+              options: [
+                { value: 1, label: 'Oui', trigger: '4' },
+                { value: 2, label: 'Non', trigger: '13' },
+              ],
+              trigger: '11',
+            },
+            {
+              id: '13',
+              message: 'Très bien, bonne visite !',
+              end: true,
             },
           ]}
           {...config}

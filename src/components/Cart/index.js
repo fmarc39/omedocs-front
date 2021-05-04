@@ -1,5 +1,8 @@
+/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-mixed-operators */
 import React from 'react';
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
@@ -269,6 +272,8 @@ const CartPage = ({
     const { status } = response.data;
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
+      this.props.dispatch(handleToken());
+      Redirect.push('/');
     }
     else {
       toast('Something went wrong', { type: 'error' });
@@ -291,132 +296,134 @@ const CartPage = ({
             alignItems="center"
           >
             {cartData.length === 0 && (
-              <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                className="empty-cart"
-                boxShadow={4}
-              >
-                <p className="empty-cart__head">
-                  Votre panier est tristement
-                  <span className="empty-cart__head-span"> vide</span>
-                </p>
-                <img src={ShoppingCart} alt="shopping-cart-icon" className="empty-cart__img" />
-                <p className="empty-cart__text">
-                  Cliquez &nbsp;
-                  <Link to="/searchproduct" className="empty-cart__link">
-                    ici
-                  </Link>
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              className="empty-cart"
+              boxShadow={4}
+            >
+              <p className="empty-cart__head">
+                Votre panier est tristement
+                <span className="empty-cart__head-span"> vide</span>
+              </p>
+              <img src={ShoppingCart} alt="shopping-cart-icon" className="empty-cart__img" />
+              <p className="empty-cart__text">
+                Cliquez &nbsp;
+                <Link to="/searchproduct" className="empty-cart__link">
+                  ici
+                </Link>
                   &nbsp; pour rechercher un produit
-                </p>
-              </Box>
+              </p>
+            </Box>
             )}
             {cartData.length !== 0 && (
-              <Slide direction="down" in="true" mountOnEnter unmountOnExit>
-                <Box
-                  className="cart-box"
-                  p={2}
-                  mb={2}
-                  borderRadius="10px"
-                  align="center"
-                  boxShadow={4}
-                >
-                  <h4 className="cart-box__title"> Votre panier </h4>
-                </Box>
-              </Slide>
+            <Slide direction="down" in="true" mountOnEnter unmountOnExit>
+              <Box
+                className="cart-box"
+                p={2}
+                mb={2}
+                borderRadius="10px"
+                align="center"
+                boxShadow={4}
+              >
+                <h4 className="cart-box__title"> Votre panier </h4>
+              </Box>
+            </Slide>
             )}
 
             <div className={classes.root}>
               {cartData.length !== 0 && (
-                <Paper className={classes.paper}>
-                  <TableContainer>
-                    <Table
-                      className={classes.table}
-                      aria-labelledby="tableTitle"
-                      aria-label="enhanced table"
-                    >
-                      <EnhancedTableHead
-                        classes={classes}
-                        order={order}
-                        orderBy={orderBy}
-                        onRequestSort={handleRequestSort}
-                        rowCount={rows.length}
-                      />
-                      <TableBody>
-                        {stableSort(rows, getComparator(order, orderBy))
-                          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                          .map((row, index) => {
-                            const labelId = `enhanced-table-checkbox-${index}`;
+              <Paper className={classes.paper}>
+                <TableContainer>
+                  <Table
+                    className={classes.table}
+                    aria-labelledby="tableTitle"
+                    aria-label="enhanced table"
+                  >
+                    <EnhancedTableHead
+                      classes={classes}
+                      order={order}
+                      orderBy={orderBy}
+                      onRequestSort={handleRequestSort}
+                      rowCount={rows.length}
+                    />
+                    <TableBody>
+                      {stableSort(rows, getComparator(order, orderBy))
+                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        .map((row, index) => {
+                          const labelId = `enhanced-table-checkbox-${index}`;
 
-                            return (
-                              <TableRow hover tabIndex={-1} key={row.id}>
-                                <TableCell
-                                  component="th"
-                                  id={labelId}
-                                  scope="row"
-                                  padding="default"
+                          return (
+                            <TableRow hover tabIndex={-1} key={row.id}>
+                              <TableCell
+                                component="th"
+                                id={labelId}
+                                scope="row"
+                                padding="default"
+                              >
+                                {row.name}
+                              </TableCell>
+                              <TableCell align="left">
+                                <IconButton
+                                  aria-label="remove"
+                                  name={row.id}
+                                  onClick={handleRemoveBtn}
+                                  className={classes.quantityBtn}
                                 >
-                                  {row.name}
-                                </TableCell>
-                                <TableCell align="left">
-                                  <IconButton
-                                    aria-label="remove"
-                                    name={row.id}
-                                    onClick={handleRemoveBtn}
-                                    className={classes.quantityBtn}
-                                  >
-                                    <RemoveIcon />
-                                  </IconButton>
-                                  {row.qty}
-                                  <IconButton
-                                    aria-label="add"
-                                    name={row.id}
-                                    onClick={handleAddBtn}
-                                    className={classes.quantityBtn}
-                                  >
-                                    <AddIcon />
-                                  </IconButton>
-                                </TableCell>
-                                <TableCell align="left">{row.unit} €</TableCell>
-                                <TableCell align="left">{ccyFormat(row.price)} €</TableCell>
-                                <TableCell align="left">{row.dellRow}</TableCell>
-                              </TableRow>
-                            );
-                          })}
-                        <TableRow>
-                          <TableCell rowSpan={3} />
-                          <TableCell colSpan={1}>Sous-total</TableCell>
-                          <TableCell align="right">{ccyFormat(invoiceSubtotal)} €</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>TVA</TableCell>
-                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell colSpan={1}>Total</TableCell>
-                          <TableCell align="right">
-                            <p className="total-price">{ccyFormat(invoiceTotal)} €</p>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                    <div>
-                      <StripeCheckout
-                        stripeKey="pk_test_51Ij1IsAClzkudXaoJHimun68AE67pw5ry6KRTJdgS2tu6SScPbUPCqAFXlvkTb9EnzAZOYbXfErMtxRD9LZD3F8e00byaYzYhA"
-                        token={handleToken}
-                        endIcon={<PaymentIcon />}
-                        className={classes.btn}
-                        amount={price * 100}
-                        data-locale="auto"
-                        name="O'Medocs"
-                        billingAddress
-                        shippingAddress
-                      />
-                    </div>
-                  </TableContainer>
-                </Paper>
+                                  <RemoveIcon />
+                                </IconButton>
+                                {row.qty}
+                                <IconButton
+                                  aria-label="add"
+                                  name={row.id}
+                                  onClick={handleAddBtn}
+                                  className={classes.quantityBtn}
+                                >
+                                  <AddIcon />
+                                </IconButton>
+                              </TableCell>
+                              <TableCell align="left">{row.unit} €</TableCell>
+                              <TableCell align="left">{ccyFormat(row.price)} €</TableCell>
+                              <TableCell align="left">{row.dellRow}</TableCell>
+                            </TableRow>
+                          );
+                        })}
+                      <TableRow>
+                        <TableCell rowSpan={3} />
+                        <TableCell colSpan={1}>Sous-total</TableCell>
+                        <TableCell align="right">{ccyFormat(invoiceSubtotal)} €</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>TVA</TableCell>
+                        <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell colSpan={1}>Total</TableCell>
+                        <TableCell align="right">
+                          <p className="total-price">{ccyFormat(invoiceTotal)} €</p>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                  <div>
+                    <StripeCheckout
+                      stripeKey="pk_test_51Ij1IsAClzkudXaoJHimun68AE67pw5ry6KRTJdgS2tu6SScPbUPCqAFXlvkTb9EnzAZOYbXfErMtxRD9LZD3F8e00byaYzYhA"
+                      token={handleToken}
+                      endIcon={<PaymentIcon />}
+                      label="Payer par 💳"
+                      className={classes.btn}
+                      amount={invoiceTotal * 100}
+                      currency="EUR"
+                      name="O'Medocs"
+                      locale="fr"
+                      billingAddress
+                      shippingAddress
+                    />
+                  </div>
+                </TableContainer>
+              </Paper>
               )}
             </div>
           </Box>
@@ -433,6 +440,7 @@ CartPage.propTypes = {
   remmoveQuantity: PropTypes.func.isRequired,
   price: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
+  clear: PropTypes.bool.isRequired,
 };
 
 export default CartPage;
