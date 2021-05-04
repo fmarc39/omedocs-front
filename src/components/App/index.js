@@ -15,7 +15,7 @@ import InventoryPage from 'src/containers/InventoryPage';
 import PharmacyPage from 'src/containers/PharmacyPage';
 import LoginForm from 'src/containers/LoginForm';
 // import ResetPassword from 'src/containers/ForgotPassword/';
-import TeamPage from 'src/components/TeamPage';
+import TeamPage from 'src/containers/TeamPage';
 import Cart from 'src/containers/CartPage/';
 import Page404 from 'src/components/404';
 import SnackBar from 'src/containers/SnackBar';

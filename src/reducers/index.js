@@ -5,6 +5,7 @@ import searchReducer from './search';
 import utilsReducer from './utils';
 import inventoryReducer from './inventory';
 import cartReducer from './cart';
+import contactUsReducer from './contactUs';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   utils: utilsReducer,
   inventory: inventoryReducer,
   cart: cartReducer,
+  contactUs: contactUsReducer,
 });
 
 export default rootReducer;

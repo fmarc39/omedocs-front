@@ -276,6 +276,7 @@ const CartPage = ({ cartData, deleteArticle, price, addQuantity, remmoveQuantity
       product,
       addresses,
     });
+
     const { status } = response.data;
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
