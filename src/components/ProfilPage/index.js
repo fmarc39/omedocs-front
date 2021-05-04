@@ -100,7 +100,7 @@ const ProfilPage = ({
           <LeftMenu />
           <Box
             bgcolor="#C6C6C6"
-            height="100%"
+            height="100vh"
             width="100%"
             p={2}
             display="flex"

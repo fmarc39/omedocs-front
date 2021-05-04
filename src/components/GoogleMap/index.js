@@ -26,7 +26,7 @@ const GoogleMap = ({ lat, lng, userType }) => {
   return (
     // Important! Always set the container height explicitly
     <div
-      style={{ height: '400px', width: '400px', border: '2px solid #0368A3', borderRadius: '10px' }}
+      style={{ height: '600px', width: '600px', border: '2px solid #0368A3', borderRadius: '10px' }}
     >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.APIKEY_GOOGLE }}

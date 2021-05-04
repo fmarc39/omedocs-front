@@ -35,14 +35,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 25px;
+      margin-top: -3px;
+
       &__img {
-        width: 50px;
+        width: 100px;
       }
       &__name {
         font-size: 1.8rem;
         font-weight: bold;
-        margin-left: 20px;
         color: black;
         letter-spacing: 1px;
       }

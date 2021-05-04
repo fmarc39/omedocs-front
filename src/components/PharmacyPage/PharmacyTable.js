@@ -19,7 +19,7 @@ import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 
 //Images
-import minion from 'src/assets/img/minion2.png';
+import pharmacien from 'src/assets/img/pharmacien.png';
 
 // Import CSS
 import './styles.scss';
@@ -271,7 +271,7 @@ const PharmacyTable = ({
         <div className="message">
           <h1 className="message__text">Cette pharmacie n'a pas de médicament en stock</h1>
           <div className="message__img">
-            <img src={minion} alt="minion" />
+            <img src={pharmacien} alt="pharmacien" />
           </div>
         </div>
       ) : (
@@ -279,7 +279,7 @@ const PharmacyTable = ({
         <div className="message">
           <h1 className="message__text">Pas de stock à afficher pour les hôpitaux</h1>
           <div className="message__img">
-            <img src={minion} alt="minion" />
+            <img src={pharmacien} alt="pharmacien" />
           </div>
         </div>
       )}

@@ -51,8 +51,9 @@ const ModalAddProduct = ({
   };
 
   const handlerOnChange = (evt) => {
-    if ((evt.target.name === 'name' || evt.target.name === 'cis') && evt.target.value.length >= 4)
+    if ((evt.target.name === 'name' || evt.target.name === 'cis') && evt.target.value.length >= 4) {
       openPopList();
+    }
 
     onChange(evt.target.value, evt.target.name);
   };
@@ -81,11 +82,11 @@ const ModalAddProduct = ({
         borderRadius="20px"
         position="relative"
       >
-        {/* Je n'ouvre la PopList que si il y a plus de 4 caractères*/}
+        {/* Je n'ouvre la PopList que si il y a plus de 4 caractères */}
         {activePopList && (nameValue.length >= 4 || cisValue.length >= 4) && <PopListApi />}
 
         <Typography variant="h5" component="h5">
-          Rajouter un produit
+          Ajouter un article
         </Typography>
         <form className={classes.form} onSubmit={handleOnSubmit}>
           <TextField

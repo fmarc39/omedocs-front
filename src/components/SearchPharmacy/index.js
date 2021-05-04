@@ -72,7 +72,7 @@ const SearchPharmacy = ({
             style={{
               background: `url(${backgroundImage}) center center / cover`,
             }}
-            height="100%"
+            height="100vh"
             width="100%"
             p={4}
             display="flex"

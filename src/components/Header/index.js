@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 // image
-import logo from 'src/assets/img/mortier.svg';
+import logo from 'src/assets/img/medical-logo.gif';
 
 const Header = () => (
   <header className="header-top">

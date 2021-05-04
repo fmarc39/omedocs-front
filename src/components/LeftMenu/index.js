@@ -131,7 +131,7 @@ const LeftMenu = ({
             fullWidth
             style={{ width: !menuIsOpen ? '50px' : null }}
           >
-            {menuIsOpen ? 'Acceuil' : ''}
+            {menuIsOpen ? 'Accueil' : ''}
           </Button>
         </NavLink>
         <NavLink to="/profil" style={{ textDecoration: 'none' }}>

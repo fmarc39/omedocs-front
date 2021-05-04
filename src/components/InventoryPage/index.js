@@ -30,12 +30,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const InventoryPage = ({
-  inventoryData,
-  handleAddArticle,
-  fetchInventory,
-  isLoading,
-}) => {
+const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoading }) => {
   // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
   console.log(inventoryData);
   inventoryData.map((drug) => console.log(drug));
@@ -50,16 +45,11 @@ const InventoryPage = ({
   const classes = useStyles();
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        height="100vh"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
-            height="100%"
+            height="100vh"
             width="100%"
             p={4}
             display="flex"

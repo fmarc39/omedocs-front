@@ -30,7 +30,6 @@ const PharmacyPage = ({
   if (!establishment[0]) {
     return <Redirect to="/searchestablishement" />;
   }
-
   //  fetch l'inventaire du user et les coordonnées en fonction de l'adresse
   useEffect(() => {
     fetchInventory(establishment[0].id);
@@ -50,13 +49,14 @@ const PharmacyPage = ({
         <Box
           style={{ background: `url(${backgroundImage}) center center / cover` }}
           width="100%"
-          minHeight="100%"
+          minHeight="100vh"
           p={2}
           display="flex"
           flexDirection="column"
           alignItems="center"
         >
           <Accordion establishment={establishment} setOpen={setOpen} />
+
           {isLoading ? (
             <Loading />
           ) : (
