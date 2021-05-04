@@ -230,6 +230,20 @@ const LeftMenu = ({
             </Button>
           )}
         </NavLink>
+        <NavLink to="/sale" style={{ textDecoration: 'none' }}>
+          {userType === 'pharmacy' && (
+            <Button
+              variant="contained"
+              color="primary"
+              endIcon={<FormatListNumberedIcon />}
+              size="large"
+              className={classes.btn}
+              style={{ width: !menuIsOpen ? '50px' : null }}
+            >
+              {menuIsOpen ? 'Historique des ventes' : ''}
+            </Button>
+          )}
+        </NavLink>
       </Box>
       <Chatbox />
     </Box>

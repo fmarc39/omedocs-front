@@ -15,6 +15,8 @@ import {
 import {
   SAVE_IN_ORDER_HISTORY,
   SAVE_FETCHED_ORDERS_IN_STATE,
+  SAVE_FETCHED_SALES_IN_STATE,
+  SAVE_ORDER_STATUS_IN_STATE,
 } from 'src/actions/cart';
 
 import api from 'src/api/api';
@@ -39,32 +41,7 @@ export const initialState = {
   confirmPassword: '',
   fieldToChange: '',
   orderHistory: [],
-  saleHistory: [
-    {
-      orderNumber: 120,
-      orderDate: '31/01/2020',
-      totalPrice: 230,
-      status: 'payé',
-    },
-    {
-      orderNumber: 121,
-      orderDate: '31/01/2020',
-      totalPrice: 230,
-      status: 'payé',
-    },
-    {
-      orderNumber: 122,
-      orderDate: '31/01/2020',
-      totalPrice: 230,
-      status: 'payé',
-    },
-    {
-      orderNumber: 123,
-      orderDate: '31/01/2020',
-      totalPrice: 230,
-      status: 'payé',
-    },
-  ],
+  saleHistory: [],
   logged: false,
   accessToken: null,
   changeInformationsModal: false,
@@ -186,10 +163,22 @@ const reducer = (state = initialState, action = {}) => {
     case SAVE_FETCHED_ORDERS_IN_STATE:
       return {
         ...state,
-        orderHistory: [
-          ...state.orderHistory,
-          ...action.payload.map((article) => article),
-        ],
+        orderHistory: [...action.payload.map((article) => article)],
+      };
+    case SAVE_FETCHED_SALES_IN_STATE:
+      return {
+        ...state,
+        saleHistory: [...action.payload.map((article) => article)],
+      };
+    case SAVE_ORDER_STATUS_IN_STATE:
+      return {
+        ...state,
+        saleHistory: state.saleHistory.map((sale) => {
+          if (Number(sale.order_number) === Number(action.orderId)) {
+            sale.status = action.newStatus;
+          }
+          return sale;
+        }),
       };
     default:
       return state;

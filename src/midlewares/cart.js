@@ -3,8 +3,11 @@ import {
   SAVE_ORDER_IN_DB,
   FETCH_ORDER_HISTORY,
   FECTH_SALES_HISTORY,
+  CHANGE_ORDER_STATUS,
   saveInOrderHistory,
   saveFetchedOrdersInState,
+  saveFetchedSalesInState,
+  saveOrderStatusInState,
 } from 'src/actions/cart';
 
 export default (store) => (next) => (action) => {
@@ -13,12 +16,12 @@ export default (store) => (next) => (action) => {
       api
         .post(`/saveOrder/${store.getState().user.user_id}`, {
           total_cost: action.totalPrice,
-          pharmacyId: store.getState().cart.pharmacyToOrder,
+          pharmacyid: store.getState().cart.pharmacyToOrder,
         })
         .then((response) => {
           store.dispatch(saveInOrderHistory(response.data.newOrder));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.trace(error));
       return next(action);
     case FETCH_ORDER_HISTORY:
       api
@@ -26,12 +29,32 @@ export default (store) => (next) => (action) => {
         .then((orders) => {
           store.dispatch(saveFetchedOrdersInState(orders.data.orders));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.trace(error));
       return next(action);
     case FECTH_SALES_HISTORY:
-      api.get(`/sales/${store.getState().user.user_id}`);
+      api
+        .get(`/sales/${store.getState().user.user_id}`)
+        .then((sales) => {
+          console.log(sales);
+          store.dispatch(saveFetchedSalesInState(sales.data.sales));
+        })
+        .catch((error) => console.trace(error));
       return next(action);
+    case CHANGE_ORDER_STATUS:
+      api
+        .patch(`/status/${action.orderId}`, {
+          newStatus: action.newStatus,
+        })
+        .then((response) => {
+          store.dispatch(
+            saveOrderStatusInState(
+              response.data.order.order_number,
+              response.data.order.status
+            )
+          );
+        });
 
+      return next(action);
     default:
       return next(action);
   }

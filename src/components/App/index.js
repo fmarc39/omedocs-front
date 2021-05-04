@@ -78,11 +78,10 @@ const App = ({ logged, rehydrate }) => {
         </Route>
         <Route exact path="/history">
           <OrderHistory />
-          {/* {!logged ? <Redirect to="/" /> : <OrderHistory />} */}
+          {!logged ? <Redirect to="/" /> : <OrderHistory />}
         </Route>
         <Route exact path="/sale">
-          <SalesHistory />
-          {/* {!logged ? <Redirect to="/" /> : <OrderHistory />} */}
+          {!logged ? <Redirect to="/" /> : <SalesHistory />}
         </Route>
         <Route path="/success">
           <Success />

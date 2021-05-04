@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Table from 'src/components/SalesPage/SalesPageTable';
-import { fetchSaleHistory } from 'src/actions/cart';
+import { fetchSaleHistory, changeOrderStatus } from 'src/actions/cart';
 
 const mapStateToProps = (state) => ({
   saleHistory: state.user.saleHistory,
@@ -10,6 +10,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchOrders: (userId) => {
     dispatch(fetchSaleHistory(userId));
+  },
+  changeOrderStatus: (orderId, newStatus) => {
+    dispatch(changeOrderStatus(orderId, newStatus));
   },
 });
 
