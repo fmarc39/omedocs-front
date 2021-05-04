@@ -47,7 +47,7 @@ class ForgotPassword extends Component {
     else {
       try {
         const response = await axios.post(
-          'http://omedocs.herokuapp.com/forgetPassword',
+          'http://omedocs.herokuapp.com/forgotpassword',
           {
             email,
           },

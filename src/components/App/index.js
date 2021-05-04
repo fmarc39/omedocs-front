@@ -16,7 +16,7 @@ import ProfilPage from 'src/containers/ProfilPage';
 import InventoryPage from 'src/containers/InventoryPage';
 import PharmacyPage from 'src/containers/PharmacyPage';
 import LoginForm from 'src/containers/LoginForm';
-import ResetPassword from 'src/containers/ForgotPassword/';
+// import ResetPassword from 'src/containers/ForgotPassword/';
 import TeamPage from 'src/components/TeamPage';
 import Cart from 'src/containers/CartPage/';
 import Page404 from 'src/components/404';
@@ -55,9 +55,6 @@ const App = ({ isLoading, logged, rehydrate }) => {
         </Route>
         <Route exact path="/login">
           {logged ? <Redirect to="/profil" /> : <LoginForm />}
-        </Route>
-        <Route exact path="/login/reset">
-          <ResetPassword />
         </Route>
         <Route path="/profil">{!logged ? <Redirect to="/" /> : <ProfilPage />}</Route>
         <Route path="/inventory">{!logged ? <Redirect to="/" /> : <InventoryPage />}</Route>
