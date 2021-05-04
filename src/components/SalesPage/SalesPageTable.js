@@ -9,6 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import Box from '@material-ui/core/Box';
 import EmptyLogo from 'src/assets/img/packing-list.svg';
 
@@ -20,7 +22,11 @@ const useRowStyles = makeStyles({
   },
   paper: {
     minWidth: '800px',
+    overflow: 'hidden',
     textAlign: 'center',
+  },
+  input: {
+    minWidth: 120,
   },
 });
 
@@ -60,20 +66,92 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const HistoryPageTable = ({ orderHistory, fetchOrders, userId }) => {
+const HistoryPageTable = ({
+  saleHistory,
+  fetchOrders,
+  userId,
+  changeOrderStatus,
+}) => {
+  const classes = useRowStyles();
   // On va récuperer l'historique de commandes au moment du premier rendus du composant
   // et si l'historique de commande est modifié
   useEffect(() => {
     fetchOrders(userId);
   }, []);
 
-  const rows = orderHistory.map((order) =>
-    createData(`n° ${order.order_number}`, order.date, `${order.total_cost} €`, order.status),
+  // Fonction qui va gérer le changement de status de la commande
+  const handleChangeOrderStatus = (event) => {
+    console.log(event.target);
+    changeOrderStatus(event.target.name, event.target.value);
+  };
+
+  const rows = saleHistory.map((order) =>
+    createData(
+      `n° ${order.order_number}`,
+      order.date,
+      `${order.total_cost} €`,
+      <>
+        {order.status === 'payé' && (
+          <Select
+            value={order.status}
+            name={order.order_number}
+            onChange={handleChangeOrderStatus}
+            className={classes.input}
+          >
+            <MenuItem value={order.status}> {order.status}</MenuItem>
+            <MenuItem value="En cours de préparation">
+              En cours de préparation
+            </MenuItem>
+            <MenuItem value="expédié">Expédié</MenuItem>
+          </Select>
+        )}
+        {order.status === 'expédié' && (
+          <Select
+            value={order.status}
+            name={order.order_number}
+            onChange={handleChangeOrderStatus}
+            className={classes.input}
+          >
+            <MenuItem value={order.status}> {order.status}</MenuItem>
+            <MenuItem value="En cours de préparation">
+              En cours de préparation
+            </MenuItem>
+            <MenuItem value="payé">Payé</MenuItem>
+          </Select>
+        )}
+        {order.status === 'En cours de préparation' && (
+          <Select
+            value={order.status}
+            name={order.order_number}
+            onChange={handleChangeOrderStatus}
+            className={classes.input}
+          >
+            <MenuItem value={order.status}> {order.status}</MenuItem>
+            <MenuItem value="payé">Payé</MenuItem>
+            <MenuItem value="expédié">Expédié</MenuItem>
+          </Select>
+        )}
+        {order.status === null && (
+          <Select
+            value={order.status}
+            name={order.order_number}
+            onChange={handleChangeOrderStatus}
+            className={classes.input}
+          >
+            <MenuItem value="payé">Payé</MenuItem>
+            <MenuItem value="En cours de préparation">
+              En cours de préparation
+            </MenuItem>
+            <MenuItem value="expédié">Expédié</MenuItem>
+          </Select>
+        )}
+      </>
+    )
   );
-  const classes = useRowStyles();
+
   return (
     <>
-      {orderHistory.length !== 0 && (
+      {saleHistory.length !== 0 && (
         <Paper className={classes.paper}>
           <Typography
             variant="h6"
@@ -112,7 +190,7 @@ const HistoryPageTable = ({ orderHistory, fetchOrders, userId }) => {
           </TableContainer>
         </Paper>
       )}
-      {orderHistory.length === 0 && (
+      {saleHistory.length === 0 && (
         <Box
           display="flex"
           flexDirection="column"
@@ -121,8 +199,14 @@ const HistoryPageTable = ({ orderHistory, fetchOrders, userId }) => {
           className="empty-cart"
           boxShadow={4}
         >
-          <p className="empty-cart__head">Vous n'avez pas encore de commandes à afficher</p>
-          <img src={EmptyLogo} alt="shopping-cart-icon" className="empty-cart__img" />
+          <p className="empty-cart__head">
+            Vous n'avez pas encore de ventes à afficher
+          </p>
+          <img
+            src={EmptyLogo}
+            alt="shopping-cart-icon"
+            className="empty-cart__img"
+          />
         </Box>
       )}
     </>
@@ -130,9 +214,10 @@ const HistoryPageTable = ({ orderHistory, fetchOrders, userId }) => {
 };
 
 HistoryPageTable.propTypes = {
-  orderHistory: PropTypes.arrayOf(PropTypes.object).isRequired,
+  saleHistory: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchOrders: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
+  changeOrderStatus: PropTypes.func.isRequired,
 };
 
 export default HistoryPageTable;

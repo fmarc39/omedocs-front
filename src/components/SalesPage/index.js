@@ -10,7 +10,7 @@ import LeftMenu from 'src/containers/LeftMenu';
 import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
 
 // Import COMPONENTS
-import HistoryPageTable from 'src/containers/Tables/HistoryPageTable';
+import SalesPageTable from 'src/containers/Tables/SalesPageTable';
 
 // Import CSS
 import './styles.scss';
@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const HistoryPage = ({}) => {
+const SaleHistory = ({}) => {
   const classes = useStyles();
   return (
     <>
@@ -44,7 +44,7 @@ const HistoryPage = ({}) => {
               background: `url(${backgroundImage}) center center / cover`,
             }}
           >
-            <HistoryPageTable />
+            <SalesPageTable />
           </Box>
         </Box>
         <Footer />
@@ -53,6 +53,6 @@ const HistoryPage = ({}) => {
   );
 };
 
-HistoryPage.propTypes = {};
+SaleHistory.propTypes = {};
 
-export default HistoryPage;
+export default SaleHistory;

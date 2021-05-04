@@ -441,6 +441,15 @@ const CartPage = ({
                       />
                     </div>
                   </TableContainer>
+                  {/*
+
+ <IconButton
+                    onClick={handleTest}
+                    name={ccyFormat(invoiceTotal)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+ */}
                 </Paper>
               )}
             </div>

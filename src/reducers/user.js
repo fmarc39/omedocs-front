@@ -7,7 +7,18 @@ import {
   SAVE_NEW_PHONE,
   CLEAN_INPUT_SIGNUP,
 } from 'src/actions/user';
-import { OPEN_VALIDATION_CHANGE_MODAL, CLOSE_VALIDATION_CHANGE_MODAL } from 'src/actions/utils';
+
+import {
+  OPEN_VALIDATION_CHANGE_MODAL,
+  CLOSE_VALIDATION_CHANGE_MODAL,
+} from 'src/actions/utils';
+
+import {
+  SAVE_IN_ORDER_HISTORY,
+  SAVE_FETCHED_ORDERS_IN_STATE,
+  SAVE_FETCHED_SALES_IN_STATE,
+  SAVE_ORDER_STATUS_IN_STATE,
+} from 'src/actions/cart';
 
 import api from 'src/api/api';
 
@@ -30,32 +41,8 @@ export const initialState = {
   password: '',
   confirmPassword: '',
   fieldToChange: '',
-  orderHistory: [
-    {
-      orderNumber: 120,
-      orderDate: '31/01/2020',
-      totalPrice: 230,
-      status: 'payé',
-    },
-    {
-      orderNumber: 121,
-      orderDate: '31/01/2020',
-      totalPrice: 230,
-      status: 'payé',
-    },
-    {
-      orderNumber: 122,
-      orderDate: '31/01/2020',
-      totalPrice: 230,
-      status: 'payé',
-    },
-    {
-      orderNumber: 123,
-      orderDate: '31/01/2020',
-      totalPrice: 230,
-      status: 'payé',
-    },
-  ],
+  orderHistory: [],
+  saleHistory: [],
   logged: false,
   accessToken: null,
   changeInformationsModal: false,
@@ -184,6 +171,31 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         phoneNumber: action.phone,
         newPhoneNumber: '',
+      };
+    case SAVE_IN_ORDER_HISTORY:
+      return {
+        ...state,
+        orderHistory: [...state.orderHistory, action.payload],
+      };
+    case SAVE_FETCHED_ORDERS_IN_STATE:
+      return {
+        ...state,
+        orderHistory: [...action.payload.map((article) => article)],
+      };
+    case SAVE_FETCHED_SALES_IN_STATE:
+      return {
+        ...state,
+        saleHistory: [...action.payload.map((article) => article)],
+      };
+    case SAVE_ORDER_STATUS_IN_STATE:
+      return {
+        ...state,
+        saleHistory: state.saleHistory.map((sale) => {
+          if (Number(sale.order_number) === Number(action.orderId)) {
+            sale.status = action.newStatus;
+          }
+          return sale;
+        }),
       };
     default:
       return state;

@@ -24,10 +24,10 @@ import Checkout from 'src/components/Stripe/Checkout';
 import Success from 'src/components/Stripe/Success';
 import Canceled from 'src/components/Stripe/Canceled';
 import OrderHistory from 'src/components/HistoryPage';
+import SalesHistory from 'src/components/SalesPage/index';
 
 import './styles.scss';
 import { DonutLargeSharp } from '@material-ui/icons';
-import HistoryPage from '../HistoryPage';
 
 const App = ({ logged, rehydrate }) => {
   useEffect(() => {
@@ -61,9 +61,11 @@ const App = ({ logged, rehydrate }) => {
           {!logged ? <Redirect to="/" /> : <SearchPharmachy />}
         </Route>
         <Route path="/cart">{!logged ? <Redirect to="/" /> : <Cart />}</Route>
-        <Route path="/history">
-          {!logged ? <Redirect to="/" /> : <HistoryPage />}
-          {/* {!logged ? <Redirect to="/" /> : <OrderHistory />} */}
+        <Route exact path="/history">
+          {!logged ? <Redirect to="/" /> : <OrderHistory />}
+        </Route>
+        <Route exact path="/sale">
+          {!logged ? <Redirect to="/" /> : <SalesHistory />}
         </Route>
         <Route path="/success">
           <Success />

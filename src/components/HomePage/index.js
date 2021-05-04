@@ -23,16 +23,20 @@ import scrollBtn from 'src/assets/img/scroll.svg';
 import upArrow from 'src/assets/img/up-arrow.svg';
 import screen1 from 'src/assets/img/screen-add-product.jpg';
 import screen2 from 'src/assets/img/screen-page-establishment.jpg';
+import caract2 from 'src/assets/img/home-caracters/Calque_2.png';
+import caract3 from 'src/assets/img/home-caracters/Calque_3.png';
+import caract4 from 'src/assets/img/home-caracters/Calque_4.png';
+import caract5 from 'src/assets/img/home-caracters/Calque_5.png';
 
 // Import CSS
 import './styles.scss';
 
 const useStyles = makeStyles(() => ({
   button: {
-    background: '#0368A3',
+    background: '#1A936F',
+    color: '#F3E9D2',
     '&:hover': {
-      background: '#CDD0D4',
-      color: '#0368A3',
+      background: '#114B5F',
     },
     borderRadius: '30px',
     padding: '.8rem',
@@ -142,11 +146,18 @@ const HomePage = () => {
         <InView triggerOnce="true" threshold={threshold}>
           {({ inView, ref }) => (
             <div ref={ref} className={inView ? 'goal__content' : 'goal__content-hide'}>
+              <div>
+                <img src={caract2} alt="caractere-img" className="goal__content--img" />
+                <img src={caract3} alt="caractere-img" className="goal__content--img" />
+              </div>
               <p className="goal__content--text">
                 Mettre en relation les professionnels de la santé pour luttre contre le gaspillage
                 des médicaments.
               </p>
-              <div className="goal__content--img" />
+              <div>
+                <img src={caract4} alt="caractere-img" className="goal__content--img" />
+                <img src={caract5} alt="caractere-img" className="goal__content--img" />
+              </div>
             </div>
           )}
         </InView>

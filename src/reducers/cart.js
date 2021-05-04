@@ -14,7 +14,7 @@ const persistedState = loadState();
 
 export const initialState = {
   cart: persistedState ? persistedState.cart : [],
-  pharmacyToOrder: null,
+  pharmacyToOrder: persistedState ? persistedState.pharmacyToOrder : null,
   validationBox: false,
 };
 
@@ -24,6 +24,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         cart: [],
+        pharmacyToOrder: null,
       };
     case ADD_ARTICLE_TO_CART:
       return {

@@ -24,6 +24,7 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import HomeIcon from '@material-ui/icons/Home';
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 
 // Image
 import pharmacy from 'src/assets/img/pharmacie.svg';
@@ -43,7 +44,7 @@ const useStyles = makeStyles(() => ({
       color: '#0368A3',
     },
     borderRadius: '15px',
-    marginBottom: '2rem',
+    marginBottom: '1rem',
   },
   logoutBtn: {
     transition: 'all 0.3s',
@@ -203,6 +204,34 @@ const LeftMenu = ({
               style={{ width: !menuIsOpen ? '50px' : null }}
             >
               {menuIsOpen ? "Acceder a l'inventaire" : ''}
+            </Button>
+          )}
+        </NavLink>
+        <NavLink to="/history" style={{ textDecoration: 'none' }}>
+          {userType === 'hospital' && (
+            <Button
+              variant="contained"
+              color="primary"
+              endIcon={<FormatListNumberedIcon />}
+              size="large"
+              className={classes.btn}
+              style={{ width: !menuIsOpen ? '50px' : null }}
+            >
+              {menuIsOpen ? 'Historique des commandes' : ''}
+            </Button>
+          )}
+        </NavLink>
+        <NavLink to="/sale" style={{ textDecoration: 'none' }}>
+          {userType === 'pharmacy' && (
+            <Button
+              variant="contained"
+              color="primary"
+              endIcon={<FormatListNumberedIcon />}
+              size="large"
+              className={classes.btn}
+              style={{ width: !menuIsOpen ? '50px' : null }}
+            >
+              {menuIsOpen ? 'Historique des commandes' : ''}
             </Button>
           )}
         </NavLink>

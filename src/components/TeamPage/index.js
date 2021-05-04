@@ -79,7 +79,6 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
         <Header />
         <Box width="100%" display="flex" id="body">
           <Box
-            bgcolor="#C6C6C6"
             height="100%"
             width="100%"
             p={4}
@@ -274,60 +273,7 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                         component="p"
                         align="center"
                       >
-                        Lead dev back
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions className={classes.btnBox}>
-                    <Button
-                      size="small"
-                      target="blank"
-                      color="primary"
-                      startIcon={<GitHubIcon />}
-                      className={classes.btn}
-                      href="https://github.com/ZacharyBournand"
-                    >
-                      GitHub
-                    </Button>
-                    <Button
-                      size="small"
-                      target="blank"
-                      color="primary"
-                      startIcon={<LinkedInIcon />}
-                      className={classes.btn}
-                      href="https://www.linkedin.com/in/zachary-bournand-6908a5168/"
-                    >
-                      LinkeDin
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grow>
-              <Grow
-                in={annimation}
-                style={{ transformOrigin: '0 0 0' }}
-                {...(annimation ? { timeout: 3000 } : {})}
-              >
-                <Card className={classes.root}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="img-scrum-master"
-                      height="300"
-                      image={Lambert}
-                      title="Bahri  -img"
-                      className={classes.img}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
-                        Bahri
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                        align="center"
-                      >
-                        Scrum master
+                        Scrum Master Lead dev back
                       </Typography>
                     </CardContent>
                   </CardActionArea>
