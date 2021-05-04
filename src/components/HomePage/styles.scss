@@ -104,6 +104,7 @@
       margin-left: auto;
       margin-top: 250px;
       margin-bottom: 40px;
+ 
     }
 
     &__hamburger {
@@ -145,24 +146,36 @@
       &--title {
         color: black;
         height: 10%;
-        font-size: 2rem;
+        position: relative;
+        font-size: 2.5rem;
         font-weight: bold;
         margin: 2.5rem 0;
+        &::after {
+          content : "";
+          position : absolute;
+          width : 200px;
+          height : 2px;
+          background-color: white;
+          top: 60px;
+          right: -15px
+          
+        }
+        
       }
     }
 
     &__content {
       margin-top: 100px;
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
       opacity: 1;
-      transition: 0.6s ease-in-out;
+      transition: 0.7s ease-in-out;
 
       &-hide {
-        transform: translateY(300px);
+        transform: translateY(350px);
         opacity: 0;
-        transition: 0.6s ease-in-out;
+        transition: 0.7s ease-in-out;
       }
 
       &--text {
@@ -172,16 +185,12 @@
         min-width: 200px;
         text-align: center;
         flex: none;
-        margin-right: 2.5rem;
+  
       }
 
       &--img {
-        border-radius: 20px;
-        margin-left: 30px;
-        width: 600px;
+        padding: 1rem;
         height: 400px;
-        background: url('src/assets/img/illustration-home-page.jpeg') center;
-        background-size: cover;
       }
     }
   }
@@ -203,11 +212,22 @@
 
       }
       &--title {
+        position: relative;
         color: black;
-        font-size: 2rem;
+        font-size: 2.5rem;
         font-weight: 700;
         margin-left: 20px;
         margin: 2.5rem 0;
+        &::after {
+          content : "";
+          position : absolute;
+          width : 230px;
+          height : 2px;
+          background-color: white;
+          top: 60px;
+          right: -25px
+          
+        }
       }
     }
 
@@ -259,10 +279,21 @@
       align-items: center;
       &--title {
         color: black;
-        font-size: 2rem;
+        position: relative;
+        font-size: 2.5rem;
         font-weight: 700;
         margin-left: 20px;
         margin: 2.5rem 0;
+        &::after {
+          content : "";
+          position : absolute;
+          width : 250px;
+          height : 2px;
+          background-color: white;
+          top: 60px;
+          right: -15px
+          
+        }
       }
     }
     .services__content {
@@ -468,7 +499,7 @@
   min-width: 220px;
 }
 .animated-title > div div {
-  font-size: 5vmin;
+  font-size: 6vmin;
   padding: 2vmin 0;
   position: absolute;
 }
