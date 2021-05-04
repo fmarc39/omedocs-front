@@ -1,5 +1,6 @@
 export const ADD_ARTICLE_TO_CART = 'ADD_ARTICLE_TO_CART';
 export const DELETE_ARTICLE_FROM_CART = 'DELETE_ARTICLE_FROM_CART';
+export const CLEAR_CART = 'CLEAR_CART';
 export const CLOSE_DIALOG_BOX = 'CLOSE_DIALOG_BOX';
 export const OPEN_DIALOG_BOX = 'OPEN_DIALOG_BOX';
 export const SAVE_ORDER_IN_DB = 'SAVE_ORDER_IN_DB';
@@ -38,4 +39,8 @@ export const descreasesArticleQuantity = (articleId) => ({
 export const saveOrderInDb = (totalPrice) => ({
   type: SAVE_ORDER_IN_DB,
   totalPrice,
+});
+
+export const clearCart = () => ({
+  type: CLEAR_CART,
 });

@@ -5,6 +5,7 @@ import {
   increasesArticleQuantity,
   descreasesArticleQuantity,
   saveOrderInDb,
+  clearCart,
 } from 'src/actions/cart';
 import { withRouter } from 'react-router-dom';
 
@@ -25,6 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
   saveOrder: (totalPrice) => {
     dispatch(saveOrderInDb(totalPrice));
   },
+  clearCart: () => dispatch(clearCart()),
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps)(CartPage);

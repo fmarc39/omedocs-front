@@ -212,7 +212,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CartPage = ({ cartData, deleteArticle, price, addQuantity, remmoveQuantity, saveOrder }) => {
+const CartPage = ({
+  cartData,
+  deleteArticle,
+  price,
+  addQuantity,
+  remmoveQuantity,
+  saveOrder,
+  clearCart,
+}) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -271,6 +279,8 @@ const CartPage = ({ cartData, deleteArticle, price, addQuantity, remmoveQuantity
   };
 
   async function handleToken(token, product, addresses) {
+    console.log(token, product);
+    clearCart();
     const response = await axios.post('http://omedocs.herokuapp.com/checkout', {
       token,
       product,

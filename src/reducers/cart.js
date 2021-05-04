@@ -5,6 +5,7 @@ import {
   OPEN_DIALOG_BOX,
   INCREASES_ARTICLE_QUANTITY,
   DECREASES_ARTICLE_QUANTITY,
+  CLEAR_CART,
 } from 'src/actions/cart';
 
 import { loadState } from 'src/locaStorage';
@@ -19,6 +20,11 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
+      };
     case ADD_ARTICLE_TO_CART:
       return {
         ...state,
@@ -28,11 +34,7 @@ const reducer = (state = initialState, action = {}) => {
     case DELETE_ARTICLE_FROM_CART:
       return {
         ...state,
-        cart: [
-          ...state.cart.filter(
-            (article) => Number(article.id) !== Number(action.articleId)
-          ),
-        ],
+        cart: [...state.cart.filter((article) => Number(article.id) !== Number(action.articleId))],
         pharmacyToOrder: state.cart.length === 1 ? null : state.pharmacyToOrder,
       };
 
