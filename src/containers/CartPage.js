@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CartPage from 'src/components/Cart';
+import CartPage from 'src/components/Cart/';
 import {
   deleteArticleFromCart,
   increasesArticleQuantity,

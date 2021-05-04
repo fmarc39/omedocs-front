@@ -1,10 +1,14 @@
+/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-mixed-operators */
 import React from 'react';
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import Footer from 'src/components/Footer';
 import Box from '@material-ui/core/Box';
 import LeftMenu from 'src/containers/LeftMenu';
 import axios from 'axios';
+import Slide from '@material-ui/core/Slide';
 
 // Import react-router-dom pour ajouter des links aux boutons
 import { Link } from 'react-router-dom';
@@ -208,15 +212,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CartPage = ({
-  cartData,
-  deleteArticle,
-  title,
-  price,
-  addQuantity,
-  remmoveQuantity,
-  saveOrder,
-}) => {
+const CartPage = ({ cartData, deleteArticle, price, addQuantity, remmoveQuantity, saveOrder }) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -283,6 +279,8 @@ const CartPage = ({
     const { status } = response.data;
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
+      this.props.dispatch(handleToken());
+      Redirect.push('/');
     } else {
       toast('Something went wrong', { type: 'error' });
     }
@@ -328,16 +326,18 @@ const CartPage = ({
               </Box>
             )}
             {cartData.length !== 0 && (
-              <Box
-                className="cart-box"
-                p={2}
-                mb={2}
-                borderRadius="10px"
-                align="center"
-                boxShadow={4}
-              >
-                <h4 className="cart-box__title"> Votre panier </h4>
-              </Box>
+              <Slide direction="down" in="true" mountOnEnter unmountOnExit>
+                <Box
+                  className="cart-box"
+                  p={2}
+                  mb={2}
+                  borderRadius="10px"
+                  align="center"
+                  boxShadow={4}
+                >
+                  <h4 className="cart-box__title"> Votre panier </h4>
+                </Box>
+              </Slide>
             )}
 
             <div className={classes.root}>
@@ -419,18 +419,17 @@ const CartPage = ({
                         stripeKey="pk_test_51Ij1IsAClzkudXaoJHimun68AE67pw5ry6KRTJdgS2tu6SScPbUPCqAFXlvkTb9EnzAZOYbXfErMtxRD9LZD3F8e00byaYzYhA"
                         token={handleToken}
                         endIcon={<PaymentIcon />}
+                        label="Payer par 💳"
                         className={classes.btn}
-                        amount={price * 100}
-                        data-locale="auto"
+                        amount={invoiceTotal * 100}
+                        currency="EUR"
                         name="O'Medocs"
+                        locale="fr"
                         billingAddress
                         shippingAddress
                       />
                     </div>
                   </TableContainer>
-                  <IconButton onClick={handleTest} name={ccyFormat(invoiceTotal)}>
-                    <DeleteIcon />
-                  </IconButton>
                 </Paper>
               )}
             </div>
@@ -447,12 +446,10 @@ CartPage.propTypes = {
   addQuantity: PropTypes.func.isRequired,
   remmoveQuantity: PropTypes.func.isRequired,
   price: PropTypes.number,
-  title: PropTypes.string,
 };
 
 CartPage.defaultProps = {
   price: 0,
-  title: '',
 };
 
 export default CartPage;

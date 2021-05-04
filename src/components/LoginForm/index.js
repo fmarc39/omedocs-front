@@ -125,7 +125,6 @@ const LoginForm = ({
                 Connexion
               </Button>
             </form>
-            <Link to="/login/reset">Mot de passe oublié ?</Link>
           </Box>
           <Accordion
             email={email}
