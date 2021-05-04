@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const HistoryPage = ({}) => {
+const SaleHistory = ({}) => {
   const classes = useStyles();
   return (
     <>
@@ -58,6 +58,6 @@ const HistoryPage = ({}) => {
   );
 };
 
-HistoryPage.propTypes = {};
+SaleHistory.propTypes = {};
 
-export default HistoryPage;
+export default SaleHistory;

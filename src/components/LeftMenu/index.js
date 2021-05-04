@@ -240,7 +240,7 @@ const LeftMenu = ({
               className={classes.btn}
               style={{ width: !menuIsOpen ? '50px' : null }}
             >
-              {menuIsOpen ? 'Historique des ventes' : ''}
+              {menuIsOpen ? 'Historique des commandes' : ''}
             </Button>
           )}
         </NavLink>
