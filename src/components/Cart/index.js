@@ -250,11 +250,6 @@ const CartPage = ({
     ),
   );
 
-  const handleTest = (event) => {
-    console.log('ok ');
-    saveOrder(event.target.closest('button').name);
-  };
-
   const handleRemoveBtn = (event) => {
     event.preventDefault();
     remmoveQuantity(event.target.closest('button').name);
@@ -279,7 +274,7 @@ const CartPage = ({
   };
 
   async function handleToken(token, product, addresses) {
-    console.log(token, product);
+    saveOrder(ccyFormat(invoiceTotal));
     clearCart();
     const response = await axios.post('http://omedocs.herokuapp.com/checkout', {
       token,
@@ -441,15 +436,6 @@ const CartPage = ({
                       />
                     </div>
                   </TableContainer>
-                  {/*
-
- <IconButton
-                    onClick={handleTest}
-                    name={ccyFormat(invoiceTotal)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
- */}
                 </Paper>
               )}
             </div>

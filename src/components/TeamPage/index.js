@@ -47,6 +47,15 @@ const useStyles = makeStyles({
   btn: {
     color: '#0368A3',
   },
+  btnSend: {
+    color: 'white',
+    borderRadius: '15px',
+    background: '#0368A3',
+    '&:hover': {
+      background: '#CDD0D4',
+      color: '#0368A3',
+    },
+  },
   btnBox: {
     display: 'flex',
     justifyContent: 'center',
@@ -75,7 +84,7 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
   const annimation = true;
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box display="flex" flexDirection="column" justifyContent="space-between" minHeight="100vh">
         <Header />
         <Box width="100%" display="flex" id="body">
           <Box
@@ -316,71 +325,71 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                   borderRadius: '10px',
                   padding: '20px',
                   backgroundColor: '#fff',
+                  boxShadow: 'rgb(0 0 0 / 35%) 0px 2px 9px 2px',
                 }}
               >
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <TextField
+                    required
+                    onChange={handlerOnChange}
+                    variant="outlined"
+                    name="email"
+                    type="email"
+                    value={email}
+                    label="Votre Email"
+                    style={{ width: '250px' }}
+                  />
+                  <TextField
+                    required
+                    onChange={handlerOnChange}
+                    variant="outlined"
+                    name="lastName"
+                    type="text"
+                    value={lastName}
+                    label="Votre Nom"
+                    style={{ width: '210px', margin: '0 10px' }}
+                  />
+                  <TextField
+                    required
+                    onChange={handlerOnChange}
+                    variant="outlined"
+                    name="firstName"
+                    type="text"
+                    value={firstName}
+                    label="Votre prénom"
+                    style={{ width: '210px' }}
+                  />
+                </div>
+
                 <TextField
+                  fullWidth
                   required
                   onChange={handlerOnChange}
                   variant="outlined"
-                  name="email"
-                  size="small"
-                  type="email"
-                  value={email}
-                  label="Votre Email"
-                  style={{ backgroundColor: '#fff', width: '300px' }}
-                />
-                <TextField
-                  required
-                  onChange={handlerOnChange}
-                  variant="outlined"
-                  name="lastName"
-                  size="small"
-                  type="text"
-                  value={lastName}
-                  label="Votre Nom"
-                  style={{ backgroundColor: '#fff', width: '300px', margin: '15px' }}
-                />
-                <TextField
-                  required
-                  onChange={handlerOnChange}
-                  variant="outlined"
-                  name="firstName"
-                  size="small"
-                  type="text"
-                  value={firstName}
-                  label="Votre prénom"
-                  style={{ backgroundColor: '#fff', width: '300px' }}
-                />
-                <TextareaAutosize
-                  required
-                  onChange={handlerOnChange}
+                  multiline
+                  rows={10}
                   name="message"
+                  size="small"
+                  type="text"
                   value={message}
-                  placeholder="Ecrivez votre message ici..."
-                  rowsMin={15}
-                  style={{
-                    minWidth: '350px',
-                    maxWidth: '500px',
-                    padding: '10px',
-                    marginTop: '30px',
-                    marginBottom: '15px',
-                    fontSize: '1rem',
-                  }}
+                  label="Votre message"
+                  style={{ margin: '30px' }}
                 />
+
                 <Button
+                  fullWidth
                   type="submit"
                   size="small"
                   target="blank"
                   color="primary"
                   variant="contained"
                   endIcon={<SendIcon />}
-                  // className={classes.btn}
+                  className={classes.btnSend}
                 >
                   Envoyer
                 </Button>
               </form>
             </div>
-
             <Box display="flex" flexDirection="column">
               <Chatbox />
             </Box>
