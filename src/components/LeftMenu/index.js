@@ -1,7 +1,7 @@
 // Import React
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Chatbox from 'src/components/Chatbot';
+import Chatbox from 'src/containers/Chatbot';
 
 // Import react-router-dom pour ajouter des links aux boutons
 import { NavLink, Link } from 'react-router-dom';
