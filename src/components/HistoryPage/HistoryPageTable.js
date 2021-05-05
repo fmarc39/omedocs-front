@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import EmptyLogo from 'src/assets/img/packing-list.svg';
+import { Hidden } from '@material-ui/core';
 
 const useRowStyles = makeStyles({
   root: {
@@ -20,6 +21,8 @@ const useRowStyles = makeStyles({
   },
   paper: {
     minWidth: '800px',
+    borderRadius: '15px',
+    backgroundColor: '#008DBA',
     textAlign: 'center',
   },
 });
@@ -68,7 +71,12 @@ const HistoryPageTable = ({ orderHistory, fetchOrders, userId }) => {
   }, []);
 
   const rows = orderHistory.map((order) =>
-    createData(`n° ${order.order_number}`, order.date, `${order.total_cost} €`, order.status),
+    createData(
+      `n° ${order.order_number}`,
+      order.date,
+      `${order.total_cost} €`,
+      order.status
+    )
   );
   const classes = useRowStyles();
   return (
@@ -79,8 +87,8 @@ const HistoryPageTable = ({ orderHistory, fetchOrders, userId }) => {
             variant="h6"
             style={{
               padding: '15px',
-              backgroundColor: '#0368A3',
-              color: '#FFF',
+              backgroundColor: '#008DBA',
+              color: 'white',
             }}
           >
             Historique de vos commandes
@@ -121,8 +129,14 @@ const HistoryPageTable = ({ orderHistory, fetchOrders, userId }) => {
           className="empty-cart"
           boxShadow={4}
         >
-          <p className="empty-cart__head">Vous n'avez pas encore de commandes à afficher</p>
-          <img src={EmptyLogo} alt="shopping-cart-icon" className="empty-cart__img" />
+          <p className="empty-cart__head">
+            Vous n'avez pas encore de commandes à afficher
+          </p>
+          <img
+            src={EmptyLogo}
+            alt="shopping-cart-icon"
+            className="empty-cart__img"
+          />
         </Box>
       )}
     </>

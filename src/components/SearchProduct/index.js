@@ -48,10 +48,10 @@ const SearchProduct = ({
   };
   const useStyles = makeStyles(() => ({
     btn: {
-      background: '#0368A3',
+      background: '#008DBA',
       '&:hover': {
-        background: '#CDD0D4',
-        color: '#0368A3',
+        background: '#0368A3',
+        color: '#FFF',
       },
       borderRadius: '15px',
     },
@@ -61,7 +61,12 @@ const SearchProduct = ({
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box
@@ -86,7 +91,9 @@ const SearchProduct = ({
             >
               <form autoComplete="off" onSubmit={handleOnSubmit}>
                 <div>
-                  <InputLabel htmlFor="search-product-input">Nom du médicament</InputLabel>
+                  <InputLabel htmlFor="search-product-input">
+                    Nom du médicament
+                  </InputLabel>
                   <Input
                     id="search-product-input"
                     onChange={handleChangeSearchInput}

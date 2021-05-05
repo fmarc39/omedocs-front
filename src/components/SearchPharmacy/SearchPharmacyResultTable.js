@@ -68,8 +68,8 @@ const PharmacyTable = ({ establishments }) => {
       pharmacy.user_type,
       pharmacy.rpps,
       pharmacy.region,
-      pharmacy.id,
-    ),
+      pharmacy.id
+    )
   );
 
   // Je modifie les termes en anglais pour l'affichage dans le tableau
@@ -85,7 +85,10 @@ const PharmacyTable = ({ establishments }) => {
 
   return (
     <Paper className={classes.root}>
-      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+      <Typography
+        variant="h6"
+        style={{ padding: '10px', backgroundColor: '#008DBA', color: 'white' }}
+      >
         Liste des établissements
       </Typography>
       {establishments.length !== 0 ? (
@@ -95,29 +98,41 @@ const PharmacyTable = ({ establishments }) => {
               <TableHead>
                 <TableRow>
                   {columns.map((column) => (
-                    <TableCell key={column.id} align="left" style={{ minWidth: column.minWidth }}>
+                    <TableCell
+                      key={column.id}
+                      align="left"
+                      style={{ minWidth: column.minWidth }}
+                    >
                       <p className="cells-title">{column.label}</p>
                     </TableCell>
                   ))}
                 </TableRow>
               </TableHead>
               <TableBody style={{ cursor: 'pointer' }}>
-                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code} data-rpps={row.id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          <Link to={`establishment/${row.id}`}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </Link>
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                ))}
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.code}
+                      data-rpps={row.id}
+                    >
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            <Link to={`establishment/${row.id}`}>
+                              {column.format && typeof value === 'number'
+                                ? column.format(value)
+                                : value}
+                            </Link>
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -134,10 +149,16 @@ const PharmacyTable = ({ establishments }) => {
         </>
       ) : (
         <Box p={4}>
-          <h1 style={{ padding: '5px', fontWeight: '700', marginBottom: '2rem' }}>
+          <h1
+            style={{ padding: '5px', fontWeight: '700', marginBottom: '2rem' }}
+          >
             Il n'y a aucun établissement de ce nom présent sur le site
           </h1>
-          <img style={{ width: '150px' }} src={noResultsLogo} alt="no-results-logo" />
+          <img
+            style={{ width: '150px' }}
+            src={noResultsLogo}
+            alt="no-results-logo"
+          />
         </Box>
       )}
     </Paper>

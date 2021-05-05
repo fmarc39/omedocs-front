@@ -246,8 +246,8 @@ const CartPage = ({
         className={classes.delBtn}
       >
         <DeleteIcon />
-      </IconButton>,
-    ),
+      </IconButton>
+    )
   );
 
   const handleRemoveBtn = (event) => {
@@ -294,7 +294,12 @@ const CartPage = ({
 
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Box width="100%" height="100%" display="flex" id="body">
           <LeftMenu />
           <Box
@@ -321,7 +326,11 @@ const CartPage = ({
                   Votre panier est tristement
                   <span className="empty-cart__head-span"> vide</span>
                 </p>
-                <img src={ShoppingCart} alt="shopping-cart-icon" className="empty-cart__img" />
+                <img
+                  src={ShoppingCart}
+                  alt="shopping-cart-icon"
+                  className="empty-cart__img"
+                />
                 <p className="empty-cart__text">
                   Cliquez &nbsp;
                   <Link to="/searchproduct" className="empty-cart__link">
@@ -346,7 +355,7 @@ const CartPage = ({
               </Slide>
             )}
 
-            <div className={classes.root}>
+            <div className={classes.root} style={{ position: 'relative' }}>
               {cartData.length !== 0 && (
                 <Paper className={classes.paper}>
                   <TableContainer>
@@ -364,7 +373,10 @@ const CartPage = ({
                       />
                       <TableBody>
                         {stableSort(rows, getComparator(order, orderBy))
-                          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                          .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                          )
                           .map((row, index) => {
                             const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -398,35 +410,44 @@ const CartPage = ({
                                   </IconButton>
                                 </TableCell>
                                 <TableCell align="left">{row.unit} €</TableCell>
-                                <TableCell align="left">{ccyFormat(row.price)} €</TableCell>
-                                <TableCell align="left">{row.dellRow}</TableCell>
+                                <TableCell align="left">
+                                  {ccyFormat(row.price)} €
+                                </TableCell>
+                                <TableCell align="left">
+                                  {row.dellRow}
+                                </TableCell>
                               </TableRow>
                             );
                           })}
                         <TableRow>
                           <TableCell rowSpan={3} />
                           <TableCell colSpan={1}>Sous-total</TableCell>
-                          <TableCell align="right">{ccyFormat(invoiceSubtotal)} €</TableCell>
+                          <TableCell align="right">
+                            {ccyFormat(invoiceSubtotal)} €
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>TVA</TableCell>
-                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+                          <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
+                            0
+                          )} %`}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell colSpan={1}>Total</TableCell>
                           <TableCell align="right">
-                            <p className="total-price">{ccyFormat(invoiceTotal)} €</p>
+                            <p className="total-price">
+                              {ccyFormat(invoiceTotal)} €
+                            </p>
                           </TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
-                    <div>
+                    <div className="stripe">
                       <StripeCheckout
                         stripeKey="pk_test_51Ij1IsAClzkudXaoJHimun68AE67pw5ry6KRTJdgS2tu6SScPbUPCqAFXlvkTb9EnzAZOYbXfErMtxRD9LZD3F8e00byaYzYhA"
                         token={handleToken}
                         endIcon={<PaymentIcon />}
                         label="Payer par 💳"
-                        className={classes.btn}
                         amount={invoiceTotal * 100}
                         currency="EUR"
                         name="O'Medocs"

@@ -45,7 +45,7 @@ function createData(
   quantity,
   price,
   quantityToBuy,
-  addToCart,
+  addToCart
 ) {
   return {
     id,
@@ -122,7 +122,7 @@ const ProductTable = ({
   const handleReset = () => {
     Array.from(document.querySelectorAll('input')).forEach(
       // eslint-disable-next-line no-return-assign
-      (input) => (input.value = ''),
+      (input) => (input.value = '')
     );
   };
 
@@ -138,7 +138,15 @@ const ProductTable = ({
     event.preventDefault();
     // On récupère les datas du form avec dataset
     const {
-      dataset: { pharmacyname, pharmacyid, price, productid, productname, quantity, id },
+      dataset: {
+        pharmacyname,
+        pharmacyid,
+        price,
+        productid,
+        productname,
+        quantity,
+        id,
+      },
     } = event.target;
     // On récupère la quantité rentré par l'user
     const formData = new FormData(event.target);
@@ -160,7 +168,10 @@ const ProductTable = ({
     };
 
     // On va vérifier que l'user n'entre pas une quantité supérieur à la quantité dispo de l'article
-    if (Number(quantityToBuy) > Number(quantity) || Number(quantityToBuy) === 0) {
+    if (
+      Number(quantityToBuy) > Number(quantity) ||
+      Number(quantityToBuy) === 0
+    ) {
       handleShake(event);
     } // On vérifie si le produit est déja dans le panier
     else if (isAlreadyInCart === true) {
@@ -170,7 +181,10 @@ const ProductTable = ({
       // On vérifie si la commande ne comporte qu'une seul pharmacyId
       if (Number(pharmacyToOrder) !== Number(pharmacyid)) {
         handleShake(event);
-        openSnackBar("Vous ne pouvez commander qu'auprès d'une pharmacie à la fois", 'warning');
+        openSnackBar(
+          "Vous ne pouvez commander qu'auprès d'une pharmacie à la fois",
+          'warning'
+        );
       } else {
         // Fonction pour vider les champs
         handleReset();
@@ -194,7 +208,9 @@ const ProductTable = ({
     createData(
       product.id,
       product.name,
-      <Link to={`/establishment/${product.user_id}`}>{product.establishment}</Link>,
+      <Link to={`/establishment/${product.user_id}`}>
+        {product.establishment}
+      </Link>,
       product.expiration_date,
       product.quantity,
       `${product.unit_price}  €`,
@@ -231,12 +247,15 @@ const ProductTable = ({
             <AddShoppingCartIcon />
           </IconButton>
         </form>
-      </Box>,
-    ),
+      </Box>
+    )
   );
   return (
     <Paper className={classes.root}>
-      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+      <Typography
+        variant="h6"
+        style={{ padding: '10px', backgroundColor: '#008DBA', color: 'white' }}
+      >
         Liste des Médicaments
       </Typography>
 
@@ -259,20 +278,22 @@ const ProductTable = ({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                  <TableRow hover tabIndex={-1} key={row.id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align="left">
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                ))}
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <TableRow hover tabIndex={-1} key={row.id}>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align="left">
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -290,10 +311,16 @@ const ProductTable = ({
         </>
       ) : (
         <Box p={4}>
-          <h1 style={{ padding: '5px', fontWeight: '700', marginBottom: '2rem' }}>
+          <h1
+            style={{ padding: '5px', fontWeight: '700', marginBottom: '2rem' }}
+          >
             Cette référence n'est pas disponible à la vente
           </h1>
-          <img style={{ width: '150px' }} src={noResultsLogo} alt="no-results-logo" />
+          <img
+            style={{ width: '150px' }}
+            src={noResultsLogo}
+            alt="no-results-logo"
+          />
         </Box>
       )}
     </Paper>

@@ -50,10 +50,10 @@ const useStyles = makeStyles({
   btnSend: {
     color: 'white',
     borderRadius: '15px',
-    background: '#0368A3',
+    background: '#008DBA',
     '&:hover': {
-      background: '#CDD0D4',
-      color: '#0368A3',
+      background: '#0368A3',
+      color: '#FFF',
     },
   },
   btnBox: {
@@ -62,7 +62,14 @@ const useStyles = makeStyles({
   },
 });
 
-const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputValue }) => {
+const TeamPage = ({
+  sendMail,
+  email,
+  message,
+  firstName,
+  lastName,
+  changeInputValue,
+}) => {
   const classes = useStyles();
 
   const handlerOnChange = (event) => {
@@ -84,7 +91,12 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
   const annimation = true;
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" minHeight="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        minHeight="100vh"
+      >
         <Header />
         <Box width="100%" display="flex" id="body">
           <Box
@@ -96,7 +108,9 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
             alignItems="center"
             className="main-box"
           >
-            <h1 className="main-box__main-title">Qui se cache derrière O'Medocs ?</h1>
+            <h1 className="main-box__main-title">
+              Qui se cache derrière O'Medocs ?
+            </h1>
             <Box display="flex" flexWrap="wrap" p={4} justifyContent="center">
               <Grow
                 in={annimation}
@@ -114,7 +128,12 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                       className={classes.img}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
                         Lambert
                       </Typography>
                       <Typography
@@ -167,7 +186,12 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                       className={classes.img}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
                         François
                       </Typography>
                       <Typography
@@ -220,7 +244,12 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                       className={classes.img}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
                         Geoffrey
                       </Typography>
                       <Typography
@@ -273,7 +302,12 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                       className={classes.img}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h5" align="center">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h5"
+                        align="center"
+                      >
                         Zachary
                       </Typography>
                       <Typography
@@ -312,7 +346,9 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
               </Grow>
             </Box>
             <div style={{ textAlign: 'center' }}>
-              <h1 style={{ fontSize: '1.5rem', marginTop: '40px' }}>Nous contacter</h1>
+              <h1 style={{ fontSize: '1.5rem', marginTop: '40px' }}>
+                Nous contacter
+              </h1>
               <form
                 onSubmit={handlerOnSubmit}
                 style={{
@@ -328,7 +364,13 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                   boxShadow: 'rgb(0 0 0 / 35%) 0px 2px 9px 2px',
                 }}
               >
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    alignItems: 'center',
+                  }}
+                >
                   <TextField
                     required
                     onChange={handlerOnChange}
