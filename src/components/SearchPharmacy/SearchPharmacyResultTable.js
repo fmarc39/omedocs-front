@@ -20,9 +20,9 @@ import noResultsLogo from 'src/assets/img/no-results.svg';
 
 // Configuration des colones avec le nom, le label, la largeur
 const columns = [
-  { id: 'name', label: 'Nom de la Pharmacie', minWidth: 200 },
-  { id: 'user_type', label: 'Etablissement', minWidth: 100 },
-  { id: 'rpps', label: 'Rpps', minWidth: 100 },
+  { id: 'name', label: "Nom de l'établissement", minWidth: 200 },
+  { id: 'user_type', label: 'Établissement', minWidth: 100 },
+  { id: 'rpps', label: 'RPPS', minWidth: 100 },
   { id: 'region', label: 'Région', minWidth: 100 },
 ];
 

@@ -39,7 +39,7 @@ const Home = ({ productsCount, establishmentsCount, fetchCount }) => {
               <div className="content">
                 <div className="title-animation">
                   <div className="tracking-in-expand-fwd-top">BIENVENUE </div>
-                  <div className="tracking-in-contract-bck-bottom"> SUR O'MEDOCS</div>
+                  <div className="tracking-in-contract-bck-bottom"> SUR O'MÉDOCS</div>
                 </div>
                 <div className="count-container text-focus-in">
                   <p className="count-container__text">Actuellement sur le site:</p>

@@ -176,7 +176,7 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                         component="p"
                         align="center"
                       >
-                        Lead dev front
+                        Lead Dev Front
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -282,7 +282,7 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                         component="p"
                         align="center"
                       >
-                        Scrum Master Lead dev back
+                        Scrum Master, Lead Dev Back
                       </Typography>
                     </CardContent>
                   </CardActionArea>

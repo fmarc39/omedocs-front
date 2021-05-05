@@ -94,7 +94,7 @@ const InventoryTable = ({
   const handleReset = () => {
     Array.from(document.querySelectorAll('input')).forEach(
       // eslint-disable-next-line no-return-assign
-      (input) => (input.value = '')
+      (input) => (input.value = ''),
     );
   };
 
@@ -151,11 +151,7 @@ const InventoryTable = ({
       article.expiration_date,
       <Box display="flex" alignItems="center">
         {article.quantity}
-        <IconButton
-          aria-label="edit"
-          onClick={handleEditClickBtn}
-          className="edit-btn"
-        >
+        <IconButton aria-label="edit" onClick={handleEditClickBtn} className="edit-btn">
           <EditIcon />
         </IconButton>
         <form className="edit-tools hidden" onSubmit={handleSubmitForm}>
@@ -174,12 +170,7 @@ const InventoryTable = ({
               InputProps={{ inputProps: { min: 1 } }}
             />
           </Grow>
-          <IconButton
-            color="primary"
-            className="save-btn"
-            name={article.id}
-            type="submit"
-          >
+          <IconButton color="primary" className="save-btn" name={article.id} type="submit">
             <SaveIcon />
           </IconButton>
         </form>
@@ -193,17 +184,14 @@ const InventoryTable = ({
         className={classes.delBtn}
       >
         <DeleteIcon />
-      </IconButton>
-    )
+      </IconButton>,
+    ),
   );
 
   return (
     <Paper className={classes.root}>
-      <Typography
-        variant="h6"
-        style={{ padding: '10px', backgroundColor: '#A8C1E2' }}
-      >
-        Liste des établissements
+      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+        Inventaire
       </Typography>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table" size="small">
@@ -222,28 +210,24 @@ const InventoryTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow
-                  hover
-                  role="checkbox"
-                  tabIndex={-1}
-                  key={row.id}
-                  className={classes.tableRow}
-                >
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align="left">
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <TableRow
+                hover
+                role="checkbox"
+                tabIndex={-1}
+                key={row.id}
+                className={classes.tableRow}
+              >
+                {columns.map((column) => {
+                  const value = row[column.id];
+                  return (
+                    <TableCell key={column.id} align="left">
+                      {column.format && typeof value === 'number' ? column.format(value) : value}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

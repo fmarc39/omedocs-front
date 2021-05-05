@@ -179,7 +179,7 @@ const SignUp = ({
             <TextField
               className={classes.textField}
               variant="outlined"
-              label="Etablisement"
+              label="Établissement"
               name="establishment"
               value={establishment}
               onChange={handleOnChange}
@@ -217,12 +217,9 @@ const SignUp = ({
               required
               size="small"
             />
-            <FormControl
-              style={{ width: '300px', margin: '15px' }}
-              size="small"
-            >
+            <FormControl style={{ width: '300px', margin: '15px' }} size="small">
               <InputLabel id="typeSelect" style={{ padding: '0 0 10px 10px' }}>
-                Region
+                Région
               </InputLabel>
               <Select
                 labelId="typeSelect"
@@ -232,29 +229,19 @@ const SignUp = ({
                 onChange={handleOnChange}
                 required
               >
-                <MenuItem value="Auvergne-Rhône-Alpes">
-                  Auvergne-Rhône-Alpes
-                </MenuItem>
-                <MenuItem value="Bourgogne-Franche-Comté">
-                  Bourgogne-Franche-Comté
-                </MenuItem>
+                <MenuItem value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</MenuItem>
+                <MenuItem value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</MenuItem>
                 <MenuItem value="Bretagne">Bretagne</MenuItem>
-                <MenuItem value="Centre-Val de Loire">
-                  Centre-Val de Loire
-                </MenuItem>
+                <MenuItem value="Centre-Val de Loire">Centre-Val de Loire</MenuItem>
                 <MenuItem value="Corse">Corse</MenuItem>
                 <MenuItem value="Grand Est">Grand Est</MenuItem>
                 <MenuItem value="Hauts-de-France">Hauts-de-France</MenuItem>
                 <MenuItem value="Ile-de-France">Ile-de-France</MenuItem>
                 <MenuItem value="Normandie">Normandie</MenuItem>
-                <MenuItem value="Nouvelle-Aquitaine">
-                  Nouvelle-Aquitaine
-                </MenuItem>
+                <MenuItem value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</MenuItem>
                 <MenuItem value="Occitanie">Occitanie</MenuItem>
                 <MenuItem value="Pays de la Loire">Pays de la Loire</MenuItem>
-                <MenuItem value="Provence-Alpes-Côte d’Azur">
-                  Provence-Alpes-Côte d’Azur
-                </MenuItem>
+                <MenuItem value="Provence-Alpes-Côte d’Azur">Provence-Alpes-Côte d’Azur</MenuItem>
               </Select>
             </FormControl>
 
@@ -282,16 +269,8 @@ const SignUp = ({
             />
 
             <FormControl component="fieldset" className={classes.radio}>
-              <FormLabel component="legend">
-                Vous souhaitez vous inscrire en tant que :
-              </FormLabel>
-              <RadioGroup
-                name="userType"
-                value={userType}
-                onChange={handleOnChange}
-                required
-                row
-              >
+              <FormLabel component="legend">Vous souhaitez vous inscrire en tant que :</FormLabel>
+              <RadioGroup name="userType" value={userType} onChange={handleOnChange} required row>
                 <FormControlLabel
                   control={<Radio />}
                   label="Hôpital"
@@ -306,11 +285,7 @@ const SignUp = ({
                 />
               </RadioGroup>
             </FormControl>
-            <Button
-              variant="contained"
-              type="submit"
-              className={classes.button}
-            >
+            <Button variant="contained" type="submit" className={classes.button}>
               S'inscrire
             </Button>
           </form>

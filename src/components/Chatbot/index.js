@@ -23,6 +23,7 @@ function SimpleForm({ userType, establishment }) {
   return (
     <ThemeProvider theme={config}>
       <ChatBot
+        headerTitle="Roger"
         steps={[
           {
             id: '1',
@@ -47,13 +48,10 @@ function SimpleForm({ userType, establishment }) {
           {
             id: '4',
             component: (
-
               <div>
                 {' '}
-                Bien sûr, rendez-vous sur cette page :<Link to="/teampage">
-                  {' '}
-                  Qui se cache derrière O'Medocs ?
-                </Link>{' '}
+                Bien sûr, rendez-vous sur cette page :
+                <Link to="/teampage"> Qui se cache derrière O'Medocs ?</Link>{' '}
               </div>
             ),
             asMessage: true,
@@ -63,10 +61,7 @@ function SimpleForm({ userType, establishment }) {
             component: (
               <div>
                 {' '}
-                Bien sûr, rendez-vous sur cette page :<Link to="profil">
-                  {' '}
-                  Vos informations
-                </Link>{' '}
+                Bien sûr, rendez-vous sur cette page :<Link to="profil"> Mon profil</Link>{' '}
               </div>
             ),
             asMessage: true,

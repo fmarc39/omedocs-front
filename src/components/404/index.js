@@ -30,11 +30,11 @@ const index = () => (
           </Box>
           <div className="msg">
             <p>
-              Peut-être que cette page a été déplacée?
+              Peut-être que cette page a été déplacée ?
               <br />
-              Se cache-t-elle en quarantaine?
+              Se cache-t-elle en quarantaine ?
               <br />
-              N'a jamais existé en premier lieu.
+              N'a jamais existée en premier lieu ?
               <br />
             </p>
             <p>
@@ -42,7 +42,7 @@ const index = () => (
               <a href="/" className="home-link">
                 Accueil
               </a>{' '}
-              et essayons à partir de là
+              et essayons à partir de là.
             </p>
           </div>
         </Box>

@@ -189,7 +189,7 @@ const LeftMenu = ({
               style={{ width: !menuIsOpen ? '50px' : null }}
               className={classes.btn}
             >
-              {menuIsOpen ? 'Acceder au panier' : ''}
+              {menuIsOpen ? 'Accéder au panier' : ''}
             </Button>
           )}
         </NavLink>
@@ -203,7 +203,7 @@ const LeftMenu = ({
               className={classes.btn}
               style={{ width: !menuIsOpen ? '50px' : null }}
             >
-              {menuIsOpen ? "Acceder a l'inventaire" : ''}
+              {menuIsOpen ? "Accéder a l'inventaire" : ''}
             </Button>
           )}
         </NavLink>
@@ -231,7 +231,7 @@ const LeftMenu = ({
               className={classes.btn}
               style={{ width: !menuIsOpen ? '50px' : null }}
             >
-              {menuIsOpen ? 'Historique des commandes' : ''}
+              {menuIsOpen ? 'Historique des ventes' : ''}
             </Button>
           )}
         </NavLink>

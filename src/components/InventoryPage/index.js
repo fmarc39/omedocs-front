@@ -83,7 +83,7 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoad
             ) : (
               <div className="up-arrow">
                 <p>Votre inventaire est vide.</p>
-                <p>Commencer à la remplir</p>
+                <p>Commencer à le remplir</p>
               </div>
             )}
           </Box>

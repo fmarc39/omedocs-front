@@ -105,7 +105,7 @@ const SearchPharmacy = ({
                   />
                 </div>
                 <FormControl size="medium" style={{ width: '300px' }}>
-                  <InputLabel id="typeSelect">Region</InputLabel>
+                  <InputLabel id="typeSelect">Région</InputLabel>
                   <Select
                     labelId="typeSelect"
                     id="typeSelectBtn"

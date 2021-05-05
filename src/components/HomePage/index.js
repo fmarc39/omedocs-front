@@ -121,7 +121,7 @@ const HomePage = () => {
             </div>
           </div>
           <div className="text-bottom">
-            <div>de médicaments</div>
+            <div>des médicaments</div>
           </div>
         </div>
         <a onClick={handleScrollDownBtn}>
@@ -151,7 +151,7 @@ const HomePage = () => {
                 <img src={caract3} alt="caractere-img" className="goal__content--img" />
               </div>
               <p className="goal__content--text">
-                Mettre en relation les professionnels de la santé pour luttre contre le gaspillage
+                Mettre en relation les professionnels de la santé pour lutter contre le gaspillage
                 des médicaments.
               </p>
               <div>
@@ -167,7 +167,7 @@ const HomePage = () => {
       </div>
       <div className="why" id="why">
         <div className="why__header">
-          <h2 className="why__header--title">Pourquoi?</h2>
+          <h2 className="why__header--title">Pourquoi ?</h2>
         </div>
         <InView triggerOnce="true" threshold={threshold}>
           {({ inView, ref }) => (
@@ -176,14 +176,15 @@ const HomePage = () => {
                 <img className="why__content--card-img" src={pharmacy} alt="pharmacy" />
                 <p className="why__content--card-text">
                   Actuellement en France, les pharmacies n'ont pas le droit de vendre des
-                  médicaments dont la date de péremption est inférieur à 3 à 6 mois.
+                  médicaments dont la date de péremption est inférieure à 3 à 6 mois.
                 </p>
               </div>
               <div className="why__content--card">
                 <img className="why__content--card-img" src={money} alt="money" />
                 <p className="why__content--card-text">
-                  Conséquence, les stock sont détruient. En moyenne un pharmacien détruit pour 15
-                  000€ de médicament par ans sans compté les tonnes de déchets que cela représente.
+                  Conséquence, les stocks sont détruits. En moyenne, un pharmacien détruit pour 15
+                  000€ de médicaments par ans sans compter les tonnes de déchets que cela
+                  représente.
                 </p>
               </div>
               <div className="why__content--card">
@@ -196,9 +197,11 @@ const HomePage = () => {
               <div className="why__content--card">
                 <img className="why__content--card-img" src={idea} alt="idea" />
                 <p className="why__content--card-text">
-                  Notre solution: O'médocs met à disposition une plateforme pour que pharmacies et
-                  hôpitaux agissent ensemble. Les stock invendable seront mis sur la plateforme par
-                  les pharmacies pour que les hopitaux puissent les acheter à prix réduit
+                  Notre solution:
+                  <br />
+                  O'médocs, une plateforme qui met en relation pharmaciens et hôpitaux. Les stocks
+                  invendables seront mis sur la plateforme par les pharmacies pour que les hôpitaux
+                  puissent les acheter à prix réduit.
                 </p>
               </div>
             </div>
@@ -218,7 +221,7 @@ const HomePage = () => {
             {({ inView, ref }) => (
               <div className={inView ? 'content-top' : 'content-top__right'} ref={ref}>
                 <p className="content-top__text">
-                  Gérer votre stock de médicament invendable et mettez le à disposition sur notre
+                  Gérer votre stock de médicaments invendables et mettez le à disposition sur notre
                   plateforme
                 </p>
                 <div className="content-top__img">
@@ -237,7 +240,7 @@ const HomePage = () => {
                   <img src={screen2} alt="sreen-page-establishment" />
                 </div>
                 <p className="content-bottom__text">
-                  Consulter la liste de médicaments disponible sur la plateforme, rechercher une
+                  Consulter la liste de médicaments disponibles sur la plateforme, rechercher une
                   pharmacie et consulter son stock
                 </p>
               </div>

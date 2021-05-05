@@ -92,7 +92,7 @@ const LoginForm = ({
           >
             <Box textAlign="center">
               <img className="logo__img" src={logo} alt="logo" style={{ width: '50px' }} />
-              <Typography variant="h5">Connectez vous</Typography>
+              <Typography variant="h5">Connectez-vous</Typography>
             </Box>
 
             <form className="form-login" onSubmit={handleOnSubmitLogin} method="post">
