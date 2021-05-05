@@ -49,6 +49,9 @@ const useStyles = makeStyles({
   },
   btnSend: {
     color: 'white',
+    width: '150px',
+    fontSize: '1rem',
+    padding: '1rem',
     borderRadius: '15px',
     background: '#008DBA',
     '&:hover': {
