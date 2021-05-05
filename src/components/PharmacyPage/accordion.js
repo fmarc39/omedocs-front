@@ -33,10 +33,10 @@ const useStyles = makeStyles(() => ({
     flexShrink: 0,
   },
   btn: {
-    background: '#0368A3',
+    background: '#008DBA',
     '&:hover': {
-      background: '#CDD0D4',
-      color: '#0368A3',
+      background: '#0368A2',
+      color: '#FFF',
     },
     borderRadius: '15px',
   },

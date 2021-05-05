@@ -40,6 +40,7 @@ const useStyles = makeStyles(() => ({
     overflow: 'hidden',
     textAlign: 'center',
     borderRadius: '15px',
+    backgroundColor: 'rgba(255, 255, 255, 0.75)',
   },
 }));
 
@@ -129,7 +130,6 @@ const ProfilPage = ({
               </Typography>
               <Box
                 p={3}
-                bgcolor="white"
                 boxShadow={4}
                 borderRadius="15px"
                 className="profil-box"

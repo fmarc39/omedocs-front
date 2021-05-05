@@ -348,10 +348,13 @@ const TeamPage = ({
                 </Card>
               </Grow>
             </Box>
+            <h1
+              style={{ marginBottom: '2rem' }}
+              className="main-box__main-title"
+            >
+              Nous contacter
+            </h1>
             <div style={{ textAlign: 'center' }}>
-              <h1 style={{ fontSize: '1.5rem', marginTop: '40px' }}>
-                Nous contacter
-              </h1>
               <form
                 onSubmit={handlerOnSubmit}
                 style={{
