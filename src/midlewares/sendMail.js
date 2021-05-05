@@ -9,8 +9,11 @@ export default (store) => (next) => (action) => {
   switch (action.type) {
     case SEND_MAIL:
       {
+        // je récupère les info du state
         const { message, email, firstName, lastName } = store.getState().contactUs;
-        console.log(message, email, lastName, firstName);
+        // 1er paramètre: le service utilisé, 2nd paramètre: le template utilisé
+        // 3eme paramètre: les params du template défini sur EmailJs
+        // 4eme paramètre: l'id initialisé
         emailjs
           .send(
             'service_x6zecr7',
@@ -47,7 +50,7 @@ export default (store) => (next) => (action) => {
       {
         const pharmacyEmail = store.getState().cart;
         const { name, emailBuyer, completeAddress } = action;
-
+        console.log();
         emailjs
           .send(
             'service_x6zecr7',

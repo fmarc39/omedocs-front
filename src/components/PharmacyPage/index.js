@@ -24,7 +24,9 @@ const PharmacyPage = ({
 }) => {
   // je filtre les établissements pour afficher la page d'un établissement
   const { id } = useParams();
-  const establishment = establishments.filter((item) => parseInt(id, 10) === item.id);
+  const establishment = establishments.filter(
+    (item) => parseInt(id, 10) === item.id
+  );
   // Si il n'y a pas d'établissement on se redirige vers la page searchestablishement
 
   if (!establishment[0]) {
@@ -34,7 +36,7 @@ const PharmacyPage = ({
   useEffect(() => {
     fetchInventory(establishment[0].id);
     fetchLatLng(
-      `${establishment[0].address}, ${establishment[0].zip_code} ${establishment[0].city}`,
+      `${establishment[0].address}, ${establishment[0].zip_code} ${establishment[0].city}`
     );
   }, []);
 
@@ -42,12 +44,18 @@ const PharmacyPage = ({
   const [open, setOpen] = useState(false);
 
   return (
-    <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-      <Header />
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
+      height="100vh"
+    >
       <Box width="100%" display="flex" id="body">
         <LeftMenu />
         <Box
-          style={{ background: `url(${backgroundImage}) center center / cover` }}
+          style={{
+            background: `url(${backgroundImage}) center center / cover`,
+          }}
           width="100%"
           minHeight="100vh"
           p={2}
@@ -60,7 +68,10 @@ const PharmacyPage = ({
           {isLoading ? (
             <Loading />
           ) : (
-            <InventoryTable inventory={inventory} establishment={establishment} />
+            <InventoryTable
+              inventory={inventory}
+              establishment={establishment}
+            />
           )}
         </Box>
       </Box>

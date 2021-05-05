@@ -157,11 +157,11 @@ const HistoryPageTable = ({
             variant="h6"
             style={{
               padding: '15px',
-              backgroundColor: '#0368A3',
+              backgroundColor: '#008DBA',
               color: '#FFF',
             }}
           >
-            Historique de vos commandes
+            Historique de vos ventes
           </Typography>
           <TableContainer component={Paper}>
             <Table aria-label="collapsible table">

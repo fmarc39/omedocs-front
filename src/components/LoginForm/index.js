@@ -17,13 +17,17 @@ import './styles.scss';
 const useStyles = makeStyles({
   input: {
     width: '300px',
-    marginBottom: '10px ',
+    marginBottom: '20px ',
   },
   button: {
-    backgroudColor: '#004fb1',
-    border: 'none',
-    outlined: 'none',
-    boxShadow: 'none',
+    background: '#008DBA',
+    color: '#FFF',
+    '&:hover': {
+      background: '#0368A3',
+    },
+    borderRadius: '10px',
+    padding: '.8rem',
+    fontSize: '1rem',
   },
 });
 
@@ -85,14 +89,14 @@ const LoginForm = ({
             p={4}
             display="flex"
             flexDirection="column"
-            justifyContent="space-between"
+            justifyContent="space-around"
             alignItems="center"
             borderRadius="10px"
             marginBottom="20px"
           >
             <Box textAlign="center">
               <img className="logo__img" src={logo} alt="logo" style={{ width: '50px' }} />
-              <Typography variant="h5">Connectez-vous</Typography>
+              <Typography variant="h5">Connectez vous</Typography>
             </Box>
 
             <form className="form-login" onSubmit={handleOnSubmitLogin} method="post">

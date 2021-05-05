@@ -21,16 +21,21 @@ import './styles.scss';
 
 const useStyles = makeStyles(() => ({
   btn: {
-    background: '#0368A3',
+    background: '#008DBA',
     '&:hover': {
-      background: '#CDD0D4',
-      color: '#0368A3',
+      background: '#0368A2',
+      color: '#FFF',
     },
     borderRadius: '15px',
   },
 }));
 
-const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoading }) => {
+const InventoryPage = ({
+  inventoryData,
+  handleAddArticle,
+  fetchInventory,
+  isLoading,
+}) => {
   // Gestion du clique sur le boutton 'ajouter un article' pour l'ouverture de la modal
   console.log(inventoryData);
   inventoryData.map((drug) => console.log(drug));
@@ -45,7 +50,12 @@ const InventoryPage = ({ inventoryData, handleAddArticle, fetchInventory, isLoad
   const classes = useStyles();
   return (
     <>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
         <Box height="100%" width="100%" display="flex" id="body">
           <LeftMenu />
           <Box

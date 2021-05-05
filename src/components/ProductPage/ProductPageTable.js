@@ -247,7 +247,10 @@ const ProductTable = ({
   );
   return (
     <Paper className={classes.root}>
-      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
+      <Typography
+        variant="h6"
+        style={{ padding: '10px', backgroundColor: '#008DBA', color: 'white' }}
+      >
         Liste des Médicaments
       </Typography>
 

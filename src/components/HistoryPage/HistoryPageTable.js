@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import EmptyLogo from 'src/assets/img/packing-list.svg';
+import { Hidden } from '@material-ui/core';
 
 const useRowStyles = makeStyles({
   root: {
@@ -19,7 +20,10 @@ const useRowStyles = makeStyles({
     },
   },
   paper: {
-    minWidth: '800px',
+    Width: '800px',
+    overflow: 'auto',
+    borderRadius: '15px',
+    backgroundColor: '#008DBA',
     textAlign: 'center',
   },
 });
@@ -79,8 +83,8 @@ const HistoryPageTable = ({ orderHistory, fetchOrders, userId }) => {
             variant="h6"
             style={{
               padding: '15px',
-              backgroundColor: '#0368A3',
-              color: '#FFF',
+              backgroundColor: '#008DBA',
+              color: 'white',
             }}
           >
             Historique de vos commandes

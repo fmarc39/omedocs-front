@@ -23,18 +23,21 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const useStyles = makeStyles({
   btn: {
-    background: '#0368A3',
-    color: 'white',
+    background: '#008DBA',
+    color: '#FFF',
     '&:hover': {
-      background: '#CDD0D4',
-      color: '#0368A3',
+      background: '#0368A3',
+      color: '#FFF',
     },
     borderRadius: '15px',
-    marginBottom: '1.5rem',
   },
 });
 
-const DialogChangeInformationsModal = ({ isOpen, handleClose, handleRedirect }) => {
+const DialogChangeInformationsModal = ({
+  isOpen,
+  handleClose,
+  handleRedirect,
+}) => {
   // Je récupère l'url actuelle
   const path = useHistory();
 
@@ -62,7 +65,11 @@ const DialogChangeInformationsModal = ({ isOpen, handleClose, handleRedirect }) 
           <p className="head-title">Que souhaitez vous faire ?</p>
         </DialogTitle>
         <DialogActions style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button onClick={handleCloseBtn} className={classes.btn} endIcon={<ShoppingCartIcon />}>
+          <Button
+            onClick={handleCloseBtn}
+            className={classes.btn}
+            endIcon={<ShoppingCartIcon />}
+          >
             <Link to="/cart" style={{ textDecoration: 'none' }}>
               Acceder à votre panier
             </Link>

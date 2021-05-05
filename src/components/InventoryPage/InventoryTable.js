@@ -190,8 +190,11 @@ const InventoryTable = ({
 
   return (
     <Paper className={classes.root}>
-      <Typography variant="h6" style={{ padding: '10px', backgroundColor: '#A8C1E2' }}>
-        Inventaire
+      <Typography
+        variant="h6"
+        style={{ padding: '10px', backgroundColor: '#008DBA', color: 'white' }}
+      >
+        Liste des médicaments
       </Typography>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table" size="small">

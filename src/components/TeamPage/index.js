@@ -49,11 +49,14 @@ const useStyles = makeStyles({
   },
   btnSend: {
     color: 'white',
+    width: '150px',
+    fontSize: '1rem',
+    padding: '1rem',
     borderRadius: '15px',
-    background: '#0368A3',
+    background: '#008DBA',
     '&:hover': {
-      background: '#CDD0D4',
-      color: '#0368A3',
+      background: '#0368A3',
+      color: '#FFF',
     },
   },
   btnBox: {
@@ -229,7 +232,7 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                         component="p"
                         align="center"
                       >
-                        Git Master
+                        Git Master, Dev Full-Stack
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -311,9 +314,10 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                 </Card>
               </Grow>
             </Box>
+            <h1 style={{ marginBottom: '2rem' }} className="main-box__main-title">
+              Nous contacter
+            </h1>
             <div style={{ textAlign: 'center' }}>
-              <h1 className="main-box__main-title">Nous contacter</h1>
-
               <form
                 onSubmit={handlerOnSubmit}
                 style={{
@@ -329,7 +333,13 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                   boxShadow: 'rgb(0 0 0 / 35%) 0px 2px 9px 2px',
                 }}
               >
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    alignItems: 'center',
+                  }}
+                >
                   <TextField
                     required
                     onChange={handlerOnChange}

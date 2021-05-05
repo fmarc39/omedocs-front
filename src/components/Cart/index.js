@@ -359,13 +359,14 @@ const CartPage = ({
                   borderRadius="10px"
                   align="center"
                   boxShadow={4}
+                  bgcolor="#008DBA"
                 >
                   <h4 className="cart-box__title"> Votre panier </h4>
                 </Box>
               </Slide>
             )}
 
-            <div className={classes.root}>
+            <div className={classes.root} style={{ position: 'relative' }}>
               {cartData.length !== 0 && (
                 <Paper className={classes.paper}>
                   <TableContainer>
@@ -439,13 +440,12 @@ const CartPage = ({
                         </TableRow>
                       </TableBody>
                     </Table>
-                    <div style={{ textAlign: 'center', margin: '20px 0 10px 0' }}>
+                    <div className="stripe">
                       <StripeCheckout
                         stripeKey="pk_test_51Ij1IsAClzkudXaoJHimun68AE67pw5ry6KRTJdgS2tu6SScPbUPCqAFXlvkTb9EnzAZOYbXfErMtxRD9LZD3F8e00byaYzYhA"
                         token={handleToken}
                         endIcon={<PaymentIcon />}
                         label="Payer par 💳"
-                        className={classes.btn}
                         amount={invoiceTotal * 100}
                         currency="EUR"
                         name="O'Medocs"
