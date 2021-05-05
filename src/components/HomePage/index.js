@@ -33,10 +33,10 @@ import './styles.scss';
 
 const useStyles = makeStyles(() => ({
   button: {
-    background: '#1A936F',
+    background: '#008DBA',
     color: '#F3E9D2',
     '&:hover': {
-      background: '#114B5F',
+      background: '#0368A3',
     },
     borderRadius: '30px',
     padding: '.8rem',
@@ -176,7 +176,7 @@ const HomePage = () => {
                 <img className="why__content--card-img" src={pharmacy} alt="pharmacy" />
                 <p className="why__content--card-text">
                   Actuellement en France, les pharmacies n'ont pas le droit de vendre des
-                  médicaments dont la date de péremption est inférieure à 3 à 6 mois.
+                  médicaments dont la date de péremption est inférieure de 3 à 6 mois.
                 </p>
               </div>
               <div className="why__content--card">

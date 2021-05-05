@@ -29,6 +29,15 @@ const useStyles = makeStyles(() => ({
     marginBottom: '16px',
     width: '260px',
   },
+  btn: {
+    background: '#008DBA',
+    padding: '0.7rem',
+    '&:hover': {
+      background: '#0368A2',
+      color: '#FFF',
+    },
+    borderRadius: '15px',
+  },
 }));
 
 const ModalAddProduct = ({
@@ -51,7 +60,10 @@ const ModalAddProduct = ({
   };
 
   const handlerOnChange = (evt) => {
-    if ((evt.target.name === 'name' || evt.target.name === 'cis') && evt.target.value.length >= 4) {
+    if (
+      (evt.target.name === 'name' || evt.target.name === 'cis') &&
+      evt.target.value.length >= 4
+    ) {
       openPopList();
     }
 
@@ -83,7 +95,9 @@ const ModalAddProduct = ({
         position="relative"
       >
         {/* Je n'ouvre la PopList que si il y a plus de 4 caractères */}
-        {activePopList && (nameValue.length >= 4 || cisValue.length >= 4) && <PopListApi />}
+        {activePopList && (nameValue.length >= 4 || cisValue.length >= 4) && (
+          <PopListApi />
+        )}
 
         <Typography variant="h5" component="h5">
           Ajouter un article
@@ -144,7 +158,12 @@ const ModalAddProduct = ({
               shrink: true,
             }}
           />
-          <Button color="primary" variant="contained" type="submit">
+          <Button
+            color="primary"
+            variant="contained"
+            type="submit"
+            className={classes.btn}
+          >
             Ajouter
           </Button>
         </form>

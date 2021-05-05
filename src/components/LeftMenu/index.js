@@ -38,10 +38,10 @@ const useStyles = makeStyles(() => ({
   btn: {
     transition: 'all 0.3s',
     paddingRight: 30,
-    background: '#0368A3',
+    background: '#008DBA',
     '&:hover': {
-      background: '#CDD0D4',
-      color: '#0368A3',
+      background: '#D8F3FF',
+      color: '#0368A2',
     },
     borderRadius: '15px',
     marginBottom: '1rem',
@@ -54,8 +54,9 @@ const useStyles = makeStyles(() => ({
     marginTop: '1.5rem',
     borderRadius: '15px',
     '&:hover': {
-      background: '#0368A3',
+      background: '#008DBA',
       color: 'white',
+      border: 'none',
     },
   },
 }));
@@ -83,13 +84,19 @@ const LeftMenu = ({
       width={menuIsOpen ? '250px' : '80px'}
       height="100%"
       color="primary.contrastText"
-      bgcolor="#bfcee2"
+      bgcolor="#D8F3FF"
       className="left-menu"
     >
-      <IconButton style={{ marginLeft: 'auto' }} onClick={() => openCloseMenu()}>
+      <IconButton
+        style={{ marginLeft: 'auto' }}
+        onClick={() => openCloseMenu()}
+      >
         <ExitToAppIcon
           size="large"
-          style={{ color: ' #0368A3', transform: menuIsOpen ? 'rotate(180deg)' : null }}
+          style={{
+            color: ' #0368A3',
+            transform: menuIsOpen ? 'rotate(180deg)' : null,
+          }}
         />
       </IconButton>
       <Link to="/">
@@ -110,7 +117,12 @@ const LeftMenu = ({
           {establishment}
         </Typography>
       )}
-      <Box display="flex" flexDirection="column" textAlign="center" className="let-menu__btn-box">
+      <Box
+        display="flex"
+        flexDirection="column"
+        textAlign="center"
+        className="let-menu__btn-box"
+      >
         <Divider />
         <Button
           variant="outlined"
