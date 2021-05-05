@@ -40,8 +40,8 @@ const useStyles = makeStyles(() => ({
     paddingRight: 30,
     background: '#008DBA',
     '&:hover': {
-      background: '#3883C0',
-      color: '#FFF',
+      background: '#D8F3FF',
+      color: '#0368A2',
     },
     borderRadius: '15px',
     marginBottom: '1rem',

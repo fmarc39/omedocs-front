@@ -349,6 +349,7 @@ const CartPage = ({
                   borderRadius="10px"
                   align="center"
                   boxShadow={4}
+                  bgcolor="#008DBA"
                 >
                   <h4 className="cart-box__title"> Votre panier </h4>
                 </Box>
