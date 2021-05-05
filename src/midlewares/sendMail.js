@@ -1,12 +1,14 @@
 import emailjs, { init } from 'emailjs-com';
-import { SEND_MAIL } from 'src/actions/contactUs';
+import { SEND_MAIL, SEND_MAIL_CHECKOUT } from 'src/actions/sendMail';
 import { openSnackBar } from 'src/actions/utils';
+
+// initialise mon id emailJs
+const id = init('user_w2JrhnK7Zzk1BiTcPtkSN');
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case SEND_MAIL:
       {
-        const id = init('user_w2JrhnK7Zzk1BiTcPtkSN');
         const { message, email, firstName, lastName } = store.getState().contactUs;
         console.log(message, email, lastName, firstName);
         emailjs
@@ -41,6 +43,32 @@ export default (store) => (next) => (action) => {
           });
       }
       return next(action);
+    case SEND_MAIL_CHECKOUT:
+      {
+        const pharmacyEmail = store.getState().cart;
+        const { name, emailBuyer, completeAddress } = action;
+
+        emailjs
+          .send(
+            'service_x6zecr7',
+            'template_ltyrpl3',
+            {
+              name: name,
+              email: emailBuyer,
+              address: completeAddress,
+              toEmail: pharmacyEmail,
+            },
+            id,
+          )
+          .then((response) => {
+            console.log('SUCCESS!', response.status, response.text);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+      return next(action);
+
     default:
       return next(action);
   }

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TeamPage from 'src/components/TeamPage';
-import { changeInputValue, sendMail } from 'src/actions/contactUs';
+import { changeInputValue, sendMail } from 'src/actions/sendMail';
 
 const mapStateToProps = (state) => ({
   email: state.contactUs.email,

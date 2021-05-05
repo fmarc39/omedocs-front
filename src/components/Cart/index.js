@@ -41,6 +41,7 @@ import './styles.scss';
 
 // import Image
 import backgroundImage from 'src/assets/img/pharmacy-back.jpg';
+import sendMail from '../../midlewares/sendMail';
 
 // Configuration des colones avec le nom, le label, la largeur
 const headCells = [
@@ -220,6 +221,7 @@ const CartPage = ({
   remmoveQuantity,
   saveOrder,
   clearCart,
+  sendMailCheckout,
 }) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -275,7 +277,24 @@ const CartPage = ({
 
   async function handleToken(token, product, addresses) {
     saveOrder(ccyFormat(invoiceTotal));
+    // On vide le panier après l'achat ici
     clearCart();
+
+    // je récupère les infos neccessaire à l'envoie du mail de confirmation
+    const { email: emailBuyer } = token;
+    const {
+      billing_name: name,
+      shipping_address_line1: address,
+      shipping_address_zip: zipCode,
+      shipping_address_city: city,
+      shipping_address_country: country,
+    } = product;
+
+    const completeAddress = `${address}, ${zipCode} ${city}, ${country}`;
+
+    // Et j'envoie le mail
+    sendMailCheckout(emailBuyer, name, completeAddress);
+
     const response = await axios.post('http://omedocs.herokuapp.com/checkout', {
       token,
       product,
@@ -420,7 +439,7 @@ const CartPage = ({
                         </TableRow>
                       </TableBody>
                     </Table>
-                    <div>
+                    <div style={{ textAlign: 'center', margin: '20px 0 10px 0' }}>
                       <StripeCheckout
                         stripeKey="pk_test_51Ij1IsAClzkudXaoJHimun68AE67pw5ry6KRTJdgS2tu6SScPbUPCqAFXlvkTb9EnzAZOYbXfErMtxRD9LZD3F8e00byaYzYhA"
                         token={handleToken}

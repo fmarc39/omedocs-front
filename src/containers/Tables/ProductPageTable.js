@@ -1,10 +1,6 @@
 import { connect } from 'react-redux';
 import Table from 'src/components/ProductPage/ProductPageTable';
-import {
-  addArticleToCart,
-  openDialogBoxAction,
-  closeDialogBox,
-} from 'src/actions/cart';
+import { addArticleToCart, openDialogBoxAction, closeDialogBox } from 'src/actions/cart';
 import { openSnackBar } from 'src/actions/utils';
 
 const mapStateToProps = (state) => ({
@@ -14,8 +10,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (data, pharmacyId) => {
-    dispatch(addArticleToCart(data, pharmacyId));
+  addToCart: (data, pharmacyId, pharmacyEmail) => {
+    dispatch(addArticleToCart(data, pharmacyId, pharmacyEmail));
   },
   openDialogBox: () => {
     dispatch(openDialogBoxAction());

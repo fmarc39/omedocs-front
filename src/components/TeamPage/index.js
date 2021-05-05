@@ -312,7 +312,8 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
               </Grow>
             </Box>
             <div style={{ textAlign: 'center' }}>
-              <h1 style={{ fontSize: '1.5rem', marginTop: '40px' }}>Nous contacter</h1>
+              <h1 className="main-box__main-title">Nous contacter</h1>
+
               <form
                 onSubmit={handlerOnSubmit}
                 style={{
@@ -321,7 +322,7 @@ const TeamPage = ({ sendMail, email, message, firstName, lastName, changeInputVa
                   justifyContent: 'center',
                   alignItems: 'center',
                   minWidth: '300px',
-                  marginTop: '10px',
+                  marginTop: '20px',
                   borderRadius: '10px',
                   padding: '20px',
                   backgroundColor: '#fff',

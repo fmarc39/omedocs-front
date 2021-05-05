@@ -1,4 +1,4 @@
-import { CHANGE_INPUT_VALUE, SEND_MAIL } from 'src/actions/contactUs';
+import { CHANGE_INPUT_VALUE, SEND_MAIL } from 'src/actions/sendMail';
 
 const initialState = {
   firstName: '',

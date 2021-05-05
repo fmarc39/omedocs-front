@@ -14,10 +14,11 @@ export const DECREASES_ARTICLE_QUANTITY = 'DECREASES_ARTICLE_QUANTITY';
 export const CHANGE_ORDER_STATUS = 'CHANGE_ORDER_STATUS';
 export const SAVE_ORDER_STATUS_IN_STATE = 'SAVE_ORDER_STATUS_IN_STATE';
 
-export const addArticleToCart = (payload, pharmacyId) => ({
+export const addArticleToCart = (payload, pharmacyId, pharmacyEmail) => ({
   type: ADD_ARTICLE_TO_CART,
   payload,
   pharmacyId,
+  pharmacyEmail,
 });
 
 export const deleteArticleFromCart = (articleId) => ({

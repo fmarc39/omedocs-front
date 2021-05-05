@@ -89,6 +89,7 @@ const ProductTable = ({
   pharmacyToOrder,
   openSnackBar,
 }) => {
+  console.log(products.map((product) => console.log(product)));
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -138,7 +139,16 @@ const ProductTable = ({
     event.preventDefault();
     // On récupère les datas du form avec dataset
     const {
-      dataset: { pharmacyname, pharmacyid, price, productid, productname, quantity, id },
+      dataset: {
+        pharmacyname,
+        pharmacyid,
+        price,
+        productid,
+        productname,
+        quantity,
+        id,
+        pharmacyemail,
+      },
     } = event.target;
     // On récupère la quantité rentré par l'user
     const formData = new FormData(event.target);
@@ -175,7 +185,7 @@ const ProductTable = ({
         // Fonction pour vider les champs
         handleReset();
         // On envois les data dans le panier via un action
-        addToCart(dataToSendToCart, pharmacyid);
+        addToCart(dataToSendToCart, pharmacyid, pharmacyemail);
         // On envois l'action pour l'ouverture de la dialogBox add to cart
         openDialogBox();
       }
@@ -183,7 +193,7 @@ const ProductTable = ({
       // Fonction pour vider les champs
       handleReset();
       // On envois les data dans le panier via un action
-      addToCart(dataToSendToCart, pharmacyid);
+      addToCart(dataToSendToCart, pharmacyid, pharmacyemail);
       // On envois l'action pour l'ouverture de la dialogBox
       openDialogBox();
     }
@@ -209,6 +219,7 @@ const ProductTable = ({
           data-productname={product.name}
           data-productid={product.cis_code}
           data-id={product.id}
+          data-pharmacyemail={product.email}
           name="addProduct"
           className="addProductToCart"
         >

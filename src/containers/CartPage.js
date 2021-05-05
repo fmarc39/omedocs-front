@@ -8,6 +8,7 @@ import {
   clearCart,
 } from 'src/actions/cart';
 import { withRouter } from 'react-router-dom';
+import { sendMailCheckout } from 'src/actions/sendMail';
 
 const mapStateToProps = (state) => ({
   cartData: state.cart.cart,
@@ -27,6 +28,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(saveOrderInDb(totalPrice));
   },
   clearCart: () => dispatch(clearCart()),
+  sendMailCheckout: (emailBuyer, name, completeAddress) => {
+    dispatch(sendMailCheckout(emailBuyer, name, completeAddress));
+  },
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps)(CartPage);

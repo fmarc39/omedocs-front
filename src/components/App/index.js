@@ -39,6 +39,7 @@ const App = ({ logged, rehydrate }) => {
     saveState({
       cart: store.getState().cart.cart,
       pharmacyToOrder: store.getState().cart.pharmacyToOrder,
+      pharmacyEmail: store.getState().cart.pharmacyEmail,
     });
   });
 
