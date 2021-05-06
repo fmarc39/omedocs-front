@@ -194,7 +194,7 @@ const InventoryTable = ({
         variant="h6"
         style={{ padding: '10px', backgroundColor: '#008DBA', color: 'white' }}
       >
-        Liste des médicaments
+        Liste des établissements
       </Typography>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table" size="small">
