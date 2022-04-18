@@ -1,3 +1,4 @@
+// J'importe les actions
 import {
   CHANGE_USER_INFORMATIONS,
   LOGIN,
@@ -7,12 +8,12 @@ import {
   SAVE_NEW_PHONE,
   CLEAN_INPUT_SIGNUP,
 } from 'src/actions/user';
-
+// J'importe les actions
 import {
   OPEN_VALIDATION_CHANGE_MODAL,
   CLOSE_VALIDATION_CHANGE_MODAL,
 } from 'src/actions/utils';
-
+// j'importe les actions
 import {
   SAVE_IN_ORDER_HISTORY,
   SAVE_FETCHED_ORDERS_IN_STATE,
@@ -20,8 +21,10 @@ import {
   SAVE_ORDER_STATUS_IN_STATE,
 } from 'src/actions/cart';
 
+// J'importe l'API Axios
 import api from 'src/api/api';
 
+// Je définis le state initiale de mon application
 export const initialState = {
   user_id: null,
   establishment: '',
@@ -50,6 +53,7 @@ export const initialState = {
   phoneChangeDialogBox: false,
 };
 
+// Mise en place du reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case CLEAN_INPUT_SIGNUP:
@@ -74,6 +78,7 @@ const reducer = (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
     case LOGIN_FROM_REHYDRATE: {
+        // Je met le token dans les params de l'api
       api.defaults.headers.common.Authorization = `Bearer ${action.accessToken}`;
       return {
         ...state,
